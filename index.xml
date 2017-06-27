@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>NOWHERESVILLE</title>
+    <link>/</link>
+    <description>Recent content on NOWHERESVILLE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>statsxm.zhu@foxmail.com (ZXM)</managingEditor>
+    <webMaster>statsxm.zhu@foxmail.com (ZXM)</webMaster>
+    <lastBuildDate>Sun, 25 Jun 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>First post!</title>
+      <link>/post/2017-06-25-first-post/</link>
+      <pubDate>Sun, 25 Jun 2017 00:00:00 +0000</pubDate>
+      <author>statsxm.zhu@foxmail.com (ZXM)</author>
+      <guid>/post/2017-06-25-first-post/</guid>
+      <description>This is my first post~~
+这是我的第一篇博客，哈哈。
+始终没有找到我心目中很“完美”的Hugo模板：有tags，有分类，有评论区，有代码高亮。只能先用这个模板凑合一下，下周末试试自己写个模板。</description>
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>statsxm.zhu@foxmail.com (ZXM)</author>
+      <guid>/page/about/</guid>
+      <description>Currently, a nobody.</description>
+    </item>
+    
+  </channel>
+</rss>
