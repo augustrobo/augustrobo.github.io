@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2018/01/19/python-double-to-int/</loc>
+    <lastmod>2018-01-19T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018/01/11/big-data-notes/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
   </url>
@@ -13,13 +18,13 @@
   </url>
   
   <url>
-    <loc>/tags/big-data/</loc>
+    <loc>/categories/bigdata/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/big-data/</loc>
+    <loc>/tags/bigdata/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -37,14 +42,20 @@
   </url>
   
   <url>
-    <loc>/tags/data-visualization/</loc>
+    <loc>/tags/datavisualization/</loc>
     <lastmod>2017-07-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>/categories/databases/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/</loc>
+    <lastmod>2018-01-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -55,7 +66,19 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/python/</loc>
+    <lastmod>2018-01-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/pythonbasics/</loc>
+    <lastmod>2018-01-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

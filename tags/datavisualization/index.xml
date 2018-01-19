@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Data visualization on NOWHERESVILLE</title>
-    <link>/tags/data-visualization/</link>
-    <description>Recent content in Data visualization on NOWHERESVILLE</description>
+    <title>DataVisualization on NOWHERESVILLE</title>
+    <link>/tags/datavisualization/</link>
+    <description>Recent content in DataVisualization on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 02 Jul 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/data-visualization/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/datavisualization/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

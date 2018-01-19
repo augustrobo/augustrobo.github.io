@@ -6,10 +6,25 @@
     <description>Recent content in Home on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python中的取整方式</title>
+      <link>/post/2018/01/19/python-double-to-int/</link>
+      <pubDate>Fri, 19 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/19/python-double-to-int/</guid>
+      <description>方式一：round() 四舍五入 Python中的 round() 有两个参数，第一个参数是需要处理的数，第二个参数是数位精度，默认为0。
+round(3.4) ## 3 round(3.5) ## 4  而有时候会出现奇怪的情况，比如：
+round(3.24, 1) #是四舍五入 ## 3.2 round(3.26, 1) #是四舍五入 ## 3.3 round(3.25, 1) #不是四舍五入 ## 3.2 ################################### round(0.44, 1) #是四舍五入 ## 0.4 round(0.46, 1) #是四舍五入 ## 0.5 round(0.45, 1) #是四舍五入 ## 0.5  很多人说Python3中采用的是【四舍六入五留双】，上面的例子说明这种说法是不正确的。其实是因为：
+ 十进制小数在计算机内是通过二进制小数来近似，在舍和进两个选项中选择更接近的一个 而当舍和进的两个选项十分接近时，round 选择偶数的选项  这就导致出现的结果非常复杂了。
+进一步解释：十进制小数 $0.2$ 和 $0.3$ 的二进制表示分别为：
+$$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\left(\frac{1}{128}+\frac{1}{256}\right)+\cdots =\frac{\frac{1}{8}+\frac{1}{16}}{1-\frac{1}{16}} =\frac{3}{15}=\frac{1}{5}\newline &amp;amp;=(0.\dot{0}\dot{0}\dot{1}\dot{1})_2 \end{align} $$
+以及 $$ \begin{align} (0.</description>
+    </item>
     
     <item>
       <title>UC San Diego Big Data笔记</title>

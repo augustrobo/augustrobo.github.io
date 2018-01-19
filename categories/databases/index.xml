@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Databases on NOWHERESVILLE</title>
+    <link>/categories/databases/</link>
+    <description>Recent content in Databases on NOWHERESVILLE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/databases/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>UC San Diego Big Data笔记</title>
+      <link>/post/2018/01/11/big-data-notes/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/11/big-data-notes/</guid>
+      <description>Introduction to Big Data Week1. Big Data: Why and Where Cloud Computing 云计算
+ on-demand computing computing anywhere, anytime + data torrent =&amp;gt; dynamic and scalable data analysis  Big Data =&amp;gt; Better Models =&amp;gt; Higher Precision
+ Personalized Marketing Personalized Medicine Smart Cities  Challenges of unstructured data:
+ volume =&amp;gt; hadoop velocity: real-time processing
+ high-velocity data: social media and market data =&amp;gt; storm, spark  beyond relational db =&amp;gt; NoSQL</description>
+    </item>
+    
+  </channel>
+</rss>
