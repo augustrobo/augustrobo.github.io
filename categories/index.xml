@@ -5,17 +5,26 @@
     <link>/categories/</link>
     <description>Recent content in Categories on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
-    <managingEditor>statsxm.zhu@foxmail.com (ZXM)</managingEditor>
-    <webMaster>statsxm.zhu@foxmail.com (ZXM)</webMaster>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 11 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Big data</title>
+      <link>/categories/big-data/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/big-data/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R</title>
       <link>/categories/r/</link>
       <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
-      <author>statsxm.zhu@foxmail.com (ZXM)</author>
+      
       <guid>/categories/r/</guid>
       <description></description>
     </item>
