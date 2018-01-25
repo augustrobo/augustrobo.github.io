@@ -6,10 +6,19 @@
     <description>Recent content in Home on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>TwoSum in Python</title>
+      <link>/post/2018/01/25/two-sum-in-python/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/25/two-sum-in-python/</guid>
+      <description>方式一：Brute Force class Solution: def twoSum(self, nums, target): for idx1, element in enumerate(nums): try: idx2 = nums[idx1 + 1:].index(target - element) + idx1 + 1 except ValueError: continue return [idx1, idx2] return None   Time complexity: $O(n^2)$ Space complexity: $O(1)$ Leetcode Submission Detail:  Runtime: 1629 ms Beats 17.69% of python3 submissions   方式二：One-pass Hash Table class Solution: def twoSum(self, nums, target): numDict = {} for idx1, element in enumerate(nums): try: idx2 = numDict[target - element] except KeyError: numDict[element] = idx1 continue return [idx1, idx2] return None   Time complexity: $O(n)$ Space complexity: $O(n)$ Leetcode Submission Detail:  Runtime: 61 ms Beats 73.</description>
+    </item>
     
     <item>
       <title>Python中的取整方式</title>
