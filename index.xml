@@ -13,10 +13,10 @@
     
     <item>
       <title>Python中的取整方式</title>
-      <link>/post/2018/01/19/python-double-to-int/</link>
+      <link>/post/2018/01/19/python-float-to-int/</link>
       <pubDate>Fri, 19 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018/01/19/python-double-to-int/</guid>
+      <guid>/post/2018/01/19/python-float-to-int/</guid>
       <description>方式一：round() 四舍五入 Python中的 round() 有两个参数，第一个参数是需要处理的数，第二个参数是数位精度，默认为0。
 round(3.4) ## 3 round(3.5) ## 4  而有时候会出现奇怪的情况，比如：
 round(3.24, 1) #是四舍五入 ## 3.2 round(3.26, 1) #是四舍五入 ## 3.3 round(3.25, 1) #不是四舍五入 ## 3.2 ################################### round(0.44, 1) #是四舍五入 ## 0.4 round(0.46, 1) #是四舍五入 ## 0.5 round(0.45, 1) #是四舍五入 ## 0.5  很多人说Python3中采用的是【四舍六入五留双】，上面的例子说明这种说法是不正确的。其实是因为：

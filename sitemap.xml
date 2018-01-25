@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/post/2018/01/19/python-double-to-int/</loc>
+    <loc>/post/2018/01/19/python-float-to-int/</loc>
     <lastmod>2018-01-19T00:00:00+00:00</lastmod>
   </url>
   
@@ -18,13 +18,13 @@
   </url>
   
   <url>
-    <loc>/categories/bigdata/</loc>
+    <loc>/tags/bigdata/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/bigdata/</loc>
+    <loc>/categories/bigdata/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
