@@ -76,16 +76,25 @@
 <ul>
 <li><a href="#master-method">Master Method</a>
 <ul>
-<li><a href="#proof">Proof</a></li>
+<li><a href="#proof-recursion-tree-approach">Proof (Recursion Tree Approach)</a></li>
 <li><a href="#interpretations">Interpretations</a></li>
 </ul></li>
-<li><a href="#counting-inversions">Counting Inversions</a></li>
-<li><a href="#karatsuba-multiplication">Karatsuba Multiplication</a>
+<li><a href="#counting-inversions">Counting Inversions</a>
 <ul>
 <li><a href="#python-code">Python Code</a></li>
 </ul></li>
-<li><a href="#binary-search">Binary Search</a></li>
-<li><a href="#strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</a></li>
+<li><a href="#karatsuba-multiplication">Karatsuba Multiplication</a>
+<ul>
+<li><a href="#python-code-1">Python Code</a></li>
+</ul></li>
+<li><a href="#binary-search">Binary Search</a>
+<ul>
+<li><a href="#python-code-2">Python Code</a></li>
+</ul></li>
+<li><a href="#strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</a>
+<ul>
+<li><a href="#python-code-3">Python Code</a></li>
+</ul></li>
 <li><a href="#closest-pair">Closest Pair</a></li>
 <li><a href="#exercises">Exercises</a>
 <ul>
@@ -94,7 +103,10 @@
 </ul></li>
 <li><a href="#sorting-selection">Sorting &amp; Selection</a>
 <ul>
-<li><a href="#mergesort">MergeSort</a></li>
+<li><a href="#mergesort">MergeSort</a>
+<ul>
+<li><a href="#running-time">Running Time</a></li>
+</ul></li>
 <li><a href="#quicksort">QuickSort</a></li>
 <li><a href="#rselect">RSelect</a></li>
 <li><a href="#dselect">DSelect</a></li>
@@ -120,27 +132,147 @@
 <h2 id="master-method">Master Method</h2>
 
 <ul>
-<li>a &ldquo;black-box&rdquo; method for solving recurrences</li>
-<li>determine the <strong>running time</strong> for most of the D&amp;C algos</li>
-<li>3 cases</li>
+<li><p>Cool feature: a &ldquo;black-box&rdquo; method for solving recurrences</p></li>
+
+<li><p>Determine the upper bound of <strong>running time</strong> for most of the D&amp;C algos</p></li>
+
+<li><p><strong>Assumption</strong>: all sub-problems have equal size</p></li>
 </ul>
 
-<h3 id="proof">Proof</h3>
+<blockquote>
+<ul>
+<li>unbalanced sub-problems?</li>
+<li>more than one recurrence?</li>
+</ul>
+</blockquote>
+
+<ul>
+<li><p><strong>Recurrence format</strong>:</p>
+
+<ul>
+<li>base case: <code>$T(n)\leq C$</code>(a constant), for all sufficiently small <code>$n$</code></li>
+<li>for all larger <code>$n$</code>, <code>$T(n)\leq aT(\frac{n}{b})+O(n^d)$</code></li>
+<li><code>$a$</code>: # of recurrence calls (e.g., # of sub-problems), <code>$a\geq 1$</code></li>
+<li><code>$b$</code>: input size shrinkage factor, <code>$b&gt;1$</code>, <code>$T(\frac{n}{b})$</code> is the time required to solve each sub-problem</li>
+<li><code>$d$</code>: exponent in running time of the combine step, <code>$d\geq 0$</code></li>
+<li>constants <code>$a,b,d$</code> independent of <code>$n$</code></li>
+</ul></li>
+
+<li><p><strong>Three Cases</strong>:</p></li>
+</ul>
+
+<p>$$
+T(n)=
+\begin{cases}
+O(n^d\log n), &amp;a=b^d \text{   (case 1)}\newline
+O(n^d), &amp;a&lt;b^d\text{   (case 2)}\newline
+O(n^{\log_b a}), &amp;\text{otherwise   (case 3)}
+\end{cases}
+$$
+​   Case 1: base of logarithm does not matter</p>
+
+<p>​   Case 3: base of logarithm matters</p>
+
+<blockquote>
+<p>If <code>$T(n)= aT(\frac{n}{b})+\Theta(n^d)$</code>, then (with similar proof)</p>
+
+<p>$$
+T(n)=
+\begin{cases}
+\Theta(n^d\log n), &amp;a=b^d \text{   (case 1)}\newline
+\Theta(n^d), &amp;a&lt;b^d\text{   (case 2)}\newline
+\Theta(n^{\log_b a}), &amp;\text{otherwise   (case 3)}
+\end{cases}
+$$</p>
+</blockquote>
+
+<h3 id="proof-recursion-tree-approach">Proof (Recursion Tree Approach)</h3>
+
+<p>3 cases <code>$\Leftrightarrow$</code> 3 types of recursion trees</p>
+
+<p>For simplicity, we assume:</p>
+
+<ul>
+<li><code>$T(1)\leq C$</code> (for some constant $C$)</li>
+<li><code>$T(n)\leq aT(\frac{n}{b})+Cn^d$</code></li>
+<li><code>$n$</code> is a power of <code>$b$</code></li>
+</ul>
+
+<p>At each level <code>$j=0,1,\ldots, \log_b n$</code>, there are</p>
+
+<ul>
+<li><code>$a^j$</code> sub-problems,</li>
+<li>each of size <code>$n/b^j$</code></li>
+</ul>
+
+<blockquote>
+<p><code>$(1+\log_b n)$</code> levels,  level-0: <strong>root</strong>,  level-<code>$\log_b n$</code>: <strong>leaves</strong></p>
+</blockquote>
+
+<p>Then
+$$
+\text{Total work at level-}j \leq
+a^j \times C\left(\frac{n}{b^j}\right)^d
+$$
+Thus,
+$$
+\text{Total work} \leq Cn^d\sum_{j=0}^{\log_dn}\left(\frac{a}{b^d}\right)^j   \ \ (\Delta)
+$$
+<code>$\Rightarrow$</code> all depends on the relationship between <code>$a$</code> and <code>$b^d$</code></p>
+
+<blockquote>
+<p>For constant <code>$r&gt;0$</code>,
+$$
+1+r+r^2+\cdots+r^k = \frac{1-r^{k+1}}{1-r} \leq
+\begin{cases}
+\frac{1}{1-r}, &amp;r<1 \newline
+\frac{r}{r-1} r^k, &r>1
+\end{cases}
+$$</p>
+
+<ul>
+<li><code>$0&lt;r&lt;1$</code>, <code>$LHS \leq Constant$</code></li>
+<li><code>$r&gt;1$</code>, <code>$LHS$</code> is dominated by the largest power of <code>$r$</code></li>
+</ul>
+</blockquote>
+
+<p><strong>Case 1</strong>. <code>$a=b^d$</code>
+$$
+(\Delta) \leq Cn^d\times log_b n=O(n^d\log n)
+$$</p>
+
+<p><strong>Case 2</strong>. <code>$a&lt;b^d$</code></p>
+
+<p>$$
+(\Delta) \leq O(n^d)
+$$
+<strong>Case 3</strong>. <code>$a&gt;b^d$</code>
+$$
+(\Delta)\leq Cn^d \left(\frac{a}{b^d}\right)^{\log_b n}= Ca^{\log_b n}=Cn^{\log_b a}=O(n^{\log_b a})
+$$</p>
+
+<blockquote>
+<p><code>$n^{\log_ba}=a^{\log_bn} \Leftrightarrow\log_ba\log_bn=\log_bn\log_ba$</code></p>
+</blockquote>
+
+<p><code>$a^{\log_b n}=$</code> # of leaves</p>
 
 <h3 id="interpretations">Interpretations</h3>
 
 <h2 id="counting-inversions">Counting Inversions</h2>
 
 <ul>
-<li>problem: counting # of inversions in an array</li>
-<li>measuring similarity between 2 ranked lists =&gt; making good recommendations =&gt; <strong>collaborative filtering</strong></li>
+<li><strong>Problem</strong>: counting # of inversions in an array</li>
+<li><strong>Application</strong>: measuring similarity between 2 ranked lists =&gt; making good recommendations =&gt; <strong>collaborative filtering</strong></li>
 </ul>
+
+<h3 id="python-code">Python Code</h3>
 
 <h2 id="karatsuba-multiplication">Karatsuba Multiplication</h2>
 
 <ul>
-<li>Problem: multiplication of  two $n$-digit numbers $x, y$ (base 10)</li>
-<li>Simple method: $O(n^2)$ bit operations</li>
+<li><strong>Problem</strong>: multiplication of  two <code>$n$</code>-digit numbers <code>$x, y$</code> (base 10)</li>
+<li>Simple method: <code>$O(n^2)$</code> bit operations</li>
 <li><strong>Recursive method</strong>:</li>
 </ul>
 
@@ -156,12 +288,12 @@ $$</p>
 
 <blockquote>
 <ul>
-<li>recursively compute $ac$, $ad$, $bc$, and $bd$</li>
+<li>recursively compute <code>$ac$</code>, <code>$ad$</code>, <code>$bc$</code>, and <code>$bd$</code></li>
 <li>then compute (*)</li>
 </ul>
 </blockquote>
 
-<p><strong>running time</strong>
+<p><strong>Running time</strong>
 $$
 T(n)
 \begin{cases}
@@ -178,13 +310,13 @@ $$
 
 <blockquote>
 <ul>
-<li>recursively compute $ac$, $bd$, $(a+b)(c+d)$</li>
-<li>$ad+bc = (a+b)(c+d)-(ac+bd)$</li>
+<li>recursively compute <code>$ac$</code>, <code>$bd$</code>, <code>$(a+b)(c+d)$</code></li>
+<li><code>$ad+bc = (a+b)(c+d)-(ac+bd)$</code></li>
 <li>then compute (*)</li>
 </ul>
 </blockquote>
 
-<p><strong>running time</strong>
+<p><strong>Running time</strong>
 $$
 T(n)
 \begin{cases}
@@ -199,7 +331,7 @@ a = 3 &gt; 2^1 = b^d (\text{case 3}) \Rightarrow T(n) = O(n^{\log_ba})=O(n^{\log
 $$
 Better than simple method!</p>
 
-<h3 id="python-code">Python Code</h3>
+<h3 id="python-code-1">Python Code</h3>
 
 <pre><code class="language-python">def karatsuba(x, y):
     nx, ny = len(str(x)), len(str(y))
@@ -222,7 +354,38 @@ Better than simple method!</p>
 
 <h2 id="binary-search">Binary Search</h2>
 
+<ul>
+<li><strong>Problem</strong>: looking for an element in a given sorted array</li>
+<li><strong>Running time</strong>: By master method,</li>
+</ul>
+
+<p>$$
+a = 1=2^0=b^d \text{ (case 1) }\Rightarrow T(n)\leq O(n^d\log n)=O(\log n)
+$$</p>
+
+<h3 id="python-code-2">Python Code</h3>
+
+<pre><code class="language-python">def binarySearch(arr, target):
+    if len(arr) == 0:
+        return None
+
+    mid = len(arr)//2
+    if arr[mid] == target: return mid
+    elif arr[mid] &gt; target:
+        try:
+            return binarySearch(arr[:mid], target)
+        except TypeError:
+            return None
+    else:
+        try:
+            return binarySearch(arr[(mid+1):], target) + mid + 1
+        except TypeError:
+            return None   
+</code></pre>
+
 <h2 id="strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</h2>
+
+<h3 id="python-code-3">Python Code</h3>
 
 <h2 id="closest-pair">Closest Pair</h2>
 
@@ -243,13 +406,13 @@ Better than simple method!</p>
 
 <tbody>
 <tr>
-<td><strong>randomized</strong></td>
+<td><strong>Randomized</strong></td>
 <td>quickSort</td>
 <td>RSelect</td>
 </tr>
 
 <tr>
-<td><strong>deterministic</strong></td>
+<td><strong>Deterministic</strong></td>
 <td>mergeSort</td>
 <td>DSelect</td>
 </tr>
@@ -261,6 +424,13 @@ Better than simple method!</p>
 <ul>
 <li>recursion tree method</li>
 </ul>
+
+<h3 id="running-time">Running Time</h3>
+
+<p>By master method,
+$$
+a = 2=2^1=b^d \text{ (case 1) }\Rightarrow T(n)\leq O(n^d\log n)=O(n\log n)
+$$</p>
 
 <h2 id="quicksort">QuickSort</h2>
 
