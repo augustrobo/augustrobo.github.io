@@ -80,7 +80,10 @@
 <li><a href="#interpretations">Interpretations</a></li>
 </ul></li>
 <li><a href="#counting-inversions">Counting Inversions</a></li>
-<li><a href="#karatsuba-multiplication">Karatsuba Multiplication</a></li>
+<li><a href="#karatsuba-multiplication">Karatsuba Multiplication</a>
+<ul>
+<li><a href="#python-code">Python Code</a></li>
+</ul></li>
 <li><a href="#binary-search">Binary Search</a></li>
 <li><a href="#strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</a></li>
 <li><a href="#closest-pair">Closest Pair</a></li>
@@ -136,9 +139,9 @@
 <h2 id="karatsuba-multiplication">Karatsuba Multiplication</h2>
 
 <ul>
-<li>Problem: multiplication of  two $n$-digit numbers $x, y$</li>
-<li>simple method: $O(n^2)$ operations</li>
-<li>recursive method:</li>
+<li>Problem: multiplication of  two $n$-digit numbers $x, y$ (base 10)</li>
+<li>Simple method: $O(n^2)$ bit operations</li>
+<li><strong>Recursive method</strong>:</li>
 </ul>
 
 <p>$$
@@ -163,7 +166,7 @@ $$
 T(n)
 \begin{cases}
 =O(1), &amp;n=1(\text{base case})\newline
-\leq 4T(\frac{n}{2}) + O(n), &amp;n\geq 1(\text{4 subproblems and linear time addition})
+\leq 4T(\frac{n}{2}) + O(n), &amp;n\geq 1(\text{4 subproblems and linear time bit addition})
 \end{cases}
 $$
 By master method,</p>
@@ -186,7 +189,7 @@ $$
 T(n)
 \begin{cases}
 =O(1), &amp;n=1(\text{base case})\newline
-\leq 3T(\frac{n}{2}) + O(n), &amp;n\geq 1(\text{3 subproblems and linear time addition})
+\leq 3T(\lceil \frac{n}{2} \rceil) + O(n), &amp;n\geq 1(\text{3 subproblems and linear time bit addition})
 \end{cases}
 $$
 By master method,</p>
@@ -195,6 +198,27 @@ By master method,</p>
 a = 3 &gt; 2^1 = b^d (\text{case 3}) \Rightarrow T(n) = O(n^{\log_ba})=O(n^{\log_23})=O(n^{1.59})
 $$
 Better than simple method!</p>
+
+<h3 id="python-code">Python Code</h3>
+
+<pre><code class="language-python">def karatsuba(x, y):
+    nx, ny = len(str(x)), len(str(y))
+    n = max(nx, ny)
+
+    # base case
+    if n == 1:
+        return x*y
+
+    m = n//2
+    bm = 10**m
+    a, b = x//bm, x%bm
+    c, d = y//bm, y%bm
+    term1 = karatsuba(a, c)
+    term2 = karatsuba(b, d)
+    term3 = karatsuba(a+b, c+d)
+    result = (bm**2)*term1 + bm*(term3 - term1 - term2) + term2
+    return result
+</code></pre>
 
 <h2 id="binary-search">Binary Search</h2>
 
@@ -219,13 +243,13 @@ Better than simple method!</p>
 
 <tbody>
 <tr>
-<td>randomized</td>
+<td><strong>randomized</strong></td>
 <td>quickSort</td>
 <td>RSelect</td>
 </tr>
 
 <tr>
-<td>deterministic</td>
+<td><strong>deterministic</strong></td>
 <td>mergeSort</td>
 <td>DSelect</td>
 </tr>

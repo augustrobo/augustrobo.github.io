@@ -17,7 +17,7 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/algorithms/</guid>
-      <description>Divide and Conquer 分而治之 Master Method  a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences determine the running time for most of the D&amp;amp;C algos 3 cases  Proof Interpretations Counting Inversions  problem: counting # of inversions in an array measuring similarity between 2 ranked lists =&amp;gt; making good recommendations =&amp;gt; collaborative filtering  Karatsuba Multiplication  Problem: multiplication of two $n$-digit numbers $x, y$ simple method: $O(n^2)$ operations recursive method:  $$ x = 10^{n/2}a+b, y = 10^{n/2}c+d, \text{ where }a,b,c,d\text{ are }\frac{n}{2}-\text{digit numbers} $$</description>
+      <description>Divide and Conquer 分而治之 Master Method  a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences determine the running time for most of the D&amp;amp;C algos 3 cases  Proof Interpretations Counting Inversions  problem: counting # of inversions in an array measuring similarity between 2 ranked lists =&amp;gt; making good recommendations =&amp;gt; collaborative filtering  Karatsuba Multiplication  Problem: multiplication of two $n$-digit numbers $x, y$ (base 10) Simple method: $O(n^2)$ bit operations Recursive method:  $$ x = 10^{n/2}a+b, y = 10^{n/2}c+d, \text{ where }a,b,c,d\text{ are }\frac{n}{2}-\text{digit numbers} $$</description>
     </item>
     
   </channel>
