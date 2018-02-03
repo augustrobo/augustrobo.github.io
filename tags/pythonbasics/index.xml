@@ -6,10 +6,19 @@
     <description>Recent content in PythonBasics on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 19 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 25 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/pythonbasics/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Python Data Structures</title>
+      <link>/post/2018/01/25/python-data-structure/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/25/python-data-structure/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Python中的取整方式</title>

@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2018/01/25/algorithms/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/01/25/python-data-structure/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018/01/25/two-sum-in-python/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
   </url>
@@ -29,6 +39,12 @@
   </url>
   
   <url>
+    <loc>/categories/algorithms/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/bigdata/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -41,14 +57,26 @@
   </url>
   
   <url>
+    <loc>/tags/bloomfilters/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/coursera/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/datastructures/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -61,6 +89,24 @@
   <url>
     <loc>/categories/databases/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/graph/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/graph/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/hashing/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -95,13 +141,31 @@
   
   <url>
     <loc>/tags/pythonbasics/</loc>
-    <lastmod>2018-01-19T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/r/</loc>
     <lastmod>2017-07-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/searching/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/selection/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/sorting/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

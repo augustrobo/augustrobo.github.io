@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Algorithms-Design and Analysis(Stanford) Notes | NOWHERESVILLE</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ascetic.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="/">/home/nowheresville</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Algorithms-Design and Analysis(Stanford) Notes</span></h1>
+
+<h2 class="date">2018/01/25</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/python">Python</a> <a href="/categories/algorithms">algorithms</a> <a href="/categories/graph">graph</a> 
+  
+  
+  
+  Tags: <a href="/tags/datastructures">dataStructures</a> <a href="/tags/algorithms">algorithms</a> <a href="/tags/sorting">sorting</a> <a href="/tags/searching">searching</a> <a href="/tags/hashing">hashing</a> <a href="/tags/bloomfilters">bloomFilters</a> <a href="/tags/selection">selection</a> <a href="/tags/graph">graph</a> 
+  
+  
+</p>
+</div>
+
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="#divide-and-conquer-分而治之">Divide and Conquer 分而治之</a>
+<ul>
+<li><a href="#master-method">Master Method</a>
+<ul>
+<li><a href="#proof">Proof</a></li>
+<li><a href="#interpretations">Interpretations</a></li>
+</ul></li>
+<li><a href="#counting-inversions">Counting Inversions</a></li>
+<li><a href="#karatsuba-multiplication">Karatsuba Multiplication</a></li>
+<li><a href="#binary-search">Binary Search</a></li>
+<li><a href="#strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</a></li>
+<li><a href="#closest-pair">Closest Pair</a></li>
+<li><a href="#exercises">Exercises</a>
+<ul>
+<li><a href="#peak-finding">Peak Finding</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#sorting-selection">Sorting &amp; Selection</a>
+<ul>
+<li><a href="#mergesort">MergeSort</a></li>
+<li><a href="#quicksort">QuickSort</a></li>
+<li><a href="#rselect">RSelect</a></li>
+<li><a href="#dselect">DSelect</a></li>
+</ul></li>
+<li><a href="#graph">Graph</a>
+<ul>
+<li><a href="#bfs">BFS</a></li>
+<li><a href="#dfs">DFS</a></li>
+</ul></li>
+<li><a href="#hashing">Hashing</a>
+<ul>
+<li><a href="#bloom-filters">Bloom Filters</a></li>
+</ul></li>
+</ul>
+</nav>
+
+
+<main>
+
+
+<h1 id="divide-and-conquer-分而治之">Divide and Conquer 分而治之</h1>
+
+<h2 id="master-method">Master Method</h2>
+
+<ul>
+<li>a &ldquo;black-box&rdquo; method for solving recurrences</li>
+<li>determine the <strong>running time</strong> for most of the D&amp;C algos</li>
+<li>3 cases</li>
+</ul>
+
+<h3 id="proof">Proof</h3>
+
+<h3 id="interpretations">Interpretations</h3>
+
+<h2 id="counting-inversions">Counting Inversions</h2>
+
+<ul>
+<li>problem: counting # of inversions in an array</li>
+<li>measuring similarity between 2 ranked lists =&gt; making good recommendations =&gt; <strong>collaborative filtering</strong></li>
+</ul>
+
+<h2 id="karatsuba-multiplication">Karatsuba Multiplication</h2>
+
+<ul>
+<li>Problem: multiplication of  two $n$-digit numbers $x, y$</li>
+<li>simple method: $O(n^2)$ operations</li>
+<li>recursive method:</li>
+</ul>
+
+<p>$$
+x = 10^{n/2}a+b, y = 10^{n/2}c+d, \text{ where }a,b,c,d\text{ are }\frac{n}{2}-\text{digit numbers}
+$$</p>
+
+<p>$$
+\Rightarrow xy = 10^nac+ 10^{n/2}(ad+bc)+bd\ \ \ \ \ \  (*)
+$$</p>
+
+<p><strong>Algorithm #1 (Naive method)</strong></p>
+
+<blockquote>
+<ul>
+<li>recursively compute $ac$, $ad$, $bc$, and $bd$</li>
+<li>then compute (*)</li>
+</ul>
+</blockquote>
+
+<p><strong>running time</strong>
+$$
+T(n)
+\begin{cases}
+=O(1), &amp;n=1(\text{base case})\newline
+\leq 4T(\frac{n}{2}) + O(n), &amp;n\geq 1(\text{4 subproblems and linear time addition})
+\end{cases}
+$$
+By master method,</p>
+
+<p>$$
+a = 4 &gt; 2^1 = b^d (\text{case 3}) \Rightarrow T(n) = O(n^{\log_ba})=O(n^2)
+$$
+<strong>Algorithm #2 (Gauss method)</strong></p>
+
+<blockquote>
+<ul>
+<li>recursively compute $ac$, $bd$, $(a+b)(c+d)$</li>
+<li>$ad+bc = (a+b)(c+d)-(ac+bd)$</li>
+<li>then compute (*)</li>
+</ul>
+</blockquote>
+
+<p><strong>running time</strong>
+$$
+T(n)
+\begin{cases}
+=O(1), &amp;n=1(\text{base case})\newline
+\leq 3T(\frac{n}{2}) + O(n), &amp;n\geq 1(\text{3 subproblems and linear time addition})
+\end{cases}
+$$
+By master method,</p>
+
+<p>$$
+a = 3 &gt; 2^1 = b^d (\text{case 3}) \Rightarrow T(n) = O(n^{\log_ba})=O(n^{\log_23})=O(n^{1.59})
+$$
+Better than simple method!</p>
+
+<h2 id="binary-search">Binary Search</h2>
+
+<h2 id="strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</h2>
+
+<h2 id="closest-pair">Closest Pair</h2>
+
+<h2 id="exercises">Exercises</h2>
+
+<h3 id="peak-finding">Peak Finding</h3>
+
+<h1 id="sorting-selection">Sorting &amp; Selection</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>SORTING</th>
+<th>SELECTION</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>randomized</td>
+<td>quickSort</td>
+<td>RSelect</td>
+</tr>
+
+<tr>
+<td>deterministic</td>
+<td>mergeSort</td>
+<td>DSelect</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="mergesort">MergeSort</h2>
+
+<ul>
+<li>recursion tree method</li>
+</ul>
+
+<h2 id="quicksort">QuickSort</h2>
+
+<ul>
+<li>a randomized algorithm</li>
+<li>running time:
+
+<ul>
+<li>worst case:</li>
+<li>average (expected): <code>$O(n\log n)$</code></li>
+</ul></li>
+</ul>
+
+<p>partition an array around a pivot in linear time with minimal extra storage</p>
+
+<p>ramifications of different pivot choices</p>
+
+<h2 id="rselect">RSelect</h2>
+
+<h2 id="dselect">DSelect</h2>
+
+<h1 id="graph">Graph</h1>
+
+<h2 id="bfs">BFS</h2>
+
+<h2 id="dfs">DFS</h2>
+
+<h1 id="hashing">Hashing</h1>
+
+<h2 id="bloom-filters">Bloom Filters</h2>
+
+</main>
+
+    <footer>
+      <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      <a href="mailto:zhuxm2017@163.com">Email</a> | <a href="https://github.com/augustrobo">Github</a>
+      
+    </footer>
+  </body>
+</html>
+

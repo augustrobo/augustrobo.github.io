@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>BloomFilters</title>
+      <link>/tags/bloomfilters/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/bloomfilters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Coursera</title>
       <link>/tags/coursera/</link>
       <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
@@ -39,11 +48,38 @@
     </item>
     
     <item>
+      <title>DataStructures</title>
+      <link>/tags/datastructures/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/datastructures/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>DataVisualization</title>
       <link>/tags/datavisualization/</link>
       <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/datavisualization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Graph</title>
+      <link>/tags/graph/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/graph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hashing</title>
+      <link>/tags/hashing/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/hashing/</guid>
       <description></description>
     </item>
     
@@ -68,9 +104,36 @@
     <item>
       <title>PythonBasics</title>
       <link>/tags/pythonbasics/</link>
-      <pubDate>Fri, 19 Jan 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/pythonbasics/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Searching</title>
+      <link>/tags/searching/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/searching/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Selection</title>
+      <link>/tags/selection/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/selection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sorting</title>
+      <link>/tags/sorting/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/sorting/</guid>
       <description></description>
     </item>
     

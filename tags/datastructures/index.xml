@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Algorithms on NOWHERESVILLE</title>
-    <link>/tags/algorithms/</link>
-    <description>Recent content in Algorithms on NOWHERESVILLE</description>
+    <title>DataStructures on NOWHERESVILLE</title>
+    <link>/tags/datastructures/</link>
+    <description>Recent content in DataStructures on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 25 Jan 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/algorithms/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/datastructures/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -21,12 +21,12 @@
     </item>
     
     <item>
-      <title>TwoSum in Python</title>
-      <link>/post/2018/01/25/two-sum-in-python/</link>
+      <title>Python Data Structures</title>
+      <link>/post/2018/01/25/python-data-structure/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018/01/25/two-sum-in-python/</guid>
-      <description>方式一：Brute Force class Solution: def twoSum(self, nums, target): for idx1, element in enumerate(nums): try: idx2 = nums[idx1 + 1:].index(target - element) + idx1 + 1 except ValueError: continue return [idx1, idx2] return None   Time complexity: $O(n^2)$ Space complexity: $O(1)$ Leetcode Submission Detail:  Runtime: 1629 ms Beats 17.69% of python3 submissions   方式二：One-pass Hash Table class Solution: def twoSum(self, nums, target): numDict = {} for idx1, element in enumerate(nums): try: idx2 = numDict[target - element] except KeyError: numDict[element] = idx1 continue return [idx1, idx2] return None   Time complexity: $O(n)$ Space complexity: $O(n)$ Leetcode Submission Detail:  Runtime: 61 ms Beats 73.</description>
+      <guid>/post/2018/01/25/python-data-structure/</guid>
+      <description></description>
     </item>
     
   </channel>
