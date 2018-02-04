@@ -25,6 +25,15 @@
     </item>
     
     <item>
+      <title>Max Subarray</title>
+      <link>/post/2018/01/02/max-subarray/</link>
+      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/02/max-subarray/</guid>
+      <description> Brute Force Divide and Conquer Non-recursive Linear Method </description>
+    </item>
+    
+    <item>
       <title>Sorting 排序算法</title>
       <link>/post/2018/01/01/sorting/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>

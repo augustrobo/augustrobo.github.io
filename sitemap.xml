@@ -28,6 +28,11 @@
   </url>
   
   <url>
+    <loc>/post/2018/01/02/max-subarray/</loc>
+    <lastmod>2018-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018/01/01/python-exercises/</loc>
     <lastmod>2018-01-01T00:00:00+00:00</lastmod>
   </url>
@@ -99,6 +104,12 @@
   <url>
     <loc>/categories/databases/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/divideandconquer/</loc>
+    <lastmod>2018-01-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

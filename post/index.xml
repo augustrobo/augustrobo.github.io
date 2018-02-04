@@ -71,6 +71,15 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
     </item>
     
     <item>
+      <title>Max Subarray</title>
+      <link>/post/2018/01/02/max-subarray/</link>
+      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/02/max-subarray/</guid>
+      <description> Brute Force Divide and Conquer Non-recursive Linear Method </description>
+    </item>
+    
+    <item>
       <title>Python练习题（不断更新）</title>
       <link>/post/2018/01/01/python-exercises/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
@@ -81,7 +90,7 @@ def gcd(p, q): &#39;&#39;&#39;Compute the greatest common divisor of 2 nonnegati
 (1) obviously, $gcd(p, 0)=p$
 (2) $gcd(p,q)=gcd(q,r)$, where $r=p\%q$
 Proof of statement (2):
-Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Rightarrow a|r \Rightarrow a\leq gcd(q,r)=b \newline b|q, b|r \Rightarrow b|p \Rightarrow b\leq gcd(p,q)=a</description>
+Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Rightarrow a|r \Rightarrow a\leq gcd(q,r)=b\nonumber \newline b|q, b|r \Rightarrow b|p \Rightarrow b\leq gcd(p,q)=a \nonumber \end{align} \right\} \Rightarrow a=b $$ Proof of termination of Euclid&amp;rsquo;s algo:</description>
     </item>
     
     <item>

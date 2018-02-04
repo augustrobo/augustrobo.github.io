@@ -77,6 +77,8 @@
 <li><a href="#算法">算法</a>
 <ul>
 <li><a href="#greatest-common-divisor-最大公因数">Greatest Common Divisor 最大公因数</a></li>
+<li><a href="#square-roots-求平方根">Square Roots 求平方根</a></li>
+<li><a href="#power">Power</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -117,8 +119,8 @@
 $$
 \left.
 \begin{align}
-a|p, a|q \Rightarrow a|r \Rightarrow a\leq gcd(q,r)=b \newline
-b|q, b|r \Rightarrow b|p \Rightarrow b\leq gcd(p,q)=a<br />
+a|p, a|q \Rightarrow a|r \Rightarrow a\leq gcd(q,r)=b\nonumber \newline
+b|q, b|r \Rightarrow b|p \Rightarrow b\leq gcd(p,q)=a \nonumber
 \end{align}
 \right\}
 \Rightarrow a=b
@@ -134,6 +136,35 @@ q\geq p/2 &amp;\Rightarrow r=p-q\leq p/2
 $$
 Therefore, # of recursions <code>$\sim \log_2p+\log_2q$</code>.</p>
 </blockquote>
+
+<h2 id="square-roots-求平方根">Square Roots 求平方根</h2>
+
+<p><strong>Newton&rsquo;s method</strong>:</p>
+
+<pre><code class="language-python">
+</code></pre>
+
+<h2 id="power">Power</h2>
+
+<pre><code class="language-python">def pow(a,n):
+    '''
+    Calculate the power a^n
+    a: base, positive real number
+    n: exponent, positive integer
+    '''
+    if n == 1:
+        return a
+
+    result = pow(a*a, n//2)
+    if n%2 == 0:
+        return result
+    else:
+        return a*result
+</code></pre>
+
+<p>$$
+T(n)=T\left(\frac{n}{2}\right)+O(1) \Rightarrow a=1=2^0=b^d \text{(case 1)} \Rightarrow T(n)=O(\log n)
+$$</p>
 
 </main>
 

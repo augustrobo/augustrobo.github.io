@@ -193,7 +193,7 @@ $$</p>
 <p>For simplicity, we assume:</p>
 
 <ul>
-<li><code>$T(1)\leq C$</code> (for some constant $C$)</li>
+<li><code>$T(1)\leq C$</code> (for some constant <code>$C$</code>)</li>
 <li><code>$T(n)\leq aT(\frac{n}{b})+Cn^d$</code></li>
 <li><code>$n$</code> is a power of <code>$b$</code></li>
 </ul>
@@ -258,6 +258,37 @@ $$</p>
 <p><code>$a^{\log_b n}=$</code> # of leaves</p>
 
 <h3 id="interpretations">Interpretations</h3>
+
+<p>Upper bound on the work at level <code>$j$</code>:
+$$
+Cn^d\times\left(\frac{a}{b^d}\right)^j
+$$</p>
+
+<p>$$
+a:\text{ rate of sub-problem poliferation, RSP - force of evil} \\<br />
+b^d: \text{rate of work shrinkage (per sub-problem), RWS - force of good}
+$$</p>
+
+<ul>
+<li><code>$RSP&lt;RWS$</code>
+
+<ul>
+<li>amount of work is decreasing with the recursion level <code>$j$</code></li>
+<li>most work at root <code>$\Rightarrow$</code> root dominates <code>$\Rightarrow$</code> might expect <code>$O(n^d)$</code></li>
+</ul></li>
+<li><code>$RSP&gt;RWS$</code>
+
+<ul>
+<li>amount of work is increasing with the recursion level <code>$j$</code></li>
+<li>leaves dominate <code>$\Rightarrow$</code> might expect <code>$O(\#\text{leaves})=O(a^{\log_b n})=O(n^{\log_b a})$</code></li>
+</ul></li>
+<li><code>$RSP=RWS$</code>
+
+<ul>
+<li>amount of work is the same at each recursion level <code>$j$</code> (like merge sort)</li>
+<li>might expect <code>$O(\log n)\times O(n^d)=O(n^d\log n)$</code> (recursion depth = <code>$O(\log n)$</code>)</li>
+</ul></li>
+</ul>
 
 <h2 id="counting-inversions">Counting Inversions</h2>
 
@@ -384,6 +415,17 @@ $$</p>
 </code></pre>
 
 <h2 id="strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</h2>
+
+<ul>
+<li><strong>Problem</strong>:</li>
+<li>Naive iterative algorithm: <code>$O(n^3)$</code></li>
+<li>Strassen&rsquo;s method:</li>
+<li><strong>Running time</strong>: By master method,</li>
+</ul>
+
+<p>$$
+a = 7&gt;2^2=b^d \text{ (case 3) }\Rightarrow T(n)\leq O(n^{\log_b a})=O(n^{\log_2 7})=O(n^{2.81})
+$$</p>
 
 <h3 id="python-code-3">Python Code</h3>
 
