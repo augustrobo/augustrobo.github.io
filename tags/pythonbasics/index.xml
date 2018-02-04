@@ -17,7 +17,7 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/python-data-structure/</guid>
-      <description></description>
+      <description> Stack Queue Heap Tree </description>
     </item>
     
     <item>
@@ -33,6 +33,20 @@ round(3.24, 1) #是四舍五入 ## 3.2 round(3.26, 1) #是四舍五入 ## 3.3 ro
 进一步解释：十进制小数 $0.2$ 和 $0.3$ 的二进制表示分别为：
 $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\left(\frac{1}{128}+\frac{1}{256}\right)+\cdots =\frac{\frac{1}{8}+\frac{1}{16}}{1-\frac{1}{16}} =\frac{3}{15}=\frac{1}{5}\newline &amp;amp;=(0.\dot{0}\dot{0}\dot{1}\dot{1})_2 \end{align} $$
 以及 $$ \begin{align} (0.</description>
+    </item>
+    
+    <item>
+      <title>Python练习题（不断更新）</title>
+      <link>/post/2018/01/01/python-exercises/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/01/python-exercises/</guid>
+      <description>基础 数据结构 算法 Greatest Common Divisor 最大公因数 Euclid&amp;rsquo;s algorithm:
+def gcd(p, q): &#39;&#39;&#39;Compute the greatest common divisor of 2 nonnegative integers &#39;&#39;&#39; if q==0: return p else: return gcd(q, p%q)   Two integers $p,q\geq 0$,
+(1) obviously, $gcd(p, 0)=p$
+(2) $gcd(p,q)=gcd(q,r)$, where $r=p\%q$
+Proof of statement (2):
+Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Rightarrow a|r \Rightarrow a\leq gcd(q,r)=b \newline b|q, b|r \Rightarrow b|p \Rightarrow b\leq gcd(p,q)=a</description>
     </item>
     
   </channel>

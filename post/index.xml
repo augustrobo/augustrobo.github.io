@@ -30,7 +30,7 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/python-data-structure/</guid>
-      <description></description>
+      <description> Stack Queue Heap Tree </description>
     </item>
     
     <item>
@@ -68,6 +68,29 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
  Personalized Marketing Personalized Medicine Smart Cities  Challenges of unstructured data:
  volume =&amp;gt; hadoop velocity: real-time processing
  high-velocity data: social media and market data =&amp;gt; storm, spark  beyond relational db =&amp;gt; NoSQL</description>
+    </item>
+    
+    <item>
+      <title>Python练习题（不断更新）</title>
+      <link>/post/2018/01/01/python-exercises/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/01/python-exercises/</guid>
+      <description>基础 数据结构 算法 Greatest Common Divisor 最大公因数 Euclid&amp;rsquo;s algorithm:
+def gcd(p, q): &#39;&#39;&#39;Compute the greatest common divisor of 2 nonnegative integers &#39;&#39;&#39; if q==0: return p else: return gcd(q, p%q)   Two integers $p,q\geq 0$,
+(1) obviously, $gcd(p, 0)=p$
+(2) $gcd(p,q)=gcd(q,r)$, where $r=p\%q$
+Proof of statement (2):
+Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Rightarrow a|r \Rightarrow a\leq gcd(q,r)=b \newline b|q, b|r \Rightarrow b|p \Rightarrow b\leq gcd(p,q)=a</description>
+    </item>
+    
+    <item>
+      <title>Sorting 排序算法</title>
+      <link>/post/2018/01/01/sorting/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/01/sorting/</guid>
+      <description> Insertion Sort Selection Sort Bubble Sort Merge Sort Quick Sort </description>
     </item>
     
     <item>

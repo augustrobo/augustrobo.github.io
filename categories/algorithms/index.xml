@@ -24,5 +24,14 @@
  base case: $T(n)\leq C$(a constant), for all sufficiently small $n$ for all larger $n$, $T(n)\leq aT(\frac{n}{b})+O(n^d)$ $a$: # of recurrence calls (e.</description>
     </item>
     
+    <item>
+      <title>Sorting 排序算法</title>
+      <link>/post/2018/01/01/sorting/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/01/sorting/</guid>
+      <description> Insertion Sort Selection Sort Bubble Sort Merge Sort Quick Sort </description>
+    </item>
+    
   </channel>
 </rss>

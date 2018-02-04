@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TwoSum in Python | NOWHERESVILLE</title>
+    <title>Sorting 排序算法 | NOWHERESVILLE</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <header>
@@ -53,17 +53,17 @@
     <br/>
 
 <div class="article-meta">
-<h1><span class="title">TwoSum in Python</span></h1>
+<h1><span class="title">Sorting 排序算法</span></h1>
 
-<h2 class="date">2018/01/25</h2>
+<h2 class="date">2018/01/01</h2>
 <p class="terms">
   
   
-  Categories: <a href="/categories/python">Python</a> 
+  Categories: <a href="/categories/python">Python</a> <a href="/categories/algorithms">algorithms</a> <a href="/categories/sorting">sorting</a> 
   
   
   
-  Tags: <a href="/tags/algorithms">algorithms</a> <a href="/tags/leetcode">leetcode</a> 
+  Tags: <a href="/tags/algorithms">algorithms</a> 
   
   
 </p>
@@ -72,8 +72,11 @@
 
 <nav id="TableOfContents">
 <ul>
-<li><a href="#方式一-brute-force">方式一：Brute Force</a></li>
-<li><a href="#方式二-one-pass-hash-table">方式二：One-pass Hash Table</a></li>
+<li><a href="#insertion-sort">Insertion Sort</a></li>
+<li><a href="#selection-sort">Selection Sort</a></li>
+<li><a href="#bubble-sort">Bubble Sort</a></li>
+<li><a href="#merge-sort">Merge Sort</a></li>
+<li><a href="#quick-sort">Quick Sort</a></li>
 </ul>
 </nav>
 
@@ -81,57 +84,15 @@
 <main>
 
 
-<h1 id="方式一-brute-force">方式一：Brute Force</h1>
+<h1 id="insertion-sort">Insertion Sort</h1>
 
-<pre><code class="language-python">class Solution:
-    def twoSum(self, nums, target):
-        for idx1, element in enumerate(nums):
-            try:
-                idx2 = nums[idx1 + 1:].index(target - element) + idx1 + 1
-            except ValueError:
-                continue
-            return [idx1, idx2]
-        return None
-</code></pre>
+<h1 id="selection-sort">Selection Sort</h1>
 
-<ul>
-<li>Time complexity: <code>$O(n^2)$</code></li>
-<li>Space complexity: <code>$O(1)$</code></li>
-<li>Leetcode Submission Detail:
+<h1 id="bubble-sort">Bubble Sort</h1>
 
-<ul>
-<li>Runtime: 1629 ms</li>
-<li>Beats 17.69% of python3 submissions</li>
-</ul></li>
-</ul>
+<h1 id="merge-sort">Merge Sort</h1>
 
-<h1 id="方式二-one-pass-hash-table">方式二：One-pass Hash Table</h1>
-
-<pre><code class="language-python">class Solution:
-    def twoSum(self, nums, target):
-        numDict = {}
-        for idx1, element in enumerate(nums):
-            try:
-                idx2 = numDict[target - element]
-            except KeyError:
-                numDict[element] = idx1
-                continue
-            return [idx1, idx2]
-        return None
-</code></pre>
-
-<ul>
-<li>Time complexity: <code>$O(n)$</code></li>
-<li>Space complexity: <code>$O(n)$</code></li>
-<li>Leetcode Submission Detail:
-
-<ul>
-<li>Runtime: 61 ms</li>
-<li>Beats 73.98% of python3 submissions</li>
-</ul></li>
-</ul>
-
-<p>这里有个特别聪明的做法，就是先查找，再插入</p>
+<h1 id="quick-sort">Quick Sort</h1>
 
 </main>
 
