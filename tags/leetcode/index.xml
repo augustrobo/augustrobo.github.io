@@ -24,14 +24,5 @@ We define an array is non-decreasing if array[i] &amp;lt;= array[i + 1] holds fo
  要么 array[idx-1]&amp;lt;=array[idx+1],此时只要判断idx+1后都满足非递减关系即可 要么array[idx-1]&amp;gt;array[idx+1],此时只要用array[idx]代替array[idx+1],再判断idx+1后都满足非递减关系即可  class Solution: def checkPossibility(self, nums): &amp;quot;&amp;quot;&amp;quot; :type nums: List[int] :rtype: bool &amp;quot;&amp;quot;&amp;quot; idx = 0 for i in range(len(nums)-1): if nums[i] &amp;gt; nums[i+1]: idx = i break if idx &amp;gt; 0 and (nums[idx-1] &amp;gt; nums[idx+1]): nums[idx+1] = nums[idx] for j in range(idx+1, len(nums)-1): if nums[j] &amp;gt; nums[j+1]: return False else: return True  Leetcode运行结果:</description>
     </item>
     
-    <item>
-      <title>TwoSum in Python</title>
-      <link>/post/2018/01/25/two-sum-in-python/</link>
-      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/01/25/two-sum-in-python/</guid>
-      <description>方式一：Brute Force class Solution: def twoSum(self, nums, target): for idx1, element in enumerate(nums): try: idx2 = nums[idx1 + 1:].index(target - element) + idx1 + 1 except ValueError: continue return [idx1, idx2] return None   Time complexity: $O(n^2)$ Space complexity: $O(1)$ Leetcode Submission Detail:  Runtime: 1629 ms Beats 17.69% of python3 submissions   方式二：One-pass Hash Table class Solution: def twoSum(self, nums, target): numDict = {} for idx1, element in enumerate(nums): try: idx2 = numDict[target - element] except KeyError: numDict[element] = idx1 continue return [idx1, idx2] return None   Time complexity: $O(n)$ Space complexity: $O(n)$ Leetcode Submission Detail:  Runtime: 61 ms Beats 73.</description>
-    </item>
-    
   </channel>
 </rss>

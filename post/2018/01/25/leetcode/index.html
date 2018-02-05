@@ -73,6 +73,11 @@
 <nav id="TableOfContents">
 <ul>
 <li><a href="#non-decreasing-array">Non-decreasing Array</a></li>
+<li><a href="#two-sum">Two Sum</a>
+<ul>
+<li><a href="#方式一-brute-force">方式一：Brute Force</a></li>
+<li><a href="#方式二-one-pass-hash-table">方式二：One-pass Hash Table</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -122,11 +127,73 @@
 <p>Leetcode运行结果:</p>
 
 <blockquote>
-<p><strong>325 / 325</strong> test cases passed.</p>
-
 <p>Runtime: <strong>98 ms</strong></p>
 
-<p>Your runtime beats 64.71% of python3 submissions.</p>
+<p>Beats 64.71% of python3 submissions.</p>
+</blockquote>
+
+<h1 id="two-sum">Two Sum</h1>
+
+<blockquote>
+<p>Given an array of integers, return <strong>indices</strong> of the two numbers such that they add up to a specific target.</p>
+
+<p>You may assume that each input would have <strong>exactly</strong> one solution, and you may not use the <em>same</em> element twice.</p>
+</blockquote>
+
+<h2 id="方式一-brute-force">方式一：Brute Force</h2>
+
+<pre><code class="language-python">class Solution:
+    def twoSum(self, nums, target):
+        for idx1, element in enumerate(nums):
+            try:
+                idx2 = nums[idx1 + 1:].index(target - element) + idx1 + 1
+            except ValueError:
+                continue
+            return [idx1, idx2]
+        return None
+</code></pre>
+
+<ul>
+<li>Time complexity: <code>$O(n^2)$</code></li>
+<li>Space complexity: <code>$O(1)$</code></li>
+</ul>
+
+<p>Leetcode运行结果:</p>
+
+<blockquote>
+<p>Runtime: <strong>1629</strong> ms</p>
+
+<p>Beats 17.69% of python3 submissions</p>
+</blockquote>
+
+<h2 id="方式二-one-pass-hash-table">方式二：One-pass Hash Table</h2>
+
+<p>这里有个特别聪明的做法，就是先查找，再插入</p>
+
+<pre><code class="language-python">class Solution:
+    def twoSum(self, nums, target):
+        numDict = {}
+        for idx1, element in enumerate(nums):
+            try:
+                idx2 = numDict[target - element]
+            except KeyError:
+                numDict[element] = idx1
+                continue
+            return [idx1, idx2]
+        return None
+</code></pre>
+
+<ul>
+<li>Time complexity: <code>$O(n)$</code></li>
+<li>Space complexity: <code>$O(n)$</code></li>
+</ul>
+
+<p>Leetcode运行结果:</p>
+
+<blockquote>
+<p>Runtime: <strong>61</strong> ms</p>
+
+<p>Beats 73.98% of python3 submissions</p>
 </blockquote>
 
 </main>
