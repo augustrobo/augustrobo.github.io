@@ -25,12 +25,25 @@
     </item>
     
     <item>
+      <title>Leetcode算法题目（不断更新）</title>
+      <link>/post/2018/01/25/leetcode/</link>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/25/leetcode/</guid>
+      <description>Non-decreasing Array  Given an array with $n$ integers, your task is to check if it could become non-decreasing by modifying at most 1 element.
+We define an array is non-decreasing if array[i] &amp;lt;= array[i + 1] holds for every i (1 &amp;lt;= i &amp;lt; n).
+ 思路:
+使用for loop扫描数列,假如在下标idx, idx+1处不满足非递减关系,那么:
+ 要么 array[idx-1]&amp;lt;=array[idx+1],此时只要判断idx+1后都满足非递减关系即可 要么array[idx-1]&amp;gt;array[idx+1],此时只要用array[idx]代替array[idx+1],再判断idx+1后都满足非递减关系即可  class Solution: def checkPossibility(self, nums): &amp;quot;&amp;quot;&amp;quot; :type nums: List[int] :rtype: bool &amp;quot;&amp;quot;&amp;quot; idx = 0 for i in range(0,len(nums)-1): if nums[i] &amp;gt; nums[i+1]: idx = i break if idx &amp;gt; 0 and (nums[idx-1] &amp;gt; nums[idx+1]): nums[idx+1] = nums[idx] for j in range(idx+1, len(nums)-1): if nums[j] &amp;gt; nums[j+1]: return False else: return True  Leetcode运行结果:</description>
+    </item>
+    
+    <item>
       <title>Python Data Structures</title>
       <link>/post/2018/01/25/python-data-structure/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/python-data-structure/</guid>
-      <description> Stack Queue Heap Tree </description>
+      <description> List  See help(list)  # Create a new list empty = list() # or empty = [] # faster, more pythonic   Lists can contain elements of different types ​  Stack Queue Heap Tree </description>
     </item>
     
     <item>
@@ -77,6 +90,15 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
       
       <guid>/post/2018/01/02/max-subarray/</guid>
       <description> Brute Force Divide and Conquer Non-recursive Linear Method </description>
+    </item>
+    
+    <item>
+      <title>Python Type Conversion</title>
+      <link>/post/2018/01/01/python-type-conversion/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/01/python-type-conversion/</guid>
+      <description>Types  Variables in Python are dynamically-typed: declared without an explicit type. objects have a type, so Python knows the type of a variable. No char in Python! Both &#39; and &amp;quot; create string literals  type(1) # &amp;lt;class &#39;int&#39;&amp;gt; type(1.0) # &amp;lt;class &#39;float&#39;&amp;gt; type(2/1) # &amp;lt;class &#39;float&#39;&amp;gt; type(&amp;quot;hello&amp;quot;) # &amp;lt;class &#39;str&#39;&amp;gt; type(&#39;a&#39;) # &amp;lt;class &#39;str&#39;&amp;gt; type(True) # &amp;lt;class &#39;bool&#39;&amp;gt; type(None) # &amp;lt;class &#39;NoneType&#39;&amp;gt; type(int) # &amp;lt;class &#39;type&#39;&amp;gt; type(type(int)) # &amp;lt;class &#39;type&#39;&amp;gt; type(print) # &amp;lt;class &#39;builtin_function_or_method&#39;&amp;gt;   bool is a subtype of int, where True == 1 and False == 0  True == 1 # True False == 0 # True True == 2 # False True or False # True (short-circuits)  Explicit Data Type Conversion str(333) # &#39;333&#39; int(&amp;quot;33&amp;quot;) # 33 int(&amp;quot;33.</description>
     </item>
     
     <item>

@@ -30,7 +30,7 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/python-data-structure/</guid>
-      <description> Stack Queue Heap Tree </description>
+      <description> List  See help(list)  # Create a new list empty = list() # or empty = [] # faster, more pythonic   Lists can contain elements of different types ​  Stack Queue Heap Tree </description>
     </item>
     
     <item>

@@ -8,6 +8,11 @@
   </url>
   
   <url>
+    <loc>/post/2018/01/25/leetcode/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018/01/25/python-data-structure/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
   </url>
@@ -30,6 +35,11 @@
   <url>
     <loc>/post/2018/01/02/max-subarray/</loc>
     <lastmod>2018-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2018/01/01/python-type-conversion/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -157,6 +167,12 @@
   <url>
     <loc>/categories/python/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/pythonbasics/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
