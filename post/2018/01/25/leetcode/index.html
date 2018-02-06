@@ -78,6 +78,8 @@
 <li><a href="#方式一-brute-force">方式一：Brute Force</a></li>
 <li><a href="#方式二-one-pass-hash-table">方式二：One-pass Hash Table</a></li>
 </ul></li>
+<li><a href="#find-peak-element">Find Peak Element</a></li>
+<li><a href="#intersection-of-two-arrays-ii">Intersection of Two Arrays II</a></li>
 </ul>
 </nav>
 
@@ -195,6 +197,53 @@
 
 <p>Beats 73.98% of python3 submissions</p>
 </blockquote>
+
+<h1 id="find-peak-element">Find Peak Element</h1>
+
+<blockquote>
+<p>A peak element is an element that is greater than its neighbors.</p>
+
+<p>Given an input array where <code>num[i] ≠ num[i+1]</code>, find a peak element and return its index.</p>
+
+<p>The array may contain multiple peaks, in that case return the index to any one of the peaks is fine.</p>
+
+<p>You may imagine that <code>num[-1] = num[n] = -∞</code>.</p>
+
+<p>For example, in array <code>[1, 2, 3, 1]</code>, 3 is a peak element and your function should return the index number 2.</p>
+</blockquote>
+
+<pre><code class="language-python">class Solution:
+    def findPeakElement(self, nums):
+        &quot;&quot;&quot;
+        :type nums: List[int]
+        :rtype: int
+        &quot;&quot;&quot;
+        # base cases
+        if len(nums) == 1:
+            return 0
+        elif len(nums) == 2:
+            return int(nums[0]&lt;nums[1])
+
+        mid = len(nums)//2
+        if nums[mid] &lt; nums[mid-1]:
+            return self.findPeakElement(nums[:mid])
+        elif nums[mid] &lt; nums[mid+1]:
+            return self.findPeakElement(nums[(mid+1):]) + mid + 1
+        else:
+            return mid
+</code></pre>
+
+<p><code>$T(n)=O(\log n)$</code></p>
+
+<p>Leetcode运行结果:</p>
+
+<blockquote>
+<p>Runtime: <strong>61</strong> ms</p>
+
+<p>Beats 49.31% of python3 submissions</p>
+</blockquote>
+
+<h1 id="intersection-of-two-arrays-ii">Intersection of Two Arrays II</h1>
 
 </main>
 
