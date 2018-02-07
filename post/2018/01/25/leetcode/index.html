@@ -79,7 +79,7 @@
 <li><a href="#方式二-one-pass-hash-table">方式二：One-pass Hash Table</a></li>
 </ul></li>
 <li><a href="#find-peak-element">Find Peak Element</a></li>
-<li><a href="#intersection-of-two-arrays-ii">Intersection of Two Arrays II</a></li>
+<li><a href="#excel-sheet-column-title">Excel Sheet Column Title</a></li>
 </ul>
 </nav>
 
@@ -243,7 +243,58 @@
 <p>Beats 49.31% of python3 submissions</p>
 </blockquote>
 
-<h1 id="intersection-of-two-arrays-ii">Intersection of Two Arrays II</h1>
+<h1 id="excel-sheet-column-title">Excel Sheet Column Title</h1>
+
+<blockquote>
+<p>Given a positive integer, return its corresponding column title as appear in an Excel sheet.</p>
+
+<p>For example:</p>
+
+<pre><code>   1 -&gt; A
+   2 -&gt; B
+   3 -&gt; C
+   ...
+   26 -&gt; Z
+   27 -&gt; AA
+   28 -&gt; AB 
+</code></pre>
+</blockquote>
+
+<p>思路：</p>
+
+<p>记第<code>$k$</code>个字母为<code>$x_k$</code>，则
+$$
+n=a_{k}\times 26^{k-1}+\cdots+a_2\times 26 +a_1
+$$
+其中<code>$a_j=ord(x_j)-64$</code>，即<code>$x_j=chr(a_j+64)$</code>，并且<code>$1\leq a_j\leq  26.$</code></p>
+
+<p>因此
+$$
+a_1=(n-1)\%26+1, x_1=chr(a_1+64)
+$$
+再递归处理 <code>$(n-1)//26$</code>.</p>
+
+<pre><code class="language-python">class Solution:
+    def convertToTitle(self, n):
+        &quot;&quot;&quot;
+        :type n: int
+        :rtype: str
+        &quot;&quot;&quot;
+        ## base case
+        if n&lt;=26:
+            return chr(n+64)
+
+        a, n = (n-1)%26, (n-1)//26
+        return &quot;{}{}&quot;.format(self.convertToTitle(n), chr(a+65))
+</code></pre>
+
+<p>Leetcode运行结果:</p>
+
+<blockquote>
+<p>Runtime: <strong>54</strong> ms</p>
+
+<p>Beats 61.63% of python3 submissions</p>
+</blockquote>
 
 </main>
 
