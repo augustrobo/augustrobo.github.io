@@ -103,11 +103,16 @@
 </ul></li>
 <li><a href="#sorting-selection">Sorting &amp; Selection</a>
 <ul>
-<li><a href="#mergesort">MergeSort</a>
+<li><a href="#merge-sort-d-c">Merge Sort (D&amp;C)</a>
 <ul>
-<li><a href="#running-time">Running Time</a></li>
+<li><a href="#running-time">Running Time</a>
+<ul>
+<li><a href="#proof-by-recursion-tree-method">Proof by Recursion Tree Method</a></li>
+<li><a href="#proof-by-master-method">Proof by Master Method</a></li>
 </ul></li>
-<li><a href="#quicksort">QuickSort</a></li>
+<li><a href="#python-code-4">Python Code</a></li>
+</ul></li>
+<li><a href="#quick-sort">Quick Sort</a></li>
 <li><a href="#rselect">RSelect</a></li>
 <li><a href="#dselect">DSelect</a></li>
 </ul></li>
@@ -128,6 +133,12 @@
 
 
 <h1 id="divide-and-conquer-分而治之">Divide and Conquer 分而治之</h1>
+
+<ol>
+<li><strong>DIVIDE</strong>  into smaller sub-problems</li>
+<li><strong>CONQUER</strong> via recursive calls</li>
+<li><strong>COMBINE</strong> solutions of sub-problems into one for the original problem</li>
+</ol>
 
 <h2 id="master-method">Master Method</h2>
 
@@ -293,17 +304,75 @@ $$</p>
 <h2 id="counting-inversions">Counting Inversions</h2>
 
 <ul>
-<li><strong>Problem</strong>: counting # of inversions in an array</li>
-<li><strong>Application</strong>: measuring similarity between 2 ranked lists =&gt; making good recommendations =&gt; <strong>collaborative filtering</strong></li>
+<li><strong>Problem</strong>: counting # of inversions in an array = # of pairs <code>(i,j)</code> of array indices with <code>i&lt;j</code> and <code>A[i]&gt;A[j]</code></li>
+<li>Number of inversions = Number of intersections of line segments</li>
 </ul>
 
+<p><a href="https://i.stack.imgur.com/uScHd.png"><img src="https://i.stack.imgur.com/uScHd.png" alt="enter image description here" /></a></p>
+
+<ul>
+<li><strong>Application</strong>: measuring similarity between 2 ranked lists =&gt; making good recommendations =&gt; <strong>collaborative filtering</strong> (CF)</li>
+<li>Largest possible number of inversions that an <code>$n$</code>-element array can have? <code>$C_n^2$</code> (worst case: array in backward order)</li>
+<li><strong>Brute-force</strong> algorithm: <code>$O(n^2)$</code></li>
+<li><strong>D&amp;C</strong> algorithm:  pseudocode</li>
+</ul>
+
+<blockquote>
+<p>A  = input array [length = n]</p>
+
+<p>D = output [length=<code>n</code>]</p>
+
+<p>B = 1st sorted array [<code>n/2</code>], C = 2nd sorted array [<code>n/2</code>]</p>
+
+<pre><code>SortAndCount(A)
+  if n=1, return 0
+  else
+      (B,X) = SortAndCount(1st half of A)
+      (C,Y) = SortAndCount(2nd half of A)
+      (D,Z) = MergeAndCountSplitInv(A)
+  return X + Y + Z
+</code></pre>
+
+<p><strong>Goal</strong>: implement <code>MergeAndCountSplitInv</code> in linear time <code>$O(n)$</code></p>
+
+<p>The split inversions involving an element y of the 2nd array C are precisely the elements left in the 1st array B when y is copied to the output D.</p>
+</blockquote>
+
+<p>$$
+T(n)\leq 2T\left(\frac{n}{2}\right)+O(n) \Rightarrow T(n)=O(n\log n)
+$$</p>
+
 <h3 id="python-code">Python Code</h3>
+
+<pre><code class="language-python">def sortAndCount(arr):
+        n = len(arr)
+        # base case
+        if n &lt; 2:
+            return arr, 0
+
+        m = n//2
+        left, x = sortAndCount(arr[:m])
+        right, y = sortAndCount(arr[m:])
+
+        i = j = z = 0
+        for k in range(n):
+            if j == n-m or (i &lt; m and left[i] &lt; right[j]):
+                arr[k] = left[i]
+                i += 1
+            else:
+                arr[k] = right[j]
+                j += 1
+                z += (m - i)
+        return arr, x + y + z
+</code></pre>
 
 <h2 id="karatsuba-multiplication">Karatsuba Multiplication</h2>
 
 <ul>
 <li><strong>Problem</strong>: multiplication of  two <code>$n$</code>-digit numbers <code>$x, y$</code> (base 10)</li>
-<li>Simple method: <code>$O(n^2)$</code> bit operations</li>
+<li><strong>Application</strong>: e.g. cryptography</li>
+<li>Define <em>primitive operations</em>:  add or multiply 2 single-digit numbers</li>
+<li>Simple method: <code>$O(n^2)$</code> operations</li>
 <li><strong>Recursive method</strong>:</li>
 </ul>
 
@@ -440,41 +509,150 @@ $$</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th>SORTING</th>
-<th>SELECTION</th>
+<th align="center"></th>
+<th align="center">SORTING</th>
+<th align="center">SELECTION</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td><strong>Randomized</strong></td>
-<td>quickSort</td>
-<td>RSelect</td>
+<td align="center"><strong>Randomized</strong></td>
+<td align="center">Quick Sort</td>
+<td align="center">RSelect</td>
 </tr>
 
 <tr>
-<td><strong>Deterministic</strong></td>
-<td>mergeSort</td>
-<td>DSelect</td>
+<td align="center"><strong>Deterministic</strong></td>
+<td align="center">Merge Sort</td>
+<td align="center">DSelect</td>
 </tr>
 </tbody>
 </table>
 
-<h2 id="mergesort">MergeSort</h2>
+<p><strong>Merge Sort versus Quick Sort</strong></p>
 
 <ul>
-<li>recursion tree method</li>
+<li>Quick Sort has a smaller constant than Merge Sort</li>
 </ul>
+
+<table>
+<thead>
+<tr>
+<th align="center">Running Time</th>
+<th align="center"><em>Average Case</em></th>
+<th align="center"><em>Worst Case</em></th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><strong><em>Merge Sort</em></strong></td>
+<td align="center"><code>$O(n\log n)$</code></td>
+<td align="center"><code>$O(n\log n)$</code></td>
+</tr>
+
+<tr>
+<td align="center"><strong><em>Quick Sort</em></strong></td>
+<td align="center"><code>$O(n\log n)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="merge-sort-d-c">Merge Sort (D&amp;C)</h2>
+
+<ul>
+<li><strong>Input</strong>: array of numbers (assume distinct, <strong>exercise</strong>: duplicate case), unsorted</li>
+<li><strong>Output</strong>: Same numbers, sorted in increasing order</li>
+<li><strong>Pseudocode for Merge</strong>:</li>
+</ul>
+
+<blockquote>
+<p>C = output [length=<code>n</code>]</p>
+
+<p>A = 1st sorted array [<code>n/2</code>], B = 2nd sorted array [<code>n/2</code>]</p>
+
+<p><code>i = 1, j = 1</code></p>
+
+<pre><code>for k = 1 to n
+  if A(i)&lt;B(j)
+      C(k)=A(i)
+      i++
+  else [B(j)&lt;A(i)]
+      C(k)=B(j)
+      j++
+end 
+</code></pre>
+
+<p>(ignores end cases)</p>
+</blockquote>
 
 <h3 id="running-time">Running Time</h3>
 
-<p>By master method,
+<ul>
+<li><strong>Key question</strong>: running time of <strong>Merge Sort</strong> on array of <code>$n$</code> numbers?</li>
+<li><strong>Upshot</strong>: running time of <strong>Merge</strong> on an array of <code>$m$</code> numbers <code>$\leq 5m+2\leq 6m (m&gt;1)$</code></li>
+</ul>
+
+<blockquote>
+<p><code>i = 1</code>, <code>j = 1</code> [2 operations]</p>
+
+<p>each <strong>for</strong> loop: comparison, assignment, increment of <code>i</code> or <code>j</code>, increment of <code>k</code>, comparison of <code>k</code> to the upper bound <code>n</code></p>
+</blockquote>
+
+<ul>
+<li><strong>Claim</strong>: Merge Sort requires <code>$\leq 6n\log_2n+6n$</code> operations to sort <code>$n$</code> numbers.</li>
+</ul>
+
+<h4 id="proof-by-recursion-tree-method">Proof by Recursion Tree Method</h4>
+
+<ul>
+<li><p>Assume <code>$n$</code> = power of 2</p></li>
+
+<li><p>At each level <code>$j=0,1,2,\cdots,\log_2 n$</code>, there are <code>$2^j$</code> sub-problems, each of size <code>$n/2^j$</code>.</p></li>
+
+<li><p>Total # of operations at level <code>$j$</code> (<strong>Merge</strong>):
 $$
+\leq 2^j \times 6\left(\frac{n}{2^j}\right)=6n \text{ (independent of }j)
+$$</p></li>
+
+<li><p>Total # of operations <code>$\leq 6n(\log_2 n +1)$</code></p></li>
+</ul>
+
+<h4 id="proof-by-master-method">Proof by Master Method</h4>
+
+<p>$$
 a = 2=2^1=b^d \text{ (case 1) }\Rightarrow T(n)\leq O(n^d\log n)=O(n\log n)
 $$</p>
 
-<h2 id="quicksort">QuickSort</h2>
+<h3 id="python-code-4">Python Code</h3>
+
+<pre><code class="language-python">def mergeSort(arr):
+    n = len(arr)
+    # base case
+    if n &lt; 2:
+        return arr
+
+    m = n//2
+    left, right = mergeSort(arr[:m]), mergeSort(arr[m:])
+
+    i = j = 0
+    for k in range(n):
+        if j == n-m or (i &lt; m and left[i] &lt; right[j]):
+            arr[k] = left[i]
+            i += 1
+        else:
+            arr[k] = right[j]
+            j += 1
+    return arr
+</code></pre>
+
+<ul>
+<li>Space complexity: <code>$O(n)$</code></li>
+</ul>
+
+<h2 id="quick-sort">Quick Sort</h2>
 
 <ul>
 <li>a randomized algorithm</li>

@@ -17,11 +17,10 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/algorithms/</guid>
-      <description>Divide and Conquer 分而治之 Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
+      <description>Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via recursive calls COMBINE solutions of sub-problems into one for the original problem  Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
  Determine the upper bound of running time for most of the D&amp;amp;C algos
  Assumption: all sub-problems have equal size
-    unbalanced sub-problems? more than one recurrence?    Recurrence format:
- base case: $T(n)\leq C$(a constant), for all sufficiently small $n$ for all larger $n$, $T(n)\leq aT(\frac{n}{b})+O(n^d)$ $a$: # of recurrence calls (e.</description>
+    unbalanced sub-problems? more than one recurrence?    Recurrence format:</description>
     </item>
     
     <item>
@@ -66,7 +65,8 @@ Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Righta
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/01/sorting/</guid>
-      <description> Insertion Sort Selection Sort Bubble Sort Merge Sort Quick Sort </description>
+      <description> Insertion Sort  Maintain the invariant of the prefix of the array (sorted version of those elements)  Selection Sort  Each time: minimum computation  Bubble Sort  Repeatedly swap adjacent elements which are out of order  Merge Sort  Divide and Conquer  ​
+Quick Sort  Randomized algo  </description>
     </item>
     
   </channel>
