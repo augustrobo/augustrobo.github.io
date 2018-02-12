@@ -17,7 +17,8 @@
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/01/sorting/</guid>
-      <description> Insertion Sort Selection Sort Bubble Sort Merge Sort Quick Sort </description>
+      <description> Insertion Sort  Maintain the invariant of the prefix of the array (sorted version of those elements)  Selection Sort  Each time: minimum computation  Bubble Sort  Repeatedly swap adjacent elements which are out of order  Merge Sort  Divide and Conquer  ​
+Quick Sort  Randomized algo  </description>
     </item>
     
   </channel>
