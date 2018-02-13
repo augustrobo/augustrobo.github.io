@@ -95,11 +95,11 @@
 <ul>
 <li><a href="#python-code-3">Python Code</a></li>
 </ul></li>
-<li><a href="#closest-pair">Closest Pair</a></li>
-<li><a href="#exercises">Exercises</a>
+<li><a href="#closest-pair">Closest Pair</a>
 <ul>
-<li><a href="#peak-finding">Peak Finding</a></li>
+<li><a href="#python-code-4">Python Code</a></li>
 </ul></li>
+<li><a href="#fictitious-example">Fictitious Example</a></li>
 </ul></li>
 <li><a href="#sorting-selection">Sorting &amp; Selection</a>
 <ul>
@@ -110,7 +110,7 @@
 <li><a href="#proof-by-recursion-tree-method">Proof by Recursion Tree Method</a></li>
 <li><a href="#proof-by-master-method">Proof by Master Method</a></li>
 </ul></li>
-<li><a href="#python-code-4">Python Code</a></li>
+<li><a href="#python-code-5">Python Code</a></li>
 </ul></li>
 <li><a href="#quick-sort">Quick Sort</a></li>
 <li><a href="#rselect">RSelect</a></li>
@@ -486,23 +486,178 @@ $$</p>
 <h2 id="strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</h2>
 
 <ul>
-<li><strong>Problem</strong>:</li>
-<li>Naive iterative algorithm: <code>$O(n^3)$</code></li>
-<li>Strassen&rsquo;s method:</li>
-<li><strong>Running time</strong>: By master method,</li>
+<li><strong>Problem</strong>: compute <code>$Z_{n\times n}=X_{n\times n}\cdot Y_{n\times n}$</code> (Note: input size = <code>$O(n^2)$</code>)</li>
+<li>Naive iterative algorithm: <code>$O(n^3)$</code> (3 <code>for</code> loops)</li>
+</ul>
+
+<p>$$
+z_{ij} = \sum_{k=1}^n x_{ik}\cdot y_{kj}
+$$</p>
+
+<ul>
+<li>Write</li>
+</ul>
+
+<p>$$
+X = \begin{pmatrix}
+A &amp;B\newline
+C &amp;D
+\end{pmatrix},
+Y = \begin{pmatrix}
+E &amp;F\newline
+G &amp;H
+\end{pmatrix}
+$$</p>
+
+<p>where <code>$A$</code> through <code>$H$</code> are all <code>$\frac{n}{2}\times \frac{n}{2}$</code> matrices. Then
+$$
+X\cdot Y = \begin{pmatrix}
+AE+BG &amp;AF+BH\newline
+CE+DG &amp;CF+DH
+\end{pmatrix}
+$$</p>
+
+<ul>
+<li>Recursive method #1:
+
+<ul>
+<li><strong>step1</strong>. recursively compute the 8 products</li>
+<li><strong>step2</strong>. do additions (<code>$O(n^2)$</code> time)</li>
+<li><strong>Running time</strong>: by master method,</li>
+</ul></li>
+</ul>
+
+<p>$$
+a = 8&gt;2^2=b^d \text{ (case 3) }\Rightarrow T(n)\leq O(n^{\log_b a})=O(n^{\log_2 8})=O(n^{3})
+$$</p>
+
+<ul>
+<li><strong>Strassen&rsquo;s method</strong>:
+
+<ul>
+<li><strong>step1</strong>. recursively compute only 7 (cleverly chosen) products</li>
+<li><strong>step2</strong>. do (clever) additions (<code>$O(n^2)$</code> time)</li>
+<li><strong>Running time</strong>: by master method,</li>
+</ul></li>
 </ul>
 
 <p>$$
 a = 7&gt;2^2=b^d \text{ (case 3) }\Rightarrow T(n)\leq O(n^{\log_b a})=O(n^{\log_2 7})=O(n^{2.81})
 $$</p>
 
+<blockquote>
+<p>The 7 products:
+$$
+P_1 =A(F-H)\\<br />
+P_2 =(A+B)H\\<br />
+P_3=(C+D)E\\<br />
+P_4=D(G-E)\\<br />
+P_5=(A+D)(E+F)\\<br />
+P_6=(B-D)(G+H)\\<br />
+P_7=(A-C)(E+F)
+$$</p>
+
+<p>Then,
+$$
+\begin{align}
+X\cdot Y &amp;= \begin{pmatrix}
+AE+BG &amp;AF+BH\newline
+CE+DG &amp;CF+DH
+\end{pmatrix}\newline
+&amp;=
+\begin{pmatrix}
+P_5+P_4-P_2+P_6 &amp;P_1+P_2\newline
+P_3+P_4 &amp;P_1+P_5-P_3-P_7
+\end{pmatrix}
+\end{align}
+$$</p>
+</blockquote>
+
 <h3 id="python-code-3">Python Code</h3>
+
+<pre><code class="language-python">
+</code></pre>
 
 <h2 id="closest-pair">Closest Pair</h2>
 
-<h2 id="exercises">Exercises</h2>
+<ul>
+<li><strong>Input</strong>: a set <code>$P=\{p_1,\ldots,p_n\}$</code> of <code>$n$</code> points in the plane (<code>$\mathbb{R}^2$</code>)</li>
+<li>Notation: <code>$d(p,q) = $</code> Euclidean distance</li>
+<li><strong>Output</strong>: <code>$p^*, q^*=\arg\min\limits_{p\neq q\in P}d(p,q)$</code></li>
+<li><strong>Assumption</strong>: (for convenience) all points have distinct <code>$x$</code>-coordinates, <code>$y$</code>-coordinates</li>
+<li><strong>Brute-force search</strong>:  <code>$\Theta(n^2)$</code></li>
+<li>1-d version of CP:
 
-<h3 id="peak-finding">Peak Finding</h3>
+<ul>
+<li>sort points (<code>$O(n\log n)$</code> time)</li>
+<li>return CP of adjacent points (<code>$O(n)$</code> time)</li>
+</ul></li>
+<li><strong>Goal</strong>: <code>$O(n\log n)$</code> time algo for 2-d version</li>
+<li><strong>D&amp;C</strong>: make copies of points sorted by <code>$x$</code>-coordinates (<code>$P_x$</code>) and by <code>$y$</code>-coordinates (<code>$P_y$</code>) [<code>$O(n\log n)$</code> time]</li>
+</ul>
+
+<blockquote>
+<p><code>ClosestPair</code> <code>$(P_x, P_y)$</code></p>
+
+<ol>
+<li><code>$Q$</code> = left half of <code>$P$</code>, <code>$R$</code> = right half of <code>$P$</code>. Form <code>$Q_x, Q_y, R_x, R_y$</code> [<code>$O(n)$</code> time]</li>
+<li><code>$(p_1,q_1)=$</code> <code>ClosestPair</code> <code>$(Q_x, Q_y)$</code></li>
+<li><code>$(p_2,q_2)=$</code> <code>ClosestPair</code> <code>$(R_x, R_y)$</code></li>
+<li>let <code>$\delta = \min\{d(p_1,q_1), (p_2,q_2)\}$</code></li>
+<li><code>$(p_3,q_3)=$</code> <code>ClosestSplitPair</code> <code>$(P_x, P_y)$</code>. Requirements:
+
+<ul>
+<li><code>$O(n)$</code> time</li>
+<li>correct whenever CP of <code>$P$</code> is a split pair</li>
+</ul></li>
+<li>return best of <code>$(p_1,q_1),(p_2,q_2),(p_3,q_3)$</code></li>
+</ol>
+
+<p><code>ClosestSplitPair</code> <code>$(P_x, P_y)$</code></p>
+
+<ol>
+<li>Let <code>$\bar{x}$</code> = biggest <code>$x$</code>-coordinate in the left of <code>$P$</code> [<code>$O(1)$</code> time]</li>
+<li>Let <code>$S_y$</code> = points of <code>$P$</code> with <code>$x$</code>-coordinate in <code>$[\bar{x}-\delta,\bar{x}+\delta]$</code>, sorted by <code>$y$</code>-coordinate</li>
+<li>Initialize best = <code>$\delta$</code>, best point = <code>NULL</code>, <code>$m=\vert S_y\vert$</code>.</li>
+</ol>
+
+<pre><code>   For i = 1 to m-1
+      For j = 1 to min(7, m-i)
+          let p, q = ith, (i+j)th points of P
+          If d(p, q) &lt; best
+              best point = (p, q)
+              best = d(p, q)
+</code></pre>
+
+<p>[<code>$O(n)$</code> time]</p>
+</blockquote>
+
+<p><strong>Claim</strong>. Let <code>$p\in Q$</code>, <code>$q\in R$</code> be a split pair with <code>$d(p,q)&lt;\delta$</code>. Then</p>
+
+<ol>
+<li><code>$p,q\in S_y$</code></li>
+<li><code>$p,q$</code> are at most 7 positions apart in <code>$S_y$</code></li>
+</ol>
+
+<p><strong>Corollary1</strong>. If CP of <code>$P$</code> is a split pair, then <code>ClosestSplitPair</code> can find it.</p>
+
+<p><strong>Corollary2</strong>. <code>ClosestPair</code> is correct, and runs in <code>$O(n\log n)$</code> time.</p>
+
+<h3 id="python-code-4">Python Code</h3>
+
+<pre><code class="language-python">
+</code></pre>
+
+<h2 id="fictitious-example">Fictitious Example</h2>
+
+<p>$$
+T(n)=2T\left(\frac{n}{2}\right) + O(n^2) \\<br />
+    \Rightarrow a=2&lt;2^2=b^d (\text{case 2}) \Rightarrow T(n)=O(n^2)
+$$</p>
+
+<p>Recursion depth = <code>$O(\log n)$</code>, each level <code>$O(n^2)$</code>.</p>
+
+<p><code>$T(n)=O(n^2)=o(n^2\log n)$</code>! Master method gives <strong>a tighter upper bound</strong>!</p>
 
 <h1 id="sorting-selection">Sorting &amp; Selection</h1>
 
@@ -564,7 +719,7 @@ $$</p>
 
 <ul>
 <li><strong>Input</strong>: array of numbers (assume distinct, <strong>exercise</strong>: duplicate case), unsorted</li>
-<li><strong>Output</strong>: Same numbers, sorted in increasing order</li>
+<li><strong>Output</strong>: same numbers, sorted in increasing order</li>
 <li><strong>Pseudocode for Merge</strong>:</li>
 </ul>
 
@@ -626,7 +781,7 @@ $$</p></li>
 a = 2=2^1=b^d \text{ (case 1) }\Rightarrow T(n)\leq O(n^d\log n)=O(n\log n)
 $$</p>
 
-<h3 id="python-code-4">Python Code</h3>
+<h3 id="python-code-5">Python Code</h3>
 
 <pre><code class="language-python">def mergeSort(arr):
     n = len(arr)
