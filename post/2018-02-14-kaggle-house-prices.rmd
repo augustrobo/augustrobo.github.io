@@ -1,0 +1,14 @@
+---
+title: Kaggle - House Prices
+author: ~
+date: '2018-02-14'
+slug: kaggle-house-prices
+categories: ["machineLearning","kaggle"]
+tags: []
+draft: yes
+output:
+  blogdown::html_page:
+    toc: true
+---
+
+# EDA

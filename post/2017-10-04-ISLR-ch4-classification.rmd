@@ -1,0 +1,12 @@
+---
+title: ISLR CH4 Classification
+author: ~
+date: '2017-10-04'
+slug: classification
+categories: ["machineLearning","ISLR"]
+tags: []
+draft: yes
+output:
+  blogdown::html_page:
+    toc: true
+---

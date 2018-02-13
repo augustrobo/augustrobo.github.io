@@ -6,10 +6,22 @@
     <description>Recent content in Python on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 Feb 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Data Manipulation at Scale 大规模数据处理</title>
+      <link>/post/2018/02/01/data-manipulation-at-scale/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/02/01/data-manipulation-at-scale/</guid>
+      <description>课程介绍  Data Manipulation at Scale: Systems and Algorithms 大规模数据处理：系统和算法【 Coursera链接 】 Data Science at Scale Specialization 的第一门课，共4门 制作方： University of Washington 教学方： Bill Howe  阅读材料 Part 1: Data Manipulation, at Scale
+Databases and the relational algebra
+Readings
+ How Vertica Was the Star of the Obama Campaign, and Other Revelations E. F. Codd, 1981 Turing Award Lecture, &amp;ldquo; Relational Database: A Practical Foundation for Productivity&amp;rdquo;, 1981 (Think about which arguments from this short piece are still relevant today.</description>
+    </item>
     
     <item>
       <title>Algorithms-Design and Analysis(Stanford) Notes</title>
@@ -17,7 +29,8 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/algorithms/</guid>
-      <description>Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via recursive calls COMBINE solutions of sub-problems into one for the original problem  Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
+      <description>PDF格式笔记见：Notes
+Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via recursive calls COMBINE solutions of sub-problems into one for the original problem  Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
  Determine the upper bound of running time for most of the D&amp;amp;C algos
  Assumption: all sub-problems have equal size
     unbalanced sub-problems? more than one recurrence?    Recurrence format:</description>
@@ -42,7 +55,10 @@ We define an array is non-decreasing if array[i] &amp;lt;= array[i + 1] holds fo
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/python-data-structure/</guid>
-      <description> List  See help(list)  # Create a new list empty = list() # or empty = [] # faster, more pythonic   Lists can contain elements of different types ​  Stack Queue Heap Tree </description>
+      <description>Built-in List  See help(list)  # Create a new list empty = list() # or empty = [] # faster, more pythonic   Lists can contain elements of different types  Tuple Set Dictionary Non-built-in Operations:
+ insert 插入 remove 移除 iterate 遍历 test if empty 检验空否  Stack  Examine the item most recently added &amp;lt;- LIFO = last in first out
+ push (insert)
+ pop (remove)</description>
     </item>
     
     <item>
@@ -100,6 +116,114 @@ Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Righta
       <guid>/post/2018/01/01/sorting/</guid>
       <description> Insertion Sort  Maintain the invariant of the prefix of the array (sorted version of those elements)  Selection Sort  Each time: minimum computation  Bubble Sort  Repeatedly swap adjacent elements which are out of order  Merge Sort  Divide and Conquer  ​
 Quick Sort  Randomized algo  </description>
+    </item>
+    
+    <item>
+      <title>ML - Application Example - Photo OCR</title>
+      <link>/post/2017/11/11/ocr/</link>
+      <pubDate>Sat, 11 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/11/ocr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Large Scale Machine Learning</title>
+      <link>/post/2017/11/10/large-scale-ml/</link>
+      <pubDate>Fri, 10 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/10/large-scale-ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Recommender Systems</title>
+      <link>/post/2017/11/09/recommender-systems/</link>
+      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/09/recommender-systems/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Anomaly Detection</title>
+      <link>/post/2017/11/08/anomaly/</link>
+      <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/08/anomaly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Dimensionality Reduction</title>
+      <link>/post/2017/11/08/dimension-reduction/</link>
+      <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/08/dimension-reduction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Unsupervised Learning</title>
+      <link>/post/2017/11/07/unsupervised/</link>
+      <pubDate>Tue, 07 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/07/unsupervised/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Support Vector Machines</title>
+      <link>/post/2017/11/06/svms/</link>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/06/svms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Machine Learning System Design</title>
+      <link>/post/2017/11/05/system-design/</link>
+      <pubDate>Sun, 05 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/05/system-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Neural Networks</title>
+      <link>/post/2017/11/04/neural-networks/</link>
+      <pubDate>Sat, 04 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/04/neural-networks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Regularization</title>
+      <link>/post/2017/11/03/regularization/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/03/regularization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Logistic Regression</title>
+      <link>/post/2017/11/02/logistic/</link>
+      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/02/logistic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Linear Regression with Multiple Variables</title>
+      <link>/post/2017/11/01/lr/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/01/lr/</guid>
+      <description></description>
     </item>
     
   </channel>

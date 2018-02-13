@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>Bigdata</title>
+      <link>/categories/bigdata/</link>
+      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/bigdata/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Databases</title>
       <link>/categories/databases/</link>
       <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
@@ -48,9 +57,36 @@
     </item>
     
     <item>
+      <title>ISLR</title>
+      <link>/categories/islr/</link>
+      <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/islr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kaggle</title>
+      <link>/categories/kaggle/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/kaggle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MachineLearning</title>
+      <link>/categories/machinelearning/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/machinelearning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Python</title>
       <link>/categories/python/</link>
-      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/python/</guid>
       <description></description>
@@ -71,6 +107,15 @@
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/sorting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>TimeSeriesAnalysis</title>
+      <link>/categories/timeseriesanalysis/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/timeseriesanalysis/</guid>
       <description></description>
     </item>
     

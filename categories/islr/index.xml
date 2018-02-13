@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ISLR on NOWHERESVILLE</title>
+    <link>/categories/islr/</link>
+    <description>Recent content in ISLR on NOWHERESVILLE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 10 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/islr/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ISLR CH10 Unsupervised Learning</title>
+      <link>/post/2017/10/10/unsupervised/</link>
+      <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/10/unsupervised/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH9 Support Vector Machines</title>
+      <link>/post/2017/10/09/svm/</link>
+      <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/09/svm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH8 Tree-Based Methods</title>
+      <link>/post/2017/10/08/tree-based-methods/</link>
+      <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/08/tree-based-methods/</guid>
+      <description>ModelIntuitionAssumptionTrade-offsBagging and BoostingRandom ForestModelIntuitionAssumptionTrade-offsBagging and BoostingRandom Forest</description>
+    </item>
+    
+    <item>
+      <title>ISLR CH7 Moving Beyond Linearity</title>
+      <link>/post/2017/10/07/beyond-linearity/</link>
+      <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/07/beyond-linearity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH6 Linear Model Selection and Regularization</title>
+      <link>/post/2017/10/06/model-selection/</link>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/06/model-selection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH5 Resampling Method</title>
+      <link>/post/2017/10/05/resampling/</link>
+      <pubDate>Thu, 05 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/05/resampling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH4 Classification</title>
+      <link>/post/2017/10/04/classification/</link>
+      <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/04/classification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH3 Linear Regression</title>
+      <link>/post/2017/10/03/linear-regression/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/03/linear-regression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH2 Overview of Statistical Learning</title>
+      <link>/post/2017/10/02/overview/</link>
+      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/02/overview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH1 Introduction</title>
+      <link>/post/2017/10/01/introduction/</link>
+      <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/01/introduction/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

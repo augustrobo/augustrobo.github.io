@@ -17,7 +17,8 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/algorithms/</guid>
-      <description>Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via recursive calls COMBINE solutions of sub-problems into one for the original problem  Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
+      <description>PDF格式笔记见：Notes
+Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via recursive calls COMBINE solutions of sub-problems into one for the original problem  Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
  Determine the upper bound of running time for most of the D&amp;amp;C algos
  Assumption: all sub-problems have equal size
     unbalanced sub-problems? more than one recurrence?    Recurrence format:</description>

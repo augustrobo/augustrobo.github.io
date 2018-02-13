@@ -132,6 +132,8 @@
 <main>
 
 
+<p>PDF格式笔记见：<a href="http://augustrobo.github.io/doc/algorithms/stanford.pdf">Notes</a></p>
+
 <h1 id="divide-and-conquer-分而治之">Divide and Conquer 分而治之</h1>
 
 <ol>
@@ -227,7 +229,7 @@ a^j \times C\left(\frac{n}{b^j}\right)^d
 $$
 Thus,
 $$
-\text{Total work} \leq Cn^d\sum_{j=0}^{\log_dn}\left(\frac{a}{b^d}\right)^j   \ \ (\Delta)
+\text{Total work} \leq Cn^d\sum_{j=0}^{\log_bn}\left(\frac{a}{b^d}\right)^j   \ \ (\Delta)
 $$
 <code>$\Rightarrow$</code> all depends on the relationship between <code>$a$</code> and <code>$b^d$</code></p>
 
@@ -603,7 +605,7 @@ $$</p>
 <li><code>$Q$</code> = left half of <code>$P$</code>, <code>$R$</code> = right half of <code>$P$</code>. Form <code>$Q_x, Q_y, R_x, R_y$</code> [<code>$O(n)$</code> time]</li>
 <li><code>$(p_1,q_1)=$</code> <code>ClosestPair</code> <code>$(Q_x, Q_y)$</code></li>
 <li><code>$(p_2,q_2)=$</code> <code>ClosestPair</code> <code>$(R_x, R_y)$</code></li>
-<li>let <code>$\delta = \min\{d(p_1,q_1), (p_2,q_2)\}$</code></li>
+<li>let <code>$\delta = \min\{d(p_1,q_1), d(p_2,q_2)\}$</code></li>
 <li><code>$(p_3,q_3)=$</code> <code>ClosestSplitPair</code> <code>$(P_x, P_y)$</code>. Requirements:
 
 <ul>
@@ -623,7 +625,7 @@ $$</p>
 
 <pre><code>   For i = 1 to m-1
       For j = 1 to min(7, m-i)
-          let p, q = ith, (i+j)th points of P
+          Let p, q = ith, (i+j)th points of P
           If d(p, q) &lt; best
               best point = (p, q)
               best = d(p, q)
