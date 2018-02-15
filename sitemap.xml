@@ -178,6 +178,19 @@
   </url>
   
   <url>
+<<<<<<< HEAD
+=======
+    <loc>/post/2017/10/02/overview/</loc>
+    <lastmod>2017-10-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/post/2017/10/01/introduction/</loc>
+    <lastmod>2017-10-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+>>>>>>> origin/master
     <loc>/post/2017/07/02/pca/</loc>
     <lastmod>2017-07-02T00:00:00+00:00</lastmod>
   </url>

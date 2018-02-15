@@ -6,12 +6,13 @@
     <description>Recent content in PythonBasics on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jan 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/pythonbasics/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+<<<<<<< HEAD
       <title>Python Data Structures</title>
       <link>/post/2018/01/25/python-data-structure/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
@@ -42,6 +43,14 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
       
       <guid>/post/2018/01/01/python-exercises/</guid>
       <description>基础 Tic-tac-toe  Write a program using print() that, when run, prints out a tic-tac-toe board.   | | -------- | | -------- | |   Write a program that, when run, prints out a SUPER tic-tac-toe board.   | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | |  数据结构 算法 Greatest Common Divisor 最大公因数 Euclid&amp;rsquo;s algorithm:</description>
+=======
+      <title>Python Type Conversion</title>
+      <link>/post/2018/01/01/python-type-conversion/</link>
+      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/01/01/python-type-conversion/</guid>
+      <description>Types  Variables in Python are dynamically-typed: declared without an explicit type. objects have a type, so Python knows the type of a variable. No char in Python! Both &#39; and &amp;quot; create string literals  type(1) # &amp;lt;class &#39;int&#39;&amp;gt; type(1.0) # &amp;lt;class &#39;float&#39;&amp;gt; type(2/1) # &amp;lt;class &#39;float&#39;&amp;gt; type(&amp;quot;hello&amp;quot;) # &amp;lt;class &#39;str&#39;&amp;gt; type(&#39;a&#39;) # &amp;lt;class &#39;str&#39;&amp;gt; type(True) # &amp;lt;class &#39;bool&#39;&amp;gt; type(None) # &amp;lt;class &#39;NoneType&#39;&amp;gt; type(int) # &amp;lt;class &#39;type&#39;&amp;gt; type(type(int)) # &amp;lt;class &#39;type&#39;&amp;gt; type(print) # &amp;lt;class &#39;builtin_function_or_method&#39;&amp;gt;   bool is a subtype of int, where True == 1 and False == 0  True == 1 # True False == 0 # True True == 2 # False True or False # True (short-circuits)  Explicit Data Type Conversion str(333) # &#39;333&#39; int(&amp;quot;33&amp;quot;) # 33 int(&amp;quot;33.</description>
+>>>>>>> origin/master
     </item>
     
   </channel>
