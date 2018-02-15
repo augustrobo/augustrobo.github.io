@@ -72,9 +72,13 @@
 
 <nav id="TableOfContents">
 <ul>
-<li><a href="#insertion-sort">Insertion Sort</a></li>
-<li><a href="#selection-sort">Selection Sort</a></li>
+<li><a href="#visualization-of-sorting-algorithms">Visualization of Sorting Algorithms</a></li>
+<li><a href="#references">References</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#can-we-sort-faster">Can We Sort Faster?</a></li>
 <li><a href="#bubble-sort">Bubble Sort</a></li>
+<li><a href="#selection-sort">Selection Sort</a></li>
+<li><a href="#insertion-sort">Insertion Sort</a></li>
 <li><a href="#merge-sort">Merge Sort</a></li>
 <li><a href="#quick-sort">Quick Sort</a></li>
 </ul>
@@ -84,31 +88,205 @@
 <main>
 
 
-<h1 id="insertion-sort">Insertion Sort</h1>
+<h1 id="visualization-of-sorting-algorithms">Visualization of Sorting Algorithms</h1>
+
+<p><a href="https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html">https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html</a></p>
+
+<p><a href="https://visualgo.net/bn/sorting">https://visualgo.net/bn/sorting</a></p>
+
+<p><a href="https://www.toptal.com/developers/sorting-algorithms">https://www.toptal.com/developers/sorting-algorithms</a></p>
+
+<h1 id="references">References</h1>
+
+<p><a href="http://i.cs.hku.hk/~hkual/Notes/SearchingSorting/SortingSearchingSelection.html">http://i.cs.hku.hk/~hkual/Notes/SearchingSorting/SortingSearchingSelection.html</a></p>
+
+<p><a href="https://cs.stackexchange.com/questions/13106/why-is-selection-sort-faster-than-bubble-sort">https://cs.stackexchange.com/questions/13106/why-is-selection-sort-faster-than-bubble-sort</a></p>
+
+<h1 id="summary">Summary</h1>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th align="center">Best-Case <code>$T(n)$</code></th>
+<th align="center">Worst-Case <code>$T(n)$</code></th>
+<th align="center">Average-Case <code>$T(n)$</code>?</th>
+<th align="center">Space Complexity</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Bubble Sort</td>
+<td align="center"><code>$O(n)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(1)$</code></td>
+</tr>
+
+<tr>
+<td>Selection Sort</td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(1)$</code></td>
+</tr>
+
+<tr>
+<td>Insertion Sort</td>
+<td align="center"><code>$O(n)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(1)$</code></td>
+</tr>
+
+<tr>
+<td>Merge Sort</td>
+<td align="center"><code>$O(n\log n)$</code></td>
+<td align="center"><code>$O(n\log n)$</code></td>
+<td align="center"><code>$O(n\log n)$</code></td>
+<td align="center"><code>$O(n)$</code></td>
+</tr>
+
+<tr>
+<td>Quick Sort</td>
+<td align="center"><code>$O(n\log n)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(n\log n)$</code></td>
+<td align="center">?</td>
+</tr>
+</tbody>
+</table>
+
+<p>Python uses an algorithm called <a href="http://en.wikipedia.org/wiki/Timsort">Timsort</a>:</p>
+
+<blockquote>
+<p>Timsort is a hybrid sorting algorithm, derived from <strong>merge sort</strong> and  <strong>insertion sort</strong>, designed to perform well on many kinds of real-world  data. It was invented by Tim Peters in 2002 for use in the Python programming language. <strong>The algorithm finds subsets of the data that are already ordered, and uses the subsets to sort the data more efficiently.</strong> This is done by merging an identified subset, called a run, with existing runs until certain criteria are fulfilled. Timsort has been Python&rsquo;s standard sorting algorithm since version 2.3. It is  now also used to sort arrays in Java SE 7, and on the Android platform.</p>
+</blockquote>
+
+<h1 id="can-we-sort-faster">Can We Sort Faster?</h1>
 
 <ul>
-<li>Maintain the <strong>invariant</strong> of the prefix of the array (sorted version of those elements)</li>
-</ul>
-
-<h1 id="selection-sort">Selection Sort</h1>
-
-<ul>
-<li>Each time: minimum computation</li>
+<li>For an array <code>A[1...n]</code>, <strong>inversion</strong> is a pair <code>(i, j)</code>, where <code>i &lt; j</code> and <code>A[i] &gt; A[j]</code>.</li>
+<li>Any algorithm only change the input by adjacent items takes <code>$\Omega(n^2)$</code> time.</li>
+<li>Any comparison-based algorithm takes <code>$\Omega(n\log n)$</code> time.</li>
 </ul>
 
 <h1 id="bubble-sort">Bubble Sort</h1>
 
 <ul>
-<li>Repeatedly swap adjacent elements which are out of order</li>
+<li>Repeatedly swaps adjacent elements which are out of order</li>
+<li>Iterates over the list multiple times, causing larger values to <strong>bubble</strong> to the end of the list</li>
 </ul>
+
+<pre><code class="language-python">def bubbleSort(arr):
+    n = len(arr)
+    for i in range(n-1):
+        for j in range(n-i-1):
+            if arr[j] &gt; arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+</code></pre>
+
+<ul>
+<li>Worst case:</li>
+</ul>
+
+<p>$$
+T(n) = (n-1) + (n-2)+\cdots +1=\frac{n(n-1)}{2}=O(n^2)
+$$</p>
+
+<ul>
+<li>Bubble sort can be modified to <strong>stop early</strong> if it finds that the list has become sorted</li>
+<li>List is already sorted (best case): <code>$O(n)$</code></li>
+</ul>
+
+<pre><code class="language-python">def quickBubble(arr):
+    n = len(arr)
+    unsorted = True
+    i = 0
+    while unsorted:
+        unsorted = False
+        for j in range(n-i-1):
+            if arr[j] &gt; arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+                unsorted = True
+        i += 1  
+    return arr
+</code></pre>
+
+<h1 id="selection-sort">Selection Sort</h1>
+
+<ul>
+<li>Each time: minimum computation</li>
+<li>Selection sort improves upon bubble sort by making fewer swaps</li>
+<li>Average case and worst case: <code>$T(n)=\frac{n(n-1)}{2}=O(n^2)$</code></li>
+<li>List is already sorted (best case): <code>$O(n^2)$</code> (Worse than bubble sort!)</li>
+</ul>
+
+<pre><code class="language-python">def selectionSort(arr):
+    n = len(arr)
+    for i in range(n-1):
+        minIdx = i
+        for j in range(i+1, n):
+            if arr[j] &lt; arr[minIdx]:
+                minIdx = j
+        if minIdx != i:
+            arr[i], arr[minIdx] = arr[minIdx], arr[i]
+    return arr
+</code></pre>
+
+<h1 id="insertion-sort">Insertion Sort</h1>
+
+<ul>
+<li>Maintain the <strong>invariant</strong> of the prefix of the array (sorted version of those elements)</li>
+<li>Average case and worst case: <code>$T(n)=\frac{n(n-1)}{2}=O(n^2)$</code></li>
+<li>List is already sorted (best case): <code>$O(n)$</code></li>
+<li>&ldquo;<strong>Almost sorted</strong>&rdquo; case: <code>$O(n)$</code></li>
+<li><code>$O(n\log n)$</code> versus <code>$O(n^2)$</code></li>
+<li>Once the input array length is small or the input array is almost sorted, insertion sort is quicker than merge sort!</li>
+</ul>
+
+<pre><code class="language-python">def insertionSort(arr):
+    n = len(arr)
+    for i in range(1, n):
+        val, j = arr[i], i
+        while j:
+            if val &lt; arr[j-1]:
+                arr[j], j = arr[j-1], j-1
+            else:
+                break
+        arr[j] = val
+    return arr
+</code></pre>
 
 <h1 id="merge-sort">Merge Sort</h1>
 
 <ul>
 <li>Divide and Conquer</li>
+<li>Time complexity: <code>$O(n\log n)$</code> [See <a href="https://augustrobo.github.io/post/2018/01/25/algorithms/#running-time">analysis</a> ]</li>
+<li>Space complexity: <code>$O(n)$</code></li>
 </ul>
 
-<p>​</p>
+<pre><code class="language-python">def mergeSort(arr):
+    n = len(arr)
+    # base case
+    if n &lt; 2:
+        return arr
+
+    m = n//2
+    left, right = mergeSort(arr[:m]), mergeSort(arr[m:])
+
+    i = j = 0
+    for k in range(n):
+        if j == n-m or (i &lt; m and left[i] &lt; right[j]):
+            arr[k] = left[i]
+            i += 1
+        else:
+            arr[k] = right[j]
+            j += 1
+    return arr
+</code></pre>
 
 <h1 id="quick-sort">Quick Sort</h1>
 

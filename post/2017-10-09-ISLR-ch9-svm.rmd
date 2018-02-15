@@ -1,0 +1,12 @@
+---
+title: ISLR CH9 Support Vector Machines
+author: ~
+date: '2017-10-09'
+slug: svm
+categories: ["machineLearning","ISLR"]
+tags: []
+draft: yes
+output:
+  blogdown::html_page:
+    toc: true
+---

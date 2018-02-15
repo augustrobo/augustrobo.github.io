@@ -17,8 +17,12 @@
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/01/sorting/</guid>
-      <description> Insertion Sort  Maintain the invariant of the prefix of the array (sorted version of those elements)  Selection Sort  Each time: minimum computation  Bubble Sort  Repeatedly swap adjacent elements which are out of order  Merge Sort  Divide and Conquer  ​
-Quick Sort  Randomized algo  </description>
+      <description>Visualization of Sorting Algorithms https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+https://visualgo.net/bn/sorting
+https://www.toptal.com/developers/sorting-algorithms
+References http://i.cs.hku.hk/~hkual/Notes/SearchingSorting/SortingSearchingSelection.html
+https://cs.stackexchange.com/questions/13106/why-is-selection-sort-faster-than-bubble-sort
+Summary     Best-Case $T(n)$ Worst-Case $T(n)$ Average-Case $T(n)$? Space Complexity     Bubble Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Selection Sort $O(n^2)$ $O(n^2)$ $O(n^2)$ $O(1)$   Insertion Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Merge Sort $O(n\log n)$ $O(n\log n)$ $O(n\log n)$ $O(n)$   Quick Sort $O(n\log n)$ $O(n^2)$ $O(n\log n)$ ?</description>
     </item>
     
   </channel>

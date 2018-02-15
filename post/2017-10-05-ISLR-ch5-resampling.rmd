@@ -1,0 +1,12 @@
+---
+title: ISLR CH5 Resampling Method
+author: ~
+date: '2017-10-05'
+slug: resampling
+categories: ["machineLearning","ISLR"]
+tags: []
+draft: yes
+output:
+  blogdown::html_page:
+    toc: true
+---

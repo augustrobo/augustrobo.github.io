@@ -6,10 +6,46 @@
     <description>Recent content in Posts on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 25 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 14 Feb 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Kaggle - House Prices</title>
+      <link>/post/2018/02/14/kaggle-house-prices/</link>
+      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/02/14/kaggle-house-prices/</guid>
+      <description>EDA附录：数据描述EDA附录：数据描述SalePrice - the property’s sale price in dollars. This is the target variable that you’re trying to predict.MSSubClass: The building classMSZoning: The general zoning classificationLotFrontage: Linear feet of street connected to propertyLotArea: Lot size in square feetStreet: Type of road accessAlley: Type of alley accessLotShape: General shape of propertyLandContour: Flatness of the propertyUtilities: Type of utilities availableLotConfig: Lot configurationLandSlope: Slope of propertyNeighborhood: Physical locations within Ames city limitsCondition1: Proximity to main road or railroadCondition2: Proximity to main road or railroad (if a second is present)BldgType: Type of dwellingHouseStyle: Style of dwellingOverallQual: Overall material and finish qualityOverallCond: Overall condition ratingYearBuilt: Original construction dateYearRemodAdd: Remodel dateRoofStyle: Type of roofRoofMatl: Roof materialExterior1st: Exterior covering on houseExterior2nd: Exterior covering on house (if more than one material)MasVnrType: Masonry veneer typeMasVnrArea: Masonry veneer area in square feetExterQual: Exterior material qualityExterCond: Present condition of the material on the exteriorFoundation: Type of foundationBsmtQual: Height of the basementBsmtCond: General condition of the basementBsmtExposure: Walkout or garden level basement wallsBsmtFinType1: Quality of basement finished areaBsmtFinSF1: Type 1 finished square feetBsmtFinType2: Quality of second finished area (if present)BsmtFinSF2: Type 2 finished square feetBsmtUnfSF: Unfinished square feet of basement areaTotalBsmtSF: Total square feet of basement areaHeating: Type of heatingHeatingQC: Heating quality and conditionCentralAir: Central air conditioningElectrical: Electrical system1stFlrSF: First Floor square feet2ndFlrSF: Second floor square feetLowQualFinSF: Low quality finished square feet (all floors)GrLivArea: Above grade (ground) living area square feetBsmtFullBath: Basement full bathroomsBsmtHalfBath: Basement half bathroomsFullBath: Full bathrooms above gradeHalfBath: Half baths above gradeBedroom: Number of bedrooms above basement levelKitchen: Number of kitchensKitchenQual: Kitchen qualityTotRmsAbvGrd: Total rooms above grade (does not include bathrooms)Functional: Home functionality ratingFireplaces: Number of fireplacesFireplaceQu: Fireplace qualityGarageType: Garage locationGarageYrBlt: Year garage was builtGarageFinish: Interior finish of the garageGarageCars: Size of garage in car capacityGarageArea: Size of garage in square feetGarageQual: Garage qualityGarageCond: Garage conditionPavedDrive: Paved drivewayWoodDeckSF: Wood deck area in square feetOpenPorchSF: Open porch area in square feetEnclosedPorch: Enclosed porch area in square feet3SsnPorch: Three season porch area in square feetScreenPorch: Screen porch area in square feetPoolArea: Pool area in square feetPoolQC: Pool qualityFence: Fence qualityMiscFeature: Miscellaneous feature not covered in other categoriesMiscVal: $Value of miscellaneous featureMoSold: Month SoldYrSold: Year SoldSaleType: Type of saleSaleCondition: Condition of sale</description>
+    </item>
+    
+    <item>
+      <title>Kaggle - Titanic</title>
+      <link>/post/2018/02/13/kaggle-titanic/</link>
+      <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/02/13/kaggle-titanic/</guid>
+      <description>EDAEDA</description>
+    </item>
+    
+    <item>
+      <title>MMDS - MapReduce</title>
+      <link>/post/2018/02/05/mapreduce/</link>
+      <pubDate>Mon, 05 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/02/05/mapreduce/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Data Manipulation at Scale 大规模数据处理</title>
+      <link>/post/2018/02/01/data-manipulation-at-scale/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/02/01/data-manipulation-at-scale/</guid>
+      <description>课程介绍  Data Manipulation at Scale: Systems and Algorithms 大规模数据处理：系统和算法【 Coursera链接 】 Data Science at Scale Specialization 的第一门课，共4门 制作方： University of Washington 教学方： Bill Howe  Twitter Sentiment Analysis 情感分析 分析目的  access the twitter Application Programming Interface(API) using python estimate the public&amp;rsquo;s perception (the sentiment) of a particular term or phrase analyze the relationship between location and mood based on a sample of twitter data  步骤  CLI安装 oauth2 package [用于授权登录]  pip3 install oauth2   创建 twitter 账号 到 https://apps.</description>
+    </item>
     
     <item>
       <title>Algorithms-Design and Analysis(Stanford) Notes</title>
@@ -17,7 +53,8 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/algorithms/</guid>
-      <description>Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via recursive calls COMBINE solutions of sub-problems into one for the original problem  Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
+      <description>PDF格式笔记见：Notes
+Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via recursive calls COMBINE solutions of sub-problems into one for the original problem  Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
  Determine the upper bound of running time for most of the D&amp;amp;C algos
  Assumption: all sub-problems have equal size
     unbalanced sub-problems? more than one recurrence?    Recurrence format:</description>
@@ -42,7 +79,7 @@ We define an array is non-decreasing if array[i] &amp;lt;= array[i + 1] holds fo
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/python-data-structure/</guid>
-      <description> List  See help(list)  # Create a new list empty = list() # or empty = [] # faster, more pythonic   Lists can contain elements of different types ​  Stack Queue Heap Tree </description>
+      <description>Built-in List  See help(list)  # Create a new list empty = list() # or empty = [] # faster, more pythonic   Lists can contain elements of different types Use append to append elements to the end of a list  nums = [1,2,3] nums.append(4) # nums == [1, 2, 3, 4]   Access element at a particular index  nums[-1] # =&amp;gt; [4]   Slice lists  nums[1:-1] # =&amp;gt; [2, 3] &#39;python&#39;[:3] # =&amp;gt; &#39;pyt&#39;   Nested lists  letters = [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;] x = [nums, letters] x[0] # =&amp;gt; [1, 2, 3, 4] x[0][1] # =&amp;gt; 2 x[1][:2] # =&amp;gt; [&#39;a&#39;, &#39;b&#39;]   Length (len)  len(x) # =&amp;gt; 2 len([]) # =&amp;gt; 0   Membership (in)  0 in [] # =&amp;gt; False &#39;y&#39; in &#39;python&#39; # =&amp;gt; True   Palindrome?</description>
     </item>
     
     <item>
@@ -88,7 +125,7 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/01/python-type-conversion/</guid>
-      <description>Types  Variables in Python are dynamically-typed: declared without an explicit type. objects have a type, so Python knows the type of a variable. No char in Python! Both &#39; and &amp;quot; create string literals  type(1) # &amp;lt;class &#39;int&#39;&amp;gt; type(1.0) # &amp;lt;class &#39;float&#39;&amp;gt; type(2/1) # &amp;lt;class &#39;float&#39;&amp;gt; type(&amp;quot;hello&amp;quot;) # &amp;lt;class &#39;str&#39;&amp;gt; type(&#39;a&#39;) # &amp;lt;class &#39;str&#39;&amp;gt; type(True) # &amp;lt;class &#39;bool&#39;&amp;gt; type(None) # &amp;lt;class &#39;NoneType&#39;&amp;gt; type(int) # &amp;lt;class &#39;type&#39;&amp;gt; type(type(int)) # &amp;lt;class &#39;type&#39;&amp;gt; type(print) # &amp;lt;class &#39;builtin_function_or_method&#39;&amp;gt;   bool is a subtype of int, where True == 1 and False == 0  True == 1 # True False == 0 # True True == 2 # False True or False # True (short-circuits)  Explicit Data Type Conversion str(333) # &#39;333&#39; int(&amp;quot;33&amp;quot;) # 33 int(&amp;quot;33.</description>
+      <description>Types  Variables in Python are dynamically-typed: declared without an explicit type. objects have a type, so Python knows the type of a variable. No char in Python! Both &#39; and &amp;quot; create string literals  type(1) # &amp;lt;class &#39;int&#39;&amp;gt; type(1.0) # &amp;lt;class &#39;float&#39;&amp;gt; type(2/1) # &amp;lt;class &#39;float&#39;&amp;gt; type(&amp;quot;hello&amp;quot;) # &amp;lt;class &#39;str&#39;&amp;gt; type(&#39;a&#39;) # &amp;lt;class &#39;str&#39;&amp;gt; type(True) # &amp;lt;class &#39;bool&#39;&amp;gt; type(None) # &amp;lt;class &#39;NoneType&#39;&amp;gt; type(int) # &amp;lt;class &#39;type&#39;&amp;gt; type(type(int)) # &amp;lt;class &#39;type&#39;&amp;gt; type(print) # &amp;lt;class &#39;builtin_function_or_method&#39;&amp;gt;   bool is a subtype of int, where True == 1 and False == 0  True == 1 # True False == 0 # True True == 2 # False True or False # True (short-circuits)  Truthy and Falsy # &#39;Falsy&#39; bool(None) bool(False) bool(0) bool(0.</description>
     </item>
     
     <item>
@@ -97,12 +134,7 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/01/python-exercises/</guid>
-      <description>基础 数据结构 算法 Greatest Common Divisor 最大公因数 Euclid&amp;rsquo;s algorithm:
-def gcd(p, q): &#39;&#39;&#39;Compute the greatest common divisor of 2 nonnegative integers &#39;&#39;&#39; if q==0: return p else: return gcd(q, p%q)   Two integers $p,q\geq 0$,
-(1) obviously, $gcd(p, 0)=p$
-(2) $gcd(p,q)=gcd(q,r)$, where $r=p\%q$
-Proof of statement (2):
-Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Rightarrow a|r \Rightarrow a\leq gcd(q,r)=b\nonumber \newline b|q, b|r \Rightarrow b|p \Rightarrow b\leq gcd(p,q)=a \nonumber \end{align} \right\} \Rightarrow a=b $$ Proof of termination of Euclid&amp;rsquo;s algo:</description>
+      <description>基础 Tic-tac-toe  Write a program using print() that, when run, prints out a tic-tac-toe board.   | | -------- | | -------- | |   Write a program that, when run, prints out a SUPER tic-tac-toe board.   | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | |  数据结构 算法 Greatest Common Divisor 最大公因数 Euclid&amp;rsquo;s algorithm:</description>
     </item>
     
     <item>
@@ -111,8 +143,205 @@ Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Righta
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/01/sorting/</guid>
-      <description> Insertion Sort  Maintain the invariant of the prefix of the array (sorted version of those elements)  Selection Sort  Each time: minimum computation  Bubble Sort  Repeatedly swap adjacent elements which are out of order  Merge Sort  Divide and Conquer  ​
-Quick Sort  Randomized algo  </description>
+      <description>Visualization of Sorting Algorithms https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+https://visualgo.net/bn/sorting
+https://www.toptal.com/developers/sorting-algorithms
+References http://i.cs.hku.hk/~hkual/Notes/SearchingSorting/SortingSearchingSelection.html
+https://cs.stackexchange.com/questions/13106/why-is-selection-sort-faster-than-bubble-sort
+Summary     Best-Case $T(n)$ Worst-Case $T(n)$ Average-Case $T(n)$? Space Complexity     Bubble Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Selection Sort $O(n^2)$ $O(n^2)$ $O(n^2)$ $O(1)$   Insertion Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Merge Sort $O(n\log n)$ $O(n\log n)$ $O(n\log n)$ $O(n)$   Quick Sort $O(n\log n)$ $O(n^2)$ $O(n\log n)$ ?</description>
+    </item>
+    
+    <item>
+      <title>Time Series Analysis 学习笔记</title>
+      <link>/post/2017/12/01/time-series/</link>
+      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/12/01/time-series/</guid>
+      <description>参考资料参考资料</description>
+    </item>
+    
+    <item>
+      <title>ML - Application Example - Photo OCR</title>
+      <link>/post/2017/11/11/ocr/</link>
+      <pubDate>Sat, 11 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/11/ocr/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Large Scale Machine Learning</title>
+      <link>/post/2017/11/10/large-scale-ml/</link>
+      <pubDate>Fri, 10 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/10/large-scale-ml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Recommender Systems</title>
+      <link>/post/2017/11/09/recommender-systems/</link>
+      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/09/recommender-systems/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Anomaly Detection</title>
+      <link>/post/2017/11/08/anomaly/</link>
+      <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/08/anomaly/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Dimensionality Reduction</title>
+      <link>/post/2017/11/08/dimension-reduction/</link>
+      <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/08/dimension-reduction/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Unsupervised Learning</title>
+      <link>/post/2017/11/07/unsupervised/</link>
+      <pubDate>Tue, 07 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/07/unsupervised/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Support Vector Machines</title>
+      <link>/post/2017/11/06/svms/</link>
+      <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/06/svms/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Machine Learning System Design</title>
+      <link>/post/2017/11/05/system-design/</link>
+      <pubDate>Sun, 05 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/05/system-design/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Neural Networks</title>
+      <link>/post/2017/11/04/neural-networks/</link>
+      <pubDate>Sat, 04 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/04/neural-networks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Regularization</title>
+      <link>/post/2017/11/03/regularization/</link>
+      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/03/regularization/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Logistic Regression</title>
+      <link>/post/2017/11/02/logistic/</link>
+      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/02/logistic/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ML - Linear Regression with Multiple Variables</title>
+      <link>/post/2017/11/01/lr/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/01/lr/</guid>
+      <description>Linear Regression with One Variable  $X$: space of input values, $Y$: space of output values
+ training set $\{(x^{(i)}, y^{(i)})\}_{i=1}^m$
+ goal: given a training set, to learn a function $h : X \rightarrow Y$ so that $h(x)$ is a “good” predictor for the corresponding value of $y$. For historical reasons, this function $h$ is called a hypothesis.
+ $h(x)=h_{\theta}(x) = \theta_0 + \theta_1 x$
+ cost function (squared error function, or mean squared error, MSE):</description>
+    </item>
+    
+    <item>
+      <title>ISLR CH10 Unsupervised Learning</title>
+      <link>/post/2017/10/10/unsupervised/</link>
+      <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/10/unsupervised/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH9 Support Vector Machines</title>
+      <link>/post/2017/10/09/svm/</link>
+      <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/09/svm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH8 Tree-Based Methods</title>
+      <link>/post/2017/10/08/tree-based-methods/</link>
+      <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/08/tree-based-methods/</guid>
+      <description>ModelIntuitionAssumptionTrade-offsBagging and BoostingRandom ForestModelIntuitionAssumptionTrade-offsBagging and BoostingRandom Forest</description>
+    </item>
+    
+    <item>
+      <title>ISLR CH7 Moving Beyond Linearity</title>
+      <link>/post/2017/10/07/beyond-linearity/</link>
+      <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/07/beyond-linearity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH6 Linear Model Selection and Regularization</title>
+      <link>/post/2017/10/06/model-selection/</link>
+      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/06/model-selection/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH5 Resampling Method</title>
+      <link>/post/2017/10/05/resampling/</link>
+      <pubDate>Thu, 05 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/05/resampling/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH4 Classification</title>
+      <link>/post/2017/10/04/classification/</link>
+      <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/04/classification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ISLR CH3 Linear Regression</title>
+      <link>/post/2017/10/03/linear-regression/</link>
+      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/10/03/linear-regression/</guid>
+      <description></description>
     </item>
     
     <item>

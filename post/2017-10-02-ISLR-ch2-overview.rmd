@@ -1,0 +1,12 @@
+---
+title: ISLR CH2 Overview of Statistical Learning
+author: ~
+date: '2017-10-02'
+slug: overview
+categories: ["machineLearning","ISLR"]
+tags: []
+draft: yes
+output:
+  blogdown::html_page:
+    toc: true
+---

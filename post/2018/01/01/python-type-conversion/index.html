@@ -73,6 +73,7 @@
 <nav id="TableOfContents">
 <ul>
 <li><a href="#types">Types</a></li>
+<li><a href="#truthy-and-falsy">Truthy and Falsy</a></li>
 <li><a href="#explicit-data-type-conversion">Explicit Data Type Conversion</a></li>
 </ul>
 </nav>
@@ -123,6 +124,21 @@ True == 2
 # False
 True or False
 # True (short-circuits)
+</code></pre>
+
+<h1 id="truthy-and-falsy">Truthy and Falsy</h1>
+
+<pre><code class="language-python"># 'Falsy'
+bool(None)
+bool(False)
+bool(0)
+bool(0.0)
+bool('')
+# Empty data structures are 'falsy'
+bool([]) # =&gt; False
+# Everything else is 'truthy'
+
+bool(2) # =&gt; True
 </code></pre>
 
 <h1 id="explicit-data-type-conversion">Explicit Data Type Conversion</h1>

@@ -17,7 +17,8 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/algorithms/</guid>
-      <description>Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via recursive calls COMBINE solutions of sub-problems into one for the original problem  Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
+      <description>PDF格式笔记见：Notes
+Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via recursive calls COMBINE solutions of sub-problems into one for the original problem  Master Method  Cool feature: a &amp;ldquo;black-box&amp;rdquo; method for solving recurrences
  Determine the upper bound of running time for most of the D&amp;amp;C algos
  Assumption: all sub-problems have equal size
     unbalanced sub-problems? more than one recurrence?    Recurrence format:</description>
@@ -51,12 +52,7 @@ We define an array is non-decreasing if array[i] &amp;lt;= array[i + 1] holds fo
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/01/python-exercises/</guid>
-      <description>基础 数据结构 算法 Greatest Common Divisor 最大公因数 Euclid&amp;rsquo;s algorithm:
-def gcd(p, q): &#39;&#39;&#39;Compute the greatest common divisor of 2 nonnegative integers &#39;&#39;&#39; if q==0: return p else: return gcd(q, p%q)   Two integers $p,q\geq 0$,
-(1) obviously, $gcd(p, 0)=p$
-(2) $gcd(p,q)=gcd(q,r)$, where $r=p\%q$
-Proof of statement (2):
-Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Rightarrow a|r \Rightarrow a\leq gcd(q,r)=b\nonumber \newline b|q, b|r \Rightarrow b|p \Rightarrow b\leq gcd(p,q)=a \nonumber \end{align} \right\} \Rightarrow a=b $$ Proof of termination of Euclid&amp;rsquo;s algo:</description>
+      <description>基础 Tic-tac-toe  Write a program using print() that, when run, prints out a tic-tac-toe board.   | | -------- | | -------- | |   Write a program that, when run, prints out a SUPER tic-tac-toe board.   | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | |  数据结构 算法 Greatest Common Divisor 最大公因数 Euclid&amp;rsquo;s algorithm:</description>
     </item>
     
     <item>
@@ -65,8 +61,12 @@ Let $a=gcd(p,q)$ and $b=gcd(q,r)$, then $$ \left. \begin{align} a|p, a|q \Righta
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/01/sorting/</guid>
-      <description> Insertion Sort  Maintain the invariant of the prefix of the array (sorted version of those elements)  Selection Sort  Each time: minimum computation  Bubble Sort  Repeatedly swap adjacent elements which are out of order  Merge Sort  Divide and Conquer  ​
-Quick Sort  Randomized algo  </description>
+      <description>Visualization of Sorting Algorithms https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
+https://visualgo.net/bn/sorting
+https://www.toptal.com/developers/sorting-algorithms
+References http://i.cs.hku.hk/~hkual/Notes/SearchingSorting/SortingSearchingSelection.html
+https://cs.stackexchange.com/questions/13106/why-is-selection-sort-faster-than-bubble-sort
+Summary     Best-Case $T(n)$ Worst-Case $T(n)$ Average-Case $T(n)$? Space Complexity     Bubble Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Selection Sort $O(n^2)$ $O(n^2)$ $O(n^2)$ $O(1)$   Insertion Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Merge Sort $O(n\log n)$ $O(n\log n)$ $O(n\log n)$ $O(n)$   Quick Sort $O(n\log n)$ $O(n^2)$ $O(n\log n)$ ?</description>
     </item>
     
   </channel>

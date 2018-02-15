@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ML - Linear Regression with Multiple Variables | NOWHERESVILLE</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ascetic.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="/">/home/nowheresville</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">ML - Linear Regression with Multiple Variables</span></h1>
+
+<h2 class="date">2017/11/01</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/python">Python</a> <a href="/categories/machinelearning">machineLearning</a> 
+  
+  
+  
+  
+</p>
+</div>
+
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="#linear-regression-with-one-variable">Linear Regression with One Variable</a></li>
+</ul>
+</nav>
+
+
+<main>
+
+
+<h1 id="linear-regression-with-one-variable">Linear Regression with One Variable</h1>
+
+<ul>
+<li><p><code>$X$</code>: space of input values, <code>$Y$</code>: space of output values</p></li>
+
+<li><p>training set <code>$\{(x^{(i)}, y^{(i)})\}_{i=1}^m$</code></p></li>
+
+<li><p>goal:  given a training set, to learn a function <code>$h : X \rightarrow  Y$</code> so that <code>$h(x)$</code> is a “good” predictor for the corresponding value of <code>$y$</code>. For historical reasons, this function <code>$h$</code> is called a <strong>hypothesis</strong>.</p></li>
+
+<li><p><code>$h(x)=h_{\theta}(x) = \theta_0 + \theta_1 x$</code></p></li>
+
+<li><p><strong>cost function</strong> (squared error function, or <strong>mean squared error</strong>, MSE):</p></li>
+</ul>
+
+<p>$$
+J(\theta_0, \theta_1)= \frac{1}{2m}\sum _{i=1}^m \left(\hat{y}^{(i)} -y^{(i)} \right)^2 =\frac{1}{2m}\sum _{i=1}^m  \left(h(x^{(i)}) - y^{(i)}\right)^2
+$$</p>
+
+<p>To break it apart, it is <code>$\frac{1}{2} \bar{x}$</code> where <code>$\bar{x}$</code> is the mean of the squares of <code>$h_\theta (x_{i}) - y_{i}$</code> , or the difference between the predicted value and the actual value.  The mean is halved <code>$\left(\frac{1}{2}\right)$</code> as a convenience for the computation of the <strong>gradient descent</strong>, as the derivative term of the square function will cancel out the <code>$\frac{1}{2}$</code> term.</p>
+
+<ul>
+<li><strong>optimization</strong>: minimize <code>$J(\theta_0, \theta_1)$</code> w.r.t parameters <code>$(\theta_0, \theta_1)$</code></li>
+</ul>
+
+</main>
+
+    <footer>
+      <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      <a href="mailto:zhuxm2017@163.com">Email</a> | <a href="https://github.com/augustrobo">Github</a>
+      
+    </footer>
+  </body>
+</html>
+

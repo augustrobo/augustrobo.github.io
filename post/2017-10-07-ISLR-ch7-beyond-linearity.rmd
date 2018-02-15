@@ -1,0 +1,12 @@
+---
+title: ISLR CH7 Moving Beyond Linearity
+author: ~
+date: '2017-10-07'
+slug: beyond-linearity
+categories: ["machineLearning","ISLR"]
+tags: []
+draft: yes
+output:
+  blogdown::html_page:
+    toc: true
+---
