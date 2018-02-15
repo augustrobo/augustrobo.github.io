@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Algorithms | NOWHERESVILLE</title>
+    <title>Searching 搜索算法 | NOWHERESVILLE</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <header>
@@ -26,7 +26,7 @@
       </li>
       
       
-      <li class="pull-left current">
+      <li class="pull-left ">
         <a href="/categories/">~/categories</a>
       </li>
       
@@ -52,36 +52,93 @@
   <body>
     <br/>
 
+<div class="article-meta">
+<h1><span class="title">Searching 搜索算法</span></h1>
+
+<h2 class="date">2018/01/01</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/python">Python</a> <a href="/categories/algorithms">algorithms</a> <a href="/categories/searching">searching</a> 
+  
+  
+  
+  Tags: <a href="/tags/algorithms">algorithms</a> 
+  
+  
+</p>
+</div>
 
 
-<h1>Algorithms</h1>
-
-
-
-
+<nav id="TableOfContents">
 <ul>
-  
-  <li>
-    <span class="date">2018/01/25</span>
-    <a href="/post/2018/01/25/algorithms/">Algorithms-Design and Analysis(Stanford) Notes</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/01/02</span>
-    <a href="/post/2018/01/02/max-subarray/">Max Subarray</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/01/01</span>
-    <a href="/post/2018/01/01/searching/">Searching 搜索算法</a>
-  </li>
-  
-  <li>
-    <span class="date">2018/01/01</span>
-    <a href="/post/2018/01/01/sorting/">Sorting 排序算法</a>
-  </li>
-  
+<li><a href="#binary-search">Binary Search</a></li>
 </ul>
+</nav>
+
+
+<main>
+
+
+<h1 id="binary-search">Binary Search</h1>
+
+<p>Python code #1</p>
+
+<pre><code class="language-python">def binarySearch(arr, target):
+    low, high = 0, len(arr)-1
+    while low &lt;= high:
+        mid = (low + high)//2
+        if target == arr[mid]:
+            return mid
+        elif target &lt; arr[mid]:
+            high = mid - 1
+        else:
+            low = mid + 1
+    return None
+</code></pre>
+
+<p>Python code #2 <strong>Bad!</strong></p>
+
+<pre><code class="language-python">def binarySearch(arr, target):
+    if len(arr) == 0:
+        return None
+
+    mid = len(arr)//2
+    if arr[mid] == target: return mid
+    elif arr[mid] &gt; target:
+        try:
+            return binarySearch(arr[:mid], target)
+        except TypeError:
+            return None
+    else:
+        try:
+            return binarySearch(arr[(mid+1):], target) + mid + 1
+        except TypeError:
+            return None  
+</code></pre>
+
+<p>Python code #3</p>
+
+<pre><code class="language-python">def binarySearchHelper(arr, target, low, high):
+    if high &lt; low:
+        return None
+    mid = (low + high)//2
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] &gt; target:
+        return binarySearchHelper(arr, target, low, mid-1)
+    else:
+        return binarySearchHelper(arr, target, mid+1, high)
+
+def binarySearch(arr, target):
+    n = len(arr)
+    if n == 0:
+        return None
+    else:
+        return binarySearchHelper(arr, target, 0, n-1)
+</code></pre>
+
+</main>
 
     <footer>
       <script type="text/javascript" async

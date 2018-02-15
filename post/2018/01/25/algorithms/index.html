@@ -467,23 +467,7 @@ $$</p>
 
 <h3 id="python-code-2">Python Code</h3>
 
-<pre><code class="language-python">def binarySearch(arr, target):
-    if len(arr) == 0:
-        return None
-
-    mid = len(arr)//2
-    if arr[mid] == target: return mid
-    elif arr[mid] &gt; target:
-        try:
-            return binarySearch(arr[:mid], target)
-        except TypeError:
-            return None
-    else:
-        try:
-            return binarySearch(arr[(mid+1):], target) + mid + 1
-        except TypeError:
-            return None   
-</code></pre>
+<p>see <a href="https://augustrobo.github.io/post/2018/01/01/searching/#binary-search">link</a></p>
 
 <h2 id="strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</h2>
 

@@ -63,6 +63,11 @@
   </url>
   
   <url>
+    <loc>/post/2018/01/01/searching/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018/01/01/sorting/</loc>
     <lastmod>2018-01-01T00:00:00+00:00</lastmod>
   </url>
@@ -178,13 +183,13 @@
   </url>
   
   <url>
-    <loc>/categories/algorithms/</loc>
+    <loc>/tags/algorithms/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/algorithms/</loc>
+    <loc>/categories/algorithms/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -196,12 +201,6 @@
   </url>
   
   <url>
-    <loc>/categories/bigdata/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/bigdata/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -215,6 +214,12 @@
   
   <url>
     <loc>/tags/bigdata/</loc>
+    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/categories/bigdata/</loc>
     <lastmod>2018-01-11T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -274,13 +279,13 @@
   </url>
   
   <url>
-    <loc>/categories/graph/</loc>
+    <loc>/tags/graph/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/graph/</loc>
+    <loc>/categories/graph/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -381,7 +386,19 @@
   </url>
   
   <url>
+    <loc>/categories/searching/</loc>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/selection/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/sorting/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -389,12 +406,6 @@
   <url>
     <loc>/categories/sorting/</loc>
     <lastmod>2018-01-01T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/sorting/</loc>
-    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
