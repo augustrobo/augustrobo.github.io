@@ -11,7 +11,6 @@ output:
     toc: true
 ---
 
-<<<<<<< HEAD
 # EDA
 
 
@@ -97,6 +96,3 @@ output:
 - **YrSold**: Year Sold
 - **SaleType**: Type of sale
 - **SaleCondition**: Condition of sale
-=======
-# EDA
->>>>>>> origin/master

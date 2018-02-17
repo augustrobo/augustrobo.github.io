@@ -773,20 +773,21 @@ $$</p>
     n = len(arr)
     # base case
     if n &lt; 2:
-        return arr
+        return arr[:]
 
     m = n//2
     left, right = mergeSort(arr[:m]), mergeSort(arr[m:])
 
     i = j = 0
+    result = []
     for k in range(n):
         if j == n-m or (i &lt; m and left[i] &lt; right[j]):
-            arr[k] = left[i]
+            result.append(left[i])
             i += 1
         else:
-            arr[k] = right[j]
+            result.append(right[j])
             j += 1
-    return arr
+    return result
 </code></pre>
 
 <ul>

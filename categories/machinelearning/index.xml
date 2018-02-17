@@ -17,11 +17,7 @@
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/02/14/kaggle-house-prices/</guid>
-<<<<<<< HEAD
       <description>EDA附录：数据描述EDA附录：数据描述SalePrice - the property’s sale price in dollars. This is the target variable that you’re trying to predict.MSSubClass: The building classMSZoning: The general zoning classificationLotFrontage: Linear feet of street connected to propertyLotArea: Lot size in square feetStreet: Type of road accessAlley: Type of alley accessLotShape: General shape of propertyLandContour: Flatness of the propertyUtilities: Type of utilities availableLotConfig: Lot configurationLandSlope: Slope of propertyNeighborhood: Physical locations within Ames city limitsCondition1: Proximity to main road or railroadCondition2: Proximity to main road or railroad (if a second is present)BldgType: Type of dwellingHouseStyle: Style of dwellingOverallQual: Overall material and finish qualityOverallCond: Overall condition ratingYearBuilt: Original construction dateYearRemodAdd: Remodel dateRoofStyle: Type of roofRoofMatl: Roof materialExterior1st: Exterior covering on houseExterior2nd: Exterior covering on house (if more than one material)MasVnrType: Masonry veneer typeMasVnrArea: Masonry veneer area in square feetExterQual: Exterior material qualityExterCond: Present condition of the material on the exteriorFoundation: Type of foundationBsmtQual: Height of the basementBsmtCond: General condition of the basementBsmtExposure: Walkout or garden level basement wallsBsmtFinType1: Quality of basement finished areaBsmtFinSF1: Type 1 finished square feetBsmtFinType2: Quality of second finished area (if present)BsmtFinSF2: Type 2 finished square feetBsmtUnfSF: Unfinished square feet of basement areaTotalBsmtSF: Total square feet of basement areaHeating: Type of heatingHeatingQC: Heating quality and conditionCentralAir: Central air conditioningElectrical: Electrical system1stFlrSF: First Floor square feet2ndFlrSF: Second floor square feetLowQualFinSF: Low quality finished square feet (all floors)GrLivArea: Above grade (ground) living area square feetBsmtFullBath: Basement full bathroomsBsmtHalfBath: Basement half bathroomsFullBath: Full bathrooms above gradeHalfBath: Half baths above gradeBedroom: Number of bedrooms above basement levelKitchen: Number of kitchensKitchenQual: Kitchen qualityTotRmsAbvGrd: Total rooms above grade (does not include bathrooms)Functional: Home functionality ratingFireplaces: Number of fireplacesFireplaceQu: Fireplace qualityGarageType: Garage locationGarageYrBlt: Year garage was builtGarageFinish: Interior finish of the garageGarageCars: Size of garage in car capacityGarageArea: Size of garage in square feetGarageQual: Garage qualityGarageCond: Garage conditionPavedDrive: Paved drivewayWoodDeckSF: Wood deck area in square feetOpenPorchSF: Open porch area in square feetEnclosedPorch: Enclosed porch area in square feet3SsnPorch: Three season porch area in square feetScreenPorch: Screen porch area in square feetPoolArea: Pool area in square feetPoolQC: Pool qualityFence: Fence qualityMiscFeature: Miscellaneous feature not covered in other categoriesMiscVal: $Value of miscellaneous featureMoSold: Month SoldYrSold: Year SoldSaleType: Type of saleSaleCondition: Condition of sale</description>
-=======
-      <description>EDAEDA</description>
->>>>>>> origin/master
     </item>
     
     <item>
@@ -39,14 +35,7 @@
       <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/02/01/data-manipulation-at-scale/</guid>
-<<<<<<< HEAD
       <description>课程介绍  Data Manipulation at Scale: Systems and Algorithms 大规模数据处理：系统和算法【 Coursera链接 】 Data Science at Scale Specialization 的第一门课，共4门 制作方： University of Washington 教学方： Bill Howe  Twitter Sentiment Analysis 情感分析 分析目的  access the twitter Application Programming Interface(API) using python estimate the public&amp;rsquo;s perception (the sentiment) of a particular term or phrase analyze the relationship between location and mood based on a sample of twitter data  步骤  CLI安装 oauth2 package [用于授权登录]  pip3 install oauth2   创建 twitter 账号 到 https://apps.</description>
-=======
-      <description>课程介绍  Data Manipulation at Scale: Systems and Algorithms 大规模数据处理：系统和算法【 Coursera链接 】 Data Science at Scale Specialization 的第一门课，共4门 制作方： University of Washington 教学方： Bill Howe  阅读材料 Part 1: Data Manipulation, at Scale
-Databases and the relational algebra
-Readings
- How Vertica Was the Star of the Obama Campaign, and Other Revelations E. F. Codd, 1981 Turing Award Lecture, &amp;ldquo; Relational Database: A Practical Foundation for Productivity&amp;rdquo;, 1981 (Think about which arguments from this short piece are still relevant today.</description>
->>>>>>> origin/master
     </item>
     
     <item>
@@ -163,15 +152,11 @@ Readings
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/11/01/lr/</guid>
-<<<<<<< HEAD
       <description>Linear Regression with One Variable  $X$: space of input values, $Y$: space of output values
  training set $\{(x^{(i)}, y^{(i)})\}_{i=1}^m$
  goal: given a training set, to learn a function $h : X \rightarrow Y$ so that $h(x)$ is a “good” predictor for the corresponding value of $y$. For historical reasons, this function $h$ is called a hypothesis.
  $h(x)=h_{\theta}(x) = \theta_0 + \theta_1 x$
  cost function (squared error function, or mean squared error, MSE):</description>
-=======
-      <description></description>
->>>>>>> origin/master
     </item>
     
     <item>
@@ -246,26 +231,5 @@ Readings
       <description></description>
     </item>
     
-<<<<<<< HEAD
-=======
-    <item>
-      <title>ISLR CH2 Overview of Statistical Learning</title>
-      <link>/post/2017/10/02/overview/</link>
-      <pubDate>Mon, 02 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/02/overview/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH1 Introduction</title>
-      <link>/post/2017/10/01/introduction/</link>
-      <pubDate>Sun, 01 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/01/introduction/</guid>
-      <description></description>
-    </item>
-    
->>>>>>> origin/master
   </channel>
 </rss>
