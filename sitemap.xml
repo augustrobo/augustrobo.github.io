@@ -43,16 +43,6 @@
   </url>
   
   <url>
-    <loc>/post/2018/01/11/big-data-notes/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2018/01/02/max-subarray/</loc>
-    <lastmod>2018-01-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/2018/01/01/python-type-conversion/</loc>
     <lastmod>2018-01-01T00:00:00+00:00</lastmod>
   </url>
@@ -202,25 +192,13 @@
   
   <url>
     <loc>/tags/bigdata/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/bigdata/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/bigdata/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/bigdata/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-05T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -243,12 +221,6 @@
   </url>
   
   <url>
-    <loc>/tags/coursera/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/datastructures/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -261,20 +233,8 @@
   </url>
   
   <url>
-    <loc>/categories/databases/</loc>
-    <lastmod>2018-01-11T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/decisiontrees/</loc>
     <lastmod>2017-10-08T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/divideandconquer/</loc>
-    <lastmod>2018-01-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -357,13 +317,13 @@
   
   <url>
     <loc>/tags/pythonbasics/</loc>
-    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/pythonbasics/</loc>
-    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <lastmod>2018-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

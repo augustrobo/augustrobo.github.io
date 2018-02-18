@@ -35,7 +35,7 @@
       <pubDate>Mon, 05 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/02/05/mapreduce/</guid>
-      <description></description>
+      <description> 1 </description>
     </item>
     
     <item>
@@ -66,11 +66,10 @@ Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via re
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/leetcode/</guid>
-      <description>Non-decreasing Array  Given an array with $n$ integers, your task is to check if it could become non-decreasing by modifying at most 1 element.
-We define an array is non-decreasing if array[i] &amp;lt;= array[i + 1] holds for every i (1 &amp;lt;= i &amp;lt; n).
- 思路:
-使用for loop扫描数列,假如在下标idx, idx+1处不满足非递减关系,那么:
- 要么 array[idx-1]&amp;lt;=array[idx+1],此时只要判断idx+1后都满足非递减关系即可 要么array[idx-1]&amp;gt;array[idx+1],此时只要用array[idx]代替array[idx+1],再判断idx+1后都满足非递减关系即可  class Solution: def checkPossibility(self, nums): &amp;quot;&amp;quot;&amp;quot; :type nums: List[int] :rtype: bool &amp;quot;&amp;quot;&amp;quot; idx = 0 for i in range(len(nums)-1): if nums[i] &amp;gt; nums[i+1]: idx = i break if idx &amp;gt; 0 and (nums[idx-1] &amp;gt; nums[idx+1]): nums[idx+1] = nums[idx] for j in range(idx+1, len(nums)-1): if nums[j] &amp;gt; nums[j+1]: return False else: return True  Leetcode运行结果:</description>
+      <description>Maximum Subarray  Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
+For example, given the array [-2,1,-3,4,-1,2,1,-5,4], the contiguous subarray [4,-1,2,1] has the largest sum = 6.
+ Merge Sorted Array  Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
+Note: You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2.</description>
     </item>
     
     <item>
@@ -95,28 +94,6 @@ round(3.24, 1) #是四舍五入 ## 3.2 round(3.26, 1) #是四舍五入 ## 3.3 ro
 进一步解释：十进制小数 $0.2$ 和 $0.3$ 的二进制表示分别为：
 $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\left(\frac{1}{128}+\frac{1}{256}\right)+\cdots =\frac{\frac{1}{8}+\frac{1}{16}}{1-\frac{1}{16}} =\frac{3}{15}=\frac{1}{5}\newline &amp;amp;=(0.\dot{0}\dot{0}\dot{1}\dot{1})_2 \end{align} $$
 以及 $$ \begin{align} (0.</description>
-    </item>
-    
-    <item>
-      <title>UC San Diego Big Data笔记</title>
-      <link>/post/2018/01/11/big-data-notes/</link>
-      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/01/11/big-data-notes/</guid>
-      <description>Introduction to Big Data Week1. Big Data: Why and Where Cloud Computing 云计算
- on-demand computing computing anywhere, anytime + data torrent =&amp;gt; dynamic and scalable data analysis  Big Data =&amp;gt; Better Models =&amp;gt; Higher Precision
- Personalized Marketing Personalized Medicine Smart Cities  Challenges of unstructured data:
- volume =&amp;gt; hadoop velocity: real-time processing
- high-velocity data: social media and market data =&amp;gt; storm, spark  beyond relational db =&amp;gt; NoSQL</description>
-    </item>
-    
-    <item>
-      <title>Max Subarray</title>
-      <link>/post/2018/01/02/max-subarray/</link>
-      <pubDate>Tue, 02 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/01/02/max-subarray/</guid>
-      <description> Brute Force Divide and Conquer Non-recursive Linear Method </description>
     </item>
     
     <item>
@@ -156,9 +133,7 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
       <description>Visualization of Sorting Algorithms https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
 https://visualgo.net/bn/sorting
 https://www.toptal.com/developers/sorting-algorithms
-References http://i.cs.hku.hk/~hkual/Notes/SearchingSorting/SortingSearchingSelection.html
-https://cs.stackexchange.com/questions/13106/why-is-selection-sort-faster-than-bubble-sort
-Summary     Best-Case $T(n)$ Worst-Case $T(n)$ Average-Case $T(n)$? Space Complexity     Bubble Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Selection Sort $O(n^2)$ $O(n^2)$ $O(n^2)$ $O(1)$   Insertion Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Merge Sort $O(n\log n)$ $O(n\log n)$ $O(n\log n)$ $O(n)$   Quick Sort $O(n\log n)$ $O(n^2)$ $O(n\log n)$ $O(1)$    Python uses an algorithm called Timsort:</description>
+References  MIT, 6.006, Introduction to Algorithms, LECTURE 3 CLRS , Chapter 2  Summary     Best-Case $T(n)$ Worst-Case $T(n)$ Average-Case $T(n)$? Space Complexity     Bubble Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Selection Sort $O(n^2)$ $O(n^2)$ $O(n^2)$ $O(1)$   Insertion Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Merge Sort $O(n\log n)$ $O(n\log n)$ $O(n\log n)$ $O(n)$   Quick Sort $O(n\log n)$ $O(n^2)$ $O(n\log n)$ $O(1)$    Can We Sort Faster?</description>
     </item>
     
     <item>

@@ -20,9 +20,7 @@
       <description>Visualization of Sorting Algorithms https://www.cs.usfca.edu/~galles/visualization/ComparisonSort.html
 https://visualgo.net/bn/sorting
 https://www.toptal.com/developers/sorting-algorithms
-References http://i.cs.hku.hk/~hkual/Notes/SearchingSorting/SortingSearchingSelection.html
-https://cs.stackexchange.com/questions/13106/why-is-selection-sort-faster-than-bubble-sort
-Summary     Best-Case $T(n)$ Worst-Case $T(n)$ Average-Case $T(n)$? Space Complexity     Bubble Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Selection Sort $O(n^2)$ $O(n^2)$ $O(n^2)$ $O(1)$   Insertion Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Merge Sort $O(n\log n)$ $O(n\log n)$ $O(n\log n)$ $O(n)$   Quick Sort $O(n\log n)$ $O(n^2)$ $O(n\log n)$ $O(1)$    Python uses an algorithm called Timsort:</description>
+References  MIT, 6.006, Introduction to Algorithms, LECTURE 3 CLRS , Chapter 2  Summary     Best-Case $T(n)$ Worst-Case $T(n)$ Average-Case $T(n)$? Space Complexity     Bubble Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Selection Sort $O(n^2)$ $O(n^2)$ $O(n^2)$ $O(1)$   Insertion Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Merge Sort $O(n\log n)$ $O(n\log n)$ $O(n\log n)$ $O(n)$   Quick Sort $O(n\log n)$ $O(n^2)$ $O(n\log n)$ $O(1)$    Can We Sort Faster?</description>
     </item>
     
   </channel>

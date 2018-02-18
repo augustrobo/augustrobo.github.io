@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Bigdata on NOWHERESVILLE</title>
+    <title>BigData on NOWHERESVILLE</title>
     <link>/categories/bigdata/</link>
-    <description>Recent content in Bigdata on NOWHERESVILLE</description>
+    <description>Recent content in BigData on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jan 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 05 Feb 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/bigdata/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>UC San Diego Big Data笔记</title>
-      <link>/post/2018/01/11/big-data-notes/</link>
-      <pubDate>Thu, 11 Jan 2018 00:00:00 +0000</pubDate>
+      <title>MMDS - MapReduce</title>
+      <link>/post/2018/02/05/mapreduce/</link>
+      <pubDate>Mon, 05 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018/01/11/big-data-notes/</guid>
-      <description>Introduction to Big Data Week1. Big Data: Why and Where Cloud Computing 云计算
- on-demand computing computing anywhere, anytime + data torrent =&amp;gt; dynamic and scalable data analysis  Big Data =&amp;gt; Better Models =&amp;gt; Higher Precision
- Personalized Marketing Personalized Medicine Smart Cities  Challenges of unstructured data:
- volume =&amp;gt; hadoop velocity: real-time processing
- high-velocity data: social media and market data =&amp;gt; storm, spark  beyond relational db =&amp;gt; NoSQL</description>
+      <guid>/post/2018/02/05/mapreduce/</guid>
+      <description> 1 </description>
+    </item>
+    
+    <item>
+      <title>Data Manipulation at Scale 大规模数据处理</title>
+      <link>/post/2018/02/01/data-manipulation-at-scale/</link>
+      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/02/01/data-manipulation-at-scale/</guid>
+      <description>课程介绍  Data Manipulation at Scale: Systems and Algorithms 大规模数据处理：系统和算法【 Coursera链接 】 Data Science at Scale Specialization 的第一门课，共4门 制作方： University of Washington 教学方： Bill Howe  Twitter Sentiment Analysis 情感分析 分析目的  access the twitter Application Programming Interface(API) using python estimate the public&amp;rsquo;s perception (the sentiment) of a particular term or phrase analyze the relationship between location and mood based on a sample of twitter data  步骤  CLI安装 oauth2 package [用于授权登录]  pip3 install oauth2   创建 twitter 账号 到 https://apps.</description>
     </item>
     
   </channel>

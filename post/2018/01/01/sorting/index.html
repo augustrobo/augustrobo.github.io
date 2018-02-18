@@ -81,8 +81,16 @@
 <li><a href="#insertion-sort">Insertion Sort</a>
 <ul>
 <li><a href="#binary-insertion-sort">Binary Insertion Sort</a></li>
+<li><a href="#inversions">Inversions</a></li>
 </ul></li>
-<li><a href="#merge-sort">Merge Sort</a></li>
+<li><a href="#merge-sort">Merge Sort</a>
+<ul>
+<li><a href="#merge-sort-versus-insertion-sort">Merge Sort versus Insertion Sort</a></li>
+<li><a href="#insertion-sort-on-small-arrays-in-merge-sort">Insertion Sort on Small Arrays in Merge Sort</a>
+<ul>
+<li><a href="#timsort">Timsort</a></li>
+</ul></li>
+</ul></li>
 <li><a href="#quick-sort">Quick Sort</a></li>
 </ul>
 </nav>
@@ -101,9 +109,10 @@
 
 <h1 id="references">References</h1>
 
-<p><a href="http://i.cs.hku.hk/~hkual/Notes/SearchingSorting/SortingSearchingSelection.html">http://i.cs.hku.hk/~hkual/Notes/SearchingSorting/SortingSearchingSelection.html</a></p>
-
-<p><a href="https://cs.stackexchange.com/questions/13106/why-is-selection-sort-faster-than-bubble-sort">https://cs.stackexchange.com/questions/13106/why-is-selection-sort-faster-than-bubble-sort</a></p>
+<ul>
+<li>MIT, 6.006, <a href="https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/index.htm">Introduction to Algorithms, LECTURE 3</a></li>
+<li>CLRS , Chapter 2</li>
+</ul>
 
 <h1 id="summary">Summary</h1>
 
@@ -160,12 +169,6 @@
 </tr>
 </tbody>
 </table>
-
-<p>Python uses an algorithm called <a href="http://en.wikipedia.org/wiki/Timsort">Timsort</a>:</p>
-
-<blockquote>
-<p>Timsort is a hybrid sorting algorithm, derived from <strong>merge sort</strong> and  <strong>insertion sort</strong>, designed to perform well on many kinds of real-world  data. It was invented by Tim Peters in 2002 for use in the Python programming language. <strong>The algorithm finds subsets of the data that are already ordered, and uses the subsets to sort the data more efficiently.</strong> This is done by merging an identified subset, called a run, with existing runs until certain criteria are fulfilled. Timsort has been Python&rsquo;s standard sorting algorithm since version 2.3. It is  now also used to sort arrays in Java SE 7, and on the Android platform.</p>
-</blockquote>
 
 <h1 id="can-we-sort-faster">Can We Sort Faster?</h1>
 
@@ -243,11 +246,15 @@ $$</p>
 
 <ul>
 <li>Maintain the <strong>invariant</strong> of the prefix of the array (sorted version of those elements)</li>
-<li>Average case and worst case: <code>$T(n)=\frac{n(n-1)}{2}=O(n^2)$</code></li>
-<li>List is already sorted (best case): <code>$O(n)$</code></li>
+<li>Average case and worst case: <code>$T(n)=\frac{n(n-1)}{2}=O(n^2)$</code>
+
+<ul>
+<li><code>$O(n)$</code> steps (shift <strong>key</strong> positions)</li>
+<li>each step is <code>$O(n)$</code> comparisons and swaps</li>
+</ul></li>
+<li>List is already sorted (best case): <code>$\Theta(n)$</code></li>
 <li>&ldquo;<strong>Almost sorted</strong>&rdquo; case: <code>$O(n)$</code></li>
-<li><code>$O(n\log n)$</code> versus <code>$O(n^2)$</code></li>
-<li>Once the input array length is small or the input array is almost sorted, insertion sort is quicker than merge sort!</li>
+<li><code>$O(n\log n)$</code> versus <code>$O(n^2)$</code> : Once the input array length is small or the input array is almost sorted, insertion sort is quicker than merge sort!</li>
 </ul>
 
 <pre><code class="language-python">def insertionSort(arr):
@@ -291,40 +298,77 @@ def insertionSort(arr):
     return arr
 </code></pre>
 
-<p>Running time:</p>
-
-<ul>
-<li>for the <code>$j$</code>-index element (<code>$j=1,2,\cdots,n-1$</code>), do <code>$\log j$</code> comparisons and <code>$j$</code> shifts (worst-case)</li>
-<li>so worst-case running time <code>$T(n)$</code> is still <code>$O(n^2)$</code></li>
-<li>best-case: already sorted, just binary search <code>$T(n)=O(n\log n)$</code> [see <a href="http://ebook.pldworld.com/-huihoo-/book/data-structures-and-algorithms-with-object-oriented-design-patterns-in-c++/html/page491.html">link</a>]</li>
-</ul>
-
 <table>
 <thead>
 <tr>
-<th></th>
-<th>best-case</th>
-<th>average-case</th>
-<th>worst-case</th>
+<th align="center"></th>
+<th align="center">Comparison Cost</th>
+<th align="center">Swap Cost</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>insertion sort</td>
-<td><code>$O(n)$</code></td>
-<td><code>$O(n^2)$</code></td>
-<td><code>$O(n^2)$</code></td>
+<td align="center"><strong>Insertion Sort</strong></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
 </tr>
 
 <tr>
-<td>binary insertion sort</td>
-<td><code>$O(n\log n)$</code></td>
-<td><code>$O(n^2)$</code></td>
-<td><code>$O(n^2)$</code></td>
+<td align="center"><strong>Binary Insertion Sort</strong></td>
+<td align="center"><code>$O(n\log n)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
 </tr>
 </tbody>
 </table>
+
+<ul>
+<li>For numbers, <strong>compares <code>$\approx$</code> swaps</strong></li>
+<li>When <strong>compares &gt;&gt; swaps</strong> (compares are more expensive, e.g. compare records &amp; swap pointers),  <strong>Binary Insertion Sort</strong> gives a better complexity.</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="center">Comparison Cost</th>
+<th align="center">Best-Case</th>
+<th align="center">Average-Case</th>
+<th align="center">Worst-Case</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><strong>Insertion Sort</strong></td>
+<td align="center"><code>$O(n)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+</tr>
+
+<tr>
+<td align="center"><strong>Binary Insertion Sort</strong></td>
+<td align="center"><code>$O(n\log n)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+<td align="center"><code>$O(n^2)$</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="inversions">Inversions</h2>
+
+<ul>
+<li>Running time of Inversion Sort = # of inversions in the array [see <a href="http://127.0.0.1:4321/post/2018/01/25/algorithms/#counting-inversions">Counting Inversions</a>]</li>
+</ul>
+
+<blockquote>
+<p><strong>PROOF</strong>.</p>
+
+<p>Let <code>$Inv(i)=\# \{ j &lt; i : arr[j] &gt; arr[i]\}$</code>, then
+$$
+\text{# of inversion} = \sum_{i=1}^{n-1} Inv(i)
+$$
+Inversion Sort: <code>for i = 1 to n-1</code>: do <code>$Inv(i)$</code> comparisions and swaps</p>
+</blockquote>
 
 <h1 id="merge-sort">Merge Sort</h1>
 
@@ -383,6 +427,62 @@ def insertionSort(arr):
             j += 1
     return result
 </code></pre>
+
+<h2 id="merge-sort-versus-insertion-sort">Merge Sort versus Insertion Sort</h2>
+
+<ul>
+<li>Insertion Sort: in-place; Merge Sort: <code>$O(n)$</code> auxiliary place 【<a href="https://augustrobo.github.io/post/2018/01/25/leetcode/#merge-sorted-array">In-place merge sort</a>】</li>
+<li>Running time:
+
+<ul>
+<li>Insertion Sort in Python: <code>$0.2n^2$</code> <code>$\mu s$</code>; in C: <code>$0.01n^2$</code> <code>$\mu s$</code></li>
+<li>Merge Sort in Python: <code>$2.2n\log n$</code> <code>$\mu s$</code></li>
+<li>When n is sufficiently large, Merge Sort in Python beats Insertion Sort in C</li>
+</ul></li>
+</ul>
+
+<h2 id="insertion-sort-on-small-arrays-in-merge-sort">Insertion Sort on Small Arrays in Merge Sort</h2>
+
+<p><strong>CLRS,  Problem 2-1</strong></p>
+
+<blockquote>
+<p>Although merge sort runs in <code>$\Theta(n\log n)$</code> worst-case time and insertion sort runs in <code>$\Theta(n^2)$</code> worst-case time, the constant factor in insertion sort can make it faster in practice for small problem sizes on many machines.</p>
+
+<p>Thus, it makes sense to <strong>coarsen</strong> the leaves of the recursion by using insertion sort within merge sort when subproblems become sufficiently small.</p>
+
+<p>Consider a modification to merge sort in which <code>$n/k$</code> sublists of length <code>$k$</code> are sorted using insertion sort and then merged using the standard merging mechanism, where <code>$k$</code> is a value to be determined.</p>
+
+<ul>
+<li>Insertion sort can sort the  <code>$n/k$</code> sublists, each of length <code>$k$</code>  in <code>$\Theta(nk)$</code> worst-case time.</li>
+</ul>
+
+<p>$$
+\frac{n}{k}\times \Theta(k^2) =\Theta(nk)
+$$</p>
+
+<ul>
+<li>Merge the sublists in <code>$\Theta(n\log (n/k))$</code> worst-case time.
+
+<ul>
+<li>depth of recursion tree: <code>$\log n - log k + 1=\log(n/k)+1$</code></li>
+<li>merge: <code>$\Theta(n)$</code></li>
+</ul></li>
+<li>Thus the modified algorithm runs in <code>$\Theta(nk + n\log(n/k))$</code> time.  If <code>$k=O(\log n)$</code>, the modified algorithm has at most the running time of merge sort in terms of <code>$\Theta-$</code>notation.</li>
+<li>Choice of <code>$k=k(n)$</code> in practice: minimize</li>
+</ul>
+
+<p>$$
+f(n) = Ank(n) +Bn\log\left(\frac{n}{k(n)}\right)
+$$</p>
+</blockquote>
+
+<h3 id="timsort">Timsort</h3>
+
+<p>Python uses an algorithm called <a href="http://en.wikipedia.org/wiki/Timsort">Timsort</a>:</p>
+
+<blockquote>
+<p>Timsort is a hybrid sorting algorithm, derived from <strong>merge sort</strong> and  <strong>insertion sort</strong>, designed to perform well on many kinds of real-world  data. It was invented by Tim Peters in 2002 for use in the Python programming language. <strong>The algorithm finds subsets of the data that are already ordered, and uses the subsets to sort the data more efficiently.</strong> This is done by merging an identified subset, called a run, with existing runs until certain criteria are fulfilled. Timsort has been Python&rsquo;s standard sorting algorithm since version 2.3. It is  now also used to sort arrays in Java SE 7, and on the Android platform.</p>
+</blockquote>
 
 <h1 id="quick-sort">Quick Sort</h1>
 
