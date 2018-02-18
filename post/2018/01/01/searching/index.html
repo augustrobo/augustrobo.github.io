@@ -72,13 +72,121 @@
 
 <nav id="TableOfContents">
 <ul>
+<li><a href="#linear-search">Linear Search</a>
+<ul>
+<li><a href="#search-an-unsorted-list">Search an Unsorted List</a></li>
+<li><a href="#recursive-linear-search">Recursive Linear Search</a></li>
+<li><a href="#search-a-sorted-list">Search a Sorted List</a></li>
+</ul></li>
 <li><a href="#binary-search">Binary Search</a></li>
+<li><a href="#amortized-cost">Amortized Cost</a></li>
 </ul>
 </nav>
 
 
 <main>
 
+
+<h1 id="linear-search">Linear Search</h1>
+
+<h2 id="search-an-unsorted-list">Search an Unsorted List</h2>
+
+<pre><code class="language-python">def linearSearch(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i
+    return None
+</code></pre>
+
+<pre><code class="language-python"># test running time
+import random
+import timeit
+def testLinearSearch(times):
+    while times:
+        lst = list(range(1000))
+        random.shuffle(lst)
+        a = random.choice(lst)
+        linearSearch(lst, a)
+        times -= 1
+
+start = timeit.default_timer()
+testLinearSearch(10000)
+stop = timeit.default_timer()
+print(stop - start)
+# 12.352746746104685
+</code></pre>
+
+<p>Analysis of running time:</p>
+
+<ul>
+<li>worst-case: <code>$O(n)$</code></li>
+<li>best-case: <code>$O(1)$</code></li>
+</ul>
+
+<p>More efficient linear search:</p>
+
+<ul>
+<li><p>put a sentinel in the list to avoid checking <code>i&lt;len(arr)</code> each time</p></li>
+
+<li><p>faster in practice, but only by a constant factor</p></li>
+</ul>
+
+<pre><code class="language-python">def linearSearch2(arr, target):
+    last, arr[-1] = arr[-1], target
+    i = 0
+    while arr[i] != target:
+        i += 1
+    if i &lt; len(arr)-1 or last == target:
+        return i
+    else:
+        return None
+</code></pre>
+
+<pre><code class="language-python"># test running time
+def testLinearSearch2(times):
+    while times:
+        lst = list(range(1000))
+        random.shuffle(lst)
+        a = random.choice(lst)
+        linearSearch2(lst, a)
+        times -= 1
+
+start = timeit.default_timer()
+testLinearSearch(10000)
+stop = timeit.default_timer()
+print(stop - start)
+# 11.874736274685802
+</code></pre>
+
+<p>​</p>
+
+<h2 id="recursive-linear-search">Recursive Linear Search</h2>
+
+<pre><code class="language-python">def recursiveLinearSearchHelper(arr, target, start, end):
+    if start &gt; end:
+        return None
+    if arr[start] == target:
+        return start
+    else:
+        return recursiveLinearSearchHelper(arr, target, start+1, end)
+
+def recursiveLinearSearch(arr, target):
+    # base case
+    if arr == []:
+        return None
+    return recursiveLinearSearchHelper(arr, target, 0, len(arr) - 1)
+</code></pre>
+
+<h2 id="search-a-sorted-list">Search a Sorted List</h2>
+
+<pre><code class="language-python">def linearSearchSorted(arr, target):
+    for i in range(len(arr)):
+        if arr[i] == target:
+            return i
+        if arr[i] &gt; target:
+            return None
+    return None
+</code></pre>
 
 <h1 id="binary-search">Binary Search</h1>
 
@@ -98,6 +206,11 @@
 </code></pre>
 
 <p>Python code #2 <strong>Bad!</strong></p>
+
+<ul>
+<li><code>arr[:mid]</code> or <code>arr[(mid+1):]</code> takes <code>$O(n)$</code> time</li>
+<li><code>$T(n)=O(n \log n)$</code></li>
+</ul>
 
 <pre><code class="language-python">def binarySearch(arr, target):
     if len(arr) == 0:
@@ -119,6 +232,12 @@
 
 <p>Python code #3</p>
 
+<ul>
+<li>pass list and indices as parameters</li>
+<li>list never copied, just re-passed</li>
+<li><code>$T(n)=O(\log n)$</code></li>
+</ul>
+
 <pre><code class="language-python">def binarySearchHelper(arr, target, low, high):
     if high &lt; low:
         return None
@@ -137,6 +256,19 @@ def binarySearch(arr, target):
     else:
         return binarySearchHelper(arr, target, 0, n-1)
 </code></pre>
+
+<h1 id="amortized-cost">Amortized Cost</h1>
+
+<ul>
+<li><code>n = len(list)</code></li>
+<li>AMORTIZE cost of the sort over <code>$k$</code> searches
+
+<ol>
+<li>search: <code>$T(n)=O(kn)$</code></li>
+<li>sort, then binary search: <code>$T(n)=O(n\log n + k\log n)$</code></li>
+</ol></li>
+<li>large <code>$k$</code>, SORT time becomes irrelevant (when <code>$k=O(\log n)$</code>, (1) and (2), same rate)</li>
+</ul>
 
 </main>
 

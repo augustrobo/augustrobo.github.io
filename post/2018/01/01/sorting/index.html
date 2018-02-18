@@ -78,7 +78,10 @@
 <li><a href="#can-we-sort-faster">Can We Sort Faster?</a></li>
 <li><a href="#bubble-sort">Bubble Sort</a></li>
 <li><a href="#selection-sort">Selection Sort</a></li>
-<li><a href="#insertion-sort">Insertion Sort</a></li>
+<li><a href="#insertion-sort">Insertion Sort</a>
+<ul>
+<li><a href="#binary-insertion-sort">Binary Insertion Sort</a></li>
+</ul></li>
 <li><a href="#merge-sort">Merge Sort</a></li>
 <li><a href="#quick-sort">Quick Sort</a></li>
 </ul>
@@ -153,7 +156,7 @@
 <td align="center"><code>$O(n\log n)$</code></td>
 <td align="center"><code>$O(n^2)$</code></td>
 <td align="center"><code>$O(n\log n)$</code></td>
-<td align="center">?</td>
+<td align="center"><code>$O(1)$</code></td>
 </tr>
 </tbody>
 </table>
@@ -260,6 +263,69 @@ $$</p>
     return arr
 </code></pre>
 
+<h2 id="binary-insertion-sort">Binary Insertion Sort</h2>
+
+<pre><code class="language-python">def binarySearch(arr, target, low, high):
+    if target &lt; arr[low]:
+        return low
+    elif target &gt; arr[high]:
+        return high + 1
+    
+    mid = (low + high)//2
+    
+    if arr[mid] == target:
+        return mid
+    elif arr[mid] &gt; target:
+        return binarySearch(arr, target, low, mid-1)
+    else:
+        return binarySearch(arr, target, mid+1, high)
+
+def insertionSort(arr):
+    n = len(arr)
+    for i in range(1, n):
+        val, j = arr[i], i
+        pos = binarySearch(arr, val, 0, i-1)
+        while j &gt; pos:
+            arr[j], j = arr[j-1], j-1
+        arr[pos] = val
+    return arr
+</code></pre>
+
+<p>Running time:</p>
+
+<ul>
+<li>for the <code>$j$</code>-index element (<code>$j=1,2,\cdots,n-1$</code>), do <code>$\log j$</code> comparisons and <code>$j$</code> shifts (worst-case)</li>
+<li>so worst-case running time <code>$T(n)$</code> is still <code>$O(n^2)$</code></li>
+<li>best-case: already sorted, just binary search <code>$T(n)=O(n\log n)$</code> [see <a href="http://ebook.pldworld.com/-huihoo-/book/data-structures-and-algorithms-with-object-oriented-design-patterns-in-c++/html/page491.html">link</a>]</li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th></th>
+<th>best-case</th>
+<th>average-case</th>
+<th>worst-case</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>insertion sort</td>
+<td><code>$O(n)$</code></td>
+<td><code>$O(n^2)$</code></td>
+<td><code>$O(n^2)$</code></td>
+</tr>
+
+<tr>
+<td>binary insertion sort</td>
+<td><code>$O(n\log n)$</code></td>
+<td><code>$O(n^2)$</code></td>
+<td><code>$O(n^2)$</code></td>
+</tr>
+</tbody>
+</table>
+
 <h1 id="merge-sort">Merge Sort</h1>
 
 <ul>
@@ -267,6 +333,8 @@ $$</p>
 <li>Time complexity: <code>$O(n\log n)$</code> [See <a href="https://augustrobo.github.io/post/2018/01/25/algorithms/#running-time">analysis</a> ]</li>
 <li>Space complexity: <code>$O(n)$</code></li>
 </ul>
+
+<p><img src="/stanfordAlgo/mergeSort.PNG" alt="merge sort" /></p>
 
 <pre><code class="language-python">def mergeSort(arr):
     n = len(arr)
@@ -289,7 +357,32 @@ $$</p>
     return result
 </code></pre>
 
-<p><img src="/stanfordAlgo/mergeSort.PNG" alt="merge sort" /></p>
+<ul>
+<li>place sentinels <code>$\infty$</code> at end of each sorted sublists</li>
+<li>python  list method <code>append()</code> take amortized <code>O(1)</code> time</li>
+</ul>
+
+<pre><code class="language-python">def mergeSort2(arr):
+    n = len(arr)
+    # base case
+    if n &lt; 2:
+        return arr[:]
+
+    m = n//2
+    left, right = mergeSort(arr[:m]), mergeSort(arr[m:])
+    left.append(float('Inf'))
+    right.append(float('Inf'))
+    i = j = 0
+    result = []
+    for k in range(n):
+        if left[i] &lt; right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    return result
+</code></pre>
 
 <h1 id="quick-sort">Quick Sort</h1>
 

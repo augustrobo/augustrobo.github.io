@@ -777,11 +777,12 @@ $$</p>
 
     m = n//2
     left, right = mergeSort(arr[:m]), mergeSort(arr[m:])
-
+    left.append(float('Inf'))
+    right.append(float('Inf'))
     i = j = 0
     result = []
     for k in range(n):
-        if j == n-m or (i &lt; m and left[i] &lt; right[j]):
+        if left[i] &lt; right[j]:
             result.append(left[i])
             i += 1
         else:
