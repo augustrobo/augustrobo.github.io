@@ -372,7 +372,7 @@ $$</p>
 
 <ul>
 <li><strong>Problem</strong>: multiplication of  two <code>$n$</code>-digit numbers <code>$x, y$</code> (base 10)</li>
-<li><strong>Application</strong>: e.g. cryptography</li>
+<li><strong>Application</strong>: cryptography</li>
 <li>Define <em>primitive operations</em>:  add or multiply 2 single-digit numbers</li>
 <li>Simple method: <code>$\leq 4n^2 = O(n^2)$</code> operations</li>
 <li><strong>Recursive method</strong>:</li>
@@ -458,7 +458,7 @@ Better than simple method!</p>
 
 <ul>
 <li><strong>Problem</strong>: looking for an element in a given sorted array</li>
-<li><strong>Running time</strong>: By master method,</li>
+<li><strong>Running time</strong>: <code>$T(n)=T(n/2)+O(1)$</code>. By master method,</li>
 </ul>
 
 <p>$$
@@ -467,7 +467,7 @@ $$</p>
 
 <h3 id="python-code-2">Python Code</h3>
 
-<p>see <a href="https://augustrobo.github.io/post/2018/01/01/searching/#binary-search">link</a></p>
+<p>See <a href="https://augustrobo.github.io/post/2018/01/01/searching/#binary-search">link</a></p>
 
 <h2 id="strassen-s-matrix-multiplication">Strassen&rsquo;s Matrix Multiplication</h2>
 
@@ -538,12 +538,12 @@ P_1 =A(F-H)\\<br />
 P_2 =(A+B)H\\<br />
 P_3=(C+D)E\\<br />
 P_4=D(G-E)\\<br />
-P_5=(A+D)(E+F)\\<br />
+P_5=(A+D)(E+H)\\<br />
 P_6=(B-D)(G+H)\\<br />
 P_7=(A-C)(E+F)
 $$</p>
 
-<p>Then,
+<p>Then
 $$
 \begin{align}
 X\cdot Y &amp;= \begin{pmatrix}
@@ -561,7 +561,39 @@ $$</p>
 
 <h3 id="python-code-3">Python Code</h3>
 
-<pre><code class="language-python">
+<pre><code class="language-python">import numpy as np
+def strassen(X, Y):
+    n = X.shape[0]
+    if n == 1:
+        return np.array([X[0, 0]*Y[0, 0]])
+    
+    if n%2 == 1: # padding with zeros
+        Xpad = np.zeros((n + 1, n + 1))
+        Ypad = np.zeros((n + 1, n + 1))
+        Xpad[:n, :n], Ypad[:n, :n] = X, Y
+        return strassen(Xpad, Ypad)[:n, :n]
+    
+    m = n//2
+    A, B, C, D = X[:m, :m], X[:m, m:], X[m:, :m], X[m:, m:]
+    E, F, G, H = Y[:m, :m], Y[:m, m:], Y[m:, :m], Y[m:, m:]
+  
+    P1 = strassen(A, F - H)
+    P2 = strassen(A + B, H)
+    P3 = strassen(C + D, E)
+    P4 = strassen(D, G - E)
+    P5 = strassen(A + D, E + H)
+    P6 = strassen(B - D, G + H)
+    P7 = strassen(A - C, E + F)
+    
+    Z = np.zeros((n, n))
+    Z11 = P5 + P4 - P2 + P6
+    Z12 = P1 + P2
+    Z21 = P3 + P4
+    Z22 = P1 + P5 - P3 - P7
+    
+    Z[:m, :m], Z[:m, m:], Z[m:, :m], Z[m:, m:] = Z11, Z12, Z21, Z22
+
+    return Z
 </code></pre>
 
 <h2 id="closest-pair">Closest Pair</h2>

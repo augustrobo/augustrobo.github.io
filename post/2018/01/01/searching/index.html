@@ -98,24 +98,6 @@
     return None
 </code></pre>
 
-<pre><code class="language-python"># test running time
-import random
-import timeit
-def testLinearSearch(times):
-    while times:
-        lst = list(range(1000))
-        random.shuffle(lst)
-        a = random.choice(lst)
-        linearSearch(lst, a)
-        times -= 1
-
-start = timeit.default_timer()
-testLinearSearch(10000)
-stop = timeit.default_timer()
-print(stop - start)
-# 12.352746746104685
-</code></pre>
-
 <p>Analysis of running time:</p>
 
 <ul>
@@ -140,22 +122,6 @@ print(stop - start)
         return i
     else:
         return None
-</code></pre>
-
-<pre><code class="language-python"># test running time
-def testLinearSearch2(times):
-    while times:
-        lst = list(range(1000))
-        random.shuffle(lst)
-        a = random.choice(lst)
-        linearSearch2(lst, a)
-        times -= 1
-
-start = timeit.default_timer()
-testLinearSearch(10000)
-stop = timeit.default_timer()
-print(stop - start)
-# 11.874736274685802
 </code></pre>
 
 <p>​</p>

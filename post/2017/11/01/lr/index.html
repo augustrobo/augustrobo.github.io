@@ -71,6 +71,16 @@
 <nav id="TableOfContents">
 <ul>
 <li><a href="#linear-regression-with-one-variable">Linear Regression with One Variable</a></li>
+<li><a href="#multivariate-linear-regression">Multivariate Linear Regression</a></li>
+<li><a href="#gradient-descent-in-practice">Gradient Descent in Practice</a>
+<ul>
+<li><a href="#feature-scaling">Feature Scaling</a></li>
+<li><a href="#learning-rate">Learning Rate</a></li>
+</ul></li>
+<li><a href="#normal-equation">Normal Equation</a>
+<ul>
+<li><a href="#normal-equation-noninvertibility">Normal Equation Noninvertibility</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -83,7 +93,7 @@
 <ul>
 <li><p><code>$X$</code>: space of input values, <code>$Y$</code>: space of output values</p></li>
 
-<li><p>training set <code>$\{(x^{(i)}, y^{(i)})\}_{i=1}^m$</code></p></li>
+<li><p>training set <code>$\{(x^{(i)}, y^{(i)})\}_{i=1}^N$</code></p></li>
 
 <li><p>goal:  given a training set, to learn a function <code>$h : X \rightarrow  Y$</code> so that <code>$h(x)$</code> is a “good” predictor for the corresponding value of <code>$y$</code>. For historical reasons, this function <code>$h$</code> is called a <strong>hypothesis</strong>.</p></li>
 
@@ -93,13 +103,260 @@
 </ul>
 
 <p>$$
-J(\theta_0, \theta_1)= \frac{1}{2m}\sum _{i=1}^m \left(\hat{y}^{(i)} -y^{(i)} \right)^2 =\frac{1}{2m}\sum _{i=1}^m  \left(h(x^{(i)}) - y^{(i)}\right)^2
+J(\theta_0, \theta_1)= \frac{1}{2N}\sum _{i=1}^N \left(\hat{y}^{(i)} -y^{(i)} \right)^2 =\frac{1}{2N}\sum _{i=1}^N  \left(h(x^{(i)}) - y^{(i)}\right)^2
 $$</p>
 
-<p>To break it apart, it is <code>$\frac{1}{2} \bar{x}$</code> where <code>$\bar{x}$</code> is the mean of the squares of <code>$h_\theta (x_{i}) - y_{i}$</code> , or the difference between the predicted value and the actual value.  The mean is halved <code>$\left(\frac{1}{2}\right)$</code> as a convenience for the computation of the <strong>gradient descent</strong>, as the derivative term of the square function will cancel out the <code>$\frac{1}{2}$</code> term.</p>
+<p>To break it apart, it is <code>$\frac{1}{2} \bar{x}$</code> where <code>$\bar{x}$</code> is the mean of the squares of <code>$h_\theta (x_{i}) - y_{i}$</code> , or the difference between the predicted value and the actual value.</p>
+
+<p>The mean is halved <code>$\left(\frac{1}{2}\right)$</code> as a convenience for the computation of the <strong>gradient descent</strong>, as the derivative term of the square function will cancel out the <code>$\frac{1}{2}$</code> term.</p>
 
 <ul>
 <li><strong>optimization</strong>: minimize <code>$J(\theta_0, \theta_1)$</code> w.r.t parameters <code>$(\theta_0, \theta_1)$</code></li>
+<li><strong>Gradient Descent</strong>:</li>
+</ul>
+
+<blockquote>
+<p><strong>Outline</strong>:</p>
+
+<ol>
+<li>Initialize <code>$\theta_0, \theta_1$</code></li>
+<li>Keep changing <code>$\theta_0, \theta_1$</code> to reduce <code>$J(\theta_0, \theta_1)$</code> until we hopefully end up at a minimum</li>
+</ol>
+
+<hr />
+
+<p><strong>Algorithm</strong>:</p>
+
+<p>repeat until convergence{</p>
+
+<p><code>$\theta_j \leftarrow \theta_j -\alpha\frac{\partial}{\partial \theta_j}J(\theta_0, \theta_1),\ \ \  j=0,1$</code></p>
+
+<p>}</p>
+
+<p><code>$\alpha$</code>: learning rate (step size)</p>
+
+<hr />
+
+<p>Correct: <strong>simultaneous update</strong></p>
+
+<p><code>$temp0 \leftarrow \theta_0 -\alpha\frac{\partial}{\partial \theta_0}J(\theta_0, \theta_1)$</code></p>
+
+<p><code>$temp1 \leftarrow \theta_1 -\alpha\frac{\partial}{\partial \theta_1}J(\theta_0, \theta_1)$</code></p>
+
+<p><code>$\theta_0 \leftarrow temp0 $</code></p>
+
+<p><code>$\theta_1 \leftarrow temp1 $</code></p>
+
+<hr />
+
+<p>Incorrect: <strong>WHY</strong>?</p>
+
+<p><code>$temp0 \leftarrow \theta_0 -\alpha\frac{\partial}{\partial \theta_0}J(\theta_0, \theta_1)$</code></p>
+
+<p><code>$\theta_0 \leftarrow temp0 $</code></p>
+
+<p><code>$temp1 \leftarrow \theta_1 -\alpha\frac{\partial}{\partial \theta_1}J(\theta_0, \theta_1)$</code></p>
+
+<p><code>$\theta_1 \leftarrow temp1 $</code></p>
+</blockquote>
+
+<ul>
+<li>learning rate <code>$\alpha$</code>:
+
+<ul>
+<li>too small, gradient descent can be slow</li>
+<li>too large, gradient descent may fail to converge, or even diverge</li>
+<li>as we approach a local minimum, gradient descent will automatically take smaller steps, even with fixed learning rate</li>
+</ul></li>
+<li>apply gradient descent to linear regression:</li>
+</ul>
+
+<p>$$
+\frac{\partial}{\partial \theta_j}J(\theta_0, \theta_1) =\frac{\partial}{\partial \theta_j}\frac{1}{2N}\sum _{i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)^2=
+\begin{cases}
+\frac{1}{N}\sum _{i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right), &amp; j=0\newline
+\frac{1}{N}\sum _{i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)x^{(i)}, &amp; j=1
+\end{cases}
+$$</p>
+
+<ul>
+<li>cost function of linear regression is <strong>convex</strong> <code>$\Rightarrow$</code> no local mimina</li>
+<li><strong>Batch Gradient Descent</strong>: each step of gradient descent uses all the training examples</li>
+</ul>
+
+<h1 id="multivariate-linear-regression">Multivariate Linear Regression</h1>
+
+<ul>
+<li>notations:
+
+<ul>
+<li><code>$p$</code>: # of features</li>
+<li><code>$\mathbf{x}^{(i)}$</code>: input of <code>$i$</code>th training example</li>
+<li><code>$x^{(i)}_j$</code>: value of feature <code>$j$</code> in <code>$i$</code>th training example</li>
+</ul></li>
+<li>hypothesis: define <code>$x_0^{(i)}=1, \forall i$</code></li>
+</ul>
+
+<p>$$
+h_{\theta}(\mathbf{x}) =\mathbf{\theta}^T \mathbf{x} = \begin{pmatrix}
+\theta_0 &amp;\theta_1&amp; \cdots&amp; \theta_p
+\end{pmatrix}
+\begin{pmatrix}
+x_0\newline
+x_1\newline
+\vdots\newline
+x_p
+\end{pmatrix}
+$$</p>
+
+<ul>
+<li>cost function:</li>
+</ul>
+
+<p>$$
+J(\mathbf{\theta}) = \frac{1}{2N}\sum_{i=1}^N\left(h(\mathbf{x}^{(i)})-y^{(i)}\right)^2
+$$</p>
+
+<ul>
+<li><strong>Gradient Descent</strong>:</li>
+</ul>
+
+<blockquote>
+<p><strong>Algorithm</strong>:</p>
+
+<p>repeat until convergence{</p>
+
+<p><code>$\theta_j \leftarrow \theta_j -\alpha\frac{\partial}{\partial \theta_j}J(\mathbf{\theta})=\theta_j -\alpha\frac{1}{N}\sum _{i=1}^N  \left(h(\mathbf{x}^{(i)})  - y^{(i)}\right)x^{(i)}_j$</code></p>
+
+<p>} (simultaneously update for <code>$j=0,1,...,p$</code>)</p>
+
+<p><code>$\alpha$</code>: learning rate (step size)</p>
+</blockquote>
+
+<h1 id="gradient-descent-in-practice">Gradient Descent in Practice</h1>
+
+<h2 id="feature-scaling">Feature Scaling</h2>
+
+<ul>
+<li>idea: make sure features are on a similar scale, i.e.  approximately<code>$[-1, 1]$</code> range</li>
+</ul>
+
+<blockquote>
+<p>Gradient Descent will descent slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.</p>
+
+<p>Feature scaling can speed up Gradient Descent.</p>
+</blockquote>
+
+<ul>
+<li>mean normalization: replace <code>$x_i$</code> with <code>$x_i-\mu_i$</code> to make features have aproximately 0 mean</li>
+</ul>
+
+<p>$$
+x_i \leftarrow \frac{x_i-\mu_i}{s_i},  s_i \text{ range or SD}
+$$</p>
+
+<p><img src="/stanfordML/featureScaling.PNG" alt="featureScaling" /></p>
+
+<h2 id="learning-rate">Learning Rate</h2>
+
+<ul>
+<li>fix <code>$\alpha$</code>, plot <code>$J(\mathbf{\theta})$</code> versus <strong>no. of iterations</strong>
+
+<ul>
+<li><code>$\alpha$</code> too small: slow convergence</li>
+<li><code>$\alpha$</code> too large: may not converge</li>
+</ul></li>
+</ul>
+
+<p><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/FEfS3aajEea3qApInhZCFg_6be025f7ad145eb0974b244a7f5b3f59_Screenshot-2016-11-09-09.35.59.png?expiry=1519776000000&amp;hmac=QIkkY_1KR0zhLcBp0a2HiVI5stFpjr7A8AO-AKg5FgM" alt="img" /></p>
+
+<p><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/rC2jGKgvEeamBAoLccicqA_ec9e40a58588382f5b6df60637b69470_Screenshot-2016-11-11-08.55.21.png?expiry=1519776000000&amp;hmac=pglQ5YT5pePdX8zubVxeB3TaNC0ySsYI8AGV54g-sus" alt="img" /></p>
+
+<h1 id="normal-equation">Normal Equation</h1>
+
+<ul>
+<li>design matrix:</li>
+</ul>
+
+<p>$$
+X_{N\times(p+1)}=\begin{pmatrix}
+\mathbf{1} &amp;\mathbf{x}_1 &amp;\cdots  &amp;\mathbf{x}_p
+\end{pmatrix}
+$$</p>
+
+<p>where
+$$
+\mathbf{x}_j = \begin{pmatrix}
+x_j^{(1)}\newline
+x_j^{(2)}\newline
+\vdots\newline
+x_j^{(n)}
+\end{pmatrix}
+$$</p>
+
+<ul>
+<li>output:</li>
+</ul>
+
+<p>$$
+\mathbf{y}=\begin{pmatrix}
+y^{(1)}\newline
+y^{(2)}\newline
+\vdots\newline
+y^{(n)}
+\end{pmatrix}
+$$</p>
+
+<p>$$
+\Rightarrow \hat{\mathbf{\theta}} = (X^TX)^{-1}\mathbf{y}
+$$</p>
+
+<table>
+<thead>
+<tr>
+<th align="center">Gradient Descent</th>
+<th align="center">Normal Equation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">need to choose learning rate</td>
+<td align="center"><strong>no need</strong> to choose learning rate</td>
+</tr>
+
+<tr>
+<td align="center">need feature scaling</td>
+<td align="center"><strong>no need</strong> to do feature scaling</td>
+</tr>
+
+<tr>
+<td align="center">many iterations</td>
+<td align="center"><strong>no need</strong> to iterate</td>
+</tr>
+
+<tr>
+<td align="center"><code>$O(kp^2)$</code>, <code>$k$</code> is the no. of iterations</td>
+<td align="center"><code>$O(p^3)$</code>, need to compute <code>$(X^TX)^{-1}$</code></td>
+</tr>
+
+<tr>
+<td align="center">works well when <code>$p$</code> is large</td>
+<td align="center">slow if <code>$p$</code> is very large</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="normal-equation-noninvertibility">Normal Equation Noninvertibility</h2>
+
+<ul>
+<li>what is <code>$X^TX$</code> is noninvertible? (singular/degenerate)
+
+<ul>
+<li>redundant features (linearly dependent)</li>
+<li>too many features (<code>$N\leq p$</code>) <code>$\Rightarrow$</code> delete some features, or use regularization</li>
+</ul></li>
+<li>pseudo-inverse</li>
 </ul>
 
 </main>

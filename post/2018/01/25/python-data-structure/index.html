@@ -72,20 +72,10 @@
 
 <nav id="TableOfContents">
 <ul>
-<li><a href="#built-in">Built-in</a>
-<ul>
-<li><a href="#list">List</a></li>
-<li><a href="#tuple">Tuple</a></li>
-<li><a href="#set">Set</a></li>
-<li><a href="#dictionary">Dictionary</a></li>
-</ul></li>
-<li><a href="#non-built-in">Non-built-in</a>
-<ul>
 <li><a href="#stack">Stack</a></li>
 <li><a href="#queue">Queue</a></li>
 <li><a href="#heap">Heap</a></li>
 <li><a href="#tree">Tree</a></li>
-</ul></li>
 </ul>
 </nav>
 
@@ -94,107 +84,6 @@
 
 
 <p><img src="http://res.cloudinary.com/dyd911kmh/image/upload/c_scale,f_auto,q_auto:best,w_700/v1512740202/Template_2_oxrskq.png" alt="img" /></p>
-
-<h1 id="built-in">Built-in</h1>
-
-<h2 id="list">List</h2>
-
-<ul>
-<li>See <code>help(list)</code></li>
-</ul>
-
-<pre><code class="language-python"># Create a new list
-empty = list()
-# or
-empty = [] # faster, more pythonic
-</code></pre>
-
-<ul>
-<li>Lists can contain elements of <strong>different</strong> types</li>
-<li>Use <code>append</code> to append elements to the end of a list</li>
-</ul>
-
-<pre><code class="language-python">nums = [1,2,3]
-nums.append(4) # nums == [1, 2, 3, 4]
-</code></pre>
-
-<ul>
-<li>Access element at a particular index</li>
-</ul>
-
-<pre><code class="language-python">nums[-1] # =&gt; [4]
-</code></pre>
-
-<ul>
-<li>Slice lists</li>
-</ul>
-
-<pre><code class="language-python">nums[1:-1] # =&gt; [2, 3]
-'python'[:3] # =&gt; 'pyt'
-</code></pre>
-
-<ul>
-<li>Nested lists</li>
-</ul>
-
-<pre><code class="language-python">letters = [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
-x = [nums, letters]
-x[0] # =&gt; [1, 2, 3, 4]
-x[0][1] # =&gt; 2
-x[1][:2] # =&gt; ['a', 'b']
-</code></pre>
-
-<ul>
-<li>Length (len)</li>
-</ul>
-
-<pre><code class="language-python">len(x) # =&gt; 2
-len([]) # =&gt; 0
-</code></pre>
-
-<ul>
-<li>Membership (in)</li>
-</ul>
-
-<pre><code class="language-python">0 in [] # =&gt; False
-'y' in 'python' # =&gt; True
-</code></pre>
-
-<ul>
-<li>Palindrome?</li>
-</ul>
-
-<pre><code class="language-python"># Palindrome Check
-word = input(&quot;Please enter a word: &quot;)
-print(word == word[::-1])
-</code></pre>
-
-<ul>
-<li>Check for an empty list</li>
-</ul>
-
-<pre><code class="language-python">data = []
-if data:
-    process(data):
-else:
-    print(&quot;There's no data!&quot;)
-</code></pre>
-
-<ul>
-<li><code>for</code> loops</li>
-</ul>
-
-<pre><code class="language-python">for item in iterable: # strings, lists, etc.
-    process(item)
-</code></pre>
-
-<h2 id="tuple">Tuple</h2>
-
-<h2 id="set">Set</h2>
-
-<h2 id="dictionary">Dictionary</h2>
-
-<h1 id="non-built-in">Non-built-in</h1>
 
 <p><strong>Operations</strong>:</p>
 
@@ -205,7 +94,7 @@ else:
 <li>test if empty 检验空否</li>
 </ul>
 
-<h2 id="stack">Stack</h2>
+<h1 id="stack">Stack</h1>
 
 <ul>
 <li><p>Examine the item most recently added &lt;- <strong>LIFO</strong> = last in first out</p></li>
@@ -217,7 +106,7 @@ else:
 
 <p>​</p>
 
-<h2 id="queue">Queue</h2>
+<h1 id="queue">Queue</h1>
 
 <ul>
 <li>Examine the item least recently added &lt;- <strong>FIFO</strong> = first in first out</li>
@@ -225,9 +114,9 @@ else:
 <li><strong>dequeue</strong>  (remove)</li>
 </ul>
 
-<h2 id="heap">Heap</h2>
+<h1 id="heap">Heap</h1>
 
-<h2 id="tree">Tree</h2>
+<h1 id="tree">Tree</h1>
 
 </main>
 

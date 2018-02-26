@@ -51,7 +51,12 @@ Note: You may assume that nums1 has enough space (size that is greater or equal 
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/25/python-data-structure/</guid>
-      <description>Built-in List  See help(list)  # Create a new list empty = list() # or empty = [] # faster, more pythonic   Lists can contain elements of different types Use append to append elements to the end of a list  nums = [1,2,3] nums.append(4) # nums == [1, 2, 3, 4]   Access element at a particular index  nums[-1] # =&amp;gt; [4]   Slice lists  nums[1:-1] # =&amp;gt; [2, 3] &#39;python&#39;[:3] # =&amp;gt; &#39;pyt&#39;   Nested lists  letters = [&amp;quot;a&amp;quot;, &amp;quot;b&amp;quot;, &amp;quot;c&amp;quot;] x = [nums, letters] x[0] # =&amp;gt; [1, 2, 3, 4] x[0][1] # =&amp;gt; 2 x[1][:2] # =&amp;gt; [&#39;a&#39;, &#39;b&#39;]   Length (len)  len(x) # =&amp;gt; 2 len([]) # =&amp;gt; 0   Membership (in)  0 in [] # =&amp;gt; False &#39;y&#39; in &#39;python&#39; # =&amp;gt; True   Palindrome?</description>
+      <description> Operations:
+ insert 插入 remove 移除 iterate 遍历 test if empty 检验空否  Stack  Examine the item most recently added &amp;lt;- LIFO = last in first out
+ push (insert)
+ pop (remove)
+  ​
+Queue  Examine the item least recently added &amp;lt;- FIFO = first in first out enqueue (insert) dequeue (remove)  Heap Tree </description>
     </item>
     
     <item>
@@ -93,8 +98,11 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018/01/01/searching/</guid>
-      <description>Linear Search Search an Unsorted List def linearSearch(arr, target): for i in range(len(arr)): if arr[i] == target: return i return None  # test running time import random import timeit def testLinearSearch(times): while times: lst = list(range(1000)) random.shuffle(lst) a = random.choice(lst) linearSearch(lst, a) times -= 1 start = timeit.default_timer() testLinearSearch(10000) stop = timeit.default_timer() print(stop - start) # 12.352746746104685  Analysis of running time:
- worst-case: $O(n)$ best-case: $O(1)$  More efficient linear search:</description>
+      <description>Linear Search Search an Unsorted List def linearSearch(arr, target): for i in range(len(arr)): if arr[i] == target: return i return None  Analysis of running time:
+ worst-case: $O(n)$ best-case: $O(1)$  More efficient linear search:
+ put a sentinel in the list to avoid checking i&amp;lt;len(arr) each time
+ faster in practice, but only by a constant factor
+  def linearSearch2(arr, target): last, arr[-1] = arr[-1], target i = 0 while arr[i] !</description>
     </item>
     
     <item>
@@ -215,7 +223,7 @@ References  MIT, 6.006, Introduction to Algorithms, LECTURE 3 CLRS , Chapter 2  
       
       <guid>/post/2017/11/01/lr/</guid>
       <description>Linear Regression with One Variable  $X$: space of input values, $Y$: space of output values
- training set $\{(x^{(i)}, y^{(i)})\}_{i=1}^m$
+ training set $\{(x^{(i)}, y^{(i)})\}_{i=1}^N$
  goal: given a training set, to learn a function $h : X \rightarrow Y$ so that $h(x)$ is a “good” predictor for the corresponding value of $y$. For historical reasons, this function $h$ is called a hypothesis.
  $h(x)=h_{\theta}(x) = \theta_0 + \theta_1 x$
  cost function (squared error function, or mean squared error, MSE):</description>
