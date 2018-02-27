@@ -30,6 +30,15 @@
     </item>
     
     <item>
+      <title>DeepLearning</title>
+      <link>/categories/deeplearning/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/deeplearning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Graph</title>
       <link>/categories/graph/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
@@ -62,6 +71,15 @@
       <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/machinelearning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NeuralNetworks</title>
+      <link>/categories/neuralnetworks/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/neuralnetworks/</guid>
       <description></description>
     </item>
     
