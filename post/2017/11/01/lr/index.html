@@ -76,11 +76,13 @@
 <ul>
 <li><a href="#feature-scaling">Feature Scaling</a></li>
 <li><a href="#learning-rate">Learning Rate</a></li>
+<li><a href="#vectorization">Vectorization</a></li>
 </ul></li>
 <li><a href="#normal-equation">Normal Equation</a>
 <ul>
 <li><a href="#normal-equation-noninvertibility">Normal Equation Noninvertibility</a></li>
 </ul></li>
+<li><a href="#code-in-python">Code in Python</a></li>
 </ul>
 </nav>
 
@@ -184,6 +186,8 @@ $$</p>
 <li><strong>Batch Gradient Descent</strong>: each step of gradient descent uses all the training examples</li>
 </ul>
 
+<hr />
+
 <h1 id="multivariate-linear-regression">Multivariate Linear Regression</h1>
 
 <ul>
@@ -233,6 +237,8 @@ $$</p>
 <p><code>$\alpha$</code>: learning rate (step size)</p>
 </blockquote>
 
+<hr />
+
 <h1 id="gradient-descent-in-practice">Gradient Descent in Practice</h1>
 
 <h2 id="feature-scaling">Feature Scaling</h2>
@@ -257,6 +263,8 @@ $$</p>
 
 <p><img src="/stanfordML/featureScaling.PNG" alt="featureScaling" /></p>
 
+<hr />
+
 <h2 id="learning-rate">Learning Rate</h2>
 
 <ul>
@@ -268,9 +276,41 @@ $$</p>
 </ul></li>
 </ul>
 
-<p><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/FEfS3aajEea3qApInhZCFg_6be025f7ad145eb0974b244a7f5b3f59_Screenshot-2016-11-09-09.35.59.png?expiry=1519776000000&amp;hmac=QIkkY_1KR0zhLcBp0a2HiVI5stFpjr7A8AO-AKg5FgM" alt="img" /></p>
+<p><img src="/stanfordML/learningrate1.PNG" alt="featureScaling" /></p>
 
-<p><img src="https://d3c33hcgiwev3.cloudfront.net/imageAssetProxy.v1/rC2jGKgvEeamBAoLccicqA_ec9e40a58588382f5b6df60637b69470_Screenshot-2016-11-11-08.55.21.png?expiry=1519776000000&amp;hmac=pglQ5YT5pePdX8zubVxeB3TaNC0ySsYI8AGV54g-sus" alt="img" /></p>
+<p><img src="/stanfordML/learningrate2.PNG" alt="featureScaling" /></p>
+
+<hr />
+
+<h2 id="vectorization">Vectorization</h2>
+
+<ul>
+<li>compute cost:</li>
+</ul>
+
+<p>$$
+J(\theta) = \frac{1}{2N}(X\theta-y)^T(X\theta-y)
+$$</p>
+
+<pre><code class="language-python">import numpy as np
+# residual
+resid = np.dot(X, theta) - y
+cost = np.mean(resid ** 2)/2
+</code></pre>
+
+<ul>
+<li>gradient descent:</li>
+</ul>
+
+<p>$$
+\theta_j \leftarrow \theta_j -\alpha\frac{\partial}{\partial \theta_j}J(\mathbf{\theta})\\<br />
+\Rightarrow \mathbf{\theta} \leftarrow  \mathbf{\theta}-\alpha\frac{d}{d\mathbf{\theta}}J(\mathbf{\theta})=\mathbf{\theta}-\frac{\alpha}{N}X^T (X\theta -y)
+$$</p>
+
+<pre><code class="language-python">theta -= learning_rate/m*np.dot(X.T, resid)
+</code></pre>
+
+<hr />
 
 <h1 id="normal-equation">Normal Equation</h1>
 
@@ -290,7 +330,7 @@ $$
 x_j^{(1)}\newline
 x_j^{(2)}\newline
 \vdots\newline
-x_j^{(n)}
+x_j^{(N)}
 \end{pmatrix}
 $$</p>
 
@@ -303,12 +343,12 @@ $$</p>
 y^{(1)}\newline
 y^{(2)}\newline
 \vdots\newline
-y^{(n)}
+y^{(N)}
 \end{pmatrix}
 $$</p>
 
 <p>$$
-\Rightarrow \hat{\mathbf{\theta}} = (X^TX)^{-1}\mathbf{y}
+\Rightarrow \hat{\mathbf{\theta}} = (X^TX)^{-1}X^T\mathbf{y}
 $$</p>
 
 <table>
@@ -347,6 +387,8 @@ $$</p>
 </tbody>
 </table>
 
+<hr />
+
 <h2 id="normal-equation-noninvertibility">Normal Equation Noninvertibility</h2>
 
 <ul>
@@ -358,6 +400,10 @@ $$</p>
 </ul></li>
 <li>pseudo-inverse</li>
 </ul>
+
+<h1 id="code-in-python">Code in Python</h1>
+
+<p><a href="https://github.com/augustrobo/machine-learning/blob/master/Linear-Regression-with-Multiple-Variables/Linear%20Regression.ipynb">jupyter notebook</a></p>
 
 </main>
 
