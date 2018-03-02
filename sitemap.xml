@@ -118,11 +118,6 @@
   </url>
   
   <url>
-    <loc>/post/2017/11/03/regularization/</loc>
-    <lastmod>2017-11-03T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/post/2017/11/02/logistic/</loc>
     <lastmod>2017-11-02T00:00:00+00:00</lastmod>
   </url>
@@ -279,6 +274,12 @@
   </url>
   
   <url>
+    <loc>/tags/imageclassification/</loc>
+    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/categories/kaggle/</loc>
     <lastmod>2018-02-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -293,6 +294,18 @@
   <url>
     <loc>/tags/linearmodels/</loc>
     <lastmod>2017-10-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/linearregression/</loc>
+    <lastmod>2017-11-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/logisticregression/</loc>
+    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -353,6 +366,12 @@
   <url>
     <loc>/tags/randomforest/</loc>
     <lastmod>2017-10-08T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/regularization/</loc>
+    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LinearRegression on NOWHERESVILLE</title>
+    <link>/tags/linearregression/</link>
+    <description>Recent content in LinearRegression on NOWHERESVILLE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 01 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/linearregression/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ML - Linear Regression with Multiple Variables</title>
+      <link>/post/2017/11/01/lr/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/01/lr/</guid>
+      <description>Linear Regression with One Variable  $X$: space of input values, $Y$: space of output values
+ training set $\{(x^{(i)}, y^{(i)})\}_{i=1}^N$
+ goal: given a training set, to learn a function $h : X \rightarrow Y$ so that $h(x)$ is a “good” predictor for the corresponding value of $y$. For historical reasons, this function $h$ is called a hypothesis.
+ $h(x)=h_{\theta}(x) = \theta_0 + \theta_1 x$
+ cost function (squared error function, or mean squared error, MSE):</description>
+    </item>
+    
+  </channel>
+</rss>

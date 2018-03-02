@@ -129,21 +129,17 @@
     </item>
     
     <item>
-      <title>ML - Regularization</title>
-      <link>/post/2017/11/03/regularization/</link>
-      <pubDate>Fri, 03 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/03/regularization/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>ML - Logistic Regression</title>
       <link>/post/2017/11/02/logistic/</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/11/02/logistic/</guid>
-      <description></description>
+      <description>Logistic Regression Model  goal: want $h_{\theta}(x) \in [0,1]$ $h_{\theta}(x)=g(\theta^Tx)$, where $g(z)=\frac{1}{1+e^{-z}}$ (sigmoid function/ logistic function) interpretations: $h_{\theta}(x)$ = estimated probability that $y=1$ on input $x$, that is  $$h(x)=h_{\theta}(x) = \Pr(y=1|x;\theta)$$
+ prediction: predict $y=1$ if $h_{\theta}(x)\geq 0.5 \Leftrightarrow \theta^Tx\geq 0$
+ Decision Boundary: $\theta^Tx= 0$
+ Nonlinear Decision Boundary: add complex (i.e. polynomial) terms
+ Notations: training set $\{(x^{(i)}, y^{(i)})\}_{i=1}^N$, where
+  $$ x = \begin{pmatrix}x_0\newline x_1\newline\vdots\newline x_p\end{pmatrix}\in\mathbb{R}^{p+1}, x_0=1,y\in\{0,1\} $$</description>
     </item>
     
     <item>

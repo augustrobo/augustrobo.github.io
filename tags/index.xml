@@ -102,6 +102,15 @@
     </item>
     
     <item>
+      <title>ImageClassification</title>
+      <link>/tags/imageclassification/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/imageclassification/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Leetcode</title>
       <link>/tags/leetcode/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
@@ -116,6 +125,24 @@
       <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/linearmodels/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LinearRegression</title>
+      <link>/tags/linearregression/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/linearregression/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LogisticRegression</title>
+      <link>/tags/logisticregression/</link>
+      <pubDate>Tue, 27 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/logisticregression/</guid>
       <description></description>
     </item>
     
@@ -161,6 +188,15 @@
       <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/tags/randomforest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Regularization</title>
+      <link>/tags/regularization/</link>
+      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/regularization/</guid>
       <description></description>
     </item>
     

@@ -63,15 +63,328 @@
   
   
   
+  Tags: <a href="/tags/logisticregression">logisticRegression</a> <a href="/tags/regularization">regularization</a> 
+  
   
 </p>
 </div>
 
 
-
+<nav id="TableOfContents">
+<ul>
+<li><a href="#logistic-regression-model">Logistic Regression Model</a>
+<ul>
+<li><a href="#logistic-regression-cost-loss-function">Logistic Regression Cost/ Loss Function</a></li>
+<li><a href="#gradient-descent">Gradient Descent</a>
+<ul>
+<li><a href="#vectorization">Vectorization</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#advanced-optimization-methods">Advanced Optimization Methods</a></li>
+<li><a href="#multiclass-classification-one-vs-all">Multiclass Classification: One-vs-All</a></li>
+<li><a href="#solving-the-problem-of-overfitting">Solving the Problem of Overfitting</a>
+<ul>
+<li><a href="#regularized-linear-regression">Regularized Linear Regression</a>
+<ul>
+<li><a href="#gradient-descent-1">Gradient Descent</a></li>
+<li><a href="#normal-equation">Normal Equation</a></li>
+</ul></li>
+<li><a href="#regularized-logistic-regression">Regularized Logistic Regression</a></li>
+</ul></li>
+</ul>
+</nav>
 
 
 <main>
+
+
+<h1 id="logistic-regression-model">Logistic Regression Model</h1>
+
+<ul>
+<li>goal: want <code>$h_{\theta}(x) \in [0,1]$</code></li>
+<li><code>$h_{\theta}(x)=g(\theta^Tx)$</code>, where <code>$g(z)=\frac{1}{1+e^{-z}}$</code> (sigmoid function/ logistic function)</li>
+<li>interpretations: <code>$h_{\theta}(x)$</code> = estimated probability that <code>$y=1$</code> on input <code>$x$</code>, that is</li>
+</ul>
+
+<p>$$h(x)=h_{\theta}(x) = \Pr(y=1|x;\theta)$$</p>
+
+<ul>
+<li><p>prediction: predict <code>$y=1$</code> if <code>$h_{\theta}(x)\geq 0.5 \Leftrightarrow \theta^Tx\geq 0$</code></p></li>
+
+<li><p><strong>Decision Boundary</strong>: <code>$\theta^Tx= 0$</code></p></li>
+
+<li><p><strong>Nonlinear Decision Boundary</strong>: add complex (i.e. polynomial) terms</p></li>
+
+<li><p>Notations: training set <code>$\{(x^{(i)}, y^{(i)})\}_{i=1}^N$</code>,  where</p></li>
+</ul>
+
+<p>$$
+x = \begin{pmatrix}x_0\newline x_1\newline\vdots\newline x_p\end{pmatrix}\in\mathbb{R}^{p+1}, x_0=1,y\in\{0,1\}
+$$</p>
+
+<hr />
+
+<h2 id="logistic-regression-cost-loss-function">Logistic Regression Cost/ Loss Function</h2>
+
+<p>$$
+J(\theta)=\frac{1}{N}\sum_{i=1}^N L\left(h(x^{(i)}),y^{(i)}\right), \text{where}
+$$</p>
+
+<p>$$
+L(h(x), y)=\begin{cases}
+-\log h(x), &amp;y=1\newline
+-\log(1-h(x)), &amp;y=0
+\end{cases}
+$$</p>
+
+<p>$$
+\Rightarrow L(h(x), y)=-y\log h(x)-(1-y)\log(1-h(x))=-log\left[h(x)^y (1-h(x))^{1-y}\right]
+$$</p>
+
+<ul>
+<li>interpretation of cost function:
+
+<ol>
+<li>if <code>$h(x)=y$</code> for <code>$y=1$</code> or <code>$0$</code>, then <code>$L(h(x), y)=0$</code></li>
+<li>if <code>$y=1$</code>, <code>$L(h(x), y)\rightarrow\infty$</code> as <code>$h(x)\rightarrow 0$</code></li>
+<li>if <code>$y=0$</code>, <code>$L(h(x), y)\rightarrow\infty$</code> as <code>$h(x)\rightarrow 1$</code></li>
+</ol></li>
+</ul>
+
+<p><img src="/stanfordML/cost1.png" alt="learning rate" /></p>
+
+<p><img src="/stanfordML/cost2.png" alt="learning rate" /></p>
+
+<ul>
+<li>why not quadratic loss?
+
+<ul>
+<li>To ensure convexity (<strong>Left</strong>: quadratic loss, <strong>Right</strong>: logistic loss)</li>
+<li>Maximum Likelihood Estimation</li>
+</ul></li>
+</ul>
+
+<p><img src="/stanfordML/convex.PNG" alt="learning rate" /></p>
+
+<hr />
+
+<h2 id="gradient-descent">Gradient Descent</h2>
+
+<p>$$
+\frac{\partial}{\partial\theta_j}J(\theta) = \frac{1}{N} \sum_{i=1}^N \frac{\partial}{\partial\theta_j}L(h(x^{(i)}),y^{(i)})
+$$</p>
+
+<p>Let <code>$z = \theta^T x, a=h_{\theta}(x)=sigmoid(z)$</code>, then
+$$
+\frac{\partial L}{\partial\theta_j}=\frac{\partial L}{\partial a}\frac{\partial a}{\partial z}\frac{\partial z}{\partial\theta_j}\\<br />
+\Rightarrow
+\frac{\partial L}{\partial a} = -\frac{y}{a}+\frac{1-y}{1-a},\ \ \   \frac{\partial a}{\partial z}=a(1-a), \ \ \ \frac{\partial z}{\partial\theta_j}=x_j\\<br />
+\Rightarrow \frac{\partial L}{\partial\theta_j}=(a-y)x_j=(h(x)-y)x_j
+$$</p>
+
+<blockquote>
+<p><strong>Algorithm</strong>:</p>
+
+<p>repeat{</p>
+
+<p><code>$\theta_j \leftarrow \theta_j -\alpha\frac{\partial}{\partial \theta_j}J(\mathbf{\theta})=\theta_j -\alpha\frac{1}{N}\sum _{i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)x^{(i)}_j$</code></p>
+
+<p>} (simultaneously update for <code>$j=0,1,...,p$</code>)</p>
+
+<p><code>$\alpha$</code>: learning rate (step size)</p>
+</blockquote>
+
+<h3 id="vectorization">Vectorization</h3>
+
+<p>$$
+\theta \leftarrow \theta-\frac{\alpha}{N} X^T (h(X)-y)
+$$</p>
+
+<pre><code class="language-python">def sigmoid(u):
+    return 1/(1 + np.exp(-u))
+
+# X: design matrix, N*(p+1)
+# Y: N*1
+# theta: (p+1)*1
+
+# compute hypothesis
+h = sigmoid(np.dot(theta.T, X))
+
+# compute cost
+J = - np.mean(np.log(h) * Y +  np.log(1-h) * (1-Y))
+
+# compute descent
+N = X.shape[0]
+dtheta = np.dot(X.T, h - Y)/N
+
+# update params
+theta -= learning_rate*dtheta
+</code></pre>
+
+<h1 id="advanced-optimization-methods">Advanced Optimization Methods</h1>
+
+<ul>
+<li>Algorithms:
+
+<ul>
+<li>conjugate gradient</li>
+<li>BFGS</li>
+<li>L-BFGS</li>
+</ul></li>
+<li>Advantages:
+
+<ul>
+<li>no need to manually pick learning rate (step size) <code>$\alpha$</code></li>
+<li>often faster than gradient descent</li>
+</ul></li>
+<li>Disadvantages:
+
+<ul>
+<li>more complex</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h1 id="multiclass-classification-one-vs-all">Multiclass Classification: One-vs-All</h1>
+
+<ul>
+<li><code>$K$</code> classes, fit <code>$K$</code> classifiers:
+$$
+h^{(k)}_{\theta}(x)=\Pr(y=i|x;\theta),\ \ \ \ k=1,2,\ldots,K.
+$$</li>
+</ul>
+
+<p>$$
+x \rightarrow \text{class } k^*=\arg\max_{k=1,2\ldots,K} h^{(k)}_{\theta}(x)
+$$</p>
+
+<hr />
+
+<h1 id="solving-the-problem-of-overfitting">Solving the Problem of Overfitting</h1>
+
+<ul>
+<li><strong>underfitting</strong>: high bias</li>
+<li><strong>overfitting</strong>: high variance</li>
+<li>address overfitting:
+
+<ol>
+<li>reduce # of features:
+
+<ul>
+<li>manually select</li>
+<li>model selection algorithm</li>
+</ul></li>
+<li>regularization:
+
+<ul>
+<li>keep all the features, but reduce the magnitude of parameters <code>$\theta_j$</code></li>
+<li>regularization works well when we have a lot of <strong>slightly useful</strong> features</li>
+</ul></li>
+</ol></li>
+<li>regularization: small values for parameters
+
+<ul>
+<li>simpler hypothesis</li>
+<li>less prone to overfitting</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="regularized-linear-regression">Regularized Linear Regression</h2>
+
+<p>$$
+J(\theta)=\frac{1}{2N}\left(\sum_{i=1}^N (h_\theta(x^{(i)}) - y^{(i)})^2 + \lambda\sum_{j=1}^p \theta_j^2\right)
+$$</p>
+
+<ul>
+<li>regularization term: <code>$\lambda\sum_{j=1}^p \theta_j^2$</code></li>
+<li>regularization parameter: <code>$\lambda\geq 0$</code>
+
+<ul>
+<li>Using the above cost function with the extra summation, we can smooth the output of our hypothesis function to <strong>reduce overfitting</strong>.</li>
+<li>If <code>$\lambda$</code> is chosen to be too large, it may smooth out the function too much and
+cause <strong>underfitting</strong>.</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h3 id="gradient-descent-1">Gradient Descent</h3>
+
+<blockquote>
+<p><strong>Algorithm</strong>:</p>
+
+<p>repeat{</p>
+
+<p><code>$\theta_0 \leftarrow \theta_0 -\alpha\frac{\partial}{\partial \theta_0}J(\mathbf{\theta})=\theta_j -\alpha\frac{1}{N}\sum _{i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)$</code></p>
+
+<p><code>$\theta_j \leftarrow \theta_j -\alpha\frac{\partial}{\partial \theta_j}J(\mathbf{\theta})=\theta_j -\frac{\alpha}{N}\left[\sum _{i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)x^{(i)}_j+\lambda\theta_j\right],\ \ \ \ j=1,...,p$</code></p>
+
+<p>} (simultaneously update)</p>
+
+<p><code>$\alpha$</code>: learning rate (step size)</p>
+</blockquote>
+
+<p>$$\theta_j \leftarrow \left(1-\alpha\frac{\lambda}{N}\right)\theta_j -\alpha\frac{1}{N}\sum _{i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)x^{(i)}_j\ \ \ \ j=1,&hellip;,p$$</p>
+
+<ul>
+<li><code>$\left(1-\alpha\frac{\lambda}{N}\right) &lt;1$</code>, shrinking</li>
+</ul>
+
+<hr />
+
+<h3 id="normal-equation">Normal Equation</h3>
+
+<p>$$
+2NJ(\theta) =(X\theta-y)^T(X\theta-y) +\lambda \theta^TH\theta, \ \ \ \text{where}\\<br />
+H = \begin{pmatrix}
+0 &amp;0 &amp;\cdots &amp;0\newline
+0 &amp;1 &amp;\cdots &amp;0\newline
+\vdots &amp;\vdots &amp;\ddots &amp;\vdots\newline
+0 &amp;0 &amp;\cdots &amp;1
+\end{pmatrix}_{(p+1)\times(p+1)}
+$$</p>
+
+<p>$$
+\Rightarrow N\frac{\partial J}{\partial\theta}=X^TX\theta-X^Ty+\lambda H\theta
+$$</p>
+
+<p>$$
+\Rightarrow \theta^* = (X^TX +\lambda H)^{-1}X^Ty
+$$</p>
+
+<ul>
+<li>if <code>$\lambda&gt;0$</code>, <code>$X^TX+\lambda H$</code> is invertible even when <code>$p&gt;N$</code>.</li>
+</ul>
+
+<hr />
+
+<h2 id="regularized-logistic-regression">Regularized Logistic Regression</h2>
+
+<p>$$
+J(\theta)=-\frac{1}{N}\sum_{i=1}^N\left[y^{(i)}\log h(x^{(i)}) + (1-y^{(i)})\log\left (1-h(x^{(i)})\right)\right] +
+\frac{\lambda}{2N}\sum_{j=1}^p \theta_j
+$$</p>
+
+<blockquote>
+<p><strong>Algorithm</strong>:</p>
+
+<p>repeat{</p>
+
+<p><code>$\theta_0 \leftarrow \theta_0 -\alpha\frac{\partial}{\partial \theta_0}J(\mathbf{\theta})=\theta_j -\alpha\frac{1}{N}\sum _{i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)$</code></p>
+
+<p><code>$\theta_j \leftarrow \theta_j -\alpha\frac{\partial}{\partial \theta_j}J(\mathbf{\theta})=\theta_j -\frac{\alpha}{N}\left[\sum _{i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)x^{(i)}_j+\lambda\theta_j\right],\ \ \ \ j=1,...,p$</code></p>
+
+<p>} (simultaneously update)</p>
+
+<p><code>$\alpha$</code>: learning rate (step size)</p>
+</blockquote>
+
+<p>$$
+\theta_j \leftarrow \left(1-\alpha\frac{\lambda}{N}\right)\theta_j -\alpha\frac{1}{N}\sum {i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)x^{(i)}j\ \ \ \ j=1,&hellip;,p
+$$</p>
 
 </main>
 
