@@ -91,6 +91,7 @@
 </ul></li>
 <li><a href="#regularized-logistic-regression">Regularized Logistic Regression</a></li>
 </ul></li>
+<li><a href="#code-in-python">Code in Python</a></li>
 </ul>
 </nav>
 
@@ -365,7 +366,7 @@ $$</p>
 
 <p>$$
 J(\theta)=-\frac{1}{N}\sum_{i=1}^N\left[y^{(i)}\log h(x^{(i)}) + (1-y^{(i)})\log\left (1-h(x^{(i)})\right)\right] +
-\frac{\lambda}{2N}\sum_{j=1}^p \theta_j
+\frac{\lambda}{2N}\sum_{j=1}^p \theta_j^2
 $$</p>
 
 <blockquote>
@@ -385,6 +386,15 @@ $$</p>
 <p>$$
 \theta_j \leftarrow \left(1-\alpha\frac{\lambda}{N}\right)\theta_j -\alpha\frac{1}{N}\sum {i=1}^N  \left(h(x^{(i)})  - y^{(i)}\right)x^{(i)}j\ \ \ \ j=1,&hellip;,p
 $$</p>
+
+<hr />
+
+<h1 id="code-in-python">Code in Python</h1>
+
+<ul>
+<li>Logistic Regression: <a href="https://github.com/augustrobo/machine-learning/blob/master/Regularized-Logistic-Regression/Logistic%20Regression.ipynb">jupyter notebook</a></li>
+<li>Regularized Logistic Regression: <a href="https://github.com/augustrobo/machine-learning/blob/master/Regularized-Logistic-Regression/Regularized%20Logistic%20Regression.ipynb">jupyter notebook</a></li>
+</ul>
 
 </main>
 
