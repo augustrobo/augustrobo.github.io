@@ -68,10 +68,93 @@
 </div>
 
 
-
+<nav id="TableOfContents">
+<ul>
+<li><a href="#model-representation">Model Representation</a>
+<ul>
+<li><a href="#forward-propagation-vectorized-implementation">Forward Propagation: Vectorized Implementation</a></li>
+<li><a href="#non-linear-classification-example-xnor-operator">Non-linear Classification Example: XNOR operator</a></li>
+<li><a href="#multiclass-classification">Multiclass Classification</a></li>
+</ul></li>
+</ul>
+</nav>
 
 
 <main>
+
+
+<h1 id="model-representation">Model Representation</h1>
+
+<p><img src="/stanfordML/nn.png" alt="Neural Network" /></p>
+
+<p>$$
+a_i^{[j]} = \text{&ldquo;activation&rdquo; of unit $i$ in layer $j$} \\<br />
+\Theta^{[j]} = \text{matrix of weights controlling function mapping from layer $j$ to layer $j+1$}
+$$</p>
+
+<hr />
+
+<h2 id="forward-propagation-vectorized-implementation">Forward Propagation: Vectorized Implementation</h2>
+
+<p>$$
+[x] \rightarrow [a^{[2]}] \rightarrow [a^{[3]}]\rightarrow \cdots
+$$</p>
+
+<ul>
+<li>input: <code>$x$</code>. Setting <code>$a^{[1]}=x$</code></li>
+<li>linear combination: <code>$z^{[j]}=\Theta^{[j-1]}a^{[j-1]}, \ \ j=2,3,\ldots$</code></li>
+<li>activation: <code>$a^{[j]}=g(z^{[j]}), \ \ j=2,3,\ldots$</code></li>
+</ul>
+
+<hr />
+
+<h2 id="non-linear-classification-example-xnor-operator">Non-linear Classification Example: XNOR operator</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">x1</th>
+<th align="center">x2</th>
+<th align="center">XNOR = NOT XOR</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">1</td>
+</tr>
+
+<tr>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+
+<tr>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+
+<tr>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+
+<ul>
+<li>using a hidden layer with two nodes (sigmoid activation function)</li>
+</ul>
+
+<p><img src="/stanfordML/xnor.png" alt="XNOR" /></p>
+
+<h2 id="multiclass-classification">Multiclass Classification</h2>
+
+<p><img src="/stanfordML/multiclass.png" alt="Multiclass Classification" /></p>
 
 </main>
 
