@@ -213,15 +213,27 @@ partition.tree(tree.Hitters, label = c(&quot;Years&quot;, &quot;Hits&quot;), add
 <ul>
 <li><span class="math inline">\(\forall \alpha\)</span>, <span class="math inline">\(\exists\)</span> a subtree <span class="math inline">\(T\subset T_0\)</span> that minimizes <span class="math display">\[
 \begin{aligned}
-\sum_{m=1}^{|T|}\sum_{x_i\in R_m}(y_i-\hat{y}_{R_m})^2 &amp;+\alpha |T|\\
+\sum_{m=1}^{|T|}\sum_{x_i\in R_m}(y_i-\hat{y}_{R_m})^2 &amp;+\alpha |T|\ \ \ \ \ \ (*)\\
 Loss &amp;+ Penalty
 \end{aligned}
 \]</span></li>
 <li><span class="math inline">\(|T|\)</span>: # of leaves of subtree <span class="math inline">\(T\)</span></li>
 <li>as <span class="math inline">\(\alpha\)</span> increases from zero, subtrees are nested</li>
-<li>selection of <span class="math inline">\(alpha\)</span>: CV</li>
+<li>selection of <span class="math inline">\(\alpha\)</span>: CV</li>
 </ul></li>
 </ul>
+<blockquote>
+<h2 id="building-a-regression-tree"><strong>Building a Regression Tree</strong></h2>
+<ol style="list-style-type: decimal">
+<li><p>Use <strong>recursive binary splitting</strong> to grow a large tree <span class="math inline">\(T_0\)</span> on the training data until some stopping criterion is met.</p></li>
+<li><p>Apply <strong>cost complexity pruning</strong> to <span class="math inline">\(T_0\)</span> to obtain a sequence of best subtrees <span class="math inline">\(\{T_{\alpha}\}\)</span>, as a function of <span class="math inline">\(\alpha\)</span>.</p></li>
+<li>Use K-fold CV to choose <span class="math inline">\(\alpha\)</span>. <span class="math display">\[\alpha^* =\arg\min_{\alpha}\frac{1}{K}\sum_{k=1}^K mse(T^k_{\alpha})\]</span>
+<ul>
+<li><span class="math inline">\(T^k_{\alpha}\)</span> - subtree that minimizes (*) on all but the <span class="math inline">\(k\)</span>th-fold of the training data</li>
+</ul></li>
+<li><p>Return the subtree from step 2 that corresponds to <span class="math inline">\(\alpha^*\)</span>.</p></li>
+</ol>
+</blockquote>
 <hr />
 </div>
 </div>
