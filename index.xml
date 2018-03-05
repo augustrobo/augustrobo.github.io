@@ -297,7 +297,11 @@ Forward Propagation: Vectorized Implementation $$ [x] \rightarrow [a^{[2]}] \rig
       <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/10/08/tree-based-methods/</guid>
-      <description>ModelIntuitionAssumptionTrade-offsBagging and BoostingRandom ForestModelIntuitionAssumptionTrade-offsBagging and BoostingRandom Forest</description>
+      <description>IntuitionModelsRegression TreesPredicting Baseball Players’ SalariesAlgorithmTree PruningReferencesIntuitionRegression/Classification
+Stratify or segment the predictor space into simple regions
+Prediction for a given observation: mean or mode of the training observations in the region to which it belongs
+The set of splitting rules can be summarized in a tree \(\Rightarrow\) Decision Tree Methods
+Pros: simple, easy to interpret, and nice to visualize</description>
     </item>
     
     <item>

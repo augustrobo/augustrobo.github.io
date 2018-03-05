@@ -59,7 +59,7 @@
 <p class="terms">
   
   
-  Categories: <a href="/categories/machinelearning">machineLearning</a> <a href="/categories/islr">ISLR</a> 
+  Categories: <a href="/categories/machinelearning">machineLearning</a> <a href="/categories/islr">ISLR</a> <a href="/categories/r">R</a> 
   
   
   
@@ -74,34 +74,163 @@
 <main>
 <div id="TOC">
 <ul>
-<li><a href="#model">Model</a><ul>
 <li><a href="#intuition">Intuition</a></li>
-<li><a href="#assumption">Assumption</a></li>
-<li><a href="#trade-offs">Trade-offs</a></li>
+<li><a href="#models">Models</a><ul>
+<li><a href="#regression-trees">Regression Trees</a><ul>
+<li><a href="#predicting-baseball-players-salaries">Predicting Baseball Players’ Salaries</a></li>
+<li><a href="#algorithm">Algorithm</a></li>
+<li><a href="#tree-pruning">Tree Pruning</a></li>
 </ul></li>
-<li><a href="#bagging-and-boosting">Bagging and Boosting</a><ul>
-<li><a href="#random-forest">Random Forest</a></li>
 </ul></li>
+<li><a href="#references">References</a></li>
 </ul>
 </div>
 
-<div id="model" class="section level1">
-<h1>Model</h1>
-<div id="intuition" class="section level2">
-<h2>Intuition</h2>
+<div id="intuition" class="section level1">
+<h1>Intuition</h1>
+<ul>
+<li><p>Regression/Classification</p></li>
+<li><p><strong>Stratify</strong> or <strong>segment</strong> the predictor space into simple regions</p></li>
+<li><p>Prediction for a given observation: <strong>mean</strong> or <strong>mode</strong> of the training observations in the region to which it belongs</p></li>
+<li><p>The set of splitting rules can be summarized in a tree <span class="math inline">\(\Rightarrow\)</span> <em>Decision Tree</em> Methods</p></li>
+<li><p><strong>Pros</strong>: simple, easy to interpret, and nice to visualize</p></li>
+<li><p><strong>Cons</strong>: low prediction accuracy</p></li>
+<li>Produce multiple trees, then combine them to yield a <strong>single consensus prediction</strong>
+<ul>
+<li>bagging</li>
+<li>random forest</li>
+<li>boosting</li>
+</ul></li>
+</ul>
+<hr />
 </div>
-<div id="assumption" class="section level2">
-<h2>Assumption</h2>
+<div id="models" class="section level1">
+<h1>Models</h1>
+<div id="regression-trees" class="section level2">
+<h2>Regression Trees</h2>
+<div id="predicting-baseball-players-salaries" class="section level3">
+<h3>Predicting Baseball Players’ Salaries</h3>
+<ul>
+<li><p><code>Hitters</code> data set</p></li>
+<li><p>Predict <code>Salary</code> based on <code>Years</code> and <code>Hits</code></p></li>
+</ul>
+<pre class="r"><code>library(ISLR)
+summary(Hitters[c(&quot;Salary&quot;, &quot;Years&quot;, &quot;Hits&quot;)]) # numerical summary</code></pre>
+<pre><code>##      Salary           Years             Hits    
+##  Min.   :  67.5   Min.   : 1.000   Min.   :  1  
+##  1st Qu.: 190.0   1st Qu.: 4.000   1st Qu.: 64  
+##  Median : 425.0   Median : 6.000   Median : 96  
+##  Mean   : 535.9   Mean   : 7.444   Mean   :101  
+##  3rd Qu.: 750.0   3rd Qu.:11.000   3rd Qu.:137  
+##  Max.   :2460.0   Max.   :24.000   Max.   :238  
+##  NA&#39;s   :59</code></pre>
+<ul>
+<li><p>Remove missing <code>Salary</code> values</p></li>
+<li><p><strong>Log-transform</strong> <code>Salary</code> to make its distribution more of a typical bell-shape</p></li>
+</ul>
+<pre class="r"><code>Hitters = Hitters[!is.na(Hitters$Salary), ] # remove NAs
+Hitters$Salary = log(Hitters$Salary) # log-transform
+summary(Hitters[c(&quot;Salary&quot;, &quot;Years&quot;, &quot;Hits&quot;)])</code></pre>
+<pre><code>##      Salary          Years             Hits      
+##  Min.   :4.212   Min.   : 1.000   Min.   :  1.0  
+##  1st Qu.:5.247   1st Qu.: 4.000   1st Qu.: 71.5  
+##  Median :6.052   Median : 6.000   Median :103.0  
+##  Mean   :5.927   Mean   : 7.312   Mean   :107.8  
+##  3rd Qu.:6.620   3rd Qu.:10.000   3rd Qu.:141.5  
+##  Max.   :7.808   Max.   :24.000   Max.   :238.0</code></pre>
+<pre class="r"><code>library(tree)
+tree.Hitters = tree(Salary ~ Years + Hits, Hitters, mindev = 0.05)
+summary(tree.Hitters)</code></pre>
+<pre><code>## 
+## Regression tree:
+## tree(formula = Salary ~ Years + Hits, data = Hitters, mindev = 0.05)
+## Number of terminal nodes:  3 
+## Residual mean deviance:  0.3513 = 91.33 / 260 
+## Distribution of residuals:
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -2.24000 -0.39580 -0.03162  0.00000  0.33380  2.55600</code></pre>
+<pre class="r"><code>plot(tree.Hitters) # display tree structure
+text(tree.Hitters, pretty = 0, cex = .75) # display node labels</code></pre>
+<p><img src="/post/2017-10-08-ISLR-ch8-tree-based-methods_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<ul>
+<li>3-region partition from the regression tree</li>
+</ul>
+<pre class="r"><code># darker, salary is higher
+Salary.deciles = quantile(Hitters$Salary, 0:10/10)
+cut.Salary = cut(Hitters$Salary, Salary.deciles, include.lowest = TRUE)
+# scatter plot
+plot(Hitters$Years, Hitters$Hits, col = grey(10:2/11)[cut.Salary], pch = 20, cex = 1.5,
+     xlab = &quot;Years&quot;, ylab = &quot;Hits&quot;)
+# add tree partition
+partition.tree(tree.Hitters, label = c(&quot;Years&quot;, &quot;Hits&quot;), add = T, col = &quot;blue&quot;)</code></pre>
+<p><img src="/post/2017-10-08-ISLR-ch8-tree-based-methods_files/figure-html/unnamed-chunk-3-1.png" width="576" /></p>
 </div>
-<div id="trade-offs" class="section level2">
-<h2>Trade-offs</h2>
+<div id="algorithm" class="section level3">
+<h3>Algorithm</h3>
+<ul>
+<li>Notation:
+<ul>
+<li>predictor <span class="math inline">\(X=(X_1, X_2,\ldots,X_p)\)</span></li>
+<li>predictor space <span class="math inline">\(\mathbb{X}=\{\text{possible values for} X\}\)</span></li>
+</ul></li>
+<li>2 major steps:
+<ul>
+<li><strong>Step 1.</strong> Divide <span class="math inline">\(\mathbb{X}\)</span> into <span class="math inline">\(J\)</span> distinct and non-overlapping regions <span class="math inline">\(R_1,R_2,\ldots,R_J\)</span></li>
+<li><strong>Step 2.</strong> For observation <span class="math inline">\(x^*\in R_j\)</span>, prediction <span class="math inline">\(\hat{y}(x^*)=\hat{y}_{R_j}:=mean\{y(x): x\in R_j\}\)</span></li>
+</ul></li>
+<li>How to construct <span class="math inline">\(R_1,R_2,\ldots,R_J\)</span>?
+<ul>
+<li>For simplicity, high-dimensional boxes</li>
+<li>Goal: find boxes <span class="math inline">\(R_1,R_2,\ldots,R_J\)</span> that minimize RSS</li>
+</ul>
+<span class="math display">\[
+\sum_{j=1}^J \sum_{i\in R_j} (y_i-\hat{y}_{R_j})^2
+\]</span>
+<ul>
+<li>Computational infeasible! <span class="math inline">\(\Rightarrow\)</span> <strong>recursive binary splitting</strong> (recursively choose <strong>predictor</strong> and <strong>cutpoint</strong> that leads to the greatest possible reduction in RSS)
+<ul>
+<li><em>top-down</em>: begins at the top of the tree</li>
+<li><em>greedy</em>: at each step, the <em>best</em> split is made at that particular step, rather than looking ahead and picking a split that will lead to a better tree in some future step</li>
+</ul></li>
+</ul></li>
+</ul>
+<hr />
+</div>
+<div id="tree-pruning" class="section level3">
+<h3>Tree Pruning</h3>
+<ul>
+<li><p><strong>Overfitting</strong>: a smaller tree with fewer splitting might lead to <strong>lower variance</strong> and <strong>better interpretation</strong> at the cost of a little <strong>bias</strong></p></li>
+<li><del><strong>Alternative #1</strong>: build the tree only if the decrease in RSS due to each split exceeds some <strong>threshold</strong></del>
+<ul>
+<li><strong>Too shortsighted</strong>: a seemingly worthless split early on the tree might be followed by a very good split</li>
+</ul></li>
+<li><p><strong>Alternative #2</strong>: grow a large tree <span class="math inline">\(T_0\)</span>, then <em>prune</em> it back to obtain a <em>subtree</em></p></li>
+<li>How to prune the tree?
+<ul>
+<li><del>Estimate CV error for every possible subtree</del> <strong>Too cumbersome</strong>!</li>
+</ul></li>
+<li><strong>Cost Complexity Pruning</strong> (aka, <strong>Weakest Link Pruning</strong>): consider a sequence of subtrees indexed by tuning parameter <span class="math inline">\(\alpha\ (\geq 0)\)</span>
+<ul>
+<li><span class="math inline">\(\forall \alpha\)</span>, <span class="math inline">\(\exists\)</span> a subtree <span class="math inline">\(T\subset T_0\)</span> that minimizes <span class="math display">\[
+\begin{aligned}
+\sum_{m=1}^{|T|}\sum_{x_i\in R_m}(y_i-\hat{y}_{R_m})^2 &amp;+\alpha |T|\\
+Loss &amp;+ Penalty
+\end{aligned}
+\]</span></li>
+<li><span class="math inline">\(|T|\)</span>: # of leaves of subtree <span class="math inline">\(T\)</span></li>
+<li>as <span class="math inline">\(\alpha\)</span> increases from zero, subtrees are nested</li>
+<li>selection of <span class="math inline">\(alpha\)</span>: CV</li>
+</ul></li>
+</ul>
+<hr />
 </div>
 </div>
-<div id="bagging-and-boosting" class="section level1">
-<h1>Bagging and Boosting</h1>
-<div id="random-forest" class="section level2">
-<h2>Random Forest</h2>
 </div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<ol style="list-style-type: decimal">
+<li><a href="http://www.di.fc.ul.pt/~jpn/r/tree/tree.html">Classification &amp; Regression Trees</a></li>
+</ol>
 </div>
 
 </main>
