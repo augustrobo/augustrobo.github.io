@@ -80,12 +80,16 @@
 <li><a href="#logistic-regression-as-a-neural-network">Logistic Regression as a Neural Network</a>
 <ul>
 <li><a href="#vectorization">Vectorization</a></li>
-<li><a href="#explanation-of-logistic-regression-cost-function">Explanation of logistic regression cost function</a></li>
+<li><a href="#explanation-of-logistic-regression-cost-function">Explanation of Logistic Regression Cost Function</a></li>
 <li><a href="#image-classification-cat-non-cat-python-code">Image Classification (cat/non-cat) - Python Code</a></li>
 </ul></li>
 <li><a href="#shallow-neural-network">Shallow Neural Network</a>
 <ul>
-<li><a href="#vectorization-1">Vectorization</a></li>
+<li><a href="#forward-propagation">Forward Propagation</a></li>
+<li><a href="#activation-function">Activation Function</a></li>
+<li><a href="#gradient-descent">Gradient Descent</a></li>
+<li><a href="#summary">Summary</a></li>
+<li><a href="#random-initialization">Random Initialization</a></li>
 <li><a href="#planar-data-classification-python-code">Planar Data Classification - Python Code</a></li>
 </ul></li>
 </ul>
@@ -346,7 +350,7 @@ w -= learning_rate*dw
 b -= learning_rate*db
 </code></pre>
 
-<h2 id="explanation-of-logistic-regression-cost-function">Explanation of logistic regression cost function</h2>
+<h2 id="explanation-of-logistic-regression-cost-function">Explanation of Logistic Regression Cost Function</h2>
 
 <p>$$
 y|x \sim Binom(1, \hat{y}), \hat{y} =\sigma(\omega^Tx+b)
@@ -385,38 +389,75 @@ $$</p>
 
 <h1 id="shallow-neural-network">Shallow Neural Network</h1>
 
+<h2 id="forward-propagation">Forward Propagation</h2>
+
 <ul>
 <li>Neural Network representation: <code>$k$</code>th layer, with activation function <code>$g^{[k]}$</code></li>
-</ul>
-
-<p>$$
-A^{[0]} = X
-$$</p>
-
-<p>$$
-Z^{[k]} = W^{[k]}A^{[k-1]} + b^{[k]}, \ \ A[k]=g^{[k]}(Z^{[k]}), \ \ k=1,2,\ldots
-$$</p>
-
-<ul>
-<li><p><strong>activation function</strong> can be <em>sigmoid</em>, <em>tanh</em>, ReLU, Leaky ReLU&hellip;</p>
-
-<ul>
-<li><code>$tanh(z) = \frac{e^{-z}-e^z}{e^{-z}+e^z}$</code></li>
-<li><code>$ReLU(z)=\max(0, z)$</code></li>
-<li><code>$Leaky ReLU(z)=\max(0.01z, z)$</code></li>
-<li>for hidden layers, <em>tanh</em> always works better than <em>sigmoid</em> - zero mean, like data centering</li>
-<li>for output layer of binary classification (0/1), <em>sigmoid</em> may be better</li>
-<li>different layers can have different activation functions</li>
-<li>ReLU is increasingly the default choice (will learn faster)</li>
-</ul></li>
-
-<li><p>derivatives of activation functions:</p></li>
 </ul>
 
 <table>
 <thead>
 <tr>
-<th align="center">activation function</th>
+<th align="center">Parameters</th>
+<th align="center">Dimension</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><code>$W^{[1]}$</code></td>
+<td align="center"><code>$(n^{[1]}, n^{[0]})$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$b^{[1]}$</code></td>
+<td align="center"><code>$(n^{[1]}, 1)$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$W^{[2]}$</code></td>
+<td align="center"><code>$(n^{[2]}, n^{[1]})$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$b^{[2]}$</code></td>
+<td align="center"><code>$(n^{[2]}, 1)$</code></td>
+</tr>
+</tbody>
+</table>
+
+<p>$$
+A^{[0]} = X, n^{[2]}=1
+$$</p>
+
+<p>$$
+\text{Forward Propagation }\begin{cases}
+Z^{[k]} &amp;= W^{[k]}A^{[k-1]} + b^{[k]}, (\text{linear combination}) \newline
+A^{[k]}&amp;=g^{[k]}(Z^{[k]}),  (activation)
+\end{cases}
+\ \ k=1,2,\ldots
+$$</p>
+
+<p><img src="/NN/nn.PNG" alt="scale" /></p>
+
+<h2 id="activation-function">Activation Function</h2>
+
+<ul>
+<li><strong>activation function</strong> can be <em>sigmoid</em>, <em>tanh</em>, <em>ReLU, Leaky ReLU</em>&hellip;
+
+<ul>
+<li>for hidden layers, <em>tanh</em> always works better than <em>sigmoid</em> 【the mean of its output is closer to zero, and so it centers the data better for the next layer】</li>
+<li>for output layer of binary classification (0/1), <em>sigmoid</em> may be better</li>
+<li>different layers can have different activation functions</li>
+<li>ReLU is increasingly the default choice (will learn faster)</li>
+</ul></li>
+</ul>
+
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">function</th>
 <th align="center">derivative</th>
 </tr>
 </thead>
@@ -424,35 +465,118 @@ $$</p>
 <tbody>
 <tr>
 <td align="center">sigmoid</td>
+<td align="center"><code>$\frac{1}{1+e^{-z}}$</code></td>
 <td align="center"><code>$g(z)(1-g(z))$</code></td>
 </tr>
 
 <tr>
 <td align="center">tanh</td>
+<td align="center"><code>$\frac{e^z-e^{-z}}{e^z+e^{-z}}$</code></td>
 <td align="center"><code>$1-(g(z))^2$</code></td>
 </tr>
 
 <tr>
 <td align="center">ReLU</td>
+<td align="center"><code>$\max(0, z)$</code></td>
 <td align="center"><code>$g'(z)=\begin{cases}0, &amp;z&lt;0\newline 1, &amp;z\geq 0\end{cases}$</code></td>
 </tr>
 
 <tr>
 <td align="center">Leaky ReLU</td>
+<td align="center"><code>$\max(0.01z, z)$</code></td>
 <td align="center"><code>$g'(z)=\begin{cases}0.01, &amp;z&lt;0\newline 1, &amp;z\geq 0\end{cases}$</code></td>
 </tr>
 </tbody>
 </table>
 
-<h2 id="vectorization-1">Vectorization</h2>
+<h2 id="gradient-descent">Gradient Descent</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">Single Training Example</th>
+<th align="center">m Training Examples</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><code>$dz^{[2]}=a^{[2]}-y$</code></td>
+<td align="center"><code>$dZ^{[2]}=A^{[2]}-y$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$dW^{[2]}=dz^{[2]}a^{[1]T}$</code></td>
+<td align="center"><code>$dW^{[2]}=\frac{1}{m} dZ^{[2]} (A^{[1]})^T$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$db^{[2]}=dz^{[2]}$</code></td>
+<td align="center"><code>$db^{[2]}=\frac{1}{m}np.sum(dZ^{[2]}, axis = 1, keepdims = True)$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$da^{[1]}=(W^{[2]})^T dz^{[2]} \circ g^{[1]'}(z^{[1]})$</code></td>
+<td align="center"><code>$dZ^{[1]}=(W^{[2]})^T dZ^{[2]} \circ g^{[1]'}(Z^{[1]})$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$dW^{[1]}=dz^{[1]}x^T$</code></td>
+<td align="center"><code>$dW^{[1]}=\frac{1}{m} dZ^{[1]} X^T$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$db^{[1]}=dz^{[1]}$</code></td>
+<td align="center"><code>$db^{[1]}=\frac{1}{m}np.sum(dZ^{[1]}, axis = 1, keepdims = True)$</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="summary">Summary</h2>
+
+<table>
+<thead>
+<tr>
+<th align="center">Forward Propagation</th>
+<th align="center">Backward Propagation</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="center"><code>$Z^{[1]}=W^{[1]}X + b^{[1]}$</code></td>
+<td align="center"><code>$dZ^{[2]}=A^{[2]}-Y$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$A^{[1]}=g^{[1]}(Z^{[1]})$</code></td>
+<td align="center"><code>$dW^{[2]}=\frac{1}{m} dZ^{[2]} (A^{[1]})^T$</code><br/><code>$db^{[2]}=\frac{1}{m}np.sum(dZ^{[2]}, axis = 1, keepdims = True)$</code></td>
+</tr>
+
+<tr>
+<td align="center"><code>$Z^{[2]}=W^{[2]}A^{[1]}+b^{[2]}$</code></td>
+<td align="center"><code>$dZ^{[1]}=(W^{[2]})^T dZ^{[2]} \circ g^{[1]'}(Z^{[1]})$</code>  【elementwise product】</td>
+</tr>
+
+<tr>
+<td align="center"><code>$A^{[2]}=g^{[2]}(Z^{[2]})=\sigma(Z^{[2]})$</code></td>
+<td align="center"><code>$dW^{[1]}=\frac{1}{m} dZ^{[1]} X^T$</code><br/><code>$db^{[1]}=\frac{1}{m}np.sum(dZ^{[1]}, axis = 1, keepdims = True)$</code></td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="random-initialization">Random Initialization</h2>
+
+<ul>
+<li><strong>If initialize weights and biases with 0</strong>: Each neuron in the first hidden layer will perform the same computation. So even after multiple iterations of gradient descent each neuron in the layer will be computing the same thing as other neurons.</li>
+<li><strong>If initialize weights to relative large values</strong> ( using the tanh activation for all the hidden units): the inputs of the <code>tanh</code> to also be very large, thus causing gradients to be close to zero. The optimization algorithm will thus become slow.</li>
+</ul>
 
 <hr />
 
 <h2 id="planar-data-classification-python-code">Planar Data Classification - Python Code</h2>
 
 <p><a href="https://github.com/augustrobo/Neural-Networks-and-Deep-Learning/blob/master/01-Logistic-Regression-with-a-Neural-Network-mindset/LogisticRegressionwNN.ipynb">Jupyter Notebook</a></p>
-
-<hr />
 
 </main>
 
