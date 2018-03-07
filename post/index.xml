@@ -6,10 +6,19 @@
     <description>Recent content in Posts on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CS231n-CNN for Visual Recognition-Assignment1</title>
+      <link>/post/2018/03/07/cs231n/</link>
+      <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/03/07/cs231n/</guid>
+      <description>Image Classification Challenges  Viewpoint variation. A single instance of an object can be oriented in many ways with respect to the camera. Scale variation. Visual classes often exhibit variation in their size (size in the real world, not only in terms of their extent in the image). Deformation. Many objects of interest are not rigid bodies and can be deformed in extreme ways. Occlusion. The objects of interest can be occluded.</description>
+    </item>
     
     <item>
       <title>Neural Networks and Deep Learning</title>
@@ -18,24 +27,6 @@
       
       <guid>/post/2018/02/27/nn/</guid>
       <description>Introduction What is a Neural Network?  ReLU = Rectified Linear Unit     Input Output Application Model     Home Features Price Real Estate NN   Ad, User info Click on ad? 0/1 Online Advertising NN   Image Object Photo Tagging CNN   Audio Text transcript Speech Recognition RNN   English Chinese Machine Translation RNN   Image, Radar info Position of other cars Autonomous Driving Hybrid     Image - convolutional neural network, CNN sequence data (temporal data, time series) - recurrent neural network, RNN   Structured data: database Unstructured data: audio, image, text  Why is Deep Learning taking off?</description>
-    </item>
-    
-    <item>
-      <title>Kaggle - House Prices</title>
-      <link>/post/2018/02/14/kaggle-house-prices/</link>
-      <pubDate>Wed, 14 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/02/14/kaggle-house-prices/</guid>
-      <description>EDA附录：数据描述EDA附录：数据描述SalePrice - the property’s sale price in dollars. This is the target variable that you’re trying to predict.MSSubClass: The building classMSZoning: The general zoning classificationLotFrontage: Linear feet of street connected to propertyLotArea: Lot size in square feetStreet: Type of road accessAlley: Type of alley accessLotShape: General shape of propertyLandContour: Flatness of the propertyUtilities: Type of utilities availableLotConfig: Lot configurationLandSlope: Slope of propertyNeighborhood: Physical locations within Ames city limitsCondition1: Proximity to main road or railroadCondition2: Proximity to main road or railroad (if a second is present)BldgType: Type of dwellingHouseStyle: Style of dwellingOverallQual: Overall material and finish qualityOverallCond: Overall condition ratingYearBuilt: Original construction dateYearRemodAdd: Remodel dateRoofStyle: Type of roofRoofMatl: Roof materialExterior1st: Exterior covering on houseExterior2nd: Exterior covering on house (if more than one material)MasVnrType: Masonry veneer typeMasVnrArea: Masonry veneer area in square feetExterQual: Exterior material qualityExterCond: Present condition of the material on the exteriorFoundation: Type of foundationBsmtQual: Height of the basementBsmtCond: General condition of the basementBsmtExposure: Walkout or garden level basement wallsBsmtFinType1: Quality of basement finished areaBsmtFinSF1: Type 1 finished square feetBsmtFinType2: Quality of second finished area (if present)BsmtFinSF2: Type 2 finished square feetBsmtUnfSF: Unfinished square feet of basement areaTotalBsmtSF: Total square feet of basement areaHeating: Type of heatingHeatingQC: Heating quality and conditionCentralAir: Central air conditioningElectrical: Electrical system1stFlrSF: First Floor square feet2ndFlrSF: Second floor square feetLowQualFinSF: Low quality finished square feet (all floors)GrLivArea: Above grade (ground) living area square feetBsmtFullBath: Basement full bathroomsBsmtHalfBath: Basement half bathroomsFullBath: Full bathrooms above gradeHalfBath: Half baths above gradeBedroom: Number of bedrooms above basement levelKitchen: Number of kitchensKitchenQual: Kitchen qualityTotRmsAbvGrd: Total rooms above grade (does not include bathrooms)Functional: Home functionality ratingFireplaces: Number of fireplacesFireplaceQu: Fireplace qualityGarageType: Garage locationGarageYrBlt: Year garage was builtGarageFinish: Interior finish of the garageGarageCars: Size of garage in car capacityGarageArea: Size of garage in square feetGarageQual: Garage qualityGarageCond: Garage conditionPavedDrive: Paved drivewayWoodDeckSF: Wood deck area in square feetOpenPorchSF: Open porch area in square feetEnclosedPorch: Enclosed porch area in square feet3SsnPorch: Three season porch area in square feetScreenPorch: Screen porch area in square feetPoolArea: Pool area in square feetPoolQC: Pool qualityFence: Fence qualityMiscFeature: Miscellaneous feature not covered in other categoriesMiscVal: Value of miscellaneous featureMoSold: Month SoldYrSold: Year SoldSaleType: Type of saleSaleCondition: Condition of sale</description>
-    </item>
-    
-    <item>
-      <title>Kaggle - Titanic</title>
-      <link>/post/2018/02/13/kaggle-titanic/</link>
-      <pubDate>Tue, 13 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/02/13/kaggle-titanic/</guid>
-      <description>EDAEDA</description>
     </item>
     
     <item>
@@ -151,15 +142,6 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
 https://visualgo.net/bn/sorting
 https://www.toptal.com/developers/sorting-algorithms
 References  MIT, 6.006, Introduction to Algorithms, LECTURE 3 CLRS , Chapter 2  Summary     Best-Case $T(n)$ Worst-Case $T(n)$ Average-Case $T(n)$? Space Complexity     Bubble Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Selection Sort $O(n^2)$ $O(n^2)$ $O(n^2)$ $O(1)$   Insertion Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Merge Sort $O(n\log n)$ $O(n\log n)$ $O(n\log n)$ $O(n)$   Quick Sort $O(n\log n)$ $O(n^2)$ $O(n\log n)$ $O(1)$    Can We Sort Faster?</description>
-    </item>
-    
-    <item>
-      <title>Time Series Analysis 学习笔记</title>
-      <link>/post/2017/12/01/time-series/</link>
-      <pubDate>Fri, 01 Dec 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/12/01/time-series/</guid>
-      <description>参考资料参考资料</description>
     </item>
     
     <item>

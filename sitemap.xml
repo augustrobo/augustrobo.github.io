@@ -3,18 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/post/2018/03/07/cs231n/</loc>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2018/02/27/nn/</loc>
     <lastmod>2018-02-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2018/02/14/kaggle-house-prices/</loc>
-    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2018/02/13/kaggle-titanic/</loc>
-    <lastmod>2018-02-13T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -65,11 +60,6 @@
   <url>
     <loc>/post/2018/01/01/sorting/</loc>
     <lastmod>2018-01-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2017/12/01/time-series/</loc>
-    <lastmod>2017-12-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -221,6 +211,12 @@
   </url>
   
   <url>
+    <loc>/tags/cnn/</loc>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/datastructures/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -240,7 +236,7 @@
   
   <url>
     <loc>/categories/deeplearning/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -264,7 +260,7 @@
   
   <url>
     <loc>/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -275,13 +271,13 @@
   
   <url>
     <loc>/tags/imageclassification/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/kaggle/</loc>
-    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+    <loc>/tags/knn/</loc>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -311,7 +307,7 @@
   
   <url>
     <loc>/categories/machinelearning/</loc>
-    <lastmod>2018-02-14T00:00:00+00:00</lastmod>
+    <lastmod>2018-02-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -323,7 +319,7 @@
   
   <url>
     <loc>/categories/neuralnetworks/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -335,7 +331,7 @@
   
   <url>
     <loc>/post/</loc>
-    <lastmod>2018-02-27T00:00:00+00:00</lastmod>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -394,6 +390,12 @@
   </url>
   
   <url>
+    <loc>/tags/softmax/</loc>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/tags/sorting/</loc>
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -406,14 +408,14 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
-    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
+    <loc>/tags/svm/</loc>
+    <lastmod>2018-03-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/timeseriesanalysis/</loc>
-    <lastmod>2017-12-01T00:00:00+00:00</lastmod>
+    <loc>/tags/</loc>
+    <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

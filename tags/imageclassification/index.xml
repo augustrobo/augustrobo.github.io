@@ -6,10 +6,19 @@
     <description>Recent content in ImageClassification on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 27 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 07 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/imageclassification/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>CS231n-CNN for Visual Recognition-Assignment1</title>
+      <link>/post/2018/03/07/cs231n/</link>
+      <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/03/07/cs231n/</guid>
+      <description>Image Classification Challenges  Viewpoint variation. A single instance of an object can be oriented in many ways with respect to the camera. Scale variation. Visual classes often exhibit variation in their size (size in the real world, not only in terms of their extent in the image). Deformation. Many objects of interest are not rigid bodies and can be deformed in extreme ways. Occlusion. The objects of interest can be occluded.</description>
+    </item>
     
     <item>
       <title>Neural Networks and Deep Learning</title>
