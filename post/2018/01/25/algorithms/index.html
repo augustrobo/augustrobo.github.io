@@ -622,7 +622,7 @@ def strassen(X, Y):
 <li><code>$(p_1,q_1)=$</code> <code>ClosestPair</code> <code>$(Q_x, Q_y)$</code></li>
 <li><code>$(p_2,q_2)=$</code> <code>ClosestPair</code> <code>$(R_x, R_y)$</code></li>
 <li>let <code>$\delta = \min\{d(p_1,q_1), d(p_2,q_2)\}$</code></li>
-<li><code>$(p_3,q_3)=$</code> <code>ClosestSplitPair</code> <code>$(P_x, P_y)$</code>. Requirements:
+<li><code>$(p_3,q_3)=$</code> <code>ClosestSplitPair</code> <code>$(P_x, P_y, \delta)$</code>. Requirements:
 
 <ul>
 <li><code>$O(n)$</code> time</li>
@@ -631,11 +631,13 @@ def strassen(X, Y):
 <li>return best of <code>$(p_1,q_1),(p_2,q_2),(p_3,q_3)$</code></li>
 </ol>
 
-<p><code>ClosestSplitPair</code> <code>$(P_x, P_y)$</code></p>
+<p><code>ClosestSplitPair</code> <code>$(P_x, P_y, \delta)$</code></p>
+
+<p><strong>filtering</strong> + <strong>linear scan</strong></p>
 
 <ol>
 <li>Let <code>$\bar{x}$</code> = biggest <code>$x$</code>-coordinate in the left of <code>$P$</code> [<code>$O(1)$</code> time]</li>
-<li>Let <code>$S_y$</code> = points of <code>$P$</code> with <code>$x$</code>-coordinate in <code>$[\bar{x}-\delta,\bar{x}+\delta]$</code>, sorted by <code>$y$</code>-coordinate</li>
+<li>Let <code>$S_y$</code> = points of <code>$P$</code> with <code>$x$</code>-coordinate in <code>$[(bar{x}-\delta,\bar{x}+\delta)$</code>, sorted by <code>$y$</code>-coordinate</li>
 <li>Initialize best = <code>$\delta$</code>, best point = <code>NULL</code>, <code>$m=\vert S_y\vert$</code>.</li>
 </ol>
 
@@ -652,10 +654,31 @@ def strassen(X, Y):
 
 <p><strong>Claim</strong>. Let <code>$p\in Q$</code>, <code>$q\in R$</code> be a split pair with <code>$d(p,q)&lt;\delta$</code>. Then</p>
 
-<ol>
-<li><code>$p,q\in S_y$</code></li>
-<li><code>$p,q$</code> are at most 7 positions apart in <code>$S_y$</code></li>
-</ol>
+<p>(A) <code>$p,q\in S_y$</code></p>
+
+<p>(B) <code>$p,q$</code> are at most 7 positions apart in <code>$S_y$</code></p>
+
+<blockquote>
+<p><strong>Proof.</strong></p>
+
+<p>(A) Let <code>$p=(x_1,y_1)\in Q, q = (x_2, y_2)\in R$</code> and <code>$d(p,q)&lt;\delta$</code>. Thus, <code>$|x_1-x_2|&lt;\delta$</code>.
+$$
+\Rightarrow x_1 \leq \bar{x} \leq x_2 \Rightarrow \begin{cases}
+\bar{x}-x_1\leq x_2-x_1 &lt;\delta &amp;\Rightarrow x_1 &gt;\bar{x}-\delta \newline
+x_2-\bar{x}\leq x_2-x_1 &lt;\delta &amp;\Rightarrow x_2 &lt;\bar{x} +\delta
+\end{cases}
+$$
+(B) Evenly divide <code>$[\bar{x}-\delta, \bar{x}+\delta]\times [\tilde{y}, \tilde{y}+\delta]$</code> into 8 <code>$\frac{\delta}{2}\times \frac{\delta}{2}$</code> boxes, where <code>$\tilde{y}=\min\{y_1,y_2\}$</code>.</p>
+
+<p>Then at most 1 point in each of the 8 boxes.</p>
+
+<p>Proof by contradiction.</p>
+
+<p>Let <code>$a,b$</code> be in the same box. Then <code>$a,b\in Q$</code> or <code>$a,b\in R$</code>.
+$$
+d(a,b)\leq \frac{\delta}{\sqrt{2}}&lt;\delta. \ \ \text{contradiction to definition of }\delta.
+$$</p>
+</blockquote>
 
 <p><strong>Corollary1</strong>. If CP of <code>$P$</code> is a split pair, then <code>ClosestSplitPair</code> can find it.</p>
 
