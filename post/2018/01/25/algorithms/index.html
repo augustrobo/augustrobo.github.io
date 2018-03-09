@@ -637,7 +637,7 @@ def strassen(X, Y):
 
 <ol>
 <li>Let <code>$\bar{x}$</code> = biggest <code>$x$</code>-coordinate in the left of <code>$P$</code> [<code>$O(1)$</code> time]</li>
-<li>Let <code>$S_y$</code> = points of <code>$P$</code> with <code>$x$</code>-coordinate in <code>$[(bar{x}-\delta,\bar{x}+\delta)$</code>, sorted by <code>$y$</code>-coordinate</li>
+<li>Let <code>$S_y$</code> = points of <code>$P$</code> with <code>$x$</code>-coordinate in <code>$[\bar{x}-\delta,\bar{x}+\delta]$</code>, sorted by <code>$y$</code>-coordinate</li>
 <li>Initialize best = <code>$\delta$</code>, best point = <code>NULL</code>, <code>$m=\vert S_y\vert$</code>.</li>
 </ol>
 
@@ -686,7 +686,90 @@ $$</p>
 
 <h3 id="python-code-4">Python Code</h3>
 
-<pre><code class="language-python">
+<pre><code class="language-python">import numpy as np
+import numpy.linalg as LA
+# find closet pair of n 2-dim points
+# use n * 2 dim np array P
+# each row: 1 point
+
+def CP(P):
+    Px = P[P[:, 0].argsort(kind = 'mergesort')]
+    Py = P[P[:, 1].argsort(kind = 'mergesort')]
+    return closestPair(Px, Py)
+
+def closestPair(Px, Py):
+    n = Px.shape[0] # no of points
+    if n &lt; 4:
+        return bruteForceCP(Px)
+
+    mid = n//2
+    Qx, Rx = Px[:mid], Px[mid:]
+    midx = Px[mid, 0]
+    idx = (Py[:, 0] &lt; midx)
+    Qy, Ry = Py[idx], Py[~idx]
+    (p1, q1), r1 = closestPair(Qx, Qy)
+    (p2, q2), r2 = closestPair(Rx, Ry)
+
+    if r1 &lt; r2:
+        best = r1
+        bestpoint = (p1, q1)
+    else:
+        best = r2
+        bestpoint = (p2, q2)
+
+    (p3, q3), r3 = closestSplitPair(Px, Py, best, bestpoint)
+    if r3 &lt; best:
+        best = r3
+        bestpoint = (p3, q3)
+    return bestpoint, best
+
+def bruteForceCP(P):
+    best = float('Inf')
+    bestpoint = None
+    n = P.shape[0]
+    for i in range(n):
+        for j in range(i + 1, n):
+            d = LA.norm(P[i] - P[j])
+            if d &lt; best:
+                best = d
+                bestpoint = (P[i], P[j])
+    return bestpoint, best
+
+def closestSplitPair(Px, Py, best, bestpoint):
+    n = Px.shape[0]
+    mid = n//2
+    midx = Px[mid, 0]
+    idx = np.logical_and(midx - best &lt;= Py[:, 0], Py[:, 0] &lt;= midx + best)
+    Sy = Py[idx]
+
+    m = Sy.shape[0] # no of points in Sy
+    for i in range(m - 1):
+        for j in range(i + 1, min(i + 8, m)):
+            p, q = Sy[i], Sy[j]
+            d = LA.norm(p - q)
+            if d &lt; best:
+                best = d
+                bestpoint = (p, q)
+    return bestpoint, best
+
+# Test
+import time
+a = np.random.randint(1e5, size = (1000, 2))
+tic = time.time()
+b = bruteForceCP(a)
+toc = time.time()
+print(&quot;Brute Force takes time:&quot;, toc - tic)
+print(&quot;ans:&quot;, b)
+# Brute Force takes time: 4.079403400421143
+# ans: ((array([29326, 36462]), array([29246, 36561])), 127.283148923964)
+
+tic = time.time()
+c = CP(a)
+toc = time.time()
+print(&quot;D&amp;C takes time:&quot;, toc - tic)
+print(&quot;ans:&quot;, c)
+# D&amp;C takes time: 0.14911723136901855
+# ans: ((array([29326, 36462]), array([29246, 36561])), 127.283148923964)
 </code></pre>
 
 <h2 id="fictitious-example">Fictitious Example</h2>
