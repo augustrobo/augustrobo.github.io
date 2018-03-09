@@ -63,15 +63,76 @@
   
   
   
+  Tags: <a href="/tags/svm">svm</a> <a href="/tags/logisticregression">logisticRegression</a> 
+  
   
 </p>
 </div>
 
 
-
+<nav id="TableOfContents">
+<ul>
+<li><a href="#support-vector-machine-cost-function">Support Vector Machine Cost Function</a></li>
+<li><a href="#large-margin-classification">Large Margin Classification</a></li>
+</ul>
+</nav>
 
 
 <main>
+
+
+<h1 id="support-vector-machine-cost-function">Support Vector Machine Cost Function</h1>
+
+<p><strong>Logistic regression</strong>
+$$
+\min_{\theta}\frac{1}{N}\sum_{i=1}^N \left[y^{(i)}\left(-\log \frac{1}{1+e^{-\theta^T x^{(i)}}}\right)+(1-y^{(i)})\left(-\log \frac{e^{-\theta^T x^{(i)}}}{1+e^{-\theta^T x^{(i)}}}\right)\right] +\frac{\lambda}{2N}\sum_{j=1}^p\theta_j^2
+$$</p>
+
+<ul>
+<li>if <code>$y=1$</code>, want <code>$\theta^Tx\gg 0$</code></li>
+<li>if <code>$y=0$</code>, want <code>$\theta^Tx\ll 0$</code></li>
+</ul>
+
+<p><img src="/stanfordML/svm.PNG" alt="Logistic Cost Function" /></p>
+
+<hr />
+
+<p><strong>SVM</strong>
+$$
+\min_{\theta} C\sum_{i=1}^N \left[y^{(i)}cost_1(\theta^Tx^{(i)}) +(1-y^{(i)})cost_0(\theta^T x^{(i)})\right] +\frac{1}{2}\sum_{j=1}^p\theta_j^2
+$$</p>
+
+<ul>
+<li>if <code>$y=1$</code>, want <code>$\theta^Tx\geq 1$</code></li>
+<li>if <code>$y=0$</code>, want <code>$\theta^Tx\leq -1$</code><br /></li>
+</ul>
+
+<hr />
+
+<h1 id="large-margin-classification">Large Margin Classification</h1>
+
+<ul>
+<li><strong>SVM Decision Boundary</strong></li>
+</ul>
+
+<p>$$
+\min_{\theta} \frac{1}{2}\sum_{j=1}^p\theta_j^2\\<br />
+s.t. \begin{cases}
+\theta^Tx^{(i)}\geq 1 &amp;\text{if } y^{(i)}=1\newline
+\theta^Tx^{(i)}\leq -1 &amp;\text{if }  y^{(i)}=0\newline
+\end{cases}
+$$
+Simplification: <code>$\theta_0=0, p=2$</code>
+$$
+\min_{\theta} \frac{1}{2}\Vert\theta\Vert_2^2\\<br />
+s.t. \begin{cases}
+u^{(i)}\Vert\theta\Vert  \geq 1 &amp;\text{if } y^{(i)}=1\newline
+u^{(i)}\Vert\theta\Vert \leq -1 &amp;\text{if }  y^{(i)}=0\newline
+\end{cases}
+$$
+where <code>$u^{(i)}$</code> is the projection of <code>$x^{(i)}$</code> onto <code>$\theta$</code>.</p>
+
+<p><img src="/stanfordML/margin.PNG" alt="large margin" /></p>
 
 </main>
 

@@ -112,7 +112,14 @@
 </ul></li>
 <li><a href="#python-code-5">Python Code</a></li>
 </ul></li>
-<li><a href="#quick-sort">Quick Sort</a></li>
+<li><a href="#quick-sort">Quick Sort</a>
+<ul>
+<li><a href="#partition-in-place-implementation">Partition (In-Place Implementation)</a></li>
+<li><a href="#correctness-of-quicksort">Correctness of Quicksort</a></li>
+<li><a href="#choice-of-pivot">Choice of Pivot</a></li>
+<li><a href="#quick-sort-theorem">Quick Sort Theorem</a></li>
+<li><a href="#python-code-6">Python Code</a></li>
+</ul></li>
 <li><a href="#rselect">RSelect</a></li>
 <li><a href="#dselect">DSelect</a></li>
 </ul></li>
@@ -936,18 +943,146 @@ $$</p>
 <h2 id="quick-sort">Quick Sort</h2>
 
 <ul>
-<li>a randomized algorithm</li>
-<li>running time:
+<li><p>a randomized algorithm,  <code>$O(n\log n)$</code> time on average, works in place <code>$O(1)$</code></p></li>
+
+<li><p><strong>Input</strong>: array of numbers (assume distinct, <strong>exercise</strong>: duplicate case), unsorted</p></li>
+
+<li><p><strong>Output</strong>: same numbers, sorted in increasing order</p></li>
+
+<li><p><strong>key idea</strong>: partition array around a pivot element</p>
 
 <ul>
-<li>worst case:</li>
-<li>average (expected): <code>$O(n\log n)$</code></li>
+<li>pick pivot</li>
+<li>rearrange array so that pivot in its &lsquo;<strong>rightful</strong>&rsquo; position
+
+<ul>
+<li>left of pivot: less than pivot</li>
+<li>right of pivot: greater than pivot</li>
+</ul></li>
+</ul></li>
+
+<li><p>cool facts about partition:</p>
+
+<ul>
+<li><p>linear time <code>$O(n)$</code>, no extra space</p></li>
+
+<li><p>reduces problem size</p></li>
+</ul></li>
+
+<li><p><strong>High-Level Description</strong></p></li>
+</ul>
+
+<blockquote>
+<p><strong>Quick Sort</strong></p>
+
+<ul>
+<li>Input: array <code>A</code>, length <code>n</code></li>
+<li>if <code>n = 1</code>, return</li>
+<li><code>p = choosePivot(A, n)</code></li>
+<li>partition <code>A</code> around <code>p</code></li>
+<li>recursively sort 1st part</li>
+<li>recursively sort 2nd part</li>
+</ul>
+</blockquote>
+
+<h3 id="partition-in-place-implementation">Partition (In-Place Implementation)</h3>
+
+<ul>
+<li>Assume: pivot be the 1st element in arr [if not, swap pivot <code>$\leftrightarrow$</code> 1st element as preprocessing step]</li>
+<li><strong>High-Level Idea</strong>
+
+<ul>
+<li>single scan thru arr</li>
+<li>invariant: everything looked at so far is partitioned</li>
+</ul></li>
+<li>Pseudocode for partition:</li>
+</ul>
+
+<blockquote>
+<p><code>Partition(A, l, r)</code></p>
+
+<pre><code>p := A[l]
+i : = l + 1
+for j = l + 1 to r:
+  if A[j] &lt; p:
+      swap A[j], A[i]
+      i += 1
+swap A[l] and A[i-1]
+</code></pre>
+</blockquote>
+
+<ul>
+<li>running time: <code>$O(n), n=r-l+1$</code></li>
+<li>works in space <code>$O(1)$</code></li>
+</ul>
+
+<h3 id="correctness-of-quicksort">Correctness of Quicksort</h3>
+
+<p><code>$P(n)$</code> = &ldquo;Quick Sort correctly sorts every input array of length <code>$n$</code>&ldquo;</p>
+
+<p><strong>Claim</strong>: <code>$P(n)$</code> holds for every <code>$n\geq 1$</code>. [no matter how pivot is chosen]</p>
+
+<blockquote>
+<p><strong>Proof by induction</strong>.</p>
+
+<ul>
+<li>base case: every input array of length 1 is already sorted. <code>$P(1)$</code> holds.</li>
+<li>inductive step: Fix <code>$n\geq 2$</code>. Fix some input array A of length <code>$n$</code>.</li>
+</ul>
+
+<p>Need to show: if <code>$P(k)$</code> holds <code>$\forall k\leq n$</code>, then <code>$P(n)$</code> holds as well.</p>
+
+<p>Quick Sort first partitions A around some pivot p.</p>
+
+<p>Pivot winds up in correct position.</p>
+
+<p>Let <code>$k_1, k_2$</code> be lengths of 1st, 2nd parts of partitioned array.</p>
+
+<p>Since <code>$k_1&lt;n, k_2&lt;n$</code>, by inductive hypothesis, 1st, 2nd parts get sorted correctly by recursive calls.</p>
+
+<p>So after recursive calls, entire array is correctly sorted.</p>
+</blockquote>
+
+<h3 id="choice-of-pivot">Choice of Pivot</h3>
+
+<ul>
+<li>Running time of Quick Sort?
+
+<ul>
+<li>Depends on the quality of the pivot.</li>
+</ul></li>
+<li>What is the running time of QS on an already <strong>sorted</strong> array if <code>choosePivot</code> always selects the <strong>first</strong> element of the array? 【Worst case】
+
+<ul>
+<li><code>$O(n^2)$</code></li>
+</ul></li>
+<li>Best case: every recursive call chooses the median element of its subarray as its pivot. Running time?
+
+<ul>
+<li><code>$O(n\log n)$</code></li>
+<li><code>$T(n)\leq 2T(\frac{n}{2})+O(n)\ \ \Rightarrow\ \ T(n)=O(n\log n) $</code>  (master method)</li>
+</ul></li>
+<li>key question: how to choose pivots?
+
+<ul>
+<li>big idea: <strong>random pivots</strong></li>
+</ul></li>
+<li>Intuition:
+
+<ul>
+<li>if always get a 25-75 split, good enough for <code>$O(n\log n)$</code> running time. (<strong>prove via recursion tree</strong>)</li>
+<li>half of elements give a 25-75 split or better</li>
 </ul></li>
 </ul>
 
-<p>partition an array around a pivot in linear time with minimal extra storage</p>
+<h3 id="quick-sort-theorem">Quick Sort Theorem</h3>
 
-<p>ramifications of different pivot choices</p>
+<p>Theorem: for every input array length <code>$n$</code>, the average running time of Quick Sort (with random pivots) is <code>$O(n\log n)$</code>.</p>
+
+<h3 id="python-code-6">Python Code</h3>
+
+<pre><code class="language-python">
+</code></pre>
 
 <h2 id="rselect">RSelect</h2>
 
