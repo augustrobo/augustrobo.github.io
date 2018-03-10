@@ -72,8 +72,15 @@
 
 <nav id="TableOfContents">
 <ul>
-<li><a href="#support-vector-machine-cost-function">Support Vector Machine Cost Function</a></li>
+<li><a href="#cost-function">Cost Function</a></li>
 <li><a href="#large-margin-classification">Large Margin Classification</a></li>
+<li><a href="#kernels">Kernels</a></li>
+<li><a href="#hyperparameters">Hyperparameters</a></li>
+<li><a href="#svm-in-practice">SVM in Practice</a>
+<ul>
+<li><a href="#multiclass-svm-classification">Multiclass SVM Classification</a></li>
+<li><a href="#logistic-regression-versus-svms">Logistic Regression versus SVMs</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -81,7 +88,7 @@
 <main>
 
 
-<h1 id="support-vector-machine-cost-function">Support Vector Machine Cost Function</h1>
+<h1 id="cost-function">Cost Function</h1>
 
 <p><strong>Logistic regression</strong>
 $$
@@ -133,6 +140,125 @@ $$
 where <code>$u^{(i)}$</code> is the projection of <code>$x^{(i)}$</code> onto <code>$\theta$</code>.</p>
 
 <p><img src="/stanfordML/margin.PNG" alt="large margin" /></p>
+
+<hr />
+
+<h1 id="kernels">Kernels</h1>
+
+<ul>
+<li><p>kernels = similarity functions</p></li>
+
+<li><p><strong>Gaussian kernel</strong>: landmark <code>$l^{(k)}$</code>
+$$
+f_k=\text{similarity}(x,l^{(k)})=\exp\left(-\frac{\Vert x-l^{(k)}\Vert^2}{2\sigma^2}\right)
+$$</p>
+
+<ul>
+<li>if <code>$x\approx l^{(k)}$</code>, <code>$f_k\approx 1$</code></li>
+<li>if <code>$x$</code> is far from <code>$l^{(k)}$</code>, <code>$f_k\approx 0$</code></li>
+<li>predict 1 when <code>$\theta^T f\geq 0$</code></li>
+</ul></li>
+
+<li><p><strong>choice of landmarks</strong></p></li>
+</ul>
+
+<blockquote>
+<ul>
+<li>Given <code>$\{(x^{(i)}, y^{(i)})\}_{i=1}^N$</code></li>
+<li>Choose <code>$l^{(i)}=x^{(i)}, i=1,2,\ldots,N$</code></li>
+<li>Given example <code>$x$</code>,</li>
+</ul>
+
+<p>$$
+f :=\begin{pmatrix}
+f_0\newline
+f_1\newline
+\vdots\newline
+f_N
+\end{pmatrix},\ \ \text{where } f_0:=1, f_k :=\text{similarity}(x, l^{(k)})=\text{similarity}(x, x^{(k)})
+$$</p>
+
+<ul>
+<li>hypothesis: given <code>$x$</code>, compute features <code>$f\in\mathbb{R}^{N+1}$</code>.  Predict <code>$y=1$</code> if <code>$\theta^T y\geq 0$</code>.</li>
+<li>training:</li>
+</ul>
+
+<p>$$
+\min_{\theta}C\sum_{i=1}\left[y^{(i)}cost_1(\theta^T f^{(i)}) + (1-y^{(i)})cost_0(\theta^T f^{(i)})\right]+\frac{1}{2}\sum_{j=1}^N \theta_j^2
+$$</p>
+
+<ul>
+<li>replace <code>$\sum_{j=1}^N \theta_j^2=\theta^T\theta$</code> (ignore <code>$\theta_0$</code>) with <code>$\theta^TM\theta$</code> (rescale, for efficiency)</li>
+</ul>
+</blockquote>
+
+<hr />
+
+<h1 id="hyperparameters">Hyperparameters</h1>
+
+<p><code>$C=\frac{1}{\lambda}$</code></p>
+
+<ul>
+<li>large <code>$C$</code>: lower bias, higher variance</li>
+<li>small <code>$C$</code>: higher bias, lower variance</li>
+</ul>
+
+<p><code>$\sigma^2$</code></p>
+
+<ul>
+<li>large <code>$\sigma^2$</code>: feature <code>$f_i$</code> vary more smoothly, higher bias, lower variance</li>
+<li>small <code>$\sigma^2$</code>: feature <code>$f_i$</code> vary less smoothly, lower bias, higher variance</li>
+</ul>
+
+<p>address overfitting</p>
+
+<ul>
+<li>decrease <code>$C$</code></li>
+<li>increase <code>$\sigma^2$</code></li>
+</ul>
+
+<hr />
+
+<h1 id="svm-in-practice">SVM in Practice</h1>
+
+<ul>
+<li>use SVM software packages (e.g. <em>liblinear</em>, <em>libsvm</em>) to solve for parameters <code>$\theta$</code></li>
+<li>need to specify
+
+<ul>
+<li>choice of <code>$C$</code></li>
+<li>choice of kernel
+
+<ul>
+<li>no kernel = &ldquo;linear kernel&rdquo;, predict <code>$y=1$</code> if <code>$\theta^Tx\geq 0$</code></li>
+<li>Gaussian kernel: need to choose <code>$\sigma^2$</code>, do perform <strong>feature scaling</strong> beforehand</li>
+</ul></li>
+<li>other choices of kernel: need to satisfy <strong>Mercer&rsquo;s Theorem</strong></li>
+<li>polynomial kernel: <code>$k(x,l)=(x^Tl + c)^d$</code></li>
+<li>string kernel</li>
+<li>chi-square kernel</li>
+<li>histogram intersection kernel</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="multiclass-svm-classification">Multiclass SVM Classification</h2>
+
+<ul>
+<li>one-versus-all</li>
+</ul>
+
+<hr />
+
+<h2 id="logistic-regression-versus-svms">Logistic Regression versus SVMs</h2>
+
+<ul>
+<li>if # of features is large (relative to # of examples): use logistic regression, or SVM without a kernel (linear kernel)</li>
+<li>if # of features is small, # of examples is intermediate: use SVM with Gaussian kernel</li>
+<li>if # of features is small, # of examples is large: add/create more features, then use logistic regression or SVM without a kernel</li>
+<li>neural networks likely to work well for most of these settings, but may be slower to train</li>
+</ul>
 
 </main>
 

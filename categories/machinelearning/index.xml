@@ -80,7 +80,7 @@
       <pubDate>Mon, 06 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/11/06/svms/</guid>
-      <description>Support Vector Machine Cost Function Logistic regression $$ \min_{\theta}\frac{1}{N}\sum_{i=1}^N \left[y^{(i)}\left(-\log \frac{1}{1+e^{-\theta^T x^{(i)}}}\right)+(1-y^{(i)})\left(-\log \frac{e^{-\theta^T x^{(i)}}}{1+e^{-\theta^T x^{(i)}}}\right)\right] +\frac{\lambda}{2N}\sum_{j=1}^p\theta_j^2 $$
+      <description>Cost Function Logistic regression $$ \min_{\theta}\frac{1}{N}\sum_{i=1}^N \left[y^{(i)}\left(-\log \frac{1}{1+e^{-\theta^T x^{(i)}}}\right)+(1-y^{(i)})\left(-\log \frac{e^{-\theta^T x^{(i)}}}{1+e^{-\theta^T x^{(i)}}}\right)\right] +\frac{\lambda}{2N}\sum_{j=1}^p\theta_j^2 $$
  if $y=1$, want $\theta^Tx\gg 0$ if $y=0$, want $\theta^Tx\ll 0$  SVM $$ \min_{\theta} C\sum_{i=1}^N \left[y^{(i)}cost_1(\theta^Tx^{(i)}) +(1-y^{(i)})cost_0(\theta^T x^{(i)})\right] +\frac{1}{2}\sum_{j=1}^p\theta_j^2 $$
  if $y=1$, want $\theta^Tx\geq 1$ if $y=0$, want $\theta^Tx\leq -1$
   Large Margin Classification  SVM Decision Boundary  $$ \min_{\theta} \frac{1}{2}\sum_{j=1}^p\theta_j^2\\
