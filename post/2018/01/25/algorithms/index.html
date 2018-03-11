@@ -117,7 +117,7 @@
 <li><a href="#partition-in-place-implementation">Partition (In-Place Implementation)</a></li>
 <li><a href="#correctness-of-quicksort">Correctness of Quicksort</a></li>
 <li><a href="#choice-of-pivot">Choice of Pivot</a></li>
-<li><a href="#quick-sort-theorem">Quick Sort Theorem</a></li>
+<li><a href="#quick-sort-theorem-use-decomposition-principle">Quick Sort Theorem (Use Decomposition Principle)</a></li>
 <li><a href="#python-code-6">Python Code</a></li>
 </ul></li>
 <li><a href="#rselect">RSelect</a></li>
@@ -1075,9 +1075,73 @@ swap A[l] and A[i-1]
 </ul></li>
 </ul>
 
-<h3 id="quick-sort-theorem">Quick Sort Theorem</h3>
+<h3 id="quick-sort-theorem-use-decomposition-principle">Quick Sort Theorem (Use Decomposition Principle)</h3>
 
-<p>Theorem: for every input array length <code>$n$</code>, the average running time of Quick Sort (with random pivots) is <code>$O(n\log n)$</code>.</p>
+<p>Theorem: for every input array length <code>$n$</code>, the average running time of Quick Sort (with random pivots) is <code>$O(n\log n)$</code>. 【&rdquo;average&rdquo; is over random choices made by the algorithm (i.e. pivot choices)】</p>
+
+<p><strong>Proof.</strong></p>
+
+<hr />
+
+<p>Fix input array A of length <code>$n$</code>.</p>
+
+<p>Sample space <code>$\Omega$</code> = all possible outcomes of random choices in Quick Sort. (i.e. pivot sequences)</p>
+
+<p><strong>Key random variable</strong>: for <code>$\sigma\in\Omega$</code>,
+$$
+C(\sigma)=\text{# of comparisons between 2 input elements made by Quick Sort given random choices }\sigma
+$$</p>
+
+<p><strong>Lemma</strong>. Running time of Quick Sort is dominated by comparisons.
+$$
+\Rightarrow \exists \text{ constant } d, \ \forall \sigma\in\Omega, \ RT(\sigma) \leq d\cdot C(\sigma)
+$$
+<strong>Remaining goal</strong>: prove <code>$E[C]=O(n\log n)$</code>.</p>
+
+<p><strong>Notation</strong>: <code>$z_i= ith$</code> smallest element of A.</p>
+
+<p>For <code>$\sigma\in \Omega$</code>, indices <code>$i&lt;j$</code>, let
+$$
+X_{ij}=\text{ # of times } z_i, z_j \text{ get compared in Quick Sort with pivot sequence }\sigma
+$$</p>
+
+<p>$$
+\Rightarrow X_{ij} = 0 \text{ or } 1 \text{ (indicator variable)} = \mathbb{1}(z_i, z_j \text{ get compared with }\sigma)
+$$</p>
+
+<p>Then, <code>$\forall \sigma$</code>,
+$$
+C(\sigma) = \sum_{i=1}^n\sum_{j=i+1}^n X_{ij}(\sigma)
+$$
+By linearity of expectation,
+$$
+E[C] = \sum_{i=1}^{n-1}\sum_{j=i+1}^n E[X_{ij}]= \sum_{i=1}^{n-1} \sum_{j=i+1}^n\Pr(X_{ij}=1)\ \ \ (*)
+$$
+<strong>Key claim</strong>: <code>$\forall i&lt;j$</code>, <code>$\Pr(X_{ij}=1)=\Pr(z_i, z_j \text{ get compared})=\frac{2}{j-i+1}$</code></p>
+
+<p>As long as none of <code>$z_i,z_{i+1},\ldots,z_j$</code>  are chosen as a pivot, all are passed to the same recursive call.</p>
+
+<p>Consider the first among <code>$z_i,z_{i+1},\ldots,z_j$</code> that gets chosen as a pivot.</p>
+
+<ul>
+<li>if <code>$z_i$</code> or <code>$z_j$</code> gets chosen first, then <code>$z_i$</code> and <code>$z_j$</code> get compared.</li>
+<li>otherwise,  then <code>$z_i$</code> and <code>$z_j$</code> are never compared compared.</li>
+</ul>
+
+<p>Note: since pivots always chosen uniformly at random, each of <code>$z_i,z_{i+1},\ldots,z_j$</code> is equally likely to be the first.
+$$
+\Rightarrow \Pr(z_i, z_j \text{ get compared}) = \frac{2}{j-i+1}
+$$</p>
+
+<p>$$
+\Rightarrow E[C]=2\sum_{i=1}^{n-1}\sum_{j=i+1}^n \frac{1}{j-i+1}\leq 2n\sum_{k=2}^n\frac{1}{k}\leq 2n\log n
+$$</p>
+
+<p>$$
+\sum_{k=2}^n\frac{1}{k}=\sum_{k=2}^n\int_{k-1}^k\frac{1}{k}dx&lt; \sum_{k=2}^n\int_{k-1}^k\frac{1}{x}dx=\int_{1}^n\frac{1}{x}dx=\log n.
+$$</p>
+
+<hr />
 
 <h3 id="python-code-6">Python Code</h3>
 
