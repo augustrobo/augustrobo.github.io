@@ -125,6 +125,17 @@
 </ul></li>
 <li><a href="#graph">Graph</a>
 <ul>
+<li><a href="#graph-representation">Graph Representation</a>
+<ul>
+<li><a href="#adjacency-matrix">Adjacency Matrix</a></li>
+<li><a href="#adjacency-list">Adjacency List</a></li>
+</ul></li>
+<li><a href="#minimum-cuts-problem">Minimum Cuts Problem</a>
+<ul>
+<li><a href="#random-contraction-algorithm">Random Contraction Algorithm</a></li>
+<li><a href="#counting-minimum-cuts">Counting Minimum Cuts</a></li>
+<li><a href="#python-code-7">Python Code</a></li>
+</ul></li>
 <li><a href="#bfs">BFS</a></li>
 <li><a href="#dfs">DFS</a></li>
 </ul></li>
@@ -820,6 +831,7 @@ $$</p>
 
 <ul>
 <li>Quick Sort has a smaller constant than Merge Sort</li>
+<li>Merge Sort needs extra space; Quick Sort works in-place</li>
 </ul>
 
 <table>
@@ -1175,6 +1187,123 @@ def quickSort(arr):
 <h2 id="dselect">DSelect</h2>
 
 <h1 id="graph">Graph</h1>
+
+<ul>
+<li>2 ingredients
+
+<ul>
+<li>vertices (aka, nodes) <code>$V$</code></li>
+<li>edges <code>$E$</code> = pairs of vertices
+
+<ul>
+<li>undirected = unordered pair</li>
+<li>directed = ordered pair (aka, arcs)</li>
+</ul></li>
+</ul></li>
+<li>examples: road networks, web, social networks, precedence constraints, etc.</li>
+</ul>
+
+<h2 id="graph-representation">Graph Representation</h2>
+
+<ul>
+<li><code>$n$</code>: # of vertices</li>
+<li><code>$m$</code> : # of edges</li>
+<li>Max/min # of edges a <strong><u>connected</u></strong> graph that allows <strong><u>no parallel edges</u></strong> with <code>$n$</code> vertices have?
+
+<ul>
+<li>min: <code>$n-1$</code> (tree)</li>
+<li>max: <code>$\binom{n}{2}$</code> (complete graph)</li>
+</ul></li>
+<li>sparse/dense graph
+
+<ul>
+<li><strong>sparse</strong>:  <code>$m\approx O(n)$</code></li>
+<li><strong>dense</strong>:  <code>$m\approx \Theta(n^2)$</code></li>
+</ul></li>
+</ul>
+
+<h3 id="adjacency-matrix">Adjacency Matrix</h3>
+
+<ul>
+<li>represent <code>$G$</code> by a <code>$n\times n$</code> matrix <code>$A$</code></li>
+</ul>
+
+<p>$$
+A_{ij}=1 \Leftrightarrow G\text{ has an }i-j \text{ edge}
+$$</p>
+
+<ul>
+<li>variants:
+
+<ul>
+<li><code>$A_{ij}=$</code> # of <code>$i-j$</code> edges (if exists parallel edges)</li>
+<li><code>$A_{ij}=$</code> weight of <code>$i-j$</code> edge (if any)</li>
+<li><code>$A_{ij}=\begin{cases}+1,&amp;\text{if }i\rightarrow j\newline -1,&amp;\text{if }i\leftarrow j \end{cases}$</code></li>
+</ul></li>
+<li>space requirements: <code>$O(n^2)$</code></li>
+</ul>
+
+<h3 id="adjacency-list">Adjacency List</h3>
+
+<ul>
+<li>ingredients:
+
+<ol>
+<li>array or list of vertices <code>$\Theta(n)$</code></li>
+<li>array or list of edges <code>$\Theta(m)$</code></li>
+<li>each edge points to its endpoints <code>$\Theta(m)$</code></li>
+<li>each vertex points to edges incident on it <code>$\Theta(m)$</code> (3 <code>$\leftrightarrow$</code> 4, one-to-one correspondence)</li>
+</ol></li>
+<li>space requirements: <code>$\Theta(n+m) = \Theta(\max\{m,n\})$</code></li>
+<li>Which representation is better?
+
+<ul>
+<li>Depends on <strong>graph density</strong> and operations needed</li>
+<li>Adjacency list: perfect for <strong><u>graph search</u></strong></li>
+</ul></li>
+</ul>
+
+<h2 id="minimum-cuts-problem">Minimum Cuts Problem</h2>
+
+<ul>
+<li>A <u><strong>cut</strong></u> of a graph <code>$(V,E)$</code> is a partition of <code>$V$</code> into 2 nonempty sets <code>$A$</code> and <code>$B$</code>.</li>
+<li>The <strong><u>crossing edges</u></strong> of a cut <code>$(A,B)$</code>  are those with:
+
+<ul>
+<li>one endpoint in each of <code>$(A,B)$</code> (undirected)</li>
+<li>tail in <code>$A$</code>, head in <code>$B$</code> (directed)</li>
+</ul></li>
+<li>How many cuts does a graph with <code>$n$</code> vertices have? <code>$2^n-2$</code></li>
+<li><strong><u>Minimum Cuts</u></strong>:</li>
+</ul>
+
+<blockquote>
+<p><strong>Input</strong>: undirected graph <code>$G=(V,E)$</code> [parallel edges allowed]</p>
+
+<p><strong>Output</strong>: a cut with fewest number of crossing edges</p>
+</blockquote>
+
+<ul>
+<li>Applications of min cuts:
+
+<ul>
+<li>identify network bottlenecks/weaknesses</li>
+<li>community detection in social networks (highly interconnected amongst themselves, but weakly connected to rest of the graph)</li>
+<li>image segmentation:
+
+<ul>
+<li>inputs: graph of pixels</li>
+<li>use edge weights: <code>$(u,v)$</code> has large weights <code>$\Leftrightarrow$</code> &ldquo;expect&rdquo; <code>$u,v$</code> to come from same objects</li>
+<li>hope: repeated min cuts identifies the primary objects in picture</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<h3 id="random-contraction-algorithm">Random Contraction Algorithm</h3>
+
+<h3 id="counting-minimum-cuts">Counting Minimum Cuts</h3>
+
+<h3 id="python-code-7">Python Code</h3>
 
 <h2 id="bfs">BFS</h2>
 

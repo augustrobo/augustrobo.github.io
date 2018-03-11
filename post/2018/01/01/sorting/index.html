@@ -490,6 +490,31 @@ $$</p>
 <li>Randomized algo</li>
 </ul>
 
+<pre><code class="language-python">from random import randint
+
+def partition(arr, L, R):
+    pivot = arr[L]
+    i = L + 1
+    for j in range(i, R + 1):
+        if arr[j] &lt; pivot:
+            arr[j], arr[i] = arr[i], arr[j]
+            i += 1
+    arr[L], arr[i - 1] = arr[i - 1], arr[L]
+    return i - 1
+
+def quickSortHelper(arr, L, R):
+    if R - L &lt; 1:
+        return arr
+    pos = randint(L, R)
+    arr[L], arr[pos] = arr[pos], arr[L]
+    pos = partition(arr, L, R)
+    quickSortHelper(arr, L, pos - 1)
+    quickSortHelper(arr, pos + 1, R)
+
+def quickSort(arr):
+    return quickSortHelper(arr, 0, len(arr) - 1)
+</code></pre>
+
 </main>
 
     <footer>

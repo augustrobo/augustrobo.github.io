@@ -92,6 +92,14 @@
 <li><a href="#random-initialization">Random Initialization</a></li>
 <li><a href="#planar-data-classification-python-code">Planar Data Classification - Python Code</a></li>
 </ul></li>
+<li><a href="#deep-neural-network">Deep Neural Network</a>
+<ul>
+<li><a href="#notations">Notations</a></li>
+<li><a href="#forward-propagation-1">Forward Propagation</a></li>
+<li><a href="#check-dimensions">Check Dimensions</a></li>
+<li><a href="#forward-and-backward-functions">Forward and Backward Functions</a></li>
+<li><a href="#parameters-and-hyperparameters">Parameters and Hyperparameters</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -577,6 +585,117 @@ $$</p>
 <h2 id="planar-data-classification-python-code">Planar Data Classification - Python Code</h2>
 
 <p><a href="https://github.com/augustrobo/Neural-Networks-and-Deep-Learning/blob/master/02-Planar-Data-Classification-with-One-Hidden-Layer/planarDataClassification.ipynb">Jupyter Notebook</a></p>
+
+<hr />
+
+<h1 id="deep-neural-network">Deep Neural Network</h1>
+
+<h2 id="notations">Notations</h2>
+
+<p><img src="/NN/deep.PNG" alt="shallow and deep" /></p>
+
+<ul>
+<li><code>$L$</code>: # of layers</li>
+<li><code>$n^{[\ell]}$</code>: # of units in layer <code>$\ell$</code></li>
+<li><code>$a^{[\ell]}$</code>: activations in layer <code>$\ell$</code>
+
+<ul>
+<li><code>$a^{[\ell]}=g^{[\ell]}(z^{[\ell]})$</code></li>
+</ul></li>
+<li><code>$w^{[\ell]}, b^{[\ell]}$</code>: weights and bias for computing <code>$z^{[\ell]}$</code></li>
+</ul>
+
+<hr />
+
+<h2 id="forward-propagation-1">Forward Propagation</h2>
+
+<p>Layer <code>$\ell$</code>:</p>
+
+<ul>
+<li><p><code>$a^{[0]}:=x$</code></p></li>
+
+<li><p><code>$z^{[\ell]}=W^{[\ell]}a^{[\ell-1]}+b^{[\ell]}$</code></p></li>
+
+<li><p><code>$a^{[\ell]}=g^{[\ell]}(z^{[\ell]})$</code></p></li>
+</ul>
+
+<p>(<strong><u>Vectorized</u></strong>) layer <code>$\ell$</code>:</p>
+
+<ul>
+<li><p><code>$A^{[0]}:=X$</code></p></li>
+
+<li><p><code>$Z^{[\ell]}=W^{[\ell]}A^{[\ell-1]}+b^{[\ell]}$</code> (numpy broadcasting)</p></li>
+
+<li><p><code>$A^{[\ell]}=g^{[\ell]}(Z^{[\ell]})$</code></p></li>
+</ul>
+
+<hr />
+
+<h2 id="check-dimensions">Check Dimensions</h2>
+
+<ul>
+<li>shape of <code>$W^{[\ell]}$</code> and <code>$dW^{[\ell]}$</code>: <code>$(n^{[\ell]}, n^{[\ell-1]})$</code></li>
+<li>shape of <code>$b^{[\ell]}$</code> and <code>$db^{[\ell]}$</code>: <code>$(n^{[\ell]}, 1)$</code></li>
+<li>shape of <code>$Z^{[\ell]}, A^{[\ell]}, dZ^{[\ell]}, dA^{[\ell]}$</code>: <code>$(n^{[\ell]},m)$</code></li>
+</ul>
+
+<hr />
+
+<h2 id="forward-and-backward-functions">Forward and Backward Functions</h2>
+
+<p>layer <code>$\ell$</code></p>
+
+<ul>
+<li>Forward:
+
+<ul>
+<li>input: <code>$a^{[\ell-1]}$</code></li>
+<li>output: <code>$a^{[\ell]}$</code>, cache <code>$z^{[\ell]}$</code></li>
+</ul></li>
+<li>Backward:
+
+<ul>
+<li>input: <code>$da^{[\ell]}$</code></li>
+<li>output: <code>$da^{[\ell-1]}, dW^{[\ell]}, db^{[\ell]}$</code></li>
+<li>computation:</li>
+</ul></li>
+</ul>
+
+<p>$$
+dz^{[\ell]} = da^{[\ell]} * (g^{[\ell]})&lsquo;(z^{[\ell]}) \text{ (elementwise product)}\\<br />
+dW^{[\ell]} = dz^{[\ell]}a^{[\ell-1]}\\<br />
+db^{[\ell]}=dz^{[\ell]}\\<br />
+da^{[\ell-1]}=W^{[\ell]T}dz^{[\ell]} \Rightarrow dz^{[\ell]} =W^{[\ell+1]T}dz^{[\ell+1]} * (g^{[\ell]})&lsquo;(z^{[\ell]})
+$$</p>
+
+<p>$$
+\text{Vectorized}: dZ^{[\ell]} = dA^{[\ell]} * (g^{[\ell]})&lsquo;(Z^{[\ell]}) \text{ (elementwise product)}\\<br />
+dW^{[\ell]} = \frac{1}{m}dZ^{[\ell]}A^{[\ell-1]T}\\<br />
+db^{[\ell]}=\frac{1}{m} np.sum(dZ^{[\ell]}, axis=1,keepdims=True)\\<br />
+dA^{[\ell-1]}=W^{[\ell]T}dZ^{[\ell]}
+$$</p>
+
+<p><img src="/NN/compute.PNG" alt="input and output" /></p>
+
+<hr />
+
+<h2 id="parameters-and-hyperparameters">Parameters and Hyperparameters</h2>
+
+<ul>
+<li>parameters: <code>$W^{[\ell]}, b^{[\ell]}$</code></li>
+<li>hyperparameters:
+
+<ul>
+<li>learning rate <code>$\alpha$</code></li>
+<li># of iterations</li>
+<li># of hidden layers <code>$L$</code></li>
+<li># of hidden units <code>$n^{[\ell]}$</code></li>
+<li>choice of activation function</li>
+<li>momentum</li>
+<li>minibatch size</li>
+<li>regularizations</li>
+</ul></li>
+</ul>
 
 </main>
 
