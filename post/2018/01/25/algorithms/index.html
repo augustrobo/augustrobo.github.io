@@ -1301,9 +1301,152 @@ $$</p>
 
 <h3 id="random-contraction-algorithm">Random Contraction Algorithm</h3>
 
+<blockquote>
+<p>While <code>$\exists &gt; 2$</code> vertices,</p>
+
+<ul>
+<li>pick a remaining edge <code>$(u,v)$</code> <strong><u>uniformly at random</u></strong></li>
+<li>merge (or &ldquo;contract&rdquo;) <code>$u,v$</code> into a single vertex</li>
+<li>remove self-loops</li>
+<li>return cut represented by final 2 vertices</li>
+</ul>
+</blockquote>
+
+<ul>
+<li><strong>Key question</strong>: probability of success?</li>
+</ul>
+
+<hr />
+
+<p>Fix a graph <code>$G=(V,E)$</code> with <code>$n$</code> vertices and <code>$m$</code> edges.</p>
+
+<p>Fix a minimum cut <code>$(A,B)$</code>.</p>
+
+<p>Let <code>$k$</code>= # of edges crossing  <code>$(A,B)$</code>. Call these edges <code>$F$</code>.</p>
+
+<ol>
+<li>Suppose an edge of <code>$F$</code> is contracted at some point <code>$\Rightarrow$</code> algorithm <u>will</u> output <code>$(A,B)$</code>.</li>
+<li>Suppose only edge inside <code>$A,B$</code> get contracted  <code>$\Rightarrow$</code> algorithm <u>will not</u> output <code>$(A,B)$</code>.</li>
+</ol>
+
+<p>Thus,
+$$
+\Pr(\text{output is } (A,B)) = \Pr(\text{never contract an edge of }F)
+$$
+Let <code>$S_i=$</code> event that an edge of <code>$F$</code> contracted in iteration <code>$i$</code>.</p>
+
+<p><strong>Goal</strong>: compute <code>$\Pr\left(\overline{S_1}\cap \overline{S_2}\cap\cdots\cap \overline{S_{n-2}}\right)$</code>
+$$
+\Pr(S_i)=\frac{\text{# of crossing edges}}{\text{# of edges}}=\frac{k}{m}
+$$
+<strong>Key observation</strong>: degree of each vertex <code>$\geq k$</code>.</p>
+
+<p><strong>Reason</strong>: each vertex <code>$v$</code> defines a cut <code>$(\{v\}, V-\{v\})$</code>.</p>
+
+<p>Since <code>$\sum_{v\in V}\deg(v)=2m$</code>,
+$$
+\Rightarrow 2m\geq kn\Rightarrow \Pr(S_i)\leq \frac{2}{n}.
+$$</p>
+
+<p>$$
+\begin{aligned}
+\Pr(\overline{S_1}\cap\overline{S_2})&amp;=\Pr(\overline{S_2}\vert \overline{S_1})\Pr(\overline{S_1})\newline
+&amp;\geq \left[  1-\Pr(S_2\vert \overline{S_1})  \right]\left(1-\frac{2}{n}\right)\newline
+&amp;= \left[  1-\frac{k}{\text{# of remaining edges}} \right]\left(1-\frac{2}{n}\right)
+\end{aligned}
+$$</p>
+
+<p><strong>Note</strong>: all nodes in contracted graph define cuts in <code>$G$</code> (with at least <code>$k$</code> crossing edges)</p>
+
+<p><code>$\Rightarrow$</code> all degrees in contracted graph<code>$\geq k$</code></p>
+
+<p><code>$\Rightarrow$</code> # of remaining edges <code>$\geq \frac{1}{2}k(n-1)$</code></p>
+
+<p><code>$\Rightarrow \Pr(\overline{S_2}\vert \overline{S_1})\geq 1-\frac{2}{n-1}$</code></p>
+
+<p>In general,
+$$
+\begin{aligned}
+\Pr\left(\overline{S_1}\cap \overline{S_2}\cap\cdots\cap \overline{S_{n-2}}\right)&amp;=
+\Pr(\overline{S_1})\Pr(\overline{S_2}|\overline{S_1})\Pr(\overline{S_3}|\overline{S_1}\cap\overline{S_2})
+\cdots\Pr(\overline{S_{n-2}}|\overline{S_1}\cap\overline{S_2}\cap\cdots\cap\overline{S_{n-3}})\newline
+&amp;\geq \left(1-\frac{2}{n}\right)
+\left(1-\frac{2}{n-1}\right)
+\cdots
+\left(1-\frac{2}{4}\right)
+\left(1-\frac{2}{3}\right)\newline
+&amp;=\frac{n-2}{n}
+\frac{n-3}{n-1}
+\frac{n-4}{n-2}
+\cdots
+\frac{2}{4}
+\frac{1}{3}\newline
+&amp;=\frac{2}{n(n-1)}=\frac{1}{\binom{n}{2}}\geq \frac{1}{n^2}
+\end{aligned}
+$$</p>
+
+<hr />
+
+<p>Run the basic algorithm a large <code>$N$</code> times, remember the smallest cut found.</p>
+
+<p>Let <code>$T_i$</code> = event that min cut <code>$(A,B)$</code> is found on the <code>$i$</code>th trial.</p>
+
+<p>By definition, <code>$T_i$</code> iid.
+$$
+\begin{aligned}
+\Pr(\text{all trials fail}) &amp;=\Pr(\overline{T_1}\cap\overline{T_2}\cap\cdots\overline{T_N})\newline
+&amp;=\prod_{i=1}^N\Pr(\overline{T_i})=\left(1-\frac{1}{n^2}\right)^N
+\end{aligned}
+$$</p>
+
+<p><code>$\forall x\in\mathbb{R},\ 1+x\leq e^x$</code></p>
+
+<p><code>$N=n^2$</code>
+$$
+\Pr(\text{all trials fail})\leq e^{-\frac{1}{n^2}n^2}=\frac{1}{e}
+$$
+<code>$N=n^2\log n$</code>
+$$
+\Pr(\text{all trials fail})\leq e^{-\frac{\log n}{n^2}n^2}=\frac{1}{n}
+$$
+Running time: <code>$\Omega(n^2m)$</code> 【<code>$n^2$</code> trails, each time <code>$O(m)$</code>】</p>
+
+<p>Better than brute force method <code>$O(2^n)$</code>.</p>
+
 <h3 id="counting-minimum-cuts">Counting Minimum Cuts</h3>
 
+<p><strong>Note</strong>: a graph can have multiple min cuts.</p>
+
+<ul>
+<li>e.g. a tree with <code>$n$</code> vertices has <code>$n-1$</code> min cuts</li>
+</ul>
+
+<p><strong>Claim</strong>. Largest # of min cuts that a graph with <code>$n$</code> vertices can have: <code>$\binom{n}{2}$</code></p>
+
+<ul>
+<li><strong>lower bound</strong>
+
+<ul>
+<li><code>$n$</code>-cycle</li>
+<li>each pair of the <code>$n$</code> edges has <code>$\geq\binom{n}{2}$</code> min cuts</li>
+</ul></li>
+<li><strong>upper bound</strong></li>
+</ul>
+
+<blockquote>
+<p>Let <code>$\{(A_j,B_j)\}_{j=1}^J$</code> be min cuts of a graph with <code>$n$</code> vertices.</p>
+
+<p>Event <code>$E_j=$</code>  output <code>$(A_j,B_j)$</code>.By contraction algorithm,
+$$
+\Pr(\text{output}=(A_j,B_j))\geq\frac{1}{\binom{n}{2}}
+$$
+Since <code>$E_j$</code> ind <code>$\Rightarrow J\leq\binom{n}{2}$</code>.</p>
+</blockquote>
+
 <h3 id="python-code-7">Python Code</h3>
+
+<pre><code class="language-python">
+</code></pre>
 
 <h2 id="bfs">BFS</h2>
 

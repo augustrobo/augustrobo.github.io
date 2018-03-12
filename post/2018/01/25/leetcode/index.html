@@ -222,7 +222,7 @@ You may assume that <em>nums1</em> has enough space (size that is greater or equ
 <h2 id="方式三-先排序">方式三：先排序</h2>
 
 <ul>
-<li>排序，<code>$O(\log n)$</code></li>
+<li>排序，<code>$O(n\log n)$</code></li>
 <li>然后对每个 <code>i</code>，在排序后的 <code>nums</code> 中二分查找 <code>target - nums[i]</code>，<code>$n\times O(\log n)=O(n\log n)$</code></li>
 <li>因此，<code>$T(n) = O(n\log n)$</code></li>
 </ul>
