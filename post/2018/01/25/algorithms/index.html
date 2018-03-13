@@ -1445,7 +1445,45 @@ Since <code>$E_j$</code> ind <code>$\Rightarrow J\leq\binom{n}{2}$</code>.</p>
 
 <h3 id="python-code-7">Python Code</h3>
 
-<pre><code class="language-python">
+<pre><code class="language-python">import random
+def findMinCut(g):
+    &quot;&quot;&quot;
+    input: graph g, 
+           adjacency list representation using dictionary
+           keys: nodes
+           values: list of adjacent nodes
+    &quot;&quot;&quot;
+    if len(g) &lt; 3:
+        return len(g[list(g.keys())[0]])
+    v1, v2 = chooseEdge(g)
+    contract(g, v1, v2)
+    return findMinCut(g)
+
+# edge might not be uniformly chosen        
+def chooseEdge(g):
+    &quot;&quot;&quot;
+    choose random edge (v1, v2)
+    &quot;&quot;&quot;
+    v1 = random.choice(list(g.keys()))
+    v2 = random.choice(g[v1])
+    return v1, v2
+
+def contract(g, v1, v2):
+    &quot;&quot;&quot;
+    merge node v2 with v1
+    &quot;&quot;&quot;
+    g[v1].extend(g[v2])
+    for k in g[v2]:
+        g[k] = [v1 if x == v2 else x for x in g[k]]
+    del g[v2]
+    g[v1] = [x for x in g[v1] if x != v1]
+    
+
+from copy import deepcopy
+mincuts = []
+for i in range(10):
+    mincuts.append(findMinCut(deepcopy(g)))
+print(&quot;min cuts = &quot;, min(mincuts))
 </code></pre>
 
 <h2 id="bfs">BFS</h2>
