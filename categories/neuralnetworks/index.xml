@@ -29,5 +29,17 @@
       <description>Introduction What is a Neural Network?  ReLU = Rectified Linear Unit     Input Output Application Model     Home Features Price Real Estate NN   Ad, User info Click on ad? 0/1 Online Advertising NN   Image Object Photo Tagging CNN   Audio Text transcript Speech Recognition RNN   English Chinese Machine Translation RNN   Image, Radar info Position of other cars Autonomous Driving Hybrid     Image - convolutional neural network, CNN sequence data (temporal data, time series) - recurrent neural network, RNN   Structured data: database Unstructured data: audio, image, text  Why is Deep Learning taking off?</description>
     </item>
     
+    <item>
+      <title>ML - Neural Networks</title>
+      <link>/post/2017/11/04/neural-networks/</link>
+      <pubDate>Sat, 04 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2017/11/04/neural-networks/</guid>
+      <description>Model Representation $$ a_i^{[j]} = \text{&amp;ldquo;activation&amp;rdquo; of unit $i$ in layer $j$} \\
+\Theta^{[j]} = \text{matrix of weights controlling function mapping from layer $j$ to layer $j+1$} $$
+Forward Propagation: Vectorized Implementation $$ [x] \rightarrow [a^{[2]}] \rightarrow [a^{[3]}]\rightarrow \cdots $$
+ input: $x$. Setting $a^{[1]}=x$ linear combination: $z^{[j]}=\Theta^{[j-1]}a^{[j-1]}, \ \ j=2,3,\ldots$ activation: $a^{[j]}=g(z^{[j]}), \ \ j=2,3,\ldots$  Non-linear Classification Example: XNOR operator    x1 x2 XNOR = NOT XOR     0 0 1   0 1 0   1 0 0   1 1 1     using a hidden layer with two nodes (sigmoid activation function)  Multiclass Classification Cost Function  $\{x^{(i)},y^{(i)}\}$, $y\in\mathbb{R}^K$</description>
+    </item>
+    
   </channel>
 </rss>
