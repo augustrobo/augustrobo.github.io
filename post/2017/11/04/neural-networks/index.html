@@ -193,56 +193,113 @@ $$</p>
 
 <p>Given one training example <code>$(x,y)$</code>：</p>
 
-<p><strong><u>Forward Propagation</u></strong>
-$$
-\begin{aligned}
-a^{[1]}&amp;=x\newline
-z^{[\ell]}&amp;=\Theta^{[\ell-1]}a^{[\ell-1]},\ a^{[\ell]}=g(z^{[\ell]}) \ (\text{add } a^{[\ell]}_0), L=2,3,\ldots,L-1\newline
-z^{[L]}&amp;=\Theta^{[L-1]}a^{[L-1]},\ a^{[L]}=h_{\Theta}(x)=g(z^{[L]})
-\end{aligned}
-$$
-<strong><u>Backward Propagation</u></strong></p>
-
-<ul>
-<li><code>$\delta_{j}^{[\ell]}=$</code> &ldquo;error&rdquo; of node <code>$j$</code> in layer <code>$\ell$</code></li>
-<li>formally, <code>$\delta_{j}^{[\ell]}=\frac{\partial}{\partial z_j^{[\ell]}}\text{cost}$</code>, where <code>$\text{cost}=-y\log h_{\Theta}(x) -(1-y)\log(1-h_{\Theta}(x))$</code></li>
-<li>vectorized:</li>
-</ul>
-
-<p>$$
-\begin{aligned}
-\delta^{[L]}&amp;=a^{[L]}-y\newline
-\delta^{[\ell]}&amp;=(\Theta^{[\ell]})^T\delta^{[\ell+1]}*g&rsquo;(z^{[\ell]}), \ \ \ell=L-1,L-2,\ldots,2\newline
-g&rsquo;(z^{[\ell]})&amp;=a^{[\ell]}*(1-a^{[\ell]})
-\end{aligned}
-$$</p>
-
-<p>$$
-\Rightarrow \frac{\partial}{\partial\Theta_{ji}^{[\ell]}}J(\Theta)=a_j^{[\ell]}\delta_i^{[\ell+1]}\ \  (\text{if }\lambda=0)
-$$</p>
-
-<ul>
-<li>with training set <code>$\{(x^{(i)}, y^{(i)})\}_{i=1}^N$</code>. Set <code>$\Delta_{ij}^{[\ell]}=0$</code>.</li>
-</ul>
+<p><strong><u>Forward Propagation</u></strong></p>
 
 <blockquote>
-<ul>
-<li>For training example from <code>$i=1$</code> to <code>$N$</code>:
+<p><strong>Single training example</strong>:
+$$
+\begin{aligned}
+a^{[1]}&amp;=x  \ (\text{add } a^{[1]}_0)\newline
+z^{[\ell]}&amp;=\Theta^{[\ell-1]}a^{[\ell-1]},\ a^{[\ell]}=g(z^{[\ell]}) \ (\text{add } a^{[\ell]}_0), L=2,3,\ldots,L-1\newline
+z^{[L]}&amp;=\Theta^{[L-1]}a^{[L-1]},\ a^{[L]}=h_{\Theta}(x)=\sigma(z^{[L]})
+\end{aligned}
+$$</p>
 
-<ol>
-<li>Set <code>$a^{(1)}=x^{(i)}$</code></li>
-<li>Perform forward propagation to compute <code>$a^{[\ell]}, \ell=2,3,\ldots,L$</code></li>
-<li>Compute <code>$\delta^{[L]}=a^{[L]}-y^{(i)}$</code></li>
-<li>Compute <code>$\delta^{[\ell]}, \ell=L-1,L-2,\ldots,2$</code> using <code>$\delta^{[\ell]}=(\Theta^{[\ell]})^T\delta^{[\ell+1]}*a^{[\ell]}(1-a^{[\ell]})$</code> (<code>$*$</code> elementwise multiplication)</li>
-</ol></li>
-<li><code>$\Delta^{[l]} := \Delta^{[l]} + \delta^{[l+1]}(a^{[l]})^T$</code></li>
-<li><code>$D^{[\ell]}=\begin{cases}\frac{1}{N}(\Delta^{[\ell]}+\lambda\Theta^{[\ell]}),&amp;j\neq 0\newline \frac{1}{N}\Delta^{[\ell]}, &amp; j=0\end{cases}$</code></li>
-</ul>
-</blockquote>
+<hr />
+
+<p><code>$N$</code> <strong>training examples</strong>:
+$$
+X = \begin{pmatrix}
+x^{(1)T}\newline
+x^{(2)T}\newline
+\vdots\newline
+x^{(N)T}
+\end{pmatrix}
+$$</p>
 
 <p>$$
-\Rightarrow \frac \partial {\partial \Theta_{ij}^{[l]}} J(\Theta)=D_{ij}^{[l]}
+\begin{aligned}
+A^{[1]}&amp;=\left[\textbf{1}\ X\right] \newline
+Z^{[\ell]}&amp;=A^{[\ell-1]}\Theta^{[\ell-1]T},\ A^{[\ell]}=\left[\textbf{1}\ g(Z^{[\ell]})\right] , L=2,3,\ldots,L-1\newline
+Z^{[L]}&amp;=A^{[L-1]}\Theta^{[L-1]T},\ A^{[L]}=h_{\Theta}(X)=\sigma(Z^{[L]})
+\end{aligned}
 $$</p>
+</blockquote>
+
+<p><strong><u>Backward Propagation</u></strong></p>
+
+<blockquote>
+<p><strong>Single training example</strong>:</p>
+
+<ul>
+<li><code>$\delta_{j}^{[\ell]}=$</code> &ldquo;error&rdquo; of node <code>$j$</code> in layer <code>$\ell = \frac{\partial J}{\partial z_j^{[\ell]}}$</code></li>
+<li><code>$\delta^{[L]}=a^{[L]}-y$</code></li>
+</ul>
+
+<p>$$
+\begin{aligned}
+J &amp;= -y^T\log(a^{[L]}) - (1-y)^T\log (1-a^{[L]})\newline
+\Rightarrow \frac{\partial J}{\partial a^{[L]}_j} &amp;=-\frac{y_j}{a^{[L]}_j} - \frac{1-y_j}{1-a^{[L]}_j}\newline
+\Rightarrow \frac{\partial J}{\partial z_j^{[\ell]}} &amp;=  \frac{\partial J}{\partial a^{[L]}_j}\frac{d a^{[L]}_j}{dz^{[L]}_j}=
+\left(-\frac{y_j}{a^{[L]}_j} - \frac{1-y_j}{1-a^{[L]}_j}
+\right)a^{[L]}_j(1-a^{[L]}_j)=a^{[L]}_j-y_j\newline
+\Rightarrow \frac{\partial J}{\partial z^{[L]}}&amp;=a^{[L]}-y
+\end{aligned}
+$$</p>
+
+<ul>
+<li><code>$\delta^{[\ell]}=(\tilde{\Theta}^{[\ell]})^T\delta^{[\ell+1]}*g'(z^{[\ell]}), \ \ \ell=L-1,\ldots,2$</code> and <code>$\tilde{\Theta}=\Theta$</code> without the first column</li>
+</ul>
+
+<p>$$
+\begin{aligned}
+\frac{\partial J}{\partial a^{[\ell]}_{j}}&amp;=\sum_{i=1}^{s_{\ell+1}}
+\frac{\partial J}{\partial z^{[\ell+1]}_{i}}
+\frac{\partial z^{[\ell+1]}_{i}}{\partial a^{[\ell]}_{j}}\newline
+&amp;=\sum_{i=1}^{s_{\ell+1}}\delta^{[\ell+1]}_i\Theta_{ij}^{[\ell]}\newline
+&amp;=\Theta^{[\ell]T}_j\delta^{[\ell+1]}\text{   , where }\Theta^{[\ell]}_j\text{ is the jth column of }\Theta^{[\ell]}
+\end{aligned}
+$$</p>
+
+<p>$$
+\begin{aligned}
+&amp;\frac{\partial J}{\partial z^{[\ell]}_j} = \frac{\partial J}{\partial a^{[\ell]}_j}\frac{\partial a^{[\ell]}_j}{z^{[\ell]}_j}
+=\Theta^{[\ell]T}_j\delta^{[\ell+1]} g&rsquo;(z^{[\ell]})_j \newline
+\Rightarrow &amp;\frac{\partial J}{\partial z^{[\ell]}}=\tilde{\Theta}^{[\ell]T}\delta^{[\ell+1]}*g&rsquo;(z^{[\ell]})
+\end{aligned}
+$$</p>
+
+<ul>
+<li>unregularized case: <code>$ \frac{\partial J}{\partial\Theta^{[\ell]}}=\delta^{[\ell+1]}(a^{[\ell]})^T$</code></li>
+</ul>
+
+<p>$$
+\begin{aligned}
+\frac{\partial J}{\partial \Theta^{[\ell]}_{ij}}&amp;=\frac{\partial J}{\partial z^{[\ell+1]}_i}\frac{\partial z^{[\ell+1]}_i}{\partial \Theta^{[\ell]}_{ij}}\newline
+&amp;=\delta^{[\ell+1]}_i a^{[\ell]}_j
+\end{aligned}
+$$</p>
+
+<p>$$
+\Rightarrow \frac{\partial J}{\partial\Theta^{[\ell]}}=\delta^{[\ell+1]}a^{[\ell]T}
+$$</p>
+
+<hr />
+
+<p><code>$N$</code> <strong>training examples</strong>:</p>
+
+<ul>
+<li><p><code>$\Delta^{[L]}=A^{[L]}-Y$</code></p></li>
+
+<li><p><code>$\Delta^{[\ell]}=\Delta^{[\ell+1]}\tilde{\Theta}^{[\ell]}*g'(Z^{[\ell]}), \ \ \ell=L-1,\ldots,2$</code></p></li>
+
+<li><p>Gradient of <code>$\Theta^{[\ell]}$</code>:</p></li>
+</ul>
+
+<p>$$
+ D^{[\ell]}=\frac{1}{N}\Delta^{[\ell+1]T}A^{[\ell]}+\frac{\lambda}{N}\hat{\Theta}^{[\ell]},\text{ where } \hat{\Theta}^{[\ell]}=\Theta^{[\ell]}  \text{ with first column being all 0}
+$$</p>
+</blockquote>
 
 </main>
 
