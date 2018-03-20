@@ -20,14 +20,5 @@
       <description> 1 </description>
     </item>
     
-    <item>
-      <title>Data Manipulation at Scale 大规模数据处理</title>
-      <link>/post/2018/02/01/data-manipulation-at-scale/</link>
-      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/02/01/data-manipulation-at-scale/</guid>
-      <description>课程介绍  Data Manipulation at Scale: Systems and Algorithms 大规模数据处理：系统和算法【 Coursera链接 】 Data Science at Scale Specialization 的第一门课，共4门 制作方： University of Washington 教学方： Bill Howe  Twitter Sentiment Analysis 情感分析 分析目的  access the twitter Application Programming Interface(API) using python estimate the public&amp;rsquo;s perception (the sentiment) of a particular term or phrase analyze the relationship between location and mood based on a sample of twitter data  步骤  CLI安装 oauth2 package [用于授权登录]  pip3 install oauth2   创建 twitter 账号 到 https://apps.</description>
-    </item>
-    
   </channel>
 </rss>

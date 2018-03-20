@@ -30,9 +30,18 @@
     </item>
     
     <item>
+      <title>Cnn</title>
+      <link>/categories/cnn/</link>
+      <pubDate>Thu, 15 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/cnn/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>DeepLearning</title>
       <link>/categories/deeplearning/</link>
-      <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/deeplearning/</guid>
       <description></description>
@@ -57,9 +66,18 @@
     </item>
     
     <item>
+      <title>Lstm</title>
+      <link>/categories/lstm/</link>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/lstm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>MachineLearning</title>
       <link>/categories/machinelearning/</link>
-      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 11 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/categories/machinelearning/</guid>
       <description></description>
@@ -68,16 +86,25 @@
     <item>
       <title>NeuralNetworks</title>
       <link>/categories/neuralnetworks/</link>
-      <pubDate>Wed, 07 Mar 2018 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/neuralnetworks/</guid>
       <description></description>
     </item>
     
     <item>
+      <title>Nlp</title>
+      <link>/categories/nlp/</link>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/nlp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Python</title>
       <link>/categories/python/</link>
-      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/python/</guid>
       <description></description>
@@ -89,6 +116,15 @@
       <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>/categories/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rnn</title>
+      <link>/categories/rnn/</link>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/rnn/</guid>
       <description></description>
     </item>
     

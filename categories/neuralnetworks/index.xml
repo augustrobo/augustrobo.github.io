@@ -6,10 +6,28 @@
     <description>Recent content in NeuralNetworks on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/neuralnetworks/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sequence Models</title>
+      <link>/post/2018/03/20/cnns/</link>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/03/20/cnns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Convolutional Neural Networks</title>
+      <link>/post/2018/03/15/cnns/</link>
+      <pubDate>Thu, 15 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/03/15/cnns/</guid>
+      <description>Building Blocks of CNN Edge Detection Vertical Edge Detection Vertical and Horizontal Edge Detection Convolution Operation  tensorflow: tf.nn.conv2d keras: conv2D  Padding  $n\times n$ image, convolves with a $f\times f$ filter $\Rightarrow (n-f+1)\times(n-f+1)$ output downside:  shrinking output pixels at the corner is touched only once, information from the edge is thrown away  padding with zeros, $p=$ padding amount output: $(n+2p-f+1)\times (n+2p-f+1)$  Valid and Same Convolutions  valid: no padding same: output size = input size, $2p+1=f$, $f$ is usually odd  Strided Convolution  $n\times n$ image, convolves with a $f\times f$ filter, with padding $p$ and stride $s$  $\Rightarrow$ output size $=\left(\lfloor\frac{n+2p-f+1}{s}\rfloor+ 1\right)\times \left(\lfloor\frac{n+2p-f+1}{s}\rfloor+ 1\right)$   Convolution Over Volume  input size: $n\times n\times n_C$ ($n_C = $ # of channels) $n_C&#39;$ filters, each of size: $f\times f\times n_C$ output size: $(n-f+1)\times (n-f+1)\times n_C&#39;$  One Layer of a Convolutional Network  Notations: layer $\ell$  $f^{[\ell]}$ = filter size $p^{[\ell]}$ = padding $s^{[\ell]}$ = stride $n^{[\ell]}_C$ = # of filters input size: $n^{[\ell-1]}_H\times n^{[\ell-1]}_W\times n^{[\ell-1]}_C$ each filter size: $f^{[\ell]}\times f^{[\ell]}\times n^{[\ell-1]}_C$ output size: $n^{[\ell]}_H\times n^{[\ell]}_W\times n^{[\ell]}_C$ , where $$n^{[\ell]}_H=\left\lfloor \frac{n^{[\ell-1]}_H +2p^{[\ell]}-f^{[\ell]}}{s^{[\ell]}} +1 \right\rfloor,\\</description>
+    </item>
     
     <item>
       <title>CS231n-CNN for Visual Recognition-Assignment1</title>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Python Type Conversion | NOWHERESVILLE</title>
+    <title>Lstm | NOWHERESVILLE</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <header>
@@ -26,7 +26,7 @@
       </li>
       
       
-      <li class="pull-left ">
+      <li class="pull-left current">
         <a href="/categories/">~/categories</a>
       </li>
       
@@ -52,114 +52,21 @@
   <body>
     <br/>
 
-<div class="article-meta">
-<h1><span class="title">Python Type Conversion</span></h1>
-
-<h2 class="date">2018/01/01</h2>
-<p class="terms">
-  
-  
-  Categories: <a href="/categories/python">Python</a> 
-  
-  
-  
-  Tags: <a href="/tags/pythonbasics">pythonBasics</a> 
-  
-  
-</p>
-</div>
 
 
-<nav id="TableOfContents">
-<ul>
-<li><a href="#types">Types</a></li>
-<li><a href="#truthy-and-falsy">Truthy and Falsy</a></li>
-<li><a href="#explicit-data-type-conversion">Explicit Data Type Conversion</a></li>
-</ul>
-</nav>
+<h1>Lstm</h1>
 
 
-<main>
 
-
-<h1 id="types">Types</h1>
 
 <ul>
-<li>Variables in Python are <strong>dynamically-typed</strong>: declared without an explicit type.</li>
-<li><strong>objects</strong> have a type, so Python knows the type of a variable.</li>
-<li>No <code>char</code> in Python! Both <code>'</code> and <code>&quot;</code> create string literals</li>
+  
+  <li>
+    <span class="date">2018/03/20</span>
+    <a href="/post/2018/03/20/cnns/">Sequence Models</a>
+  </li>
+  
 </ul>
-
-<pre><code class="language-python">type(1)
-# &lt;class 'int'&gt;
-type(1.0)
-# &lt;class 'float'&gt;
-type(2/1)
-# &lt;class 'float'&gt;
-type(&quot;hello&quot;)
-# &lt;class 'str'&gt;
-type('a')
-# &lt;class 'str'&gt;
-type(True)
-# &lt;class 'bool'&gt;
-type(None)
-# &lt;class 'NoneType'&gt;
-type(int)
-# &lt;class 'type'&gt;
-type(type(int))
-# &lt;class 'type'&gt;
-type(print)
-# &lt;class 'builtin_function_or_method'&gt;
-</code></pre>
-
-<ul>
-<li><code>bool</code> is a subtype of <code>int</code>, where <code>True == 1</code> and <code>False == 0</code></li>
-</ul>
-
-<pre><code class="language-python">True == 1
-# True
-False == 0
-# True
-True == 2
-# False
-True or False
-# True (short-circuits)
-</code></pre>
-
-<h1 id="truthy-and-falsy">Truthy and Falsy</h1>
-
-<pre><code class="language-python"># 'Falsy'
-bool(None)
-bool(False)
-bool(0)
-bool(0.0)
-bool('')
-# Empty data structures are 'falsy'
-bool([]) # =&gt; False
-# Everything else is 'truthy'
-
-bool(2) # =&gt; True
-</code></pre>
-
-<h1 id="explicit-data-type-conversion">Explicit Data Type Conversion</h1>
-
-<pre><code class="language-python">str(333)
-# '333'
-int(&quot;33&quot;)
-# 33
-int(&quot;33.3&quot;)
-# ValueError
-float(&quot;33.3&quot;)
-# 33.3
-float(&quot;2&quot;)
-# 2.0
-float(&quot;1/2&quot;)
-# ValueError
-float(1/2)
-# 0.5
-</code></pre>
-
-</main>
 
     <footer>
       <script type="text/javascript" async

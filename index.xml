@@ -6,10 +6,28 @@
     <description>Recent content in Home on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 20 Mar 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Sequence Models</title>
+      <link>/post/2018/03/20/cnns/</link>
+      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/03/20/cnns/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Convolutional Neural Networks</title>
+      <link>/post/2018/03/15/cnns/</link>
+      <pubDate>Thu, 15 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/03/15/cnns/</guid>
+      <description>Building Blocks of CNN Edge Detection Vertical Edge Detection Vertical and Horizontal Edge Detection Convolution Operation  tensorflow: tf.nn.conv2d keras: conv2D  Padding  $n\times n$ image, convolves with a $f\times f$ filter $\Rightarrow (n-f+1)\times(n-f+1)$ output downside:  shrinking output pixels at the corner is touched only once, information from the edge is thrown away  padding with zeros, $p=$ padding amount output: $(n+2p-f+1)\times (n+2p-f+1)$  Valid and Same Convolutions  valid: no padding same: output size = input size, $2p+1=f$, $f$ is usually odd  Strided Convolution  $n\times n$ image, convolves with a $f\times f$ filter, with padding $p$ and stride $s$  $\Rightarrow$ output size $=\left(\lfloor\frac{n+2p-f+1}{s}\rfloor+ 1\right)\times \left(\lfloor\frac{n+2p-f+1}{s}\rfloor+ 1\right)$   Convolution Over Volume  input size: $n\times n\times n_C$ ($n_C = $ # of channels) $n_C&#39;$ filters, each of size: $f\times f\times n_C$ output size: $(n-f+1)\times (n-f+1)\times n_C&#39;$  One Layer of a Convolutional Network  Notations: layer $\ell$  $f^{[\ell]}$ = filter size $p^{[\ell]}$ = padding $s^{[\ell]}$ = stride $n^{[\ell]}_C$ = # of filters input size: $n^{[\ell-1]}_H\times n^{[\ell-1]}_W\times n^{[\ell-1]}_C$ each filter size: $f^{[\ell]}\times f^{[\ell]}\times n^{[\ell-1]}_C$ output size: $n^{[\ell]}_H\times n^{[\ell]}_W\times n^{[\ell]}_C$ , where $$n^{[\ell]}_H=\left\lfloor \frac{n^{[\ell-1]}_H +2p^{[\ell]}-f^{[\ell]}}{s^{[\ell]}} +1 \right\rfloor,\\</description>
+    </item>
     
     <item>
       <title>CS231n-CNN for Visual Recognition-Assignment1</title>
@@ -36,15 +54,6 @@
       
       <guid>/post/2018/02/05/mapreduce/</guid>
       <description> 1 </description>
-    </item>
-    
-    <item>
-      <title>Data Manipulation at Scale 大规模数据处理</title>
-      <link>/post/2018/02/01/data-manipulation-at-scale/</link>
-      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/02/01/data-manipulation-at-scale/</guid>
-      <description>课程介绍  Data Manipulation at Scale: Systems and Algorithms 大规模数据处理：系统和算法【 Coursera链接 】 Data Science at Scale Specialization 的第一门课，共4门 制作方： University of Washington 教学方： Bill Howe  Twitter Sentiment Analysis 情感分析 分析目的  access the twitter Application Programming Interface(API) using python estimate the public&amp;rsquo;s perception (the sentiment) of a particular term or phrase analyze the relationship between location and mood based on a sample of twitter data  步骤  CLI安装 oauth2 package [用于授权登录]  pip3 install oauth2   创建 twitter 账号 到 https://apps.</description>
     </item>
     
     <item>
@@ -99,15 +108,6 @@ round(3.24, 1) #是四舍五入 ## 3.2 round(3.26, 1) #是四舍五入 ## 3.3 ro
 进一步解释：十进制小数 $0.2$ 和 $0.3$ 的二进制表示分别为：
 $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\left(\frac{1}{128}+\frac{1}{256}\right)+\cdots =\frac{\frac{1}{8}+\frac{1}{16}}{1-\frac{1}{16}} =\frac{3}{15}=\frac{1}{5}\newline &amp;amp;=(0.\dot{0}\dot{0}\dot{1}\dot{1})_2 \end{align} $$
 以及 $$ \begin{align} (0.</description>
-    </item>
-    
-    <item>
-      <title>Python Type Conversion</title>
-      <link>/post/2018/01/01/python-type-conversion/</link>
-      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/01/01/python-type-conversion/</guid>
-      <description>Types  Variables in Python are dynamically-typed: declared without an explicit type. objects have a type, so Python knows the type of a variable. No char in Python! Both &#39; and &amp;quot; create string literals  type(1) # &amp;lt;class &#39;int&#39;&amp;gt; type(1.0) # &amp;lt;class &#39;float&#39;&amp;gt; type(2/1) # &amp;lt;class &#39;float&#39;&amp;gt; type(&amp;quot;hello&amp;quot;) # &amp;lt;class &#39;str&#39;&amp;gt; type(&#39;a&#39;) # &amp;lt;class &#39;str&#39;&amp;gt; type(True) # &amp;lt;class &#39;bool&#39;&amp;gt; type(None) # &amp;lt;class &#39;NoneType&#39;&amp;gt; type(int) # &amp;lt;class &#39;type&#39;&amp;gt; type(type(int)) # &amp;lt;class &#39;type&#39;&amp;gt; type(print) # &amp;lt;class &#39;builtin_function_or_method&#39;&amp;gt;   bool is a subtype of int, where True == 1 and False == 0  True == 1 # True False == 0 # True True == 2 # False True or False # True (short-circuits)  Truthy and Falsy # &#39;Falsy&#39; bool(None) bool(False) bool(0) bool(0.</description>
     </item>
     
     <item>
@@ -217,7 +217,7 @@ s.t. \begin{cases} \theta^Tx^{(i)}\geq 1 &amp;amp;\text{if } y^{(i)}=1\newline \
       <pubDate>Sun, 05 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/11/05/system-design/</guid>
-      <description></description>
+      <description> How to Improve Learning Algorithms  get more training examples feature selection get additional features add polynomial features decrease/increase $\lambda$  Evaluate a Learning Algorithm  training/validation/test set, e.g. 60/20/20 split training/validation/test error model selection:  optimize parameters by minimizing training error for each model select the model with the least validation error (e.g. select polynomial degree $d$)  estimate generalization error using test error  Machine Learning Diagnostic: Bias vs Variance  can rule out certain courses of action as being unlikely to improve the performance of your learning algorithm significantly high bias = underfit = high training error, validation error $\approx$ training error high variance = overfit = low training error, validation error $\gg$ training error  Regularization and Bias/Variance  large $\lambda$ $\Rightarrow$ high bias = underfit small $\lambda$ $\Rightarrow$ high variance = overfit choose regularization parameter  create a list of $\lambda$s create a list of models iterate through the $\lambda$s and for each $\lambda$ go through all the models to optimize parameter $\Theta$ compute validation error using the learned $\Theta$ select the best combo with the least validation error estimate generalization error using test error   Learning Curves  as the training set gets larger, the training error increases error value will plateau out after a certain training set size Experiencing high bias:  Low training set size: low training error, high validation error Large training set size: high training error, validation error $\approx$ training error getting more training data will not (by itself) help much    Experiencing high variance:  Low training set size: low training error, high validation error Large training set size: training error increases with training set size, validation error continues to decrease without leveling off; difference between 2 errors remains significant getting more training data is likely to help   Debugging a Learning Algorithm  get more training examples $\rightarrow$ fit high variance feature selection $\rightarrow$ fit high variance get additional features $\rightarrow$ fit high bias add polynomial features $\rightarrow$ fit high bias increase $\lambda$ $\rightarrow$ fit high variance decrease $\lambda$ $\rightarrow$ fit high bias  Neural Networks and Overfitting  small nn  fewer parameters more prone to underfitting computationally cheaper  larger nn  more parameters more prone to overfitting computationally expensive use regularization to address overfitting   </description>
     </item>
     
     <item>
@@ -333,15 +333,6 @@ Forward Propagation: Vectorized Implementation $$ [x] \rightarrow [a^{[2]}] \rig
       
       <guid>/post/2017/10/03/linear-regression/</guid>
       <description></description>
-    </item>
-    
-    <item>
-      <title>PCA</title>
-      <link>/post/2017/07/02/pca/</link>
-      <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/07/02/pca/</guid>
-      <description>Applications of PCAData Visualizationsummary(iris)## Sepal.Length Sepal.Width Petal.Length Petal.Width ## Min. :4.300 Min. :2.000 Min. :1.000 Min. :0.100 ## 1st Qu.:5.100 1st Qu.:2.800 1st Qu.:1.600 1st Qu.:0.300 ## Median :5.800 Median :3.000 Median :4.350 Median :1.300 ## Mean :5.843 Mean :3.057 Mean :3.758 Mean :1.199 ## 3rd Qu.:6.400 3rd Qu.:3.300 3rd Qu.:5.100 3rd Qu.:1.800 ## Max. :7.900 Max. :4.400 Max. :6.900 Max. :2.500 ## Species ## setosa :50 ## versicolor:50 ## virginica :50 ## ## ## # Customize the colorssetcols = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#E7B800&amp;quot;, &amp;quot;#FC4E07&amp;quot;)# Customize the lower panel: correlation efficientscorrelation.</description>
     </item>
     
   </channel>

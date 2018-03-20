@@ -68,10 +68,147 @@
 </div>
 
 
-
+<nav id="TableOfContents">
+<ul>
+<li><a href="#how-to-improve-learning-algorithms">How to Improve Learning Algorithms</a></li>
+<li><a href="#evaluate-a-learning-algorithm">Evaluate a Learning Algorithm</a></li>
+<li><a href="#machine-learning-diagnostic-bias-vs-variance">Machine Learning Diagnostic: Bias vs Variance</a>
+<ul>
+<li><a href="#regularization-and-bias-variance">Regularization and Bias/Variance</a></li>
+<li><a href="#learning-curves">Learning Curves</a></li>
+</ul></li>
+<li><a href="#debugging-a-learning-algorithm">Debugging a Learning Algorithm</a></li>
+<li><a href="#neural-networks-and-overfitting">Neural Networks and Overfitting</a></li>
+</ul>
+</nav>
 
 
 <main>
+
+
+<h1 id="how-to-improve-learning-algorithms">How to Improve Learning Algorithms</h1>
+
+<ul>
+<li>get more training examples</li>
+<li>feature selection</li>
+<li>get additional features</li>
+<li>add polynomial features</li>
+<li>decrease/increase <code>$\lambda$</code></li>
+</ul>
+
+<hr />
+
+<h1 id="evaluate-a-learning-algorithm">Evaluate a Learning Algorithm</h1>
+
+<ul>
+<li>training/validation/test set, e.g. 60/20/20 split</li>
+<li>training/validation/test error</li>
+<li>model selection:
+
+<ol>
+<li>optimize parameters by minimizing training error for each model</li>
+<li>select the model with the least validation error (e.g. select polynomial degree <code>$d$</code>)</li>
+</ol></li>
+<li>estimate <strong>generalization error</strong> using test error</li>
+</ul>
+
+<hr />
+
+<h1 id="machine-learning-diagnostic-bias-vs-variance">Machine Learning Diagnostic: Bias vs Variance</h1>
+
+<ul>
+<li>can rule out certain courses of action as being unlikely to improve the performance of your learning algorithm significantly</li>
+<li>high bias = underfit = high training error, validation error <code>$\approx$</code> training error</li>
+<li>high variance = overfit = low training error, validation error <code>$\gg$</code> training error</li>
+</ul>
+
+<p><img src="/stanfordML/biasvar.png" alt="bias vs variance" /></p>
+
+<hr />
+
+<h2 id="regularization-and-bias-variance">Regularization and Bias/Variance</h2>
+
+<ul>
+<li>large <code>$\lambda$</code> <code>$\Rightarrow$</code> high bias = underfit</li>
+<li>small <code>$\lambda$</code> <code>$\Rightarrow$</code> high variance = overfit</li>
+<li>choose regularization parameter
+
+<ol>
+<li>create a list of <code>$\lambda$</code>s</li>
+<li>create a list of models</li>
+<li>iterate through the <code>$\lambda$</code>s and for each <code>$\lambda$</code> go through all the models to optimize parameter <code>$\Theta$</code></li>
+<li>compute validation error using the learned <code>$\Theta$</code></li>
+<li>select the best combo with the least validation error</li>
+<li>estimate <strong>generalization error</strong> using test error</li>
+</ol></li>
+</ul>
+
+<p><img src="/stanfordML/lambda.PNG" alt="regularization" /></p>
+
+<hr />
+
+<h2 id="learning-curves">Learning Curves</h2>
+
+<ul>
+<li>as the training set gets larger, the training error increases</li>
+<li>error value will plateau out after a certain training set size</li>
+<li><strong>Experiencing high bias</strong>:
+
+<ul>
+<li><strong>Low training set size</strong>: low training error, high validation error</li>
+<li><strong>Large training set size</strong>: high training error, validation error <code>$\approx$</code> training error</li>
+<li>getting more training data will not <strong>(by itself)</strong> help much</li>
+</ul></li>
+</ul>
+
+<p><img src="/stanfordML/bias.png" alt="bias" /></p>
+
+<ul>
+<li><strong>Experiencing high variance:</strong>
+
+<ul>
+<li><strong>Low training set size</strong>: low training error, high validation error</li>
+<li><strong>Large training set size</strong>: training error increases with training set size, validation error continues to decrease without leveling off; difference between 2 errors remains significant</li>
+<li>getting more training data is likely to help</li>
+</ul></li>
+</ul>
+
+<p><img src="/stanfordML/variance.png" alt="variance" /></p>
+
+<hr />
+
+<h1 id="debugging-a-learning-algorithm">Debugging a Learning Algorithm</h1>
+
+<ul>
+<li>get more training examples <code>$\rightarrow$</code> fit high variance</li>
+<li>feature selection <code>$\rightarrow$</code> fit high variance</li>
+<li>get additional features <code>$\rightarrow$</code> fit high bias</li>
+<li>add polynomial features <code>$\rightarrow$</code> fit high bias</li>
+<li>increase <code>$\lambda$</code> <code>$\rightarrow$</code> fit high variance</li>
+<li>decrease <code>$\lambda$</code> <code>$\rightarrow$</code> fit high bias</li>
+</ul>
+
+<hr />
+
+<h1 id="neural-networks-and-overfitting">Neural Networks and Overfitting</h1>
+
+<ul>
+<li>small nn
+
+<ul>
+<li>fewer parameters</li>
+<li>more prone to underfitting</li>
+<li>computationally cheaper</li>
+</ul></li>
+<li>larger nn
+
+<ul>
+<li>more parameters</li>
+<li>more prone to overfitting</li>
+<li>computationally expensive</li>
+<li>use <strong>regularization</strong> to address overfitting</li>
+</ul></li>
+</ul>
 
 </main>
 

@@ -1,24 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>DataVisualization on NOWHERESVILLE</title>
-    <link>/tags/datavisualization/</link>
-    <description>Recent content in DataVisualization on NOWHERESVILLE</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 02 Jul 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/datavisualization/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>PCA</title>
-      <link>/post/2017/07/02/pca/</link>
-      <pubDate>Sun, 02 Jul 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/07/02/pca/</guid>
-      <description>Applications of PCAData Visualizationsummary(iris)## Sepal.Length Sepal.Width Petal.Length Petal.Width ## Min. :4.300 Min. :2.000 Min. :1.000 Min. :0.100 ## 1st Qu.:5.100 1st Qu.:2.800 1st Qu.:1.600 1st Qu.:0.300 ## Median :5.800 Median :3.000 Median :4.350 Median :1.300 ## Mean :5.843 Mean :3.057 Mean :3.758 Mean :1.199 ## 3rd Qu.:6.400 3rd Qu.:3.300 3rd Qu.:5.100 3rd Qu.:1.800 ## Max. :7.900 Max. :4.400 Max. :6.900 Max. :2.500 ## Species ## setosa :50 ## versicolor:50 ## virginica :50 ## ## ## # Customize the colorssetcols = c(&amp;quot;#00AFBB&amp;quot;, &amp;quot;#E7B800&amp;quot;, &amp;quot;#FC4E07&amp;quot;)# Customize the lower panel: correlation efficientscorrelation.</description>
-    </item>
-    
-  </channel>
-</rss>

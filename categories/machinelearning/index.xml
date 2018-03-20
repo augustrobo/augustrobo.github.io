@@ -6,19 +6,10 @@
     <description>Recent content in MachineLearning on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 01 Feb 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 11 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/machinelearning/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Data Manipulation at Scale 大规模数据处理</title>
-      <link>/post/2018/02/01/data-manipulation-at-scale/</link>
-      <pubDate>Thu, 01 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/02/01/data-manipulation-at-scale/</guid>
-      <description>课程介绍  Data Manipulation at Scale: Systems and Algorithms 大规模数据处理：系统和算法【 Coursera链接 】 Data Science at Scale Specialization 的第一门课，共4门 制作方： University of Washington 教学方： Bill Howe  Twitter Sentiment Analysis 情感分析 分析目的  access the twitter Application Programming Interface(API) using python estimate the public&amp;rsquo;s perception (the sentiment) of a particular term or phrase analyze the relationship between location and mood based on a sample of twitter data  步骤  CLI安装 oauth2 package [用于授权登录]  pip3 install oauth2   创建 twitter 账号 到 https://apps.</description>
-    </item>
     
     <item>
       <title>ML - Application Example - Photo OCR</title>
@@ -93,7 +84,7 @@ s.t. \begin{cases} \theta^Tx^{(i)}\geq 1 &amp;amp;\text{if } y^{(i)}=1\newline \
       <pubDate>Sun, 05 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>/post/2017/11/05/system-design/</guid>
-      <description></description>
+      <description> How to Improve Learning Algorithms  get more training examples feature selection get additional features add polynomial features decrease/increase $\lambda$  Evaluate a Learning Algorithm  training/validation/test set, e.g. 60/20/20 split training/validation/test error model selection:  optimize parameters by minimizing training error for each model select the model with the least validation error (e.g. select polynomial degree $d$)  estimate generalization error using test error  Machine Learning Diagnostic: Bias vs Variance  can rule out certain courses of action as being unlikely to improve the performance of your learning algorithm significantly high bias = underfit = high training error, validation error $\approx$ training error high variance = overfit = low training error, validation error $\gg$ training error  Regularization and Bias/Variance  large $\lambda$ $\Rightarrow$ high bias = underfit small $\lambda$ $\Rightarrow$ high variance = overfit choose regularization parameter  create a list of $\lambda$s create a list of models iterate through the $\lambda$s and for each $\lambda$ go through all the models to optimize parameter $\Theta$ compute validation error using the learned $\Theta$ select the best combo with the least validation error estimate generalization error using test error   Learning Curves  as the training set gets larger, the training error increases error value will plateau out after a certain training set size Experiencing high bias:  Low training set size: low training error, high validation error Large training set size: high training error, validation error $\approx$ training error getting more training data will not (by itself) help much    Experiencing high variance:  Low training set size: low training error, high validation error Large training set size: training error increases with training set size, validation error continues to decrease without leveling off; difference between 2 errors remains significant getting more training data is likely to help   Debugging a Learning Algorithm  get more training examples $\rightarrow$ fit high variance feature selection $\rightarrow$ fit high variance get additional features $\rightarrow$ fit high bias add polynomial features $\rightarrow$ fit high bias increase $\lambda$ $\rightarrow$ fit high variance decrease $\lambda$ $\rightarrow$ fit high bias  Neural Networks and Overfitting  small nn  fewer parameters more prone to underfitting computationally cheaper  larger nn  more parameters more prone to overfitting computationally expensive use regularization to address overfitting   </description>
     </item>
     
     <item>

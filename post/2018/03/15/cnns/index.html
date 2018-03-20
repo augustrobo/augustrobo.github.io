@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Convolutional Neural Networks | NOWHERESVILLE</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ascetic.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="/">/home/nowheresville</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Convolutional Neural Networks</span></h1>
+
+<h2 class="date">2018/03/15</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/neuralnetworks">neuralNetworks</a> <a href="/categories/deeplearning">deepLearning</a> <a href="/categories/cnn">cnn</a> 
+  
+  
+  
+  Tags: <a href="/tags/computervision">computerVision</a> <a href="/tags/cnn">cnn</a> 
+  
+  
+</p>
+</div>
+
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="#building-blocks-of-cnn">Building Blocks of CNN</a>
+<ul>
+<li><a href="#edge-detection">Edge Detection</a>
+<ul>
+<li><a href="#vertical-edge-detection">Vertical Edge Detection</a></li>
+<li><a href="#vertical-and-horizontal-edge-detection">Vertical and Horizontal Edge Detection</a></li>
+<li><a href="#convolution-operation">Convolution Operation</a></li>
+</ul></li>
+<li><a href="#padding">Padding</a>
+<ul>
+<li><a href="#valid-and-same-convolutions">Valid and Same Convolutions</a></li>
+</ul></li>
+<li><a href="#strided-convolution">Strided Convolution</a></li>
+<li><a href="#convolution-over-volume">Convolution Over Volume</a></li>
+<li><a href="#one-layer-of-a-convolutional-network">One Layer of a Convolutional Network</a></li>
+<li><a href="#simple-convolutional-network-example">Simple Convolutional Network Example</a></li>
+<li><a href="#pooling-layer">Pooling Layer</a></li>
+<li><a href="#neural-network-example-lenet-5">Neural Network Example (LeNet-5)</a></li>
+<li><a href="#why-convolutions">Why Convolutions?</a></li>
+</ul></li>
+</ul>
+</nav>
+
+
+<main>
+
+
+<h1 id="building-blocks-of-cnn">Building Blocks of CNN</h1>
+
+<h2 id="edge-detection">Edge Detection</h2>
+
+<h3 id="vertical-edge-detection">Vertical Edge Detection</h3>
+
+<p><img src="/NN/edge.PNG" alt="vertical edge detection" /></p>
+
+<h3 id="vertical-and-horizontal-edge-detection">Vertical and Horizontal Edge Detection</h3>
+
+<p><img src="/NN/hvedge.PNG" alt="horizontal and vertical edge detection" /></p>
+
+<h3 id="convolution-operation">Convolution Operation</h3>
+
+<ul>
+<li>tensorflow: <code>tf.nn.conv2d</code></li>
+<li>keras: <code>conv2D</code></li>
+</ul>
+
+<hr />
+
+<h2 id="padding">Padding</h2>
+
+<ul>
+<li><code>$n\times n$</code> image, convolves with a <code>$f\times f$</code> filter <code>$\Rightarrow (n-f+1)\times(n-f+1)$</code> output</li>
+<li>downside:
+
+<ol>
+<li>shrinking output</li>
+<li>pixels at the corner is touched only once, information from the edge is thrown away</li>
+</ol></li>
+<li>padding with zeros, <code>$p=$</code> padding amount</li>
+<li>output: <code>$(n+2p-f+1)\times (n+2p-f+1)$</code></li>
+</ul>
+
+<hr />
+
+<h3 id="valid-and-same-convolutions">Valid and Same Convolutions</h3>
+
+<ul>
+<li><strong>valid</strong>: no padding</li>
+<li><strong>same</strong>: output size = input size, <code>$2p+1=f$</code>, <code>$f$</code> is usually odd</li>
+</ul>
+
+<hr />
+
+<h2 id="strided-convolution">Strided Convolution</h2>
+
+<ul>
+<li><code>$n\times n$</code> image, convolves with a <code>$f\times f$</code> filter, with padding <code>$p$</code> and stride <code>$s$</code>
+
+<ul>
+<li><code>$\Rightarrow$</code> output size <code>$=\left(\lfloor\frac{n+2p-f+1}{s}\rfloor+ 1\right)\times \left(\lfloor\frac{n+2p-f+1}{s}\rfloor+ 1\right)$</code></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="convolution-over-volume">Convolution Over Volume</h2>
+
+<ul>
+<li>input size: <code>$n\times n\times n_C$</code> (<code>$n_C = $</code> # of channels)</li>
+<li><code>$n_C'$</code> filters, each of size: <code>$f\times f\times n_C$</code></li>
+<li>output size: <code>$(n-f+1)\times (n-f+1)\times n_C'$</code></li>
+</ul>
+
+<p><img src="/NN/volume.PNG" alt="multiple filters" /></p>
+
+<h2 id="one-layer-of-a-convolutional-network">One Layer of a Convolutional Network</h2>
+
+<ul>
+<li>Notations: layer <code>$\ell$</code>
+
+<ul>
+<li><code>$f^{[\ell]}$</code>  = filter size</li>
+<li><code>$p^{[\ell]}$</code> = padding</li>
+<li><code>$s^{[\ell]}$</code> = stride</li>
+<li><code>$n^{[\ell]}_C$</code> = # of filters</li>
+<li>input size: <code>$n^{[\ell-1]}_H\times n^{[\ell-1]}_W\times n^{[\ell-1]}_C$</code></li>
+<li>each filter size: <code>$f^{[\ell]}\times f^{[\ell]}\times n^{[\ell-1]}_C$</code></li>
+<li>output size: <code>$n^{[\ell]}_H\times n^{[\ell]}_W\times n^{[\ell]}_C$</code>  , where $$n^{[\ell]}_H=\left\lfloor \frac{n^{[\ell-1]}_H +2p^{[\ell]}-f^{[\ell]}}{s^{[\ell]}} +1 \right\rfloor,\\<br />
+n^{[\ell]}_W=\left\lfloor \frac{n^{[\ell-1]}_W +2p^{[\ell]}-f^{[\ell]}}{s^{[\ell]}} +1 \right\rfloor$$</li>
+<li>activations: <code>$n^{[\ell]}_H\times n^{[\ell]}_W\times n^{[\ell]}_C$</code></li>
+<li>weights: <code>$f^{[\ell]}\times f^{[\ell]}\times n^{[\ell-1]}_C\times n^{[\ell]}_C$</code></li>
+<li>bias: <code>$1\times 1\times 1\times n^{[\ell]}_C$</code></li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/layer.PNG" alt="one layer of cnn" /></p>
+
+<h2 id="simple-convolutional-network-example">Simple Convolutional Network Example</h2>
+
+<p><strong><u>Types of layer in a convolutional network</u></strong>:</p>
+
+<ul>
+<li>Convolution (CONV)</li>
+<li>Pooling (POOL)</li>
+<li>Fully connected (FC)</li>
+</ul>
+
+<p><img src="/NN/cnn.PNG" alt="simple cnn" /></p>
+
+<h2 id="pooling-layer">Pooling Layer</h2>
+
+<ul>
+<li>hyperparameters
+
+<ul>
+<li><code>$f$</code>: filter size</li>
+<li><code>$s$</code>: stride</li>
+<li><strong>max</strong> or <strong>average</strong> pooling</li>
+<li><code>$p$</code>: padding (rarely use)</li>
+</ul></li>
+<li>no parameters to learn!</li>
+<li>input size: <code>$n_H\times n_W\times n_c$</code></li>
+<li>output size (no padding): <code>$\lfloor \frac{n_H-f}{s}+1\rfloor \times \lfloor \frac{n_W-f}{s}+1\rfloor\times n_c$</code></li>
+</ul>
+
+<hr />
+
+<h2 id="neural-network-example-lenet-5">Neural Network Example (LeNet-5)</h2>
+
+<p><img src="/NN/lenet.PNG" alt="lenet5" /></p>
+
+<h2 id="why-convolutions">Why Convolutions?</h2>
+
+<ul>
+<li><strong>parameter sharing</strong>: a feature detector (such as a vertical edge detector) that is useful in one part of the image is probably useful in another part of the image; reduces the total number of parameters, thus <strong>reducing overfitting</strong></li>
+<li><strong>sparsity of connection</strong>s: in each layer, each output value depends only on a small number of inputs</li>
+</ul>
+
+</main>
+
+    <footer>
+      <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      <a href="mailto:zhuxm2017@163.com">Email</a> | <a href="https://github.com/augustrobo">Github</a>
+      
+    </footer>
+  </body>
+</html>
+
