@@ -101,6 +101,16 @@
 <li><a href="#parameters-and-hyperparameters">Parameters and Hyperparameters</a></li>
 <li><a href="#build-deep-neural-network-image-classification-cat-non-cat-python-code">Build Deep Neural Network - Image Classification (cat/non-cat) - Python Code</a></li>
 </ul></li>
+<li><a href="#practical-aspect-of-deep-learning">Practical Aspect of Deep Learning</a>
+<ul>
+<li><a href="#regularization">Regularization</a>
+<ul>
+<li><a href="#dropout-regularization">Dropout Regularization</a></li>
+<li><a href="#other-regularization-methods">Other Regularization Methods</a></li>
+</ul></li>
+<li><a href="#speed-up-training">Speed Up Training</a></li>
+<li><a href="#debugging-of-backpropagation-gradient-checking">Debugging of Backpropagation: gradient checking</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -246,9 +256,9 @@ $$</p>
 <blockquote>
 <p>Given <code>$\{x^{(i)}, y^{(i)}\}_{i=1}^m$</code>, want <code>$\hat{y}^{(i)}=\sigma(\omega^Tx^{(i)}+b)\approx y^{(i)}$</code></p>
 
-<p>loss(error) function: <code>$L(\hat{y},y)=-\left[y\log \hat{y}+(1-y)\log(1-\hat{y})\right]$</code></p>
+<p>loss(error) function: <code>$\mathcal{L}(\hat{y},y)=-\left[y\log \hat{y}+(1-y)\log(1-\hat{y})\right]$</code></p>
 
-<p>cost function: <code>$J(\omega,b)=\frac{1}{m}\sum\limits_{i=1}^m L(\hat{y}^{(i)}, y^{(i)})=-\frac{1}{m}\sum\limits_{i=1}^m\left[y^{(i)}\log \hat{y}^{(i)}+(1-y^{(i)})\log(1-\hat{y}^{(i)})\right]$</code></p>
+<p>cost function: <code>$J(\omega,b)=\frac{1}{m}\sum\limits_{i=1}^m \mathcal{L}(\hat{y}^{(i)}, y^{(i)})=-\frac{1}{m}\sum\limits_{i=1}^m\left[y^{(i)}\log \hat{y}^{(i)}+(1-y^{(i)})\log(1-\hat{y}^{(i)})\right]$</code></p>
 </blockquote>
 
 <ul>
@@ -287,17 +297,17 @@ $$</p>
 
 <p><code>$\hat{y} = a = \sigma(z)$</code></p>
 
-<p><code>$L(a,y)=-(y\log a+(1-y)\log(1-a))$</code></p>
+<p><code>$\mathcal{L}(a,y)=-(y\log a+(1-y)\log(1-a))$</code></p>
 
 <hr />
 
-<p><code>da</code> := <code>$\frac{dL}{da}=-\frac{y}{a}+\frac{1-y}{1-a}$</code></p>
+<p><code>da</code> := <code>$\frac{d\mathcal{L}}{da}=-\frac{y}{a}+\frac{1-y}{1-a}$</code></p>
 
-<p><code>dz</code> := <code>$\frac{dL}{dz}=\frac{dL}{da}\frac{da}{dz}=\left[-\frac{y}{a}+\frac{1-y}{1-a}\right]a(1-a)=a-y$</code></p>
+<p><code>dz</code> := <code>$\frac{d\mathcal{L}}{dz}=\frac{d\mathcal{L}}{da}\frac{da}{dz}=\left[-\frac{y}{a}+\frac{1-y}{1-a}\right]a(1-a)=a-y$</code></p>
 
-<p><code>dwi</code> := <code>$\frac{\partial L}{\partial \omega_i}=x_i\frac{dL}{dz}$</code> = <code>xi*dz</code></p>
+<p><code>dwi</code> := <code>$\frac{\partial \mathcal{L}}{\partial \omega_i}=x_i\frac{d\mathcal{L}}{dz}$</code> = <code>xi*dz</code></p>
 
-<p><code>db</code> := <code>$\frac{\partial L}{\partial b}=\frac{dL}{dz}$</code> = <code>dz</code></p>
+<p><code>db</code> := <code>$\frac{\partial \mathcal{L}}{\partial b}=\frac{d\mathcal{L}}{dz}$</code> = <code>dz</code></p>
 
 <p><code>$\omega_i\leftarrow \omega_i - \alpha$</code> <code>dwi</code></p>
 
@@ -311,13 +321,13 @@ $$</p>
 
 <p><code>$\hat{y}^{(i)} = a^{(i)} = \sigma(z^{(i)})$</code></p>
 
-<p><code>$L(a^{(i)},y^{(i)})=-(y^{(i)}\log a^{(i)}+(1-y^{(i)})\log(1-a^{(i)}))$</code></p>
+<p><code>$\mathcal{L}(a^{(i)},y^{(i)})=-(y^{(i)}\log a^{(i)}+(1-y^{(i)})\log(1-a^{(i)}))$</code></p>
 
-<p><code>$J(\omega,b)=\frac{1}{m}\sum_{i=1}^mL(a^{(i)},y^{(i)})$</code></p>
+<p><code>$J(\omega,b)=\frac{1}{m}\sum_{i=1}^m \mathcal{L}(a^{(i)},y^{(i)})$</code></p>
 
 <hr />
 
-<p><code>$\frac{\partial J}{\partial\omega_i} = \frac{1}{m}\sum_{i=1}^m\frac{\partial}{\partial\omega_i}L(a^{(i)},y^{(i)})$</code></p>
+<p><code>$\frac{\partial J}{\partial\omega_i} = \frac{1}{m}\sum_{i=1}^m\frac{\partial}{\partial\omega_i}\mathcal{L}(a^{(i)},y^{(i)})$</code></p>
 </blockquote>
 
 <p>2 <code>for</code> loops: loop over all entries (<code>$m$</code>), loop over all features  (<code>$n$</code>)</p>
@@ -373,10 +383,10 @@ $$</p>
 $$</p>
 
 <p>$$
-\Rightarrow \log\Pr(y|x)=y\log\hat{y}+(1-y)\log(1-\hat{y})=-L(\hat{y},y)
+\Rightarrow \log\Pr(y|x)=y\log\hat{y}+(1-y)\log(1-\hat{y})=-\mathcal{L}(\hat{y},y)
 $$</p>
 
-<p><strong>Goal</strong>: maximize <code>$\Pr(y|x)$</code> <code>$\Leftrightarrow$</code> minimize <code>$L(\hat{y},y)$</code></p>
+<p><strong>Goal</strong>: maximize <code>$\Pr(y|x)$</code> <code>$\Leftrightarrow$</code> minimize <code>$\mathcal{L}(\hat{y},y)$</code></p>
 
 <hr />
 
@@ -384,9 +394,9 @@ $$</p>
 
 <p>maximize <code>$\Pr(\text{labels in training set}) = \prod_{i=1}^n\Pr(y^{(i)}|x^{(i)})$</code></p>
 
-<p><code>$\Leftrightarrow$</code> maximize <code>$\log  \prod_{i=1}^n\Pr(y^{(i)}|x^{(i)})=\sum_{i=1}^m\log\Pr(y^{(i)}|x^{(i)})=-\sum_{i=1}^m L(\hat{y}^{(i)},y^{(i)})$</code></p>
+<p><code>$\Leftrightarrow$</code> maximize <code>$\log  \prod_{i=1}^n\Pr(y^{(i)}|x^{(i)})=\sum_{i=1}^m\log\Pr(y^{(i)}|x^{(i)})=-\sum_{i=1}^m \mathcal{L}(\hat{y}^{(i)},y^{(i)})$</code></p>
 
-<p><code>$\Leftrightarrow$</code> minimize <code>$J(\omega,b)=\frac{1}{m}\sum_{i=1}^m L(\hat{y}^{(i)},y^{(i)})$</code></p>
+<p><code>$\Leftrightarrow$</code> minimize <code>$J(\omega,b)=\frac{1}{m}\sum_{i=1}^m \mathcal{L}(\hat{y}^{(i)},y^{(i)})$</code></p>
 
 <hr />
 
@@ -698,9 +708,193 @@ $$</p>
 </ul></li>
 </ul>
 
+<hr />
+
 <h2 id="build-deep-neural-network-image-classification-cat-non-cat-python-code">Build Deep Neural Network - Image Classification (cat/non-cat) - Python Code</h2>
 
 <p><a href="https://github.com/augustrobo/Neural-Networks-and-Deep-Learning/blob/master/03-Build-Deep-Neural-Network/Building%20Deep%20Neural%20Network.ipynb">Jupyter Notebook</a></p>
+
+<hr />
+
+<h1 id="practical-aspect-of-deep-learning">Practical Aspect of Deep Learning</h1>
+
+<ul>
+<li>train/dev/test sets
+
+<ul>
+<li>traditional rules of thumb ratio: 60/20/20</li>
+<li>big data set: e.g. 98/1/1, 99.5/.4/.1</li>
+</ul></li>
+<li>mismatched train/test distribution
+
+<ul>
+<li><strong><u>guideline</u></strong>: make sure <strong>dev</strong> and <strong>test</strong> come from same distribution</li>
+</ul></li>
+<li>not having a test set is ok (only dev set)</li>
+<li>bias/variance <code>$\Rightarrow$</code> <strong>Basic Recipe</strong>:
+
+<ul>
+<li>high bias? <code>$\rightarrow$</code>  <u>bigger network</u>, train longer, NN architecture search</li>
+<li>high variance? <code>$\rightarrow$</code> <u>get more data</u>, regularization, NN architecture search</li>
+</ul></li>
+<li><strong><u>no more</u></strong> bias/variance tradeoff:
+
+<ul>
+<li>pre-deep-learning era: can not just reduce bias or variance without hurting the other</li>
+<li>deep-learning big-data era: a bigger network almost always reduces bias without necessarily hurting the variance so long as you regularize properly; getting more data almost always reduces variance without hurting bias much</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="regularization">Regularization</h2>
+
+<ul>
+<li>Cost function</li>
+</ul>
+
+<p>$$
+J(W^{[1]},b^{[1]},\ldots,W^{[L]},b^{[L]})=\frac{1}{m}\sum_{i=1}^m\mathcal{L}(\hat{y}^{(i)}, y^{(i)})+\frac{\lambda}{2m}\sum_{\ell=1}^L\Vert W^{[\ell]}\Vert_F^2
+$$</p>
+
+<p>where <code>$\Vert\cdot\Vert_F$</code> is the Frobenius norm.</p>
+
+<ul>
+<li><code>$dW^{[\ell]}=$</code> (from backprop) <code>$+ \frac{\lambda}{m}W^{[\ell]}$</code>
+
+<ul>
+<li>update: <code>$W^{[\ell]} := W^{[\ell]} -\alpha dW^{[\ell]}$</code></li>
+<li><code>$\Rightarrow W^{[\ell]}:=(1-\frac{\alpha\lambda}{m})W^{[\ell]}-\alpha$</code>(from backprop)</li>
+<li>L2 regularization = weight decay</li>
+</ul></li>
+<li>prevent overfitting, reduce variance</li>
+</ul>
+
+<hr />
+
+<h3 id="dropout-regularization">Dropout Regularization</h3>
+
+<ul>
+<li>Implement Dropout (&rdquo;<strong><u>Inverted Dropout</u></strong>&rdquo;)</li>
+</ul>
+
+<blockquote>
+<p>Illustrate with layer <code>$\ell=3$</code></p>
+
+<pre><code class="language-python">keepProb = 0.8 # probability a unit will be kept
+d3 = np.random.rand(a3.shape) &lt; keepProb
+a3 *= d3 # elementwise product
+a3 /= keepProb # ensure the expected value of a3 remains the same
+</code></pre>
+</blockquote>
+
+<ul>
+<li>make predictions at test time: <strong>no dropout</strong></li>
+<li>why does dropout work?
+
+<ul>
+<li><strong>intuition</strong>: cannot rely on any one feature, so have to spread out weights</li>
+<li>shrink weights (similar to L2)</li>
+</ul></li>
+<li>vary <code>keepProb</code> by layer</li>
+<li>cost function is no longer well-defined</li>
+</ul>
+
+<hr />
+
+<h3 id="other-regularization-methods">Other Regularization Methods</h3>
+
+<ul>
+<li><strong>Data augmentation</strong>: e.g. image flip/zoom-in/rotate/distortion</li>
+<li><strong>Early stopping</strong>:
+
+<ul>
+<li>cons: can no longer work on 2 steps of orthogonalization independently</li>
+<li>alternative: L2 regularization (cons: more computationally expensive)</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p><strong>Orthogonalization</strong>:</p>
+
+<ol>
+<li>optimize cost function: gradient descent, &hellip;</li>
+<li>not overfit: regularization, &hellip;</li>
+</ol>
+</blockquote>
+
+<p><img src="/NN/early.PNG" alt="early stopping" /></p>
+
+<hr />
+
+<h2 id="speed-up-training">Speed Up Training</h2>
+
+<ul>
+<li><strong>normalizing training sets</strong>
+
+<ul>
+<li>make sure all features are on similar scale, thus making cost function easier and faster to optimize</li>
+<li>use the same mean/sd to normalized the test set</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/normal.PNG" alt="normalization" /></p>
+
+<ul>
+<li>weight initialization for deep networks
+
+<ul>
+<li>partial solution to <strong>vanishing/exploding gradients</strong></li>
+<li>use <strong>Xavier initialization</strong>, &hellip;</li>
+<li>can also be tune as hyperparameter</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p><code>$z=w_1x_1 +w_2x_2 +\cdots + w_nx_n$</code> (omit bias)</p>
+
+<p>set <code>$var(w_i)=\frac{1}{n}$</code> (<code>$n=$</code> # of input nodes)</p>
+
+<pre><code class="language-python">W = np.random.randn(node_in, node_out) / np.sqrt(node_in)
+# relu activation
+# W = np.random.randn(node_in, node_out) / np.sqrt(node_in/2)
+# tanh activation
+# W = np.random.randn(node_in, node_out) / np.sqrt(node_in)
+# W = np.random.randn(node_in, node_out) / np.sqrt((node_in + node_out)/2)
+</code></pre>
+</blockquote>
+
+<h2 id="debugging-of-backpropagation-gradient-checking">Debugging of Backpropagation: gradient checking</h2>
+
+<ul>
+<li>take <code>$W^{[1]},b^{[1]},\ldots,W^{[L]},b^{[L]}$</code> and reshape into a big vector <code>$\theta$</code></li>
+<li>take <code>$dW^{[1]},db^{[1]},\ldots,dW^{[L]},db^{[L]}$</code> and reshape into a big vector <code>$d\theta$</code></li>
+<li>grad check:</li>
+</ul>
+
+<blockquote>
+<p>for each <code>$i$</code>:
+$$
+d\theta_{approx}[i]:=\frac{J(\theta_1,\theta_2,\ldots,\theta_i+\epsilon,\ldots)-J(\theta_1,\theta_2,\ldots,\theta_i-\epsilon,\ldots)}{2\epsilon}\approx \frac{\partial J}{\partial \theta_i}
+$$</p>
+
+<p>check
+$$
+\frac{\Vert d\theta_{approx}-d\theta\Vert_2}{\Vert d\theta_{approx}\Vert_2+\Vert d\theta\Vert_2} \approx 0, e.g. &lt; 1e-7
+$$</p>
+</blockquote>
+
+<ul>
+<li>do not use in training - only to debug</li>
+<li>if algorithm fails grad check, look at components to identify bug</li>
+<li>remember regularization term</li>
+<li>grad check does not work with dropout
+
+<ul>
+<li>implement grad check without dropout (turn off dropout, <code>keepProb = 1</code>)</li>
+</ul></li>
+<li>run at random initialization; perhaps again after some training</li>
+</ul>
 
 </main>
 
