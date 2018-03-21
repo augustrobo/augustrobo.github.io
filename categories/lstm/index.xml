@@ -13,11 +13,15 @@
     
     <item>
       <title>Sequence Models</title>
-      <link>/post/2018/03/20/cnns/</link>
+      <link>/post/2018/03/20/rnns/</link>
       <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018/03/20/cnns/</guid>
-      <description></description>
+      <guid>/post/2018/03/20/rnns/</guid>
+      <description>Examples of Sequence Data  speech recognition music generation sentiment classification DNA sequence analysis machine translation video activity recognition name entity recognition  Recurrent Neural Networks Forward Propagation  at time $t$:  $$ a^{t} = g(W_{aa}a^{t-1} + W_{ax}x^{t} + b_a)\\
+\hat{y}^{t}=g(W_{ya}a^{t}+b_y) $$
+ simplified notation:  $$ a^{t} = g(W_a[a^{t-1},x^{t}] + b_a), \text{where} $$
+$$ \begin{cases} W_a =[W_{aa}, W_{ax}]\newline [a^{t-1},x^{t}] =\begin{pmatrix} a^{t-1}\newline x^{t} \end{pmatrix} \end{cases}\tag{1} $$
+$$ \hat{y}^{t}=g(W_ya^{t}+b_y)\tag{2} $$</description>
     </item>
     
   </channel>

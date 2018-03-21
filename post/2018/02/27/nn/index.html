@@ -111,6 +111,15 @@
 <li><a href="#speed-up-training">Speed Up Training</a></li>
 <li><a href="#debugging-of-backpropagation-gradient-checking">Debugging of Backpropagation: gradient checking</a></li>
 </ul></li>
+<li><a href="#optimization-algorithms">Optimization Algorithms</a>
+<ul>
+<li><a href="#mini-batch-gradient-descent">Mini-Batch Gradient Descent</a></li>
+<li><a href="#gradient-descent-with-momentum">Gradient Descent with Momentum</a>
+<ul>
+<li><a href="#exponentially-weighted-averages">Exponentially Weighted Averages</a></li>
+<li><a href="#bias-correction-in-exponentially-weighted-averages">Bias Correction in Exponentially Weighted Averages</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -895,6 +904,82 @@ $$</p>
 </ul></li>
 <li>run at random initialization; perhaps again after some training</li>
 </ul>
+
+<hr />
+
+<h1 id="optimization-algorithms">Optimization Algorithms</h1>
+
+<h2 id="mini-batch-gradient-descent">Mini-Batch Gradient Descent</h2>
+
+<ul>
+<li>batch vs mini-batch</li>
+<li>mini-batch <code>$X^{\{t\}}, y^{\{t\}}$</code></li>
+<li>mini-batch gradient descent</li>
+</ul>
+
+<p><img src="/NN/mini.PNG" alt="mini batch" /></p>
+
+<p><img src="/NN/minigd.PNG" alt="mini batch cost" /></p>
+
+<ul>
+<li>choose mini-batch size: hyperparameter
+
+<ul>
+<li>size = <code>$m$</code>: batch gradient descent</li>
+<li>size = 1: <strong>stochastic gradient descent</strong>, every example is a mini-batch</li>
+<li>in practice, size between 1 and <code>$m$</code>
+
+<ul>
+<li>batch gradient descent: too long per iteration</li>
+<li>gradient gradient descent: lose speedup from vectorization</li>
+</ul></li>
+<li>small training set (<code>$m\leq 2000$</code>): use batch gradient descent</li>
+<li>typical mini-batch size: 64,128,256,512</li>
+<li>make sure mini-batch fits in CPU/GPU memory</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/sgd.PNG" alt="stochastic gradient descent" /></p>
+
+<hr />
+
+<h2 id="gradient-descent-with-momentum">Gradient Descent with Momentum</h2>
+
+<h3 id="exponentially-weighted-averages">Exponentially Weighted Averages</h3>
+
+<p>$$
+v_0=0, v_t = \beta v_{t-1}+(1-\beta)\theta_t
+$$</p>
+
+<p>$$
+\Rightarrow v_t = \beta^tv_0 +(1-\beta)\left[ \theta_t + \beta\theta_{t-1} +\ldots \beta^{t-1}\theta_1  \right]=(1-\beta)\sum_{i=0}^{t-1}\beta^i\theta_{t-i}
+$$</p>
+
+<p>Since
+$$
+\beta^{\frac{1}{1-\beta}}=\left(1-(1-\beta)\right)^{\frac{1}{1-\beta}}\approx \frac{1}{e},
+$$
+<code>$v_t\approx$</code> average of the last <code>$\frac{1}{1-\beta}$</code> terms of <code>$\theta$</code>&rsquo;s</p>
+
+<blockquote>
+<p><code>$v_{\theta}:=0$</code></p>
+
+<p>repeat{</p>
+
+<p>get next <code>$\theta_t$</code></p>
+
+<p><code>$v_{\theta}:=\beta v_{\theta} + (1-\beta)\theta_t$</code></p>
+
+<p>}</p>
+</blockquote>
+
+<hr />
+
+<h3 id="bias-correction-in-exponentially-weighted-averages">Bias Correction in Exponentially Weighted Averages</h3>
+
+<p>Take <code>$v_t := v_t/(1-\beta^t)$</code></p>
+
+<p><img src="/NN/bias.PNG" alt="bias correction" /></p>
 
 </main>
 

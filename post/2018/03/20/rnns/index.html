@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sequence Models | NOWHERESVILLE</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/ascetic.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="/">/home/nowheresville</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Sequence Models</span></h1>
+
+<h2 class="date">2018/03/20</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/neuralnetworks">neuralNetworks</a> <a href="/categories/deeplearning">deepLearning</a> <a href="/categories/rnn">rnn</a> <a href="/categories/lstm">lstm</a> <a href="/categories/nlp">nlp</a> 
+  
+  
+  
+  
+</p>
+</div>
+
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="#examples-of-sequence-data">Examples of Sequence Data</a></li>
+<li><a href="#recurrent-neural-networks">Recurrent Neural Networks</a>
+<ul>
+<li><a href="#forward-propagation">Forward Propagation</a></li>
+<li><a href="#back-propagation-through-time">Back Propagation Through Time</a></li>
+</ul></li>
+<li><a href="#different-types-of-rnns">Different Types of RNNs</a></li>
+<li><a href="#language-model-and-sequence-generation">Language Model and Sequence Generation</a></li>
+<li><a href="#vanishing-exploding-gradients">Vanishing/Exploding gradients</a>
+<ul>
+<li><a href="#gated-recurrent-unit-gru">Gated Recurrent Unit (GRU)</a></li>
+</ul></li>
+</ul>
+</nav>
+
+
+<main>
+
+
+<h1 id="examples-of-sequence-data">Examples of Sequence Data</h1>
+
+<ul>
+<li>speech recognition</li>
+<li>music generation</li>
+<li>sentiment classification</li>
+<li>DNA sequence analysis</li>
+<li>machine translation</li>
+<li>video activity recognition</li>
+<li>name entity recognition</li>
+</ul>
+
+<hr />
+
+<h1 id="recurrent-neural-networks">Recurrent Neural Networks</h1>
+
+<h2 id="forward-propagation">Forward Propagation</h2>
+
+<p><img src="/NN/rnnforward.PNG" alt="forward propagation" /></p>
+
+<ul>
+<li>at time <code>$t$</code>:</li>
+</ul>
+
+<p>$$
+a^{t} = g(W_{aa}a^{t-1} + W_{ax}x^{t} + b_a)\\<br />
+\hat{y}^{t}=g(W_{ya}a^{t}+b_y)
+$$</p>
+
+<ul>
+<li>simplified notation:</li>
+</ul>
+
+<p>$$
+a^{t} = g(W_a[a^{t-1},x^{t}] + b_a), \text{where}
+$$</p>
+
+<p>$$
+\begin{cases}
+W_a =[W_{aa}, W_{ax}]\newline
+[a^{t-1},x^{t}] =\begin{pmatrix}
+a^{t-1}\newline
+x^{t}
+\end{pmatrix}
+\end{cases}\tag{1}
+$$</p>
+
+<p>$$
+\hat{y}^{t}=g(W_ya^{t}+b_y)\tag{2}
+$$</p>
+
+<hr />
+
+<h2 id="back-propagation-through-time">Back Propagation Through Time</h2>
+
+<p><img src="/NN/rnnback.PNG" alt="back propagation" /></p>
+
+<ul>
+<li>loss:</li>
+</ul>
+
+<p>$$
+\mathcal{L}^t(\hat{y}^t,y^{t})=-y^t\log \hat{y}^t-(1-y^t)\log(1-\hat{y}^t)
+$$</p>
+
+<ul>
+<li>overall loss:</li>
+</ul>
+
+<p>$$
+\mathcal{L}(\hat{y},y)=\sum_{t=1}^{T_y}\mathcal{L}^t(\hat{y}^t,y^{t})\tag{3}
+$$</p>
+
+<hr />
+
+<h1 id="different-types-of-rnns">Different Types of RNNs</h1>
+
+<ul>
+<li><code>$T_x=T_y$</code>: many-to-many</li>
+
+<li><p><code>$1&lt; T_x\neq T_y &gt;1$</code>: many-to-many</p>
+
+<ul>
+<li>e.g.  machine translation</li>
+</ul></li>
+
+<li><p><code>$T_y=1$</code>: many-to-one</p>
+
+<ul>
+<li>e.g. sentiment classification</li>
+</ul></li>
+
+<li><p><code>$T_x=1$</code>: one-to-many</p>
+
+<ul>
+<li>e.g. music generation, <code>$x=$</code> genre</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/rnns.PNG" alt="rnns" /></p>
+
+<hr />
+
+<h1 id="language-model-and-sequence-generation">Language Model and Sequence Generation</h1>
+
+<ul>
+<li>input sentence:</li>
+</ul>
+
+<p>$$
+y^1,y^2,\ldots,y^{T_y}
+$$</p>
+
+<ul>
+<li>language model: to estimate</li>
+</ul>
+
+<p>$$
+\Pr(y^1,y^2,\ldots,y^{T_y})
+$$</p>
+
+<ul>
+<li>training set: large corpus of English text
+
+<ul>
+<li>tokenize: e.g. map each word to one-hot representation</li>
+<li>add &lt;EOS&gt; (<strong>end of sentence</strong> token)</li>
+<li>replace word not in the vocabulary with &lt;UNK&gt; (<strong>unknown word</strong> token)</li>
+</ul></li>
+<li>build RNN model</li>
+</ul>
+
+<p><img src="/NN/language.PNG" alt="language model" /></p>
+
+<hr />
+
+<h1 id="vanishing-exploding-gradients">Vanishing/Exploding gradients</h1>
+
+<ul>
+<li>solve exploding gradients: gradient clipping</li>
+<li>solve vanishing gradients?</li>
+</ul>
+
+<h2 id="gated-recurrent-unit-gru">Gated Recurrent Unit (GRU)</h2>
+
+<ul>
+<li>captures long range connections</li>
+<li>helps with vanishing gradient problems</li>
+</ul>
+
+</main>
+
+    <footer>
+      <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      <a href="mailto:zhuxm2017@163.com">Email</a> | <a href="https://github.com/augustrobo">Github</a>
+      
+    </footer>
+  </body>
+</html>
+
