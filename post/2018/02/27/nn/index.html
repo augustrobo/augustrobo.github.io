@@ -114,11 +114,30 @@
 <li><a href="#optimization-algorithms">Optimization Algorithms</a>
 <ul>
 <li><a href="#mini-batch-gradient-descent">Mini-Batch Gradient Descent</a></li>
-<li><a href="#gradient-descent-with-momentum">Gradient Descent with Momentum</a>
+<li><a href="#momentum">Momentum</a>
 <ul>
 <li><a href="#exponentially-weighted-averages">Exponentially Weighted Averages</a></li>
 <li><a href="#bias-correction-in-exponentially-weighted-averages">Bias Correction in Exponentially Weighted Averages</a></li>
+<li><a href="#gradient-descent-with-momentum">Gradient Descent With Momentum</a></li>
 </ul></li>
+<li><a href="#root-mean-square-prop-rms-prop">Root Mean Square Prop (RMS Prop)</a></li>
+<li><a href="#adam-optimization-algorithm">Adam Optimization Algorithm</a></li>
+<li><a href="#learning-rate-decay">Learning Rate Decay</a></li>
+<li><a href="#local-optima-in-neural-networks">Local Optima in Neural Networks</a></li>
+</ul></li>
+<li><a href="#tuning-process">Tuning Process</a>
+<ul>
+<li><a href="#hyperparameters">Hyperparameters</a></li>
+<li><a href="#hyperparameters-tuning-in-practice">Hyperparameters Tuning in Practice</a></li>
+<li><a href="#batch-normalization">Batch Normalization</a></li>
+</ul></li>
+<li><a href="#multiclass-classification">Multiclass Classification</a>
+<ul>
+<li><a href="#softmax-regression">Softmax Regression</a></li>
+</ul></li>
+<li><a href="#deep-learning-frameworks">Deep Learning Frameworks</a>
+<ul>
+<li><a href="#choosing-deep-learning-frameworks">Choosing Deep Learning Frameworks</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -943,7 +962,7 @@ $$</p>
 
 <hr />
 
-<h2 id="gradient-descent-with-momentum">Gradient Descent with Momentum</h2>
+<h2 id="momentum">Momentum</h2>
 
 <h3 id="exponentially-weighted-averages">Exponentially Weighted Averages</h3>
 
@@ -980,6 +999,283 @@ $$
 <p>Take <code>$v_t := v_t/(1-\beta^t)$</code></p>
 
 <p><img src="/NN/bias.PNG" alt="bias correction" /></p>
+
+<ul>
+<li>decrease <code>$\beta$</code>:
+
+<ul>
+<li>more oscillation</li>
+<li>shift the line to the left</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h3 id="gradient-descent-with-momentum">Gradient Descent With Momentum</h3>
+
+<blockquote>
+<p>on iteration <code>$t$</code></p>
+
+<ul>
+<li>compute <code>$dw,Db$</code> on current mini-batch</li>
+<li><code>$v_{dw} = \beta v_{dw}+(1-\beta)dw$</code> (<code>$v_{dw}$</code>: velocity, <code>$dw$</code>: acceleration, <code>$\beta$</code>: friction)</li>
+<li><code>$v_{db} = \beta v_{db}+(1-\beta)db$</code></li>
+<li>update: <code>$w := w- \alpha v_{dw}, b :=b- \alpha v_{db}$</code></li>
+</ul>
+</blockquote>
+
+<ul>
+<li>hyperparameters: <code>$\alpha, \beta=0.9$</code></li>
+<li>no need to do bias correction</li>
+</ul>
+
+<p><img src="/NN/momentum.PNG" alt="momentum" /></p>
+
+<p><img src="/NN/momentum2.PNG" alt="momentum" /></p>
+
+<ol>
+<li>gradient descent</li>
+<li>with momentum (small <code>$\beta$</code>)</li>
+<li>with momentum (large <code>$\beta$</code>)</li>
+</ol>
+
+<hr />
+
+<h2 id="root-mean-square-prop-rms-prop">Root Mean Square Prop (RMS Prop)</h2>
+
+<blockquote>
+<p>on iteration <code>$t$</code></p>
+
+<ul>
+<li>compute <code>$dw,Db$</code> on current mini-batch</li>
+<li><code>$s_{dw} = \beta s_{dw}+(1-\beta)dw^2$</code>  (elementwise square)</li>
+<li><code>$s_{db} = \beta s_{db}+(1-\beta)db^2$</code></li>
+<li>update: <code>$w := w- \alpha \frac{dw}{\sqrt{s_{dw}}+\epsilon}, b :=b- \alpha \frac{db}{\sqrt{s_{db}}+\epsilon}$</code></li>
+</ul>
+</blockquote>
+
+<ul>
+<li>then can use a large learning rate (faster learning), without diverging gradients</li>
+<li><code>$\epsilon$</code>: avoid divide by 0</li>
+</ul>
+
+<hr />
+
+<h2 id="adam-optimization-algorithm">Adam Optimization Algorithm</h2>
+
+<ul>
+<li>putting it together: momentum + RMS</li>
+<li>adam = adaptive moment estimation</li>
+</ul>
+
+<blockquote>
+<p><code>$v_{dw}=0, s_{dw}=0,v_{db}=0,s_{db}=0$</code></p>
+
+<p>on iteration <code>$t$</code></p>
+
+<ul>
+<li>compute <code>$dw,Db$</code> on current mini-batch</li>
+<li>momentum: <code>$v_{dw} = \beta_1 v_{dw}+(1-\beta_1)dw$</code>, <code>$v_{db} = \beta_1 v_{db}+(1-\beta_1)db$</code></li>
+<li>rms: <code>$s_{dw} = \beta_2 s_{dw}+(1-\beta_2)dw^2$</code>  , <code>$s_{db} = \beta_2 s_{db}+(1-\beta_2)db^2$</code></li>
+<li>bias correction:
+
+<ul>
+<li><code>$v_{dw}^{corrected}=\frac{v_{dw}}{1-\beta_1^t}, v_{db}^{corrected}=\frac{v_{db}}{1-\beta_1^t}$</code></li>
+<li><code>$s_{dw}^{corrected}=\frac{s_{dw}}{1-\beta_2^t}, s_{db}^{corrected}=\frac{s_{db}}{1-\beta_2^t}$</code></li>
+</ul></li>
+<li>update: <code>$w := w- \alpha \frac{v_{dw}^{corrected} }{\sqrt{s^{corrected}_{dw}}+\epsilon}, b :=b- \alpha \frac{v^{corrected}_{db}}{\sqrt{s^{corrected}_{db}}+\epsilon}$</code></li>
+</ul>
+</blockquote>
+
+<ul>
+<li>hyperparameters:
+
+<ul>
+<li><code>$\alpha$</code>: needs to tune</li>
+<li><code>$\beta_1$</code>: 0.9 (default)</li>
+<li><code>$\beta_2$</code>: 0.99 (default)</li>
+<li><code>$\epsilon$</code>: 1e-8 (default)</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="learning-rate-decay">Learning Rate Decay</h2>
+
+<ul>
+<li>slowly reduce learning rate</li>
+<li>1 epoch = 1 pass thru the data</li>
+<li>set</li>
+</ul>
+
+<p>$$
+\alpha =\frac{1}{1+\text{decay-rate}\times \text{epoch-num}}\alpha_0
+$$</p>
+
+<ul>
+<li>other learning rate decay methods
+
+<ul>
+<li>exponentially decay: <code>$\alpha=0.95^{\text{epoch_num}}\alpha_0$</code></li>
+<li><code>$\alpha=\frac{k}{\sqrt{\text{epoch_num}}}\alpha_0$</code> or <code>$\alpha=\frac{k}{\sqrt{t}}\alpha_0$</code> (<code>$t=$</code> mini-batch number)</li>
+<li>discrete staircase</li>
+<li>manual decay</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="local-optima-in-neural-networks">Local Optima in Neural Networks</h2>
+
+<ul>
+<li>unlikely to get stuck in a bad local optima
+
+<ul>
+<li>in nn, most point of 0 gradients are not local optima, but saddle points</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/saddle.PNG" alt="saddle" /></p>
+
+<ul>
+<li>plateaus can make learning slow</li>
+</ul>
+
+<p><img src="/NN/plateau.PNG" alt="plateau" /></p>
+
+<hr />
+
+<h1 id="tuning-process">Tuning Process</h1>
+
+<h2 id="hyperparameters">Hyperparameters</h2>
+
+<ul>
+<li>learning rate <code>$\alpha$</code></li>
+<li>momentum <code>$\beta=0.9$</code>, # of hidden units, mini-batch size</li>
+<li># of layers, learning rate decay</li>
+<li>adam hyperparameters <code>$\beta_1=0.9, \beta_2=0.99, \epsilon=1e-8$</code></li>
+</ul>
+
+<hr />
+
+<ul>
+<li>try random values, do not use a grid</li>
+<li>coarse to find</li>
+<li>appropriate scale for hyperparameters
+
+<ul>
+<li>e.g. use <strong>log-scale</strong> to sample (sample more densely than linear-scale) learning rate <code>$\alpha$</code>, <code>$1-\beta$</code></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="hyperparameters-tuning-in-practice">Hyperparameters Tuning in Practice</h2>
+
+<p><img src="/NN/panda.PNG" alt="panda" /></p>
+
+<h2 id="batch-normalization">Batch Normalization</h2>
+
+<ul>
+<li>normalizing input features can speed up learning</li>
+<li>batch norm: normalize hidden units</li>
+</ul>
+
+<p><img src="/NN/batch.PNG" alt="batch norm" /></p>
+
+<p><img src="/NN/batch2.PNG" alt="batch norm" /></p>
+
+<ul>
+<li>implementing gradient descent</li>
+</ul>
+
+<blockquote>
+<p>for <code>$t=1,2,\ldots, $</code> numMiniBatch</p>
+
+<ul>
+<li>compute forward prop on <code>$X^{\{t\}}$</code></li>
+<li>in each hidden layer, use BN to replace <code>$Z^{[\ell]}$</code> with <code>$\tilde{Z}^{[\ell]}$</code></li>
+<li>use back prop to compute <code>$dW^{[\ell]}, d\beta^{[\ell]}, d\gamma^{[\ell]}$</code></li>
+<li>update parameters (momentum, RMS prop, adam)</li>
+</ul>
+</blockquote>
+
+<hr />
+
+<ul>
+<li>batch norm reduces <strong>covariate shift</strong></li>
+<li>batch norm has slight regularization effect</li>
+<li>batch norm at test time:
+
+<ul>
+<li>exponentially weighted averages of <code>$\mu$</code> and <code>$\sigma^2$</code> across mini-batch</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h1 id="multiclass-classification">Multiclass Classification</h1>
+
+<h2 id="softmax-regression">Softmax Regression</h2>
+
+<ul>
+<li><code>$C$</code> = # of classes</li>
+<li><code>$n^{[L]}=C$</code></li>
+<li>softmax layer:</li>
+</ul>
+
+<p>$$
+\text{activation: } t = e^{z^{[L]}},\ a^{[L]}=\frac{e^{z^{[L]}}}{\sum_{j=1}^C t_i}
+$$</p>
+
+<ul>
+<li>loss function:</li>
+</ul>
+
+<p>$$
+\mathcal{L}(y,\hat{y})=-\sum_{j=1}^Cy_j\log(\hat{y}_j)
+$$</p>
+
+<ul>
+<li>cost on the entire training set:</li>
+</ul>
+
+<p>$$
+J=\frac{1}{m}\sum_{i=1}^m\mathcal{L}(y^{(i)},\hat{y}^{(i)})
+$$</p>
+
+<ul>
+<li>gradient descent with softmax:</li>
+</ul>
+
+<p>$$
+dZ^{[L]}:=\frac{\partial J}{\partial Z^{[L]}}=\hat{y}-y
+$$</p>
+
+<hr />
+
+<h1 id="deep-learning-frameworks">Deep Learning Frameworks</h1>
+
+<ul>
+<li>Caffe/Caffe2</li>
+<li>CNTK</li>
+<li>DL4J</li>
+<li>Keras</li>
+<li>Lasagne</li>
+<li>mxnet</li>
+<li>PaddlePaddle</li>
+<li>Tensorflow</li>
+<li>Theano</li>
+<li>Torch</li>
+</ul>
+
+<h2 id="choosing-deep-learning-frameworks">Choosing Deep Learning Frameworks</h2>
+
+<ul>
+<li>ease of programming (development and deployment)</li>
+<li>running speed</li>
+<li>truly open (open source with good governance)</li>
+</ul>
 
 </main>
 
