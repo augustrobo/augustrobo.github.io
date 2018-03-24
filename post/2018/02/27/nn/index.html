@@ -101,10 +101,11 @@
 <li><a href="#parameters-and-hyperparameters">Parameters and Hyperparameters</a></li>
 <li><a href="#build-deep-neural-network-image-classification-cat-non-cat-python-code">Build Deep Neural Network - Image Classification (cat/non-cat) - Python Code</a></li>
 </ul></li>
-<li><a href="#practical-aspect-of-deep-learning">Practical Aspect of Deep Learning</a>
+<li><a href="#practical-aspects-of-deep-learning">Practical Aspects of Deep Learning</a>
 <ul>
 <li><a href="#regularization">Regularization</a>
 <ul>
+<li><a href="#l2-regularization">L2 Regularization</a></li>
 <li><a href="#dropout-regularization">Dropout Regularization</a></li>
 <li><a href="#other-regularization-methods">Other Regularization Methods</a></li>
 </ul></li>
@@ -388,9 +389,9 @@ J = - np.mean(np.log(A) * Y +  np.log(1-A) *(1-Y))
 
 # back propagation (compute gradient)
 m = X.shape[1]
-dZ = A - Y
-db = np.mean(dZ)
-dw = np.dot(X, dZ.T)/m
+dZ = (A - Y)/m
+db = np.sum(dZ)
+dw = np.dot(X, dZ.T)
 
 # update params
 w -= learning_rate*dw
@@ -549,17 +550,17 @@ $$</p>
 <tbody>
 <tr>
 <td align="center"><code>$dz^{[2]}=a^{[2]}-y$</code></td>
-<td align="center"><code>$dZ^{[2]}=A^{[2]}-y$</code></td>
+<td align="center"><code>$dZ^{[2]}=\frac{1}{m}(A^{[2]}-y)$</code></td>
 </tr>
 
 <tr>
 <td align="center"><code>$dW^{[2]}=dz^{[2]}a^{[1]T}$</code></td>
-<td align="center"><code>$dW^{[2]}=\frac{1}{m} dZ^{[2]} (A^{[1]})^T$</code></td>
+<td align="center"><code>$dW^{[2]}=dZ^{[2]} (A^{[1]})^T$</code></td>
 </tr>
 
 <tr>
 <td align="center"><code>$db^{[2]}=dz^{[2]}$</code></td>
-<td align="center"><code>$db^{[2]}=\frac{1}{m}np.sum(dZ^{[2]}, axis = 1, keepdims = True)$</code></td>
+<td align="center"><code>$db^{[2]}=np.sum(dZ^{[2]}, axis = 1, keepdims = True)$</code></td>
 </tr>
 
 <tr>
@@ -569,12 +570,12 @@ $$</p>
 
 <tr>
 <td align="center"><code>$dW^{[1]}=dz^{[1]}x^T$</code></td>
-<td align="center"><code>$dW^{[1]}=\frac{1}{m} dZ^{[1]} X^T$</code></td>
+<td align="center"><code>$dW^{[1]}=dZ^{[1]} X^T$</code></td>
 </tr>
 
 <tr>
 <td align="center"><code>$db^{[1]}=dz^{[1]}$</code></td>
-<td align="center"><code>$db^{[1]}=\frac{1}{m}np.sum(dZ^{[1]}, axis = 1, keepdims = True)$</code></td>
+<td align="center"><code>$db^{[1]}=np.sum(dZ^{[1]}, axis = 1, keepdims = True)$</code></td>
 </tr>
 </tbody>
 </table>
@@ -592,12 +593,12 @@ $$</p>
 <tbody>
 <tr>
 <td align="center"><code>$Z^{[1]}=W^{[1]}X + b^{[1]}$</code></td>
-<td align="center"><code>$dZ^{[2]}=A^{[2]}-Y$</code></td>
+<td align="center"><code>$dZ^{[2]}=\frac{1}{m}(A^{[2]}-Y)$</code></td>
 </tr>
 
 <tr>
 <td align="center"><code>$A^{[1]}=g^{[1]}(Z^{[1]})$</code></td>
-<td align="center"><code>$dW^{[2]}=\frac{1}{m} dZ^{[2]} (A^{[1]})^T$</code><br/><code>$db^{[2]}=\frac{1}{m}np.sum(dZ^{[2]}, axis = 1, keepdims = True)$</code></td>
+<td align="center"><code>$dW^{[2]}= dZ^{[2]} (A^{[1]})^T$</code><br/><code>$db^{[2]}=np.sum(dZ^{[2]}, axis = 1, keepdims = True)$</code></td>
 </tr>
 
 <tr>
@@ -607,7 +608,7 @@ $$</p>
 
 <tr>
 <td align="center"><code>$A^{[2]}=g^{[2]}(Z^{[2]})=\sigma(Z^{[2]})$</code></td>
-<td align="center"><code>$dW^{[1]}=\frac{1}{m} dZ^{[1]} X^T$</code><br/><code>$db^{[1]}=\frac{1}{m}np.sum(dZ^{[1]}, axis = 1, keepdims = True)$</code></td>
+<td align="center"><code>$dW^{[1]}= dZ^{[1]} X^T$</code><br/><code>$db^{[1]}=np.sum(dZ^{[1]}, axis = 1, keepdims = True)$</code></td>
 </tr>
 </tbody>
 </table>
@@ -709,8 +710,8 @@ $$</p>
 
 <p>$$
 \text{Vectorized}: dZ^{[\ell]} = dA^{[\ell]} * (g^{[\ell]})&lsquo;(Z^{[\ell]}) \text{ (elementwise product)}\\<br />
-dW^{[\ell]} = \frac{1}{m}dZ^{[\ell]}A^{[\ell-1]T}\\<br />
-db^{[\ell]}=\frac{1}{m} np.sum(dZ^{[\ell]}, axis=1,keepdims=True)\\<br />
+dW^{[\ell]} = dZ^{[\ell]}A^{[\ell-1]T}\\<br />
+db^{[\ell]}= np.sum(dZ^{[\ell]}, axis=1,keepdims=True)\\<br />
 dA^{[\ell-1]}=W^{[\ell]T}dZ^{[\ell]}
 $$</p>
 
@@ -744,7 +745,7 @@ $$</p>
 
 <hr />
 
-<h1 id="practical-aspect-of-deep-learning">Practical Aspect of Deep Learning</h1>
+<h1 id="practical-aspects-of-deep-learning">Practical Aspects of Deep Learning</h1>
 
 <ul>
 <li>train/dev/test sets
@@ -778,6 +779,19 @@ $$</p>
 <h2 id="regularization">Regularization</h2>
 
 <ul>
+<li>reduce variance?
+
+<ul>
+<li>more data: expensive</li>
+<li>use regularization,  prevent overfitting</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h3 id="l2-regularization">L2 Regularization</h3>
+
+<ul>
 <li>Cost function</li>
 </ul>
 
@@ -795,7 +809,18 @@ $$</p>
 <li><code>$\Rightarrow W^{[\ell]}:=(1-\frac{\alpha\lambda}{m})W^{[\ell]}-\alpha$</code>(from backprop)</li>
 <li>L2 regularization = weight decay</li>
 </ul></li>
-<li>prevent overfitting, reduce variance</li>
+<li>why regularization reduces overfitting?
+
+<ul>
+<li>large <code>$\lambda$</code> <code>$\Rightarrow$</code>  <code>$W^{[\ell]}\approx 0$</code> <code>$\Rightarrow$</code>  &ldquo;simpler&rdquo; network (not zero out hidden units, but some of them have a smaller effect)</li>
+<li>e.g., activation <code>$g = \tanh$</code>, large <code>$\lambda$</code> <code>$\Rightarrow$</code>  small <code>$W^{[\ell]}$</code> <code>$\Rightarrow$</code> <code>$z^{[\ell]}=W^{[\ell]}a^{[\ell-1]}+b^{[\ell]}$</code> small <code>$\Rightarrow$</code> <code>$g(z)\approx$</code> linear function <code>$\Rightarrow$</code> nearly linear decision boundary</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/tanh.PNG" alt="tanh" /></p>
+
+<ul>
+<li>debugging: with regularization, cost <code>$J$</code> <strong><u>will not</u></strong> decease monotonically with # of iterations</li>
 </ul>
 
 <hr />

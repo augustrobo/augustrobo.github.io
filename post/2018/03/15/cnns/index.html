@@ -89,8 +89,23 @@
 <li><a href="#one-layer-of-a-convolutional-network">One Layer of a Convolutional Network</a></li>
 <li><a href="#simple-convolutional-network-example">Simple Convolutional Network Example</a></li>
 <li><a href="#pooling-layer">Pooling Layer</a></li>
-<li><a href="#neural-network-example-lenet-5">Neural Network Example (LeNet-5)</a></li>
+<li><a href="#neural-network-example-inspired-by-lenet-5">Neural Network Example (Inspired by LeNet-5)</a></li>
 <li><a href="#why-convolutions">Why Convolutions?</a></li>
+</ul></li>
+<li><a href="#case-studies">Case Studies</a>
+<ul>
+<li><a href="#classic-networks">Classic Networks</a>
+<ul>
+<li><a href="#lenet-5">LeNet-5</a></li>
+<li><a href="#alexnet">AlexNet</a></li>
+<li><a href="#vgg-16">VGG-16</a></li>
+</ul></li>
+<li><a href="#residual-networks-resnets">Residual Networks (ResNets)</a>
+<ul>
+<li><a href="#residual-block">Residual Block</a></li>
+</ul></li>
+<li><a href="#one-by-one-convolution">One-By-One Convolution</a></li>
+<li><a href="#inception-network">Inception Network</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -159,9 +174,11 @@
 
 <h2 id="convolution-over-volume">Convolution Over Volume</h2>
 
+<p><img src="/NN/rgb.PNG" alt="rgb" /></p>
+
 <ul>
 <li>input size: <code>$n\times n\times n_C$</code> (<code>$n_C = $</code> # of channels)</li>
-<li><code>$n_C'$</code> filters, each of size: <code>$f\times f\times n_C$</code></li>
+<li><code>$n_C'$</code> filters, each of size: <code>$f\times f\times n_C$</code>  (each has <code>$f\times f\times n_C$</code> parameters)</li>
 <li>output size: <code>$(n-f+1)\times (n-f+1)\times n_C'$</code></li>
 </ul>
 
@@ -219,7 +236,7 @@ n^{[\ell]}_W=\left\lfloor \frac{n^{[\ell-1]}_W +2p^{[\ell]}-f^{[\ell]}}{s^{[\ell
 
 <hr />
 
-<h2 id="neural-network-example-lenet-5">Neural Network Example (LeNet-5)</h2>
+<h2 id="neural-network-example-inspired-by-lenet-5">Neural Network Example (Inspired by LeNet-5)</h2>
 
 <p><img src="/NN/lenet.PNG" alt="lenet5" /></p>
 
@@ -229,6 +246,76 @@ n^{[\ell]}_W=\left\lfloor \frac{n^{[\ell-1]}_W +2p^{[\ell]}-f^{[\ell]}}{s^{[\ell
 <li><strong>parameter sharing</strong>: a feature detector (such as a vertical edge detector) that is useful in one part of the image is probably useful in another part of the image; reduces the total number of parameters, thus <strong>reducing overfitting</strong></li>
 <li><strong>sparsity of connection</strong>s: in each layer, each output value depends only on a small number of inputs</li>
 </ul>
+
+<hr />
+
+<h1 id="case-studies">Case Studies</h1>
+
+<h2 id="classic-networks">Classic Networks</h2>
+
+<h3 id="lenet-5">LeNet-5</h3>
+
+<h3 id="alexnet">AlexNet</h3>
+
+<ul>
+<li>similar to LeNet, but much bigger</li>
+<li>ReLU activation</li>
+<li>multiple GPUs</li>
+<li>local response normalization (LRN) 【does not help much】</li>
+</ul>
+
+<p><img src="/NN/alex.PNG" alt="alex" /></p>
+
+<h3 id="vgg-16">VGG-16</h3>
+
+<p><img src="/NN/vgg.PNG" alt="vgg" /></p>
+
+<h2 id="residual-networks-resnets">Residual Networks (ResNets)</h2>
+
+<h3 id="residual-block">Residual Block</h3>
+
+<ul>
+<li>short-cut</li>
+</ul>
+
+<p>$$
+a^{[\ell+2]}=g(z^{[\ell +2]}+a^{[\ell]})
+$$</p>
+
+<p><img src="/NN/resblock.PNG" alt="residual block" /></p>
+
+<ul>
+<li>residual networks: helps to build deep networks</li>
+</ul>
+
+<p><img src="/NN/resnet.PNG" alt="resnet" /></p>
+
+<ul>
+<li>why do resnet work?
+
+<ul>
+<li>if <code>$W^{[\ell+2]}=0$</code>, <code>$b^{[\ell+2]}=0$</code>, <code>$g$</code> is ReLU activation, <code>$\Rightarrow a^{[\ell+2]}=a^{[\ell]}$</code> (identity function is easy for resnet to learn)</li>
+<li><code>$z^{[\ell+2]}$</code> needs to be the same dimension as <code>$a^{[\ell]}$</code>: use SAME convolution</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="one-by-one-convolution">One-By-One Convolution</h2>
+
+<ul>
+<li>pooling: shrinks <code>$n_H, n_W$</code></li>
+<li><code>$1\times 1$</code> convolution:
+
+<ul>
+<li>increase or decrease <code>$n_C$</code></li>
+<li>add nonlinearity</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="inception-network">Inception Network</h2>
 
 </main>
 
