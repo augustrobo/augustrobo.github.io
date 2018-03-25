@@ -140,6 +140,11 @@
 <ul>
 <li><a href="#choosing-deep-learning-frameworks">Choosing Deep Learning Frameworks</a></li>
 </ul></li>
+<li><a href="#ml-strategy">ML Strategy</a>
+<ul>
+<li><a href="#single-number-evaluation-metric">Single Number Evaluation Metric</a></li>
+<li><a href="#satisfying-and-optimizing-metric">Satisfying and Optimizing Metric</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -1300,6 +1305,40 @@ $$</p>
 <li>ease of programming (development and deployment)</li>
 <li>running speed</li>
 <li>truly open (open source with good governance)</li>
+</ul>
+
+<hr />
+
+<h1 id="ml-strategy">ML Strategy</h1>
+
+<h2 id="single-number-evaluation-metric">Single Number Evaluation Metric</h2>
+
+<ul>
+<li>precision = PPV = TP/(TP + FP) = 1-FDR</li>
+<li>recall = TPR = TP/P = TP/(TP + FN)</li>
+<li><strong>F1 score</strong> = harmonic mean of precision and recall</li>
+</ul>
+
+<hr />
+
+<h2 id="satisfying-and-optimizing-metric">Satisfying and Optimizing Metric</h2>
+
+<ul>
+<li><strong>accuracy</strong> vs <strong>running time</strong>
+
+<ul>
+<li>cost = accuracy - 0.5 * running time</li>
+<li>maximize accuracy s.t. running time <code>$\leq$</code> 100ms</li>
+<li>accuracy: <strong>optimizing</strong></li>
+<li>running time: <strong>satisfying</strong></li>
+</ul></li>
+<li>N metrics:
+
+<ul>
+<li>pick 1: optimizing</li>
+<li>others: satisfying (threshold)</li>
+<li>e.g. maximize accuracy s.t. false positives <code>$\leq$</code> threshold</li>
+</ul></li>
 </ul>
 
 </main>

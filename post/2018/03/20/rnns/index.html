@@ -77,11 +77,17 @@
 <li><a href="#back-propagation-through-time">Back Propagation Through Time</a></li>
 </ul></li>
 <li><a href="#different-types-of-rnns">Different Types of RNNs</a></li>
-<li><a href="#language-model-and-sequence-generation">Language Model and Sequence Generation</a></li>
-<li><a href="#vanishing-exploding-gradients">Vanishing/Exploding gradients</a>
+<li><a href="#language-model-and-sequence-generation">Language Model and Sequence Generation</a>
+<ul>
+<li><a href="#sampling-novel-sequences">Sampling Novel Sequences</a></li>
+</ul></li>
+<li><a href="#vanishing-gradients">Vanishing Gradients</a>
 <ul>
 <li><a href="#gated-recurrent-unit-gru">Gated Recurrent Unit (GRU)</a></li>
+<li><a href="#long-short-term-memory-lstm">Long Short Term Memory (LSTM)</a></li>
 </ul></li>
+<li><a href="#bidirectional-rnns-brnn">Bidirectional RNNs (BRNN)</a></li>
+<li><a href="#deep-rnns">Deep RNNs</a></li>
 </ul>
 </nav>
 
@@ -104,6 +110,15 @@
 <hr />
 
 <h1 id="recurrent-neural-networks">Recurrent Neural Networks</h1>
+
+<ul>
+<li>Why not a standard network?
+
+<ul>
+<li>inputs and outputs can be different lengths in different examples, e.g. sentence as input</li>
+<li>does not share features learned across different positions of text</li>
+</ul></li>
+</ul>
 
 <h2 id="forward-propagation">Forward Propagation</h2>
 
@@ -223,21 +238,103 @@ $$</p>
 
 <p><img src="/NN/language.PNG" alt="language model" /></p>
 
-<hr />
-
-<h1 id="vanishing-exploding-gradients">Vanishing/Exploding gradients</h1>
+<h2 id="sampling-novel-sequences">Sampling Novel Sequences</h2>
 
 <ul>
-<li>solve exploding gradients: gradient clipping</li>
-<li>solve vanishing gradients?</li>
+<li>given input, sampling according to the predicted softmax distribution</li>
+<li><code>np.random.choice</code></li>
+<li>use the previous sampled output as latter input</li>
+<li>keep sampling until &lt;EOS&gt; token is generated, or decide the max sentence length beforehand</li>
 </ul>
+
+<p><img src="/NN/sample.PNG" alt="sample" /></p>
+
+<hr />
+
+<h1 id="vanishing-gradients">Vanishing Gradients</h1>
+
+<ul>
+<li>language can have long-term dependency</li>
+
+<li><p>deep RNN, difficult for the gradients of output to propagate back to affect the weights of earlier layers</p>
+
+<ul>
+<li><code>$\Rightarrow$</code> vanishing gradient problem</li>
+</ul></li>
+
+<li><p>solve exploding gradients: <strong><u>gradient clipping</u></strong></p>
+
+<ul>
+<li>if gradients exceed some threshold, rescale gradients</li>
+</ul></li>
+
+<li><p>solve vanishing gradients?</p></li>
+</ul>
+
+<hr />
 
 <h2 id="gated-recurrent-unit-gru">Gated Recurrent Unit (GRU)</h2>
 
 <ul>
 <li>captures long range connections</li>
 <li>helps with vanishing gradient problems</li>
+<li>simplified GRU unit: memory cell <code>$c^t = a^t$</code> (need <code>$c^t$</code> to be highly dependent on <code>$c^{t-1}$</code>)</li>
 </ul>
+
+<p>$$
+\tilde{c}^t=\tanh(W_c[c^{t-1},x^t]+b_c),\\<br />
+\Gamma_u=\sigma(W_u[c^{t-1},x^t]+b_u),\ \ \text{u for &lsquo;update&rsquo;, decide when to update } c^t\\<br />
+    c^t = \Gamma_u * \tilde{c}^t +(1-\Gamma_u) *c^{t-1},\ \ \text{element-wise multiplication}
+$$</p>
+
+<p><img src="/NN/gru.PNG" alt="gru" /></p>
+
+<ul>
+<li>full GRU unit: (simplified: $\Gamma_r=1$)</li>
+</ul>
+
+<p>$$
+\tilde{c}^t=\tanh(W_c[\Gamma_r *c^{t-1},x^t]+b_c),\ \ \text{&lsquo;r&rsquo; for &lsquo;relevant&rsquo;}\\<br />
+\Gamma_u=\sigma(W_u[c^{t-1},x^t]+b_u),\\<br />
+\Gamma_r=\sigma(W_r[c^{t-1},x^t]+b_r),\\<br />
+    c^t = \Gamma_u * \tilde{c}^t +(1-\Gamma_u) *c^{t-1}
+$$</p>
+
+<hr />
+
+<h2 id="long-short-term-memory-lstm">Long Short Term Memory (LSTM)</h2>
+
+<ul>
+<li>u, f, o = update, forget, output</li>
+<li>GRU: simpler, can build deep model
+
+<ul>
+<li><code>$\Gamma_u, 1-\Gamma_u$</code> play the same role as <code>$\Gamma_u, \Gamma_f$</code></li>
+</ul></li>
+<li>LSTM: more powerful</li>
+</ul>
+
+<p><img src="/NN/lstm.PNG" alt="lstm" /></p>
+
+<hr />
+
+<h1 id="bidirectional-rnns-brnn">Bidirectional RNNs (BRNN)</h1>
+
+<ul>
+<li>motivation: gain information from the future</li>
+</ul>
+
+<p><img src="/NN/brnn.PNG" alt="brnn" /></p>
+
+<hr />
+
+<h1 id="deep-rnns">Deep RNNs</h1>
+
+<p>For layer <code>$\ell$</code>,
+$$
+a^{[\ell]t}=g(W_a^{[\ell]}[a^{[\ell]t-1}, a^{[\ell-1]t}] +b_a^{[\ell]})
+$$
+<img src="/NN/deeprnn.PNG" alt="deep rnn" /></p>
 
 </main>
 
