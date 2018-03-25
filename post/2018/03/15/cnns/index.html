@@ -105,7 +105,24 @@
 <li><a href="#residual-block">Residual Block</a></li>
 </ul></li>
 <li><a href="#one-by-one-convolution">One-By-One Convolution</a></li>
-<li><a href="#inception-network">Inception Network</a></li>
+<li><a href="#inception-network">Inception Network</a>
+<ul>
+<li><a href="#inception-module">Inception Module</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#practical-advices-for-using-convnets">Practical Advices for Using ConvNets</a>
+<ul>
+<li><a href="#using-open-source-implementation">Using Open-Source Implementation</a></li>
+<li><a href="#transfer-learning">Transfer Learning</a></li>
+<li><a href="#data-augmentation">Data Augmentation</a>
+<ul>
+<li><a href="#implementing-distortion-during-training">Implementing Distortion During Training</a></li>
+</ul></li>
+<li><a href="#tips-for-doing-well-on-benchmarks-winning-competitions">Tips for Doing Well on Benchmarks/Winning Competitions</a></li>
+</ul></li>
+<li><a href="#detection-algorithms">Detection Algorithms</a>
+<ul>
+<li><a href="#object-localization">Object Localization</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -243,8 +260,8 @@ n^{[\ell]}_W=\left\lfloor \frac{n^{[\ell-1]}_W +2p^{[\ell]}-f^{[\ell]}}{s^{[\ell
 <h2 id="why-convolutions">Why Convolutions?</h2>
 
 <ul>
-<li><strong>parameter sharing</strong>: a feature detector (such as a vertical edge detector) that is useful in one part of the image is probably useful in another part of the image; reduces the total number of parameters, thus <strong>reducing overfitting</strong></li>
-<li><strong>sparsity of connection</strong>s: in each layer, each output value depends only on a small number of inputs</li>
+<li><strong>parameter sharing</strong>: a <u>feature detector</u> (such as a vertical edge detector) that is useful in one part of the image is probably useful in another part of the image; reduces the total number of parameters, thus <strong>reducing overfitting</strong></li>
+<li><strong>sparsity of connections</strong>: in each layer, each output value depends only on a small number of inputs</li>
 </ul>
 
 <hr />
@@ -255,10 +272,34 @@ n^{[\ell]}_W=\left\lfloor \frac{n^{[\ell-1]}_W +2p^{[\ell]}-f^{[\ell]}}{s^{[\ell
 
 <h3 id="lenet-5">LeNet-5</h3>
 
+<ul>
+<li>structure: CONV - POOL - CONV - POOL - FC - FC - OUTPUT</li>
+<li><code>$n_H, n_W \downarrow$</code>, <code>$n_C\uparrow$</code></li>
+<li># of parameters: 60k</li>
+<li>advanced:
+
+<ul>
+<li>not use sigmoid/tanh, use ReLU</li>
+<li>use max pool, not avg pool</li>
+<li>LeNet-5 adds nonlinearity after pooling</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/lenet5.PNG" alt="lenet5" /></p>
+
 <h3 id="alexnet">AlexNet</h3>
 
 <ul>
-<li>similar to LeNet, but much bigger</li>
+<li>similar to LeNet, but much bigger, 60m parameters</li>
+</ul>
+
+<p>$$
+(11\times 11\times 3+1)\times 96+(5\times 5\times 96+1)\times 256 + (3\times 3\times 256+1)\times 384 \\<br />
++(3\times3\times 384+1)\times 384+ (3\times3\times 384 +1)\times 256 + (9216+1)\times 4096 \\<br />
++(4096+1)\times 4096 + (4096+1)\times 10 =58,322,314
+$$</p>
+
+<ul>
 <li>ReLU activation</li>
 <li>multiple GPUs</li>
 <li>local response normalization (LRN) 【does not help much】</li>
@@ -268,9 +309,20 @@ n^{[\ell]}_W=\left\lfloor \frac{n^{[\ell-1]}_W +2p^{[\ell]}-f^{[\ell]}}{s^{[\ell
 
 <h3 id="vgg-16">VGG-16</h3>
 
+<ul>
+<li># of parameters: 138m</li>
+<li>VGG-19, an even bigger version</li>
+<li><code>$n_H, n_W \downarrow$</code> by a factor of 2, <code>$n_C\uparrow$</code>  by a factor of 2</li>
+</ul>
+
 <p><img src="/NN/vgg.PNG" alt="vgg" /></p>
 
 <h2 id="residual-networks-resnets">Residual Networks (ResNets)</h2>
+
+<ul>
+<li>very deep neural networks are difficult to train because of <strong>vanishing/exploding gradients</strong></li>
+<li>skip connection</li>
+</ul>
 
 <h3 id="residual-block">Residual Block</h3>
 
@@ -291,13 +343,20 @@ $$</p>
 <p><img src="/NN/resnet.PNG" alt="resnet" /></p>
 
 <ul>
-<li>why do resnet work?
+<li>why resnets work?
 
 <ul>
-<li>if <code>$W^{[\ell+2]}=0$</code>, <code>$b^{[\ell+2]}=0$</code>, <code>$g$</code> is ReLU activation, <code>$\Rightarrow a^{[\ell+2]}=a^{[\ell]}$</code> (identity function is easy for resnet to learn)</li>
-<li><code>$z^{[\ell+2]}$</code> needs to be the same dimension as <code>$a^{[\ell]}$</code>: use SAME convolution</li>
+<li>if <code>$W^{[\ell+2]}=0$</code>, <code>$b^{[\ell+2]}=0$</code>, <code>$g$</code> is ReLU activation, <code>$\Rightarrow a^{[\ell+2]}=a^{[\ell]}$</code> (identity function is easy for resnet to learn) <code>$\Rightarrow$</code> guarantees not to hurt performance</li>
+<li><code>$z^{[\ell+2]}$</code> needs to be the same dimension as <code>$a^{[\ell]}$</code>:
+
+<ul>
+<li>use SAME convolution, or</li>
+<li>add extra matrix,  <code>$a^{[\ell+2]}=g(z^{[\ell +2]}+W_s a^{[\ell]})$</code>, <code>$W_s$</code> can be parameters to learn, or zero padding</li>
+</ul></li>
 </ul></li>
 </ul>
+
+<p><img src="/NN/resnet2.PNG" alt="resnet" /></p>
 
 <hr />
 
@@ -305,17 +364,127 @@ $$</p>
 
 <ul>
 <li>pooling: shrinks <code>$n_H, n_W$</code></li>
-<li><code>$1\times 1$</code> convolution:
+<li><code>$1\times 1$</code> convolution, aka networks in network
 
 <ul>
-<li>increase or decrease <code>$n_C$</code></li>
-<li>add nonlinearity</li>
+<li>interpretation: a <u><strong>fully-connect</strong></u> neural network applied to each of the <code>$n_H\times n_W$</code> positions</li>
+<li>increases or decreases <code>$n_C$</code></li>
+<li>adds nonlinearity</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/1by1.PNG" alt="one by one" /></p>
+
+<p><img src="/NN/1by12.PNG" alt="one by one" /></p>
+
+<hr />
+
+<h2 id="inception-network">Inception Network</h2>
+
+<p><img src="/NN/inception.PNG" alt="inception" /></p>
+
+<ul>
+<li># of multiplications: <code>$28\times 28\times 192\times 5\times 5\times 32\approx 120$</code>m</li>
+</ul>
+
+<p><img src="/NN/inception2.PNG" alt="inception" /></p>
+
+<ul>
+<li># of multiplications: <code>$28\times 28\times 192\times 16 + 28\times28\times16\times5\times5\times 32\approx 12.4$</code>m</li>
+</ul>
+
+<p><img src="/NN/inception3.PNG" alt="inception" /></p>
+
+<h3 id="inception-module">Inception Module</h3>
+
+<p><img src="/NN/inception4.PNG" alt="inception" /></p>
+
+<p><img src="/NN/inceptionnetwork.PNG" alt="inception network" /></p>
+
+<hr />
+
+<h1 id="practical-advices-for-using-convnets">Practical Advices for Using ConvNets</h1>
+
+<ol>
+<li>use architectures of networks published in the literature</li>
+<li>use open source implementations if possible</li>
+<li>use pretrained models and fine-tune on your dataset</li>
+</ol>
+
+<h2 id="using-open-source-implementation">Using Open-Source Implementation</h2>
+
+<ul>
+<li>github: open-source code</li>
+</ul>
+
+<h2 id="transfer-learning">Transfer Learning</h2>
+
+<ul>
+<li><p>open-source weights</p></li>
+
+<li><p>small training set:</p>
+
+<ul>
+<li>train only the softmax layer weights, freeze all of the earlier layers&rsquo; weights</li>
+<li>precompute the last activation, save to disk, as input features of a shallow nn</li>
+</ul></li>
+
+<li><p>large training set:</p>
+
+<ul>
+<li>freeze fewer layers, train latter layers or your own network</li>
+<li>open weights as initialization, then train the whole network</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/transfer.PNG" alt="transfer" /></p>
+
+<hr />
+
+<h2 id="data-augmentation">Data Augmentation</h2>
+
+<ul>
+<li>mirroring</li>
+<li>random cropping</li>
+<li>rotation</li>
+<li>shearing</li>
+<li>local warping</li>
+<li>color shifting
+
+<ul>
+<li>advanced: <strong>PCA</strong> [alexnet paper, PCA color augmentation]</li>
 </ul></li>
 </ul>
 
 <hr />
 
-<h2 id="inception-network">Inception Network</h2>
+<h3 id="implementing-distortion-during-training">Implementing Distortion During Training</h3>
+
+<p><img src="/NN/cpu.PNG" alt="cpu" /></p>
+
+<hr />
+
+<h2 id="tips-for-doing-well-on-benchmarks-winning-competitions">Tips for Doing Well on Benchmarks/Winning Competitions</h2>
+
+<ul>
+<li>Ensembling:  train several NNs independently and average their outputs</li>
+<li>Multi-crop at test time:
+
+<ul>
+<li>run classifier on multiple versions of test images and average results</li>
+<li>e.g. 10-crop</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/crop.PNG" alt="crop" /></p>
+
+<hr />
+
+<h1 id="detection-algorithms">Detection Algorithms</h1>
+
+<h2 id="object-localization">Object Localization</h2>
+
+<p><img src="/NN/localization.PNG" alt="localization" /></p>
 
 </main>
 
