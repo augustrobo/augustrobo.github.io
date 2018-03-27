@@ -209,6 +209,75 @@ $$</p>
 <p>$$
 \Rightarrow\frac{\partial \mathcal{L}}{\partial z}=p-y
 $$</p>
+
+<hr />
+
+<p>backpropagation: single training example</p>
+
+<ul>
+<li><code>$\mathcal{L}(t):=\mathcal{L}^t(\hat{y}^t,y^{t})$</code></li>
+<li><code>$\forall t&lt;T_x, \frac{\partial J}{\partial a^t}=\frac{\partial a^{t+1}}{\partial a^t}\frac{\partial J}{\partial a^{t+1}}+\frac{\partial \mathcal{L}(t)}{\partial a^t}$</code></li>
+</ul>
+
+<p>$$
+\begin{aligned}
+\frac{\partial J}{\partial a^t}&amp;=
+\sum_{u\geq t}\frac{\partial\mathcal{L}(u)}{\partial a^t}\newline
+&amp;=\sum_{u\geq t+1}\frac{\partial\mathcal{L}(u)}{\partial a^t}+\frac{\partial\mathcal{L}(t)}{\partial a^t}\newline
+&amp;=\sum_{u\geq t+1}\frac{\partial a^{ t+1 }}{\partial a^{ t }}\frac{\partial\mathcal{L}(u)}{\partial a^{t+1}}
++\frac{\partial\mathcal{L}(t)}{\partial a^{ t }}\newline
+&amp;=\frac{\partial a^{ t+1 }}{\partial a^{ t }}\frac{\partial J}{\partial a^{t+1}}
++\frac{\partial\mathcal{L}(t)}{\partial a^{t}}
+\end{aligned}
+$$</p>
+
+<ul>
+<li><code>$\frac{\partial a^{ t+1 }}{\partial a^{ t }}\frac{\partial J}{\partial a^{t+1}}=?$</code></li>
+</ul>
+
+<p>$$
+z^{t+1}:=W_{aa}a^t + W_{ax}x^{t+1}+b_a,
+$$</p>
+
+<p>$$
+\begin{aligned}
+\frac{\partial a^{ t+1 }}{\partial a^{ t }}\frac{\partial J}{\partial a^{t+1}}
+&amp;=\frac{\partial z^{t+1}}{\partial a^t}\frac{\partial a^{ t+1 }}{\partial z^{ t+1 }}\frac{\partial J}{\partial a^{t+1}}\newline
+&amp;=W_{aa}^T diag\{\tanh&rsquo;(z^{t+1})_1,\ldots,\tanh&rsquo;(z^{t+1})_{n_a}\} \frac{\partial J}{\partial a^{t+1}}\newline
+&amp;=W_{aa}^T\left(tanh&rsquo;(z^{t+1})* \frac{\partial J}{\partial a^{t+1}}\right)\newline
+&amp;\text{ (* stands for element-wise multiplication)}
+\end{aligned}
+$$</p>
+
+<ul>
+<li><code>$\frac{\partial J}{\partial W_{aa}}=?$</code></li>
+</ul>
+
+<p>$$
+\begin{aligned}
+\frac{\partial J}{\partial W_{aa}(i,j)}&amp;=\sum_{t=0}^{T_x-1}\frac{\partial J}{\partial a^{t+1}_i}
+\frac{\partial a^{t+1}_i}{\partial z^{t+1}_i}
+\frac{\partial z^{t+1}_i}{\partial W_{aa}(i,j)}\newline
+&amp;=
+\sum_{t=0}^{T_x-1}\frac{\partial J}{\partial a^{t+1}_i}
+\tanh&rsquo;(z^{t+1}_i)
+a^t_j
+\end{aligned}
+$$</p>
+
+<p>$$
+\Rightarrow
+\frac{\partial J}{\partial W_{aa}}=\sum_{t=0}^{T_x-1}\left(tanh&rsquo;(z^{t+1})* \frac{\partial J}{\partial a^{t+1}}\right)(a^t)^T
+$$</p>
+
+<p>Similarly,
+$$
+\frac{\partial J}{\partial x^{t+1}}=W_{ax}^T\left(tanh&rsquo;(z^{t+1})* \frac{\partial J}{\partial a^{t+1}}\right)
+$$</p>
+
+<p>$$
+\frac{\partial J}{\partial W_{ax}}=\sum_{t=0}^{T_x-1}\left(tanh&rsquo;(z^{t+1})* \frac{\partial J}{\partial a^{t+1}}\right)(x^{t+1})^T
+$$</p>
 </blockquote>
 
 <h2 id="rnn-step-by-step-python-code">RNN Step by Step - Python Code</h2>
