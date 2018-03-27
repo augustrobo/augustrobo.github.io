@@ -278,11 +278,25 @@ $$</p>
 <p>$$
 \frac{\partial J}{\partial W_{ax}}=\sum_{t=0}^{T_x-1}\left(tanh&rsquo;(z^{t+1})* \frac{\partial J}{\partial a^{t+1}}\right)(x^{t+1})^T
 $$</p>
+
+<ul>
+<li><code>$\frac{\partial J}{\partial b_a}=?$</code></li>
+</ul>
+
+<p>$$
+\begin{aligned}
+\frac{\partial J}{\partial b_a}&amp;=\sum_{t=0}^{T_x-1}\frac{\partial z^{t+1}}{\partial b_a}
+\frac{\partial a^{t+1}}{\partial z^{t+1}}
+\frac{\partial J}{\partial a^{t+1}}\newline
+&amp;=\sum_{t=0}^{T_x-1}\mathbf{1}_{n_a}^T diag\{\tanh&rsquo;(z^{t+1})_1,\ldots,\tanh&rsquo;(z^{t+1})_{n_a}\} \frac{\partial J}{\partial a^{t+1}}\newline
+&amp;=\sum_{t=0}^{T_x-1}\mathbf{1}_{n_a}^T \left(tanh&rsquo;(z^{t+1})* \frac{\partial J}{\partial a^{t+1}}\right)
+\end{aligned}
+$$</p>
 </blockquote>
 
 <h2 id="rnn-step-by-step-python-code">RNN Step by Step - Python Code</h2>
 
-<p>[jupyter notebook]()</p>
+<p><a href="https://github.com/augustrobo/Neural-Networks-and-Deep-Learning/blob/master/11-Building-RNN-Step-by-Step/RNN.ipynb">jupyter notebook</a></p>
 
 <hr />
 
@@ -397,7 +411,7 @@ $$</p>
 <p><img src="/NN/gru.PNG" alt="gru" /></p>
 
 <ul>
-<li>full GRU unit: (simplified: $\Gamma_r=1$)</li>
+<li>full GRU unit: (simplified: <code>$\Gamma_r=1$</code>)</li>
 </ul>
 
 <p>$$
