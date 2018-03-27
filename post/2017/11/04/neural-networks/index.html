@@ -252,21 +252,30 @@ $$</p>
 <li><code>$\delta^{[\ell]}=(\tilde{\Theta}^{[\ell]})^T\delta^{[\ell+1]}*g'(z^{[\ell]}), \ \ \ell=L-1,\ldots,2$</code> and <code>$\tilde{\Theta}=\Theta$</code> without the first column</li>
 </ul>
 
-<p>$$
+<p><strong><u>chain rule of vector derivative</u></strong>
+$$
 \begin{aligned}
-\frac{\partial J}{\partial a^{[\ell]}_{j}}&amp;=\sum_{i=1}^{s_{\ell+1}}
-\frac{\partial J}{\partial z^{[\ell+1]}_{i}}
-\frac{\partial z^{[\ell+1]}_{i}}{\partial a^{[\ell]}_{j}}\newline
-&amp;=\sum_{i=1}^{s_{\ell+1}}\delta^{[\ell+1]}_i\Theta_{ij}^{[\ell]}\newline
-&amp;=\Theta^{[\ell]T}_j\delta^{[\ell+1]}\text{   , where }\Theta^{[\ell]}_j\text{ is the jth column of }\Theta^{[\ell]}
-\end{aligned}
+\delta^{[\ell]}&amp;=\frac{\partial J}{\partial z^{[\ell]}}\newline
+&amp;=\frac{\partial a^{[\ell]}}{\partial z^{[\ell]}}
+\frac{\partial z^{[\ell+1]}}{\partial a^{[\ell]}}
+\frac{\partial J}{\partial z^{[\ell+1]}}\newline
+&amp;=\frac{\partial a^{[\ell]}}{\partial z^{[\ell]}}
+(\tilde{\Theta}^{[\ell]})^T
+\delta^{[\ell+1]}
+\end{aligned},
+$$</p>
+
+<p>$$
+\frac{\partial a^{[\ell]}}{\partial z^{[\ell]}}=diag\{g&rsquo;(z^{[\ell]}_1), g&rsquo;(z^{[\ell]}_2),\ldots,g&rsquo;(z^{[\ell]}_{s_l})\},
 $$</p>
 
 <p>$$
 \begin{aligned}
-&amp;\frac{\partial J}{\partial z^{[\ell]}_j} = \frac{\partial J}{\partial a^{[\ell]}_j}\frac{\partial a^{[\ell]}_j}{z^{[\ell]}_j}
-=\Theta^{[\ell]T}_j\delta^{[\ell+1]} g&rsquo;(z^{[\ell]})_j \newline
-\Rightarrow &amp;\frac{\partial J}{\partial z^{[\ell]}}=\tilde{\Theta}^{[\ell]T}\delta^{[\ell+1]}*g&rsquo;(z^{[\ell]})
+\Rightarrow
+\delta^{[\ell]} &amp;=diag\{g&rsquo;(z^{[\ell]}_1), g&rsquo;(z^{[\ell]}_2),\ldots,g&rsquo;(z^{[\ell]}_{s_l})\} (\tilde{\Theta}^{[\ell]})^T
+\delta^{[\ell+1]}\newline
+&amp;=  (\tilde{\Theta}^{[\ell]})^T
+\delta^{[\ell+1]} * g&rsquo;(z^{[\ell]}) \text{ (element-wise multiplication)}
 \end{aligned}
 $$</p>
 
@@ -287,7 +296,7 @@ $$</p>
 
 <hr />
 
-<p><code>$N$</code> <strong>training examples</strong>:</p>
+<p><code>$N$</code> <strong>training examples</strong>: <strong>VECTORIZATION</strong></p>
 
 <ul>
 <li><p><code>$\Delta^{[L]}=A^{[L]}-Y$</code></p></li>

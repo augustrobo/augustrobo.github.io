@@ -75,6 +75,7 @@
 <ul>
 <li><a href="#forward-propagation">Forward Propagation</a></li>
 <li><a href="#back-propagation-through-time">Back Propagation Through Time</a></li>
+<li><a href="#rnn-step-by-step-python-code">RNN Step by Step - Python Code</a></li>
 </ul></li>
 <li><a href="#different-types-of-rnns">Different Types of RNNs</a></li>
 <li><a href="#language-model-and-sequence-generation">Language Model and Sequence Generation</a>
@@ -162,7 +163,7 @@ $$</p>
 <p><img src="/NN/rnnback.PNG" alt="back propagation" /></p>
 
 <ul>
-<li>loss:</li>
+<li>logistic loss:</li>
 </ul>
 
 <p>$$
@@ -176,6 +177,43 @@ $$</p>
 <p>$$
 \mathcal{L}(\hat{y},y)=\sum_{t=1}^{T_y}\mathcal{L}^t(\hat{y}^t,y^{t})\tag{3}
 $$</p>
+
+<blockquote>
+<p>Derivative of softmax loss:
+$$
+p = sofmax(z),\ \ \mathcal{L}=-\sum_{k=1}^Ky_k\log p_k
+$$</p>
+
+<p>$$
+\begin{aligned}
+\frac{\partial p_k}{\partial z_k}&amp;=\frac{\partial}{\partial z_k}\frac{e^{z_k}}{\sum_j e^{z_j}}\newline
+&amp;=\frac{e^{z_k}}{\sum_j e^{z_j}}-\left(\frac{e^{z_k}}{\sum_j e^{z_j}}\right)^2=p_k(1-p_k),
+\end{aligned}
+$$</p>
+
+<p>$$
+\begin{aligned}
+\forall j\neq k, \frac{\partial p_j}{\partial z_k}&amp;=\frac{\partial}{\partial z_k}\frac{e^{z_j}}{\sum_j e^{z_j}}\newline
+&amp;=-\frac{e^{z_ke^{z_j}}}{(\sum_j e^{z_j})^2}=-p_kp_j
+\end{aligned}
+$$</p>
+
+<p>$$
+\begin{aligned}
+\Rightarrow \frac{\partial\mathcal{L}}{\partial{z_k}}&amp;=-\frac{y_k}{p_k}\frac{\partial p_k}{\partial z_k}-\sum_{j\neq k}\frac{y_j}{p_j}\frac{\partial p_j}{\partial z_k}\newline
+&amp;=-y_k(1-p_k)+\sum_{j\neq k}y_jp_k\newline
+&amp;=-y_k(1-p_k)+p_k(1-y_k)=p_k-y_k,
+\end{aligned}
+$$</p>
+
+<p>$$
+\Rightarrow\frac{\partial \mathcal{L}}{\partial z}=p-y
+$$</p>
+</blockquote>
+
+<h2 id="rnn-step-by-step-python-code">RNN Step by Step - Python Code</h2>
+
+<p>[jupyter notebook]()</p>
 
 <hr />
 
