@@ -123,7 +123,16 @@
 </ul></li>
 <li><a href="#detection-algorithms">Detection Algorithms</a>
 <ul>
-<li><a href="#object-localization">Object Localization</a></li>
+<li><a href="#classification-with-localization">Classification With Localization</a></li>
+<li><a href="#landmark-detection">Landmark Detection</a></li>
+<li><a href="#object-detection">Object Detection</a></li>
+<li><a href="#convolutional-implementation-of-sliding-windows">Convolutional Implementation of Sliding Windows</a></li>
+<li><a href="#bounding-box-prediction">Bounding Box Prediction</a></li>
+<li><a href="#intersection-over-union-iou">Intersection Over Union (IOU)</a></li>
+<li><a href="#non-max-suppression">Non-max Suppression</a></li>
+<li><a href="#anchor-boxes">Anchor Boxes</a></li>
+<li><a href="#yolo-algorithm">YOLO Algorithm</a></li>
+<li><a href="#region-proposals-r-cnn">Region Proposals: R-CNN</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -491,9 +500,206 @@ $$</p>
 
 <h1 id="detection-algorithms">Detection Algorithms</h1>
 
-<h2 id="object-localization">Object Localization</h2>
+<ul>
+<li>image classification</li>
+<li>classification with localization</li>
+<li>detection</li>
+</ul>
 
 <p><img src="/NN/localization.PNG" alt="localization" /></p>
+
+<h2 id="classification-with-localization">Classification With Localization</h2>
+
+<ul>
+<li>outputs:
+
+<ul>
+<li>class label</li>
+<li>bounding box
+
+<ul>
+<li>mid-point <code>$(b_x,b_y)$</code></li>
+<li>height: <code>$b_h$</code></li>
+<li>weight: <code>$b_w$</code></li>
+</ul></li>
+</ul></li>
+</ul>
+
+<p>$$
+y = \begin{pmatrix}
+p_c\newline
+b_x\newline
+b_y\newline
+b_h\newline
+b_w\newline
+c_1\newline
+c_2\newline
+c_3\newline
+\end{pmatrix},\  p_c=\begin{cases}
+1,&amp; \exists\text{ object}\newline
+0,&amp;\text{otherwise}
+\end{cases},\ c_i=\begin{cases}
+1,&amp; \exists\text{ object }i\newline
+0,&amp;\text{otherwise}
+\end{cases}
+$$</p>
+
+<p><img src="/NN/local.PNG" alt="localization" /></p>
+
+<ul>
+<li>loss function:</li>
+</ul>
+
+<p>$$
+\mathcal{L}(\hat{y},y)=\begin{cases}
+\Vert \hat{y}-y\Vert_2^2, &amp;\text{ if }y_1=1 \newline
+(\hat{y}_1-y_1)^2, &amp;\text{ if }y_1=0
+\end{cases}
+$$</p>
+
+<ul>
+<li>in practice, can use
+
+<ul>
+<li>logistic loss on <code>$p_c$</code></li>
+<li>squared error on <code>$b_.$</code></li>
+<li>log-likelihood loss on the softmax output of <code>$c_.$</code></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="landmark-detection">Landmark Detection</h2>
+
+<ul>
+<li>output xy-coordinates of important points</li>
+</ul>
+
+<p><img src="/NN/landmark.PNG" alt="landmark" /></p>
+
+<h2 id="object-detection">Object Detection</h2>
+
+<ul>
+<li>closely-cropped images</li>
+<li><strong>sliding window detection</strong>
+
+<ul>
+<li>before the rise of nn, use linear classifiers</li>
+<li>if use cnn, computationally expensive</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/sliding.PNG" alt="sliding window" /></p>
+
+<h2 id="convolutional-implementation-of-sliding-windows">Convolutional Implementation of Sliding Windows</h2>
+
+<ul>
+<li>turning FC layer into convolutional layers</li>
+</ul>
+
+<p><img src="/NN/fc.PNG" alt="fc" /></p>
+
+<p><img src="/NN/sw.PNG" alt="sliding window" /></p>
+
+<ul>
+<li>make all the predictions at the same time</li>
+</ul>
+
+<p><img src="/NN/sw2.PNG" alt="sliding window" /></p>
+
+<hr />
+
+<h2 id="bounding-box-prediction">Bounding Box Prediction</h2>
+
+<ul>
+<li><p>how to output accurate bounding box? YOLO algorithm</p></li>
+
+<li><p>YOLO = You Only Look Once</p></li>
+
+<li><p>convolutional implementation</p></li>
+</ul>
+
+<p><img src="/NN/yolo.PNG" alt="yolo" /></p>
+
+<ul>
+<li>specify the bounding boxes</li>
+</ul>
+
+<p><img src="/NN/bounding.PNG" alt="bounding boxes" /></p>
+
+<hr />
+
+<h2 id="intersection-over-union-iou">Intersection Over Union (IOU)</h2>
+
+<ul>
+<li>evaluating object localization</li>
+</ul>
+
+<p>$$
+\text{&ldquo;correct&rdquo; if }IOU = \frac{\text{size of intersection area}}{\text{size of union area}} \geq 0.5
+$$</p>
+
+<p><img src="/NN/iou.PNG" alt="iou" /></p>
+
+<hr />
+
+<h2 id="non-max-suppression">Non-max Suppression</h2>
+
+<ul>
+<li>problem: multiple detection of the same object</li>
+</ul>
+
+<p><img src="/NN/nonmax.PNG" alt="nonmax" /></p>
+
+<p><img src="/NN/nonmax2.PNG" alt="nonmax" /></p>
+
+<hr />
+
+<h2 id="anchor-boxes">Anchor Boxes</h2>
+
+<ul>
+<li>detect overlapping objects</li>
+</ul>
+
+<p><img src="/NN/anchor.PNG" alt="anchor" /></p>
+
+<p><img src="/NN/anchor2.PNG" alt="anchor" /></p>
+
+<hr />
+
+<h2 id="yolo-algorithm">YOLO Algorithm</h2>
+
+<p><img src="/NN/yolotraining.PNG" alt="yolo training" /></p>
+
+<p><img src="/NN/yoloprediction.PNG" alt="yolo prediction" /></p>
+
+<p><img src="/NN/yolooutput.PNG" alt="yolo output" /></p>
+
+<hr />
+
+<h2 id="region-proposals-r-cnn">Region Proposals: R-CNN</h2>
+
+<ul>
+<li>R-CNN:
+
+<ul>
+<li>propose regions (segmentation algorithm)</li>
+<li>classify proposed regions one at a time, output label + bounding box</li>
+<li>slow</li>
+</ul></li>
+<li>Fast R-CNN:
+
+<ul>
+<li>use convolutional implementation of sliding windows to classify all the proposed windows</li>
+</ul></li>
+<li>Faster R-CNN:
+
+<ul>
+<li>use convolutional network to propose regions</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/rcnn.PNG" alt="rcnn" /></p>
 
 </main>
 
