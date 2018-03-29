@@ -94,6 +94,19 @@
 </ul></li>
 <li><a href="#bidirectional-rnns-brnn">Bidirectional RNNs (BRNN)</a></li>
 <li><a href="#deep-rnns">Deep RNNs</a></li>
+<li><a href="#nlp-and-word-embedding">NLP and Word Embedding</a>
+<ul>
+<li><a href="#word-representation">Word Representation</a></li>
+<li><a href="#using-word-embeddings">Using Word Embeddings</a></li>
+<li><a href="#properties-of-word-embeddings">Properties of Word Embeddings</a></li>
+<li><a href="#embedding-matrix">Embedding Matrix</a></li>
+<li><a href="#learning-word-embeddings">Learning Word Embeddings</a></li>
+<li><a href="#word2vec">Word2Vec</a></li>
+<li><a href="#negative-sampling">Negative Sampling</a></li>
+<li><a href="#glove">GloVe</a></li>
+<li><a href="#sentiment-classification">Sentiment Classification</a></li>
+<li><a href="#debiasing-word-embeddings">Debiasing Word Embeddings</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -479,6 +492,280 @@ $$
 a^{[\ell]t}=g(W_a^{[\ell]}[a^{[\ell]t-1}, a^{[\ell-1]t}] +b_a^{[\ell]})
 $$
 <img src="/NN/deeprnn.PNG" alt="deep rnn" /></p>
+
+<hr />
+
+<h1 id="nlp-and-word-embedding">NLP and Word Embedding</h1>
+
+<h2 id="word-representation">Word Representation</h2>
+
+<ul>
+<li>one-hot representation</li>
+<li>featurized representation: word embedding</li>
+</ul>
+
+<p><img src="/NN/embedding.PNG" alt="word embedding" /></p>
+
+<ul>
+<li>t-SNE: visualizing word embeddings</li>
+</ul>
+
+<p><img src="/NN/tsne.PNG" alt="tsne" /></p>
+
+<hr />
+
+<h2 id="using-word-embeddings">Using Word Embeddings</h2>
+
+<ul>
+<li>name entity recognition</li>
+<li>transfer learning
+
+<ul>
+<li>learn word embeddings from large text corpus (1-100b words) (or download pre-trained embedding online)</li>
+<li>transfer embedding to new task with smaller training set (say, 100k words)</li>
+<li>optional: continue to fine-tune the word embeddings with new data</li>
+</ul></li>
+<li>BRNN</li>
+</ul>
+
+<p><img src="/NN/entity.PNG" alt="name entity" /></p>
+
+<ul>
+<li>relation to face encoding</li>
+</ul>
+
+<p><img src="/NN/faceencoding.PNG" alt="face encoding" /></p>
+
+<hr />
+
+<h2 id="properties-of-word-embeddings">Properties of Word Embeddings</h2>
+
+<ul>
+<li>analogies: man:woman is king:?</li>
+<li>find word <code>$w$</code> :</li>
+</ul>
+
+<p>$$
+\arg\max_w sim(e_w, e_{king}-e_{man}+e_{woman})
+$$</p>
+
+<p><img src="/NN/analogy.PNG" alt="analogy" /></p>
+
+<p><img src="/NN/analogy2.PNG" alt="analogy" /></p>
+
+<ul>
+<li>similarity function:
+
+<ul>
+<li><strong>cosine similarity</strong> (most common)</li>
+</ul></li>
+</ul>
+
+<p>$$
+sim(u,v)=\frac{u^Tv}{\Vert u\Vert_2 \Vert v\Vert_2}
+$$</p>
+
+<hr />
+
+<h2 id="embedding-matrix">Embedding Matrix</h2>
+
+<ul>
+<li>embedding matrix <code>$E$</code></li>
+<li>embedding for word <code>$w$</code>: <code>$e_w$</code></li>
+<li>one-hot representation for word <code>$w$</code>: <code>$O_w$</code></li>
+</ul>
+
+<p>$$
+EO_w = e_w
+$$</p>
+
+<ul>
+<li><strong>in practice</strong>, not efficient to use matrix multiplication to look up an embedding</li>
+</ul>
+
+<hr />
+
+<h2 id="learning-word-embeddings">Learning Word Embeddings</h2>
+
+<ul>
+<li>neural language model</li>
+<li>fixed history</li>
+</ul>
+
+<p><img src="/NN/learn.PNG" alt="learn" /></p>
+
+<ul>
+<li>context/target pairs <code>$\rightarrow$</code>  context
+
+<ul>
+<li><strong>goal</strong>: build language model
+
+<ul>
+<li>last 4 words</li>
+</ul></li>
+<li><strong>goal</strong>: learn embedding
+
+<ul>
+<li>4 words on left &amp; right</li>
+<li>last 1 word</li>
+<li>nearby 1 word</li>
+</ul></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="word2vec">Word2Vec</h2>
+
+<ul>
+<li>skip-grams
+
+<ul>
+<li>randomly pick a word to be the <strong>context</strong> word</li>
+<li>randomly pick another word within some window to be the <strong>target</strong> word</li>
+</ul></li>
+<li>supervised model</li>
+</ul>
+
+<blockquote>
+<ul>
+<li>vocab size <code>$= v$</code></li>
+<li>context <code>$c\rightarrow$</code> target <code>$t$</code></li>
+</ul>
+
+<p>$$
+O_c\rightarrow E\rightarrow e_c\rightarrow softmax\rightarrow \hat{y}
+$$</p>
+
+<p>$$
+softmax: \Pr(t|c)=\frac{e^{\theta_t^Te_c}}{\sum_{j=1}^{v}e^{\theta_j^Te_c}}
+$$</p>
+
+<ul>
+<li>loss:</li>
+</ul>
+
+<p>$$
+\mathcal{L}(\hat{y},y)=-\sum_{i=1}^{v}y_i\log\hat{y}_i
+$$</p>
+</blockquote>
+
+<ul>
+<li>problems: computationally expensive to compute <code>$\Pr(t|c)$</code></li>
+<li>solutions:
+
+<ul>
+<li>hierarchical softmax:
+
+<ul>
+<li>tree of binary classifiers</li>
+<li>cost: <code>$O(\log v)$</code> better than <code>$O(v)$</code> (softmax classifier)</li>
+<li>build unbalanced tree:  common words on the top</li>
+</ul></li>
+<li><strong>negative sampling</strong></li>
+</ul></li>
+<li>how to sample context <code>$c$</code>?
+
+<ul>
+<li>not uniform sampling: <em>the, of, a, &hellip;</em></li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="negative-sampling">Negative Sampling</h2>
+
+<ul>
+<li>pick a context word</li>
+<li>generate a positive example:
+
+<ul>
+<li>for the context word, look around a window</li>
+</ul></li>
+<li>generate <code>$K$</code> negative examples:
+
+<ul>
+<li>for the context word, randomly pick a word</li>
+</ul></li>
+<li>supervised learning  problem</li>
+</ul>
+
+<p><img src="/NN/negative.PNG" alt="negative sampling" /></p>
+
+<ul>
+<li>logistic regression model:</li>
+</ul>
+
+<p>$$
+\Pr(y=1|c,t)=\sigma(\theta_t^Te_c)
+$$</p>
+
+<ul>
+<li>instead of a large softmax model, train <code>$v$</code> logistic models</li>
+<li>how to sample random target words?
+
+<ul>
+<li>heuristic: between uniform distribution and empirical distribution</li>
+</ul></li>
+</ul>
+
+<p>$$
+\Pr(w_i)=\frac{f(w_i)^{0.75}}{\sum_jf(w_j)^{0.75}}, \ \ f(w_i) = \text{ frequency of word }w_i
+$$</p>
+
+<hr />
+
+<h2 id="glove">GloVe</h2>
+
+<ul>
+<li>Global Vectors for Word Representation</li>
+</ul>
+
+<p>$$
+X_{ct} = \text{# of times word }c \text{ appears in context of word }t = X_{tc}
+$$</p>
+
+<ul>
+<li>model: minimize</li>
+</ul>
+
+<p>$$
+\sum_{c,t=1}^v f(X_{ct})(\theta_c^Te_t+b_c-b&rsquo;_t-\log X_{ct})^2, \text{where weighting term}
+$$</p>
+
+<p>$$
+f(X_{ct})=0 \text{ for } X_{ct}=0 \text{ and gives more weight to uncommon words}
+$$</p>
+
+<ul>
+<li>since <code>$\theta_c,e_t$</code> are symmetric</li>
+</ul>
+
+<p>$$
+e_w^{(final)}:=\frac{\theta_w+e_w}{2}
+$$</p>
+
+<hr />
+
+<h2 id="sentiment-classification">Sentiment Classification</h2>
+
+<ul>
+<li>simple sentiment classification</li>
+</ul>
+
+<p><img src="/NN/sentiment.PNG" alt="sentiment" /></p>
+
+<ul>
+<li>(many-to-one) RNN for sentiment classification</li>
+</ul>
+
+<p><img src="/NN/sentiment2.PNG" alt="sentiment" /></p>
+
+<hr />
+
+<h2 id="debiasing-word-embeddings">Debiasing Word Embeddings</h2>
+
+<p><img src="/NN/debias.PNG" alt="debias" /></p>
 
 </main>
 
