@@ -134,6 +134,23 @@
 <li><a href="#yolo-algorithm">YOLO Algorithm</a></li>
 <li><a href="#region-proposals-r-cnn">Region Proposals: R-CNN</a></li>
 </ul></li>
+<li><a href="#face-verification-vs-face-recognition">Face Verification vs Face Recognition</a>
+<ul>
+<li><a href="#one-shot-learning">One Shot Learning</a></li>
+<li><a href="#siamese-network">Siamese Network</a></li>
+<li><a href="#triplet-loss">Triplet Loss</a></li>
+<li><a href="#face-verification-and-binary-classification">Face Verification and Binary Classification</a></li>
+</ul></li>
+<li><a href="#neural-style-transfer">Neural Style Transfer</a>
+<ul>
+<li><a href="#what-are-deep-convnets-learning">What are Deep ConvNets Learning?</a></li>
+<li><a href="#neural-style-transfer-cost-function">Neural Style Transfer Cost Function</a>
+<ul>
+<li><a href="#content-cost-function">Content Cost Function</a></li>
+<li><a href="#style-cost-function">Style Cost Function</a></li>
+</ul></li>
+<li><a href="#convolutions-in-1d-and-3d">Convolutions in 1D and 3D</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -700,6 +717,204 @@ $$</p>
 </ul>
 
 <p><img src="/NN/rcnn.PNG" alt="rcnn" /></p>
+
+<hr />
+
+<h1 id="face-verification-vs-face-recognition">Face Verification vs Face Recognition</h1>
+
+<ul>
+<li>verification:
+
+<ul>
+<li>input image, name/ID</li>
+<li>output whether the input image is that of the claimed person</li>
+</ul></li>
+<li>recognition:
+
+<ul>
+<li>has a database of <code>$K$</code> persons</li>
+<li>get an input image</li>
+<li>output ID if the image is any of the <code>$K$</code> persons (or &ldquo;not recognized&rdquo;)</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="one-shot-learning">One Shot Learning</h2>
+
+<ul>
+<li>learn from one example to recognize the person again</li>
+<li>learn a similarity function:
+
+<ul>
+<li><code>$d(img1, img2)$</code> = degrees of difference between images</li>
+<li>if <code>$d(img1, img2)\leq \tau$</code> , &lsquo;same&rsquo; , otherwise, &lsquo;different&rsquo;</li>
+</ul></li>
+<li>how to train the function?</li>
+</ul>
+
+<hr />
+
+<h2 id="siamese-network">Siamese Network</h2>
+
+<ul>
+<li>output: <code>$f(\cdot)$</code>, encoding of image example</li>
+<li>define</li>
+</ul>
+
+<p>$$
+d(x^{(1)}, x^{(2)})=\Vert f(x^{(1)})-f(x^{(2)})\Vert_2^2
+$$</p>
+
+<p><img src="/NN/siamese.PNG" alt="siamese" /></p>
+
+<ul>
+<li>goal of learning:
+
+<ul>
+<li><code>$\Vert f(x^{(i)})-f(x^{(j)})\Vert_2^2$</code> is small of <code>$x^{(i)},x^{(j)}$</code> are the same person</li>
+<li><code>$\Vert f(x^{(i)})-f(x^{(j)})\Vert_2^2$</code> is large of <code>$x^{(i)},x^{(j)}$</code> are different persons</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="triplet-loss">Triplet Loss</h2>
+
+<ul>
+<li>Anchor/Positive/Negative image</li>
+<li>learning objective:
+
+<ul>
+<li>want <code>$\Vert f(A)-f(P)\Vert^2\leq \Vert f(A)-f(N)\Vert^2$</code></li>
+<li>make sure not output trivial encoding</li>
+<li>modification: <code>$\Vert f(A)-f(P)\Vert^2- \Vert f(A)-f(N)\Vert^2+\alpha\leq 0$</code></li>
+<li><code>$\alpha$</code> = margin</li>
+</ul></li>
+<li>loss function: given 3 images <code>$(A, P, N)$</code>,</li>
+</ul>
+
+<p>$$
+\mathcal{L}(A,P,N)=max(\Vert f(A)-f(P)\Vert^2- \Vert f(A)-f(N)\Vert^2+\alpha, 0)
+$$</p>
+
+<ul>
+<li>overall cost:</li>
+</ul>
+
+<p>$$
+J = \sum_{i=1}^m\mathcal{L}(A^{(i)}, P^{(i)}, N^{(i)})
+$$</p>
+
+<ul>
+<li>training set: 10k pictures of 1k person (multiple pics of the same person)</li>
+<li>choosing the triplets <code>$A,P,N$</code>:
+
+<ul>
+<li>during training, if <code>$A,P,N$</code> are randomly chosen, <code>$d(A,P)+\alpha\leq d(A,N)$</code> is easily satisfied</li>
+<li>need to choose triplets that are hard to train on</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="face-verification-and-binary-classification">Face Verification and Binary Classification</h2>
+
+<p><img src="/NN/face.PNG" alt="face" /></p>
+
+<p><img src="/NN/face2.PNG" alt="face" /></p>
+
+<hr />
+
+<h1 id="neural-style-transfer">Neural Style Transfer</h1>
+
+<ul>
+<li>Content/Style/Generated image</li>
+</ul>
+
+<p><img src="/NN/style.PNG" alt="style" /></p>
+
+<h2 id="what-are-deep-convnets-learning">What are Deep ConvNets Learning?</h2>
+
+<p><img src="/NN/visual.PNG" alt="visual" /></p>
+
+<ul>
+<li>Pick a unit in layer 1. Find the nine image patches that maximize the unit&rsquo;s activation.</li>
+<li>Repeat for other 9 units.</li>
+<li>Deeper layers will see larger image patches.</li>
+</ul>
+
+<p><img src="/NN/visual2.PNG" alt="visual" /></p>
+
+<p><a href="https://arxiv.org/pdf/1311.2901.pdf">Visualizing and understanding convolutional networks</a></p>
+
+<hr />
+
+<h2 id="neural-style-transfer-cost-function">Neural Style Transfer Cost Function</h2>
+
+<p>$$
+J(G)=\alpha J_{content}(C,G) +\beta J_{style}(S,G)
+$$</p>
+
+<ul>
+<li>initiate G randomly</li>
+<li>use gradient descent to minimize <code>$J(G)$</code></li>
+</ul>
+
+<hr />
+
+<h3 id="content-cost-function">Content Cost Function</h3>
+
+<ul>
+<li>similarity between C and G</li>
+<li>use pre-trained ConvNet (e.g. VGG network)</li>
+<li>say you use hidden layer <code>$\ell$</code> to compute cost</li>
+<li>let <code>$a^{[\ell](C)}$</code> and  <code>$a^{[\ell](G)}$</code> be  the activation of layer <code>$\ell$</code> on the images</li>
+<li>if   <code>$a^{[\ell](C)}$</code> and  <code>$a^{[\ell](G)}$</code> are similar, both images gave similar content</li>
+</ul>
+
+<p>$$
+J_{content}(C,G):=\frac{1}{2}\Vert a^{[\ell](C)}-a^{[\ell] (G)}\Vert^2
+$$</p>
+
+<hr />
+
+<h3 id="style-cost-function">Style Cost Function</h3>
+
+<ul>
+<li><p>say  you use hidden layer <code>$\ell$</code> &rsquo;s activation to measure <strong>style</strong></p></li>
+
+<li><p>define <strong>style</strong> as correlation between activations across channels</p></li>
+
+<li><p>style matrix (gram matrix)</p></li>
+</ul>
+
+<p>$$
+a^{[\ell]}_{i,j,k}=\text{activation at }(i,j,k).\\<br />
+G_{kk&rsquo;}^{[\ell]}=\sum_{i=1}^{n_H^{[\ell]}}\sum_{j=1}^{n_W^{[\ell]}} a_{ijk}^{[\ell]}a_{ijk&rsquo;}^{[\ell]},\ \ k,k&rsquo;=1,2,\ldots,n_C^{[\ell]}.\\<br />
+G^{[\ell]}=(G_{kk&rsquo;}^{[\ell]})\in\mathbb{R}^{n_C^{[\ell]}\times n_C^{[\ell]}}.
+$$</p>
+
+<ul>
+<li>style matrices for the style image and generated image <code>$G^{[\ell](S)}, G^{[\ell](G)}$</code></li>
+<li>style cost</li>
+</ul>
+
+<p>$$
+J_{style}^{[\ell]}(S,G)=\frac{1}{(2n_{H}^{[\ell]}n_W^{[\ell]}n_C^{[\ell]})^2}\sum_{k,k&rsquo;}\Vert G^{[\ell](S)}-G^{[\ell](G)}\Vert^2_F
+$$</p>
+
+<p>$$
+J_{style}(S,G)=\sum_l \lambda^{[\ell]} J_{style}^{[\ell]}(S,G)
+$$</p>
+
+<hr />
+
+<h2 id="convolutions-in-1d-and-3d">Convolutions in 1D and 3D</h2>
+
+<p><img src="/NN/1d.PNG" alt="1d" /></p>
+
+<p><img src="/NN/3d.PNG" alt="3d" /></p>
 
 </main>
 
