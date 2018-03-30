@@ -107,6 +107,20 @@
 <li><a href="#sentiment-classification">Sentiment Classification</a></li>
 <li><a href="#debiasing-word-embeddings">Debiasing Word Embeddings</a></li>
 </ul></li>
+<li><a href="#sequence-to-sequence-model">Sequence to Sequence Model</a>
+<ul>
+<li><a href="#image-captioning">Image Captioning</a></li>
+<li><a href="#machine-translation-as-building-a-conditional-language-model">Machine Translation as Building a Conditional Language Model</a></li>
+<li><a href="#beam-search">Beam Search</a></li>
+<li><a href="#refinements-to-beam-search">Refinements to Beam Search</a></li>
+<li><a href="#error-analysis-in-beam-search">Error Analysis in Beam Search</a></li>
+<li><a href="#bleu-score">Bleu Score</a></li>
+<li><a href="#attention-model-intuition">Attention Model Intuition</a></li>
+</ul></li>
+<li><a href="#speech-recognition">Speech Recognition</a>
+<ul>
+<li><a href="#trigger-word-detection">Trigger Word Detection</a></li>
+</ul></li>
 </ul>
 </nav>
 
@@ -730,7 +744,7 @@ $$</p>
 </ul>
 
 <p>$$
-\sum_{c,t=1}^v f(X_{ct})(\theta_c^Te_t+b_c-b&rsquo;_t-\log X_{ct})^2, \text{where weighting term}
+\sum_{c,t=1}^v f(X_{ct})(\theta_c^Te_t+b_c+b&rsquo;_t-\log X_{ct})^2, \text{where weighting term}
 $$</p>
 
 <p>$$
@@ -766,6 +780,201 @@ $$</p>
 <h2 id="debiasing-word-embeddings">Debiasing Word Embeddings</h2>
 
 <p><img src="/NN/debias.PNG" alt="debias" /></p>
+
+<hr />
+
+<h1 id="sequence-to-sequence-model">Sequence to Sequence Model</h1>
+
+<ul>
+<li>encoder network</li>
+<li>decoder network</li>
+</ul>
+
+<p><img src="/NN/sequence.PNG" alt="sequence" /></p>
+
+<hr />
+
+<h2 id="image-captioning">Image Captioning</h2>
+
+<ul>
+<li>use pre-trained cnn</li>
+</ul>
+
+<p><img src="/NN/caption.PNG" alt="caption" /></p>
+
+<hr />
+
+<h2 id="machine-translation-as-building-a-conditional-language-model">Machine Translation as Building a Conditional Language Model</h2>
+
+<ul>
+<li>language model vs machine translation model</li>
+</ul>
+
+<p><img src="/NN/translation.PNG" alt="caption" /></p>
+
+<ul>
+<li>finding the most likely translation</li>
+</ul>
+
+<p>$$
+\arg\max_{y^1,y^2,\ldots,y^{T_y}}\Pr(y^1,\ldots,y^{T_y}|x)
+$$</p>
+
+<ul>
+<li><strong>beam search</strong> vs <strong>greedy search</strong>
+
+<ul>
+<li>greedy search: each time, find the most likely single word</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="beam-search">Beam Search</h2>
+
+<ul>
+<li>first word? <code>$\Pr(y^1|x)$</code>
+
+<ul>
+<li>parameter <code>$B$</code>: beam width (consider <code>$B$</code> possibilities at one time)</li>
+<li><code>$B=1$</code>, greedy search</li>
+</ul></li>
+<li>second word?  <code>$y^1,y^2$</code> with top <code>$B$</code></li>
+</ul>
+
+<p>$$
+\Pr(y^1,y^2|x)=\Pr(y^1|x)\Pr(y^2|y^1,x)
+$$</p>
+
+<hr />
+
+<h2 id="refinements-to-beam-search">Refinements to Beam Search</h2>
+
+<ul>
+<li>BS unnaturally prefers shorter sentences</li>
+</ul>
+
+<p>$$
+\arg\max_y\prod_{t=1}^{T_y}\Pr(y^t|x,y^1,\ldots,y^{t-1})
+$$</p>
+
+<p>$$
+\overset{\text{avoid numerical rounding error}}{\Longrightarrow} \arg\max_y\sum_{t=1}^{T_y}\log\Pr(y^t|x,y^1,\ldots,y^{t-1})
+$$</p>
+
+<ul>
+<li>length normalization
+
+<ul>
+<li>heuristic: <code>$\alpha \in (0,1)$</code></li>
+</ul></li>
+</ul>
+
+<p>$$
+\frac{1}{T_y^{\alpha}}\arg\max_y\sum_{t=1}^{T_y}\log\Pr(y^t|x,y^1,\ldots,y^{t-1})
+$$</p>
+
+<ul>
+<li>choice of <code>$B$</code>
+
+<ul>
+<li>large beam width: consider large possibilities, better result, slower</li>
+<li>small beam width: worse result, faster</li>
+</ul></li>
+<li>unlike exact search algorithms like BFS or DFS, BS runs faster but is not guaranteed to find exact maximum</li>
+</ul>
+
+<hr />
+
+<h2 id="error-analysis-in-beam-search">Error Analysis in Beam Search</h2>
+
+<ul>
+<li>human translation <code>$y^*$</code>, algorithm output <code>$\hat{y}$</code></li>
+<li>case 1:  <code>$\Pr(y^*|x)&gt;\Pr(\hat{y}|x)$</code>
+
+<ul>
+<li>BS chose <code>$\hat{y}$</code>, but <code>$y^*$</code> attains higher <code>$\Pr(y|x)$</code></li>
+<li>BS is at fault</li>
+</ul></li>
+<li>case 2: <code>$\Pr(y^*|x)&lt;\Pr(\hat{y}|x)$</code>
+
+<ul>
+<li><code>$y^*$</code> is a better translation than <code>$\hat{y}$</code>, but RNN predicted <code>$\Pr(y^*|x)&lt;\Pr(\hat{y}|x)$</code></li>
+<li>RNN model is at fault</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/error.PNG" alt="error" /></p>
+
+<hr />
+
+<h2 id="bleu-score">Bleu Score</h2>
+
+<ul>
+<li>evaluate machine translation</li>
+<li>bleu = bilingual evaluation understudy</li>
+<li><code>$p_n$</code> = Bleu score on n-grams only</li>
+<li>combined Bleu score:</li>
+</ul>
+
+<p>$$
+BP \exp\left(\frac{1}{K}\sum_{i=1}^K p_K\right)
+$$</p>
+
+<p>$$
+\text{BP penalty (brevity penalty)}:=
+\begin{cases}
+1, &amp;\text{if MT_output_length&gt;reference_output_length}\newline
+\exp(1-\text{ MT_output_length/reference_output_length}),&amp;\text{otherwise}
+\end{cases}
+$$</p>
+
+<ul>
+<li>download open source implementation</li>
+</ul>
+
+<p><img src="/NN/bleu.PNG" alt="bleu" /></p>
+
+<p><img src="/NN/bleu2.PNG" alt="bleu" /></p>
+
+<p><img src="/NN/bleu3.PNG" alt="bleu" /></p>
+
+<hr />
+
+<h2 id="attention-model-intuition">Attention Model Intuition</h2>
+
+<ul>
+<li>problem of long sequences</li>
+<li>BRNN, attention weight</li>
+</ul>
+
+<p><img src="/NN/attention.PNG" alt="attention" /></p>
+
+<p><img src="/NN/attention2.PNG" alt="attention" /></p>
+
+<p><img src="/NN/attention3.PNG" alt="attention" /></p>
+
+<hr />
+
+<h1 id="speech-recognition">Speech Recognition</h1>
+
+<ul>
+<li><p>attention models</p></li>
+
+<li><p>CTC cost (connectionist temporal classification)</p>
+
+<ul>
+<li>collapse repeated characters note separated by &ldquo;blank&rdquo;</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/ctc.PNG" alt="ctc" /></p>
+
+<hr />
+
+<h2 id="trigger-word-detection">Trigger Word Detection</h2>
+
+<p><img src="/NN/trigger.PNG" alt="trigger" /></p>
 
 </main>
 
