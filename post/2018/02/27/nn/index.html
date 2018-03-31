@@ -144,7 +144,22 @@
 <ul>
 <li><a href="#single-number-evaluation-metric">Single Number Evaluation Metric</a></li>
 <li><a href="#satisfying-and-optimizing-metric">Satisfying and Optimizing Metric</a></li>
+<li><a href="#train-dev-test-distributions">Train/Dev/Test Distributions</a></li>
+<li><a href="#size-of-the-dev-and-test-sets">Size of the Dev and Test Sets</a></li>
+<li><a href="#when-to-change-dev-test-sets-and-metrics">When to Change Dev/Test Sets and Metrics</a></li>
+<li><a href="#comparing-to-human-level-performance">Comparing to Human-Level Performance</a></li>
 </ul></li>
+<li><a href="#error-analysis">Error Analysis</a>
+<ul>
+<li><a href="#cleaning-up-incorrectly-labeled-data">Cleaning Up Incorrectly Labeled Data</a></li>
+</ul></li>
+<li><a href="#mismatched-training-and-dev-test-set">Mismatched Training and Dev/Test Set</a>
+<ul>
+<li><a href="#addressing-data-mismatch">Addressing Data Mismatch</a></li>
+</ul></li>
+<li><a href="#transfer-learning">Transfer Learning</a></li>
+<li><a href="#multi-task-learning">Multi-task Learning</a></li>
+<li><a href="#end-to-end-deep-learning">End-to-End Deep Learning</a></li>
 </ul>
 </nav>
 
@@ -1340,6 +1355,212 @@ $$</p>
 <li>e.g. maximize accuracy s.t. false positives <code>$\leq$</code> threshold</li>
 </ul></li>
 </ul>
+
+<hr />
+
+<h2 id="train-dev-test-distributions">Train/Dev/Test Distributions</h2>
+
+<ul>
+<li>guideline: choose a dev set and test set to reflect data you expect to get in the future and consider important to do well on</li>
+<li>dev set and test set should come from the same distribution</li>
+</ul>
+
+<hr />
+
+<h2 id="size-of-the-dev-and-test-sets">Size of the Dev and Test Sets</h2>
+
+<ul>
+<li>old way of splitting data:
+
+<ul>
+<li>train/test = <sup>70</sup>&frasl;<sub>30</sub></li>
+<li>train/dev/test = 60/20/20</li>
+</ul></li>
+<li>deep learning
+
+<ul>
+<li>train/dev/test = 98/1/1</li>
+<li>set your test set to be big enough to give high confidence in the overall performance of your system</li>
+<li>not having a test set is ok, train/dev</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h2 id="when-to-change-dev-test-sets-and-metrics">When to Change Dev/Test Sets and Metrics</h2>
+
+<p><img src="/NN/cat.PNG" alt="cat" /></p>
+
+<p><img src="/NN/cat2.PNG" alt="cat" /></p>
+
+<p><img src="/NN/cat3.PNG" alt="cat" /></p>
+
+<hr />
+
+<h2 id="comparing-to-human-level-performance">Comparing to Human-Level Performance</h2>
+
+<ul>
+<li>Bayes optimal error</li>
+<li>human-level performance might not be far from Bayes error</li>
+<li>human-level error as a proxy for Bayes error</li>
+<li>avoidable/unavoidable error</li>
+<li>difference between human-level performance &amp; training error: <strong>avoidable bias</strong></li>
+<li>difference between training error &amp; dev error: <strong>variance</strong></li>
+</ul>
+
+<p><img src="/NN/bayes.PNG" alt="bayes" /></p>
+
+<p><img src="/NN/human.PNG" alt="human" /></p>
+
+<ul>
+<li>surpassing human-level performance: (structured data, not natural perception/ lots of data, pattern)
+
+<ul>
+<li>online advertising</li>
+<li>product recommendations</li>
+<li>logistics (predicting transit time)</li>
+<li>loan approvals</li>
+<li>speech recognition</li>
+<li>some image recognition</li>
+<li>medical: ECG, &hellip;.</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<ul>
+<li>two fundamental assumptions of supervised learning
+
+<ul>
+<li>you can fit the training set pretty well (avoidable bias)</li>
+<li>the training set performance generalized pretty well to dev/test set (variance)</li>
+</ul></li>
+<li>reduce <strong>avoidable bias</strong>
+
+<ul>
+<li>train bigger model</li>
+<li>train longer/ better optimization algo (momentum, RMS prop, Adam)</li>
+<li>NN architecture (CNN, RNN)/ hyperpatameters search</li>
+</ul></li>
+<li>reduce <strong>variance</strong>
+
+<ul>
+<li>more data</li>
+<li>regularization (L2, dropout, data augmentation)</li>
+<li>NN architecture (CNN, RNN)/ hyperpatameters search</li>
+</ul></li>
+</ul>
+
+<hr />
+
+<h1 id="error-analysis">Error Analysis</h1>
+
+<p><img src="/NN/erroranalysis.PNG" alt="error analysis" /></p>
+
+<p><img src="/NN/erroranalysis2.PNG" alt="error analysis" /></p>
+
+<hr />
+
+<h2 id="cleaning-up-incorrectly-labeled-data">Cleaning Up Incorrectly Labeled Data</h2>
+
+<ul>
+<li>DL algorithms are quite robust to random errors in the training set</li>
+<li>incorrectly labeled data in the dev/test set: add one col in error analysis</li>
+</ul>
+
+<p><img src="/NN/erroranalysis3.PNG" alt="error analysis" /></p>
+
+<hr />
+
+<p><strong>Correcting in correct dev/test set examples</strong></p>
+
+<ul>
+<li>apply same process to dev and test sets to make sure they continue to come from the same distribution</li>
+<li>consider examining examples your algo got right as well as ones it got wrong</li>
+<li>training and dev/test data may now come from slightly different distributions</li>
+</ul>
+
+<hr />
+
+<h1 id="mismatched-training-and-dev-test-set">Mismatched Training and Dev/Test Set</h1>
+
+<p><img src="/NN/option.PNG" alt="option" /></p>
+
+<ul>
+<li><u>data mismatch problem</u> vs <u>variance problem</u>?
+
+<ul>
+<li><strong>training-dev set</strong>: same distribution as training set, but not used for training</li>
+</ul></li>
+</ul>
+
+<p><img src="/NN/mismatch.PNG" alt="mismatch" /></p>
+
+<ol>
+<li>training error - human-level error = avoidable error</li>
+<li>training-dev error - training error  = variance</li>
+<li>dev error - training error = data mismatch</li>
+<li>test error - dev error = degree of overfitting to dev set (larger dev set)</li>
+</ol>
+
+<p><img src="/NN/mismatch2.PNG" alt="mismatch" /></p>
+
+<hr />
+
+<h2 id="addressing-data-mismatch">Addressing Data Mismatch</h2>
+
+<ul>
+<li>collect more data similar to dev/test sets</li>
+<li>artificial synthesized data (e.g. speech recognition)</li>
+</ul>
+
+<hr />
+
+<h1 id="transfer-learning">Transfer Learning</h1>
+
+<p><img src="/NN/transfer2.PNG" alt="transfer learning" /></p>
+
+<p>When transfer learning makes sense (Task A <code>$\rightarrow$</code> Task B)</p>
+
+<ul>
+<li>Task A and B have the same input</li>
+<li>You have a lot more data for Task A than Task B</li>
+<li>Low level features from A could be helpful for learning B</li>
+</ul>
+
+<hr />
+
+<h1 id="multi-task-learning">Multi-task Learning</h1>
+
+<p><img src="/NN/multi.PNG" alt="multi task" /></p>
+
+<p>When multi-task learning makes sense</p>
+
+<ul>
+<li>training on a set of tasks that could benefit from having shared lower-level features</li>
+<li>usually: amount of data you have for each task is quite similar</li>
+<li>can train a big enough nn to do well on all the tasks</li>
+</ul>
+
+<hr />
+
+<h1 id="end-to-end-deep-learning">End-to-End Deep Learning</h1>
+
+<p>pros of end-to-end deep learning</p>
+
+<ul>
+<li>let the data speak</li>
+<li>less hand-designing of components needed</li>
+</ul>
+
+<p>cons</p>
+
+<ul>
+<li>may need large amount of data</li>
+<li>excludes potentially useful hand-designed components</li>
+</ul>
+
+<p><img src="/NN/end-to-end.PNG" alt="end to end" /></p>
 
 </main>
 
