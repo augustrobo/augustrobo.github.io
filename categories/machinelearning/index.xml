@@ -6,64 +6,10 @@
     <description>Recent content in MachineLearning on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 11 Nov 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/categories/machinelearning/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>ML - Application Example - Photo OCR</title>
-      <link>/post/2017/11/11/ocr/</link>
-      <pubDate>Sat, 11 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/11/ocr/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Large Scale Machine Learning</title>
-      <link>/post/2017/11/10/large-scale-ml/</link>
-      <pubDate>Fri, 10 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/10/large-scale-ml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Recommender Systems</title>
-      <link>/post/2017/11/09/recommender-systems/</link>
-      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/09/recommender-systems/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Anomaly Detection</title>
-      <link>/post/2017/11/08/anomaly/</link>
-      <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/08/anomaly/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Dimensionality Reduction</title>
-      <link>/post/2017/11/08/dimension-reduction/</link>
-      <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/08/dimension-reduction/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Unsupervised Learning</title>
-      <link>/post/2017/11/07/unsupervised/</link>
-      <pubDate>Tue, 07 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/07/unsupervised/</guid>
-      <description></description>
-    </item>
     
     <item>
       <title>ML - Support Vector Machines</title>
@@ -124,82 +70,6 @@ Forward Propagation: Vectorized Implementation $$ [x] \rightarrow [a^{[2]}] \rig
  goal: given a training set, to learn a function $h : X \rightarrow Y$ so that $h(x)$ is a “good” predictor for the corresponding value of $y$. For historical reasons, this function $h$ is called a hypothesis.
  $h(x)=h_{\theta}(x) = \theta_0 + \theta_1 x$
  cost function (squared error function, or mean squared error, MSE):</description>
-    </item>
-    
-    <item>
-      <title>ISLR CH10 Unsupervised Learning</title>
-      <link>/post/2017/10/10/unsupervised/</link>
-      <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/10/unsupervised/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH9 Support Vector Machines</title>
-      <link>/post/2017/10/09/svm/</link>
-      <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/09/svm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH8 Tree-Based Methods</title>
-      <link>/post/2017/10/08/tree-based-methods/</link>
-      <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/08/tree-based-methods/</guid>
-      <description>IntuitionModelsRegression TreesPredicting Baseball Players’ SalariesAlgorithmTree PruningReferencesIntuitionRegression/Classification
-Stratify or segment the predictor space into simple regions
-Prediction for a given observation: mean or mode of the training observations in the region to which it belongs
-The set of splitting rules can be summarized in a tree \(\Rightarrow\) Decision Tree Methods
-Pros: simple, easy to interpret, and nice to visualize</description>
-    </item>
-    
-    <item>
-      <title>ISLR CH7 Moving Beyond Linearity</title>
-      <link>/post/2017/10/07/beyond-linearity/</link>
-      <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/07/beyond-linearity/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH6 Linear Model Selection and Regularization</title>
-      <link>/post/2017/10/06/model-selection/</link>
-      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/06/model-selection/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH5 Resampling Method</title>
-      <link>/post/2017/10/05/resampling/</link>
-      <pubDate>Thu, 05 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/05/resampling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH4 Classification</title>
-      <link>/post/2017/10/04/classification/</link>
-      <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/04/classification/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH3 Linear Regression</title>
-      <link>/post/2017/10/03/linear-regression/</link>
-      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/03/linear-regression/</guid>
-      <description></description>
     </item>
     
   </channel>

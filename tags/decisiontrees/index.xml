@@ -1,28 +1,0 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>DecisionTrees on NOWHERESVILLE</title>
-    <link>/tags/decisiontrees/</link>
-    <description>Recent content in DecisionTrees on NOWHERESVILLE</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 08 Oct 2017 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="/tags/decisiontrees/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>ISLR CH8 Tree-Based Methods</title>
-      <link>/post/2017/10/08/tree-based-methods/</link>
-      <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/08/tree-based-methods/</guid>
-      <description>IntuitionModelsRegression TreesPredicting Baseball Players’ SalariesAlgorithmTree PruningReferencesIntuitionRegression/Classification
-Stratify or segment the predictor space into simple regions
-Prediction for a given observation: mean or mode of the training observations in the region to which it belongs
-The set of splitting rules can be summarized in a tree \(\Rightarrow\) Decision Tree Methods
-Pros: simple, easy to interpret, and nice to visualize</description>
-    </item>
-    
-  </channel>
-</rss>

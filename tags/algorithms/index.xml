@@ -25,27 +25,6 @@ Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via re
     </item>
     
     <item>
-      <title>Leetcode算法题目（不断更新）</title>
-      <link>/post/2018/01/25/leetcode/</link>
-      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/01/25/leetcode/</guid>
-      <description>Maximum Subarray  Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
-For example, given the array [-2,1,-3,4,-1,2,1,-5,4], the contiguous subarray [4,-1,2,1] has the largest sum = 6.
- Merge Sorted Array  Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
-Note: You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2.</description>
-    </item>
-    
-    <item>
-      <title>Python练习题（不断更新）</title>
-      <link>/post/2018/01/01/python-exercises/</link>
-      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/01/01/python-exercises/</guid>
-      <description>基础 Tic-tac-toe  Write a program using print() that, when run, prints out a tic-tac-toe board.   | | -------- | | -------- | |   Write a program that, when run, prints out a SUPER tic-tac-toe board.   | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | |  数据结构 算法 Greatest Common Divisor 最大公因数 Euclid&amp;rsquo;s algorithm:</description>
-    </item>
-    
-    <item>
       <title>Searching 搜索算法</title>
       <link>/post/2018/01/01/searching/</link>
       <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>

@@ -48,15 +48,6 @@
     </item>
     
     <item>
-      <title>MMDS - MapReduce</title>
-      <link>/post/2018/02/05/mapreduce/</link>
-      <pubDate>Mon, 05 Feb 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/02/05/mapreduce/</guid>
-      <description> 1 </description>
-    </item>
-    
-    <item>
       <title>Algorithms-Design and Analysis(Stanford) Notes</title>
       <link>/post/2018/01/25/algorithms/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
@@ -67,32 +58,6 @@ Divide and Conquer 分而治之  DIVIDE into smaller sub-problems CONQUER via re
  Determine the upper bound of running time for most of the D&amp;amp;C algos
  Assumption: all sub-problems have equal size
     unbalanced sub-problems? more than one recurrence?    Recurrence format:</description>
-    </item>
-    
-    <item>
-      <title>Leetcode算法题目（不断更新）</title>
-      <link>/post/2018/01/25/leetcode/</link>
-      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/01/25/leetcode/</guid>
-      <description>Maximum Subarray  Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
-For example, given the array [-2,1,-3,4,-1,2,1,-5,4], the contiguous subarray [4,-1,2,1] has the largest sum = 6.
- Merge Sorted Array  Given two sorted integer arrays nums1 and nums2, merge nums2 into nums1 as one sorted array.
-Note: You may assume that nums1 has enough space (size that is greater or equal to m + n) to hold additional elements from nums2.</description>
-    </item>
-    
-    <item>
-      <title>Python Data Structures</title>
-      <link>/post/2018/01/25/python-data-structure/</link>
-      <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/01/25/python-data-structure/</guid>
-      <description> Operations:
- insert 插入 remove 移除 iterate 遍历 test if empty 检验空否  Stack  Examine the item most recently added &amp;lt;- LIFO = last in first out
- push (insert)
- pop (remove)
-  ​
-Queue  Examine the item least recently added &amp;lt;- FIFO = first in first out enqueue (insert) dequeue (remove)  Heap Tree </description>
     </item>
     
     <item>
@@ -108,15 +73,6 @@ round(3.24, 1) #是四舍五入 ## 3.2 round(3.26, 1) #是四舍五入 ## 3.3 ro
 进一步解释：十进制小数 $0.2$ 和 $0.3$ 的二进制表示分别为：
 $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\left(\frac{1}{128}+\frac{1}{256}\right)+\cdots =\frac{\frac{1}{8}+\frac{1}{16}}{1-\frac{1}{16}} =\frac{3}{15}=\frac{1}{5}\newline &amp;amp;=(0.\dot{0}\dot{0}\dot{1}\dot{1})_2 \end{align} $$
 以及 $$ \begin{align} (0.</description>
-    </item>
-    
-    <item>
-      <title>Python练习题（不断更新）</title>
-      <link>/post/2018/01/01/python-exercises/</link>
-      <pubDate>Mon, 01 Jan 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/01/01/python-exercises/</guid>
-      <description>基础 Tic-tac-toe  Write a program using print() that, when run, prints out a tic-tac-toe board.   | | -------- | | -------- | |   Write a program that, when run, prints out a SUPER tic-tac-toe board.   | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | ========+========+======== | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | | --+--+--H--+--+--H--+--+-- | | H | | H | |  数据结构 算法 Greatest Common Divisor 最大公因数 Euclid&amp;rsquo;s algorithm:</description>
     </item>
     
     <item>
@@ -142,60 +98,6 @@ $$ \begin{align} (0.2)_{10} &amp;amp; = \left(\frac{1}{8}+\frac{1}{16}\right)+\l
 https://visualgo.net/bn/sorting
 https://www.toptal.com/developers/sorting-algorithms
 References  MIT, 6.006, Introduction to Algorithms, LECTURE 3 CLRS , Chapter 2  Summary     Best-Case $T(n)$ Worst-Case $T(n)$ Average-Case $T(n)$? Space Complexity     Bubble Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Selection Sort $O(n^2)$ $O(n^2)$ $O(n^2)$ $O(1)$   Insertion Sort $O(n)$ $O(n^2)$ $O(n^2)$ $O(1)$   Merge Sort $O(n\log n)$ $O(n\log n)$ $O(n\log n)$ $O(n)$   Quick Sort $O(n\log n)$ $O(n^2)$ $O(n\log n)$ $O(1)$    Can We Sort Faster?</description>
-    </item>
-    
-    <item>
-      <title>ML - Application Example - Photo OCR</title>
-      <link>/post/2017/11/11/ocr/</link>
-      <pubDate>Sat, 11 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/11/ocr/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Large Scale Machine Learning</title>
-      <link>/post/2017/11/10/large-scale-ml/</link>
-      <pubDate>Fri, 10 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/10/large-scale-ml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Recommender Systems</title>
-      <link>/post/2017/11/09/recommender-systems/</link>
-      <pubDate>Thu, 09 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/09/recommender-systems/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Anomaly Detection</title>
-      <link>/post/2017/11/08/anomaly/</link>
-      <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/08/anomaly/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Dimensionality Reduction</title>
-      <link>/post/2017/11/08/dimension-reduction/</link>
-      <pubDate>Wed, 08 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/08/dimension-reduction/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ML - Unsupervised Learning</title>
-      <link>/post/2017/11/07/unsupervised/</link>
-      <pubDate>Tue, 07 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/11/07/unsupervised/</guid>
-      <description></description>
     </item>
     
     <item>
@@ -257,82 +159,6 @@ Forward Propagation: Vectorized Implementation $$ [x] \rightarrow [a^{[2]}] \rig
  goal: given a training set, to learn a function $h : X \rightarrow Y$ so that $h(x)$ is a “good” predictor for the corresponding value of $y$. For historical reasons, this function $h$ is called a hypothesis.
  $h(x)=h_{\theta}(x) = \theta_0 + \theta_1 x$
  cost function (squared error function, or mean squared error, MSE):</description>
-    </item>
-    
-    <item>
-      <title>ISLR CH10 Unsupervised Learning</title>
-      <link>/post/2017/10/10/unsupervised/</link>
-      <pubDate>Tue, 10 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/10/unsupervised/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH9 Support Vector Machines</title>
-      <link>/post/2017/10/09/svm/</link>
-      <pubDate>Mon, 09 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/09/svm/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH8 Tree-Based Methods</title>
-      <link>/post/2017/10/08/tree-based-methods/</link>
-      <pubDate>Sun, 08 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/08/tree-based-methods/</guid>
-      <description>IntuitionModelsRegression TreesPredicting Baseball Players’ SalariesAlgorithmTree PruningReferencesIntuitionRegression/Classification
-Stratify or segment the predictor space into simple regions
-Prediction for a given observation: mean or mode of the training observations in the region to which it belongs
-The set of splitting rules can be summarized in a tree \(\Rightarrow\) Decision Tree Methods
-Pros: simple, easy to interpret, and nice to visualize</description>
-    </item>
-    
-    <item>
-      <title>ISLR CH7 Moving Beyond Linearity</title>
-      <link>/post/2017/10/07/beyond-linearity/</link>
-      <pubDate>Sat, 07 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/07/beyond-linearity/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH6 Linear Model Selection and Regularization</title>
-      <link>/post/2017/10/06/model-selection/</link>
-      <pubDate>Fri, 06 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/06/model-selection/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH5 Resampling Method</title>
-      <link>/post/2017/10/05/resampling/</link>
-      <pubDate>Thu, 05 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/05/resampling/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH4 Classification</title>
-      <link>/post/2017/10/04/classification/</link>
-      <pubDate>Wed, 04 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/04/classification/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ISLR CH3 Linear Regression</title>
-      <link>/post/2017/10/03/linear-regression/</link>
-      <pubDate>Tue, 03 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2017/10/03/linear-regression/</guid>
-      <description></description>
     </item>
     
   </channel>
