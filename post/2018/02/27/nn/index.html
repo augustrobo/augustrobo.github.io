@@ -125,6 +125,7 @@
 <li><a href="#adam-optimization-algorithm">Adam Optimization Algorithm</a></li>
 <li><a href="#learning-rate-decay">Learning Rate Decay</a></li>
 <li><a href="#local-optima-in-neural-networks">Local Optima in Neural Networks</a></li>
+<li><a href="#python-code-optimization-algorithms">Python Code - Optimization Algorithms</a></li>
 </ul></li>
 <li><a href="#tuning-process">Tuning Process</a>
 <ul>
@@ -1062,7 +1063,7 @@ $$
 <p>on iteration <code>$t$</code></p>
 
 <ul>
-<li>compute <code>$dw,Db$</code> on current mini-batch</li>
+<li>compute <code>$dw,db$</code> on current mini-batch</li>
 <li><code>$v_{dw} = \beta v_{dw}+(1-\beta)dw$</code> (<code>$v_{dw}$</code>: velocity, <code>$dw$</code>: acceleration, <code>$\beta$</code>: friction)</li>
 <li><code>$v_{db} = \beta v_{db}+(1-\beta)db$</code></li>
 <li>update: <code>$w := w- \alpha v_{dw}, b :=b- \alpha v_{db}$</code></li>
@@ -1187,6 +1188,12 @@ $$</p>
 </ul>
 
 <p><img src="/NN/plateau.PNG" alt="plateau" /></p>
+
+<hr />
+
+<h2 id="python-code-optimization-algorithms">Python Code - Optimization Algorithms</h2>
+
+<p><a href="https://github.com/augustrobo/Neural-Networks-and-Deep-Learning/blob/master/05-Optimization-Algorithms/Optimization%20methods.ipynb">jupyter notebook</a></p>
 
 <hr />
 
