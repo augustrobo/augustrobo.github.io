@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Selection | NOWHERESVILLE</title>
+    <title>Tips - 2018 Apr | NOWHERESVILLE</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <header>
@@ -31,7 +31,7 @@
       </li>
       
       
-      <li class="pull-left current">
+      <li class="pull-left ">
         <a href="/tags/">~/tags</a>
       </li>
       
@@ -52,21 +52,76 @@
   <body>
     <br/>
 
+<div class="article-meta">
+<h1><span class="title">Tips - 2018 Apr</span></h1>
+
+<h2 class="date">2018/04/10</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/tips">tips</a> 
+  
+  
+  
+  
+</p>
+</div>
 
 
-<h1>Selection</h1>
+<nav id="TableOfContents">
+<ul>
+<li><a href="#colaboratory-download-files">Colaboratory - Download Files</a></li>
+<li><a href="#conversion-between-class-labels-and-one-hot">Conversion Between Class Labels and One Hot</a></li>
+<li><a href="#order-of-cnn-layers">Order of CNN Layers</a></li>
+</ul>
+</nav>
 
 
+<main>
 
+
+<h1 id="colaboratory-download-files">Colaboratory - Download Files</h1>
+
+<pre><code class="language-python">from google.colab import files
+files.download('filename')
+</code></pre>
+
+<h1 id="conversion-between-class-labels-and-one-hot">Conversion Between Class Labels and One Hot</h1>
+
+<pre><code class="language-python"># class label to integer label
+from sklearn import preprocessing
+le = preprocessing.LabelEncoder()
+y_factor = le.fit_transform(y_class)
+
+# integer label to one hot
+from keras.utils import np_utils
+y_onehot = np_utils.to_categorical(y_factor)
+
+# keras Sequence() model prediction to class label
+y_pred_factor = model.predict_classes(Xtest)
+y_pred_class = le.inverse_transform(y_pred_factor)
+
+# keras Model() model prediction to class label
+y_pred_prob = model.predict(Xtest)
+y_pred_factor = y_pred_prob.argmax(axis = -1)
+y_pred_class = le.inverse_transform(y_pred_factor)
+</code></pre>
+
+<h1 id="order-of-cnn-layers">Order of CNN Layers</h1>
+
+<p><code>CONV/FC -&gt; ReLU -&gt; BN -&gt; Dropout -&gt; CONV/FC</code></p>
+
+<blockquote>
+<p>BN after Activation improves accuracy</p>
+</blockquote>
 
 <ul>
-  
-  <li>
-    <span class="date">2018/01/25</span>
-    <a href="/post/2018/01/25/algorithms/">Algorithms-Design and Analysis(Stanford) Notes</a>
-  </li>
-  
+<li><p><a href="https://github.com/cvjena/cnn-models/issues/3">link1: discussion</a></p></li>
+
+<li><p><a href="https://github.com/ducha-aiki/caffenet-benchmark/blob/master/batchnorm.md#bn----before-or-after-relu">link2: evaluation on ImageNet-2012</a></p></li>
 </ul>
+
+</main>
 
     <footer>
       <script type="text/javascript" async

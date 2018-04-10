@@ -6,10 +6,19 @@
     <description>Recent content in Home on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 20 Mar 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 10 Apr 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Tips - 2018 Apr</title>
+      <link>/post/2018/04/10/tips1/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/04/10/tips1/</guid>
+      <description>Colaboratory - Download Files from google.colab import files files.download(&#39;filename&#39;)  Conversion Between Class Labels and One Hot # class label to integer label from sklearn import preprocessing le = preprocessing.LabelEncoder() y_factor = le.fit_transform(y_class) # integer label to one hot from keras.utils import np_utils y_onehot = np_utils.to_categorical(y_factor) # keras Sequence() model prediction to class label y_pred_factor = model.predict_classes(Xtest) y_pred_class = le.inverse_transform(y_pred_factor) # keras Model() model prediction to class label y_pred_prob = model.</description>
+    </item>
     
     <item>
       <title>Sequence Models</title>
