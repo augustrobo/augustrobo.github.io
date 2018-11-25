@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RecommenderSystems on NOWHERESVILLE</title>
+    <link>/tags/recommendersystems/</link>
+    <description>Recent content in RecommenderSystems on NOWHERESVILLE</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 25 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/recommendersystems/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>报告笔记-推荐系统101</title>
+      <link>/post/2018/11/25/rcreport/</link>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/11/25/rcreport/</guid>
+      <description>报告者: 小红书 - 姚旭
+无限下拉feed流的个性化推荐：主要针对兴趣，次针对follow关系
+曝光 $\rightarrow$ 点击 $\rightarrow$ 交互 $\rightarrow$ 用户价值【最优化的目标】$\rightarrow$ 用户留存
+Q: 为什么纯优化点击、提升点击率（CTR, Click-Through-Rate）不是最好的优化目标？
+A:
+ 点击高的内容未必优质，点击率高的东西可能很好，也可能很坏、很怪，好的推荐要对抗人性 不仅需要优化读者端的体验，还要将读者的能量传递给作者，形成loop，纯点击不够  优化停留时长？是kill time而已
+好的推荐：尽量引导客户行为，考虑读者、作者双边价值
+优化目标：让用户产生价值
+转化为公式：对不同行为赋予不同的value权重，加权求和 $$ \begin{aligned} S=&amp;amp;\Pr(click)\times V(click)\newline &amp;amp;+\Pr(like)\times V(like) \newline &amp;amp;+\Pr(comment)\times V(comment)\newline &amp;amp;+\Pr(share)\times V(share)\newline &amp;amp;+\Pr(follow)\times V(follow)\newline &amp;amp;+\Pr(hide)\times V(hide) \end{aligned} $$
+ 区分正常的点击，以及点击欺诈 对负面的评论，价值为负 权重可以看作超参的超参，根据业务情况不断调整；根据不同用户调整，比如新用户，可以增加click的价值 只要各种行为的价值取向排序不变，值变化 将用户留存作为间接参考   80%时间：内容理解和索引，召回策略，特征 20%时间：排序模型，价值模型  排序模型的迭代
+ 人工规则 LR, FM/FFM, GBDT DNN: 不要一开始就选择DNN，响应慢，调参是黑匣子，投入产出不成正比   Logistic regression  优点：简单，速度快，模型解释性强；可dense，可sparse 缺点： 线性模型 对特征scale有要求 需要在raw features上做大量处理、组合【特征工程黑魔法】，且特征变换在后续复用率低    scaling对逻辑回归的作用：</description>
+    </item>
+    
+  </channel>
+</rss>
