@@ -42,6 +42,7 @@
       <title>Graph</title>
       <link>/categories/graph/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
+<<<<<<< HEAD
       
       <guid>/categories/graph/</guid>
       <description></description>
@@ -51,6 +52,8 @@
       <title>Hadoop</title>
       <link>/categories/hadoop/</link>
       <pubDate>Sat, 04 May 2019 00:00:00 +0000</pubDate>
+=======
+>>>>>>> cab77a0e7b481758b86a918f27a0d6ffda2da674
       
       <guid>/categories/hadoop/</guid>
       <description></description>
