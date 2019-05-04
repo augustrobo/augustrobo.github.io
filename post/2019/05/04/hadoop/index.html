@@ -164,10 +164,18 @@ which sshd
 <pre><code>cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
 </code></pre>
 
-<p><code>指令 &gt;&gt; 文件</code>
-- 会将指令产生的标准输出(stdout)，附加在文件之后
-    - 文件不存在时，会新建
-    - 当文件已经存在，会将stdout附加在文件内容后面，而不会覆盖</p>
+<p><code>指令 &gt;&gt; 文件</code></p>
+
+<ul>
+<li>会将指令产生的标准输出(stdout)，附加在文件之后
+
+<ul>
+<li>文件不存在时，会新建</li>
+<li>当文件已经存在，会将stdout附加在文件内容后面，而不会覆盖
+<br />
+<br /></li>
+</ul></li>
+</ul>
 
 <p>测试【不成功则尝试重启 <code>sudo service ssh restart</code>】</p>
 
