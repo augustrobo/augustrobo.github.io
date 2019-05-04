@@ -6,26 +6,42 @@
     <description>Recent content in Home on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 11 Apr 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 04 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>面试想法 - CNN</title>
-      <link>/post/2018/04/11/diary411/</link>
-      <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
+      <title>win10 WSL Ubuntu 安装Hadoop Single Node Cluster</title>
+      <link>/post/2019/05/04/hadoop/</link>
+      <pubDate>Sat, 04 May 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018/04/11/diary411/</guid>
-      <description>今天面试岗位的面试官让我讲一下CNN，就糊里糊涂把最近学的和实践的一点点东西讲了一下，脑海中却有一个疑问，貌似一直都没思考过CNN为什么这么强大？
-在吴恩达的深度学习专项课程中，并不是我第一次知道卷积神经网络了，读研时就和同学在讨论班讨论过，模模糊糊知道做了什么数学运算（学数学的毛病，一切都从公式出发，才是舒适区），至于为什么要做convolution？CNN有多强大？为什么这么强大？完全不了解，以为是个很艰深的课题。吴恩达的课程讲的真的很直观透彻，边听边有种感觉：懂了，原来这么简单。然而事后回想，真的懂了吗？
-读研时借了一本机器学习图像识别的书，看完了第一章，觉得自己懂了，后面长篇大论的方法根本懒得看：所谓图像识别，就是把图像像素灰度或RGB数据拉长成为一个向量嘛，那跟一般的特征有什么区别？殊途同归，没什么意思。然而心中隐隐知道有种不对劲：真的这么简单粗暴的方法就可以吗？假如按照列拉成向量，普通的机器学习方法真的能够自动发现同一行像素之间的关联吗？能发现在附近的像素之间的关联吗？假如通过神经网络来学习，需要多深的网络才能把握这些复杂的邻近关系呢？正是心中有这些疑问，对这本书有点不以为然。
-后来又听了一个图像识别的统计报告，听众寥寥无几，但是我对作者的方法很感兴趣，貌似是照列和行都拉长成两个向量？记不太清，总之作者是试图把握上下左右像素之间的关系，令我很感兴趣，一直念念不忘这个想法（虽然作者自称成果不太好，后续还要改进）。
-今日突然联系起来，恍然大悟，这不就是CNN的想法吗？每次的convolution运算，都是学习了图像上一小片邻近像素的特征！心中感到一重震惊：为什么会有人这么聪明，能想出这样的方法；二重震惊：为什么之前没有人想出这样的简单明快的方法；三重震惊：LeNet-5在1995年就提出了，我竟然在2014年开始读研直到2017年毕业都不知道这么强大的方法。
-在CNN之前，图像识别都要通过复杂的方法去提取线条等等特征，而CNN可以直接免去痛苦的特征工程，让算法自己去学习图像中从简单、到复杂的特征，在吴恩达的课中，贴出了这篇论文【Visualizing and understanding convolutional networks】，完全直观地感受到CNN的奇妙。
-由此想到，对一些高维数据，很多算法都需要先做特征选择或者模型选择，以免特征高度共线性影响算法的表现。然而，高度相关的特征真的不应该共存吗？这难道不是算法的局限，而不是数据的问题吧！假如把这些特征排列成一定的几何结构，比如说和图像一样的矩阵，邻近的都是相关的特征，那么同样可以适用CNN的想法，使用同一个filter和这些特征去相乘。就像课程中提到的：
- Why Convolutions?
- parameter sharing: a feature detector (such as a vertical edge detector) that is useful in one part of the image is probably useful in another part of the image; reduces the total number of parameters, thus reducing overfitting sparsity of connections: in each layer, each output value depends only on a small number of inputs   学完CNN后，我立刻去参加了hackathon的一个图像年龄识别比赛，使用ResNet有点过拟合，于是就稍微改进了一下，加了几层Dropout，又调换了BN和ReLU的顺序，很顺利正确率达到了83%，排到了13名，如果再做ensemble，data augmentation, 10-crop，结果肯定会更好，只是有点犯懒了（对已知结果的事情我都有点犯懒）……并且有点惭愧，只是做了一点微小的工作，剩下的都是电脑自己在算。图像识别有了目前这些强大的CNN算法，提高准确率只是一些调参或者计算机算力的问题了吧，功绩是属于提出这些方法的人，让我再一次感觉：为什么能想到？为什么想到的又不是我？</description>
+      <guid>/post/2019/05/04/hadoop/</guid>
+      <description>准备工作  查看ubuntu版本
+lsb_release -a  配置国内下载镜像源 link
+sudo nano /etc/apt/sources.list  更新apt
+sudo apt update  SSH 无密码登录  安装  ssh = secure shell  sudo apt install openssh-server sudo service ssh restart   测试
+which ssh which sshd  产生 SSH key 生成 public/private key pair
+ssh-keygen -t rsa -P &#39;&#39; -f ~/.ssh/id_rsa   t = type 密钥类型 rsa, Rivest–Shamir–Adleman =&amp;gt; factorization of large integers dsa, Digital Signature Algorithm =&amp;gt; discrete logarithm problem P = passphrase f = filename  将产生的 key 放置授权文件 cat ~/.</description>
+    </item>
+    
+    <item>
+      <title>报告笔记-推荐系统101</title>
+      <link>/post/2018/11/25/rcreport/</link>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018/11/25/rcreport/</guid>
+      <description>报告者: 小红书 - 姚旭
+无限下拉feed流的个性化推荐：主要针对兴趣，次针对follow关系
+曝光 $\rightarrow$ 点击 $\rightarrow$ 交互 $\rightarrow$ 用户价值【最优化的目标】$\rightarrow$ 用户留存
+Q: 为什么纯优化点击、提升点击率（CTR, Click-Through-Rate）不是最好的优化目标？
+A:
+ 点击高的内容未必优质，点击率高的东西可能很好，也可能很坏、很怪，好的推荐要对抗人性 不仅需要优化读者端的体验，还要将读者的能量传递给作者，形成loop，纯点击不够  优化停留时长？是kill time而已
+好的推荐：尽量引导客户行为，考虑读者、作者双边价值
+优化目标：让用户产生价值
+转化为公式：对不同行为赋予不同的value权重，加权求和 $$ \begin{aligned} S=&amp;amp;\Pr(click)\times V(click)\newline &amp;amp;+\Pr(like)\times V(like) \newline &amp;amp;+\Pr(comment)\times V(comment)\newline &amp;amp;+\Pr(share)\times V(share)\newline &amp;amp;+\Pr(follow)\times V(follow)\newline &amp;amp;+\Pr(hide)\times V(hide) \end{aligned} $$
+ 区分正常的点击，以及点击欺诈 对负面的评论，价值为负 权重可以看作超参的超参，根据业务情况不断调整；根据不同用户调整，比如新用户，可以增加click的价值 只要各种行为的价值取向排序不变，值变化 将用户留存作为间接参考   80%时间：内容理解和索引，召回策略，特征 20%时间：排序模型，价值模型  排序模型的迭代
+ 人工规则 LR, FM/FFM, GBDT DNN: 不要一开始就选择DNN，响应慢，调参是黑匣子，投入产出不成正比   Logistic regression  优点：简单，速度快，模型解释性强；可dense，可sparse 缺点： 线性模型 对特征scale有要求 需要在raw features上做大量处理、组合【特征工程黑魔法】，且特征变换在后续复用率低    scaling对逻辑回归的作用：</description>
     </item>
     
     <item>

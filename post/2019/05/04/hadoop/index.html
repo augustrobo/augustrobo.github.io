@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>win10 WSL Ubuntu 安装Hadoop Single Node Cluster | NOWHERESVILLE</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="/">/home/nowheresville</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">win10 WSL Ubuntu 安装Hadoop Single Node Cluster</span></h1>
+
+<h2 class="date">2019/05/04</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/hadoop">hadoop</a> 
+  
+  
+  
+  Tags: <a href="/tags/hadoop">hadoop</a> 
+  
+  
+</p>
+</div>
+
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="#准备工作">准备工作</a></li>
+<li><a href="#ssh-无密码登录">SSH 无密码登录</a>
+<ul>
+<li><a href="#安装">安装</a></li>
+<li><a href="#产生-ssh-key">产生 SSH key</a></li>
+<li><a href="#将产生的-key-放置授权文件">将产生的 key 放置授权文件</a></li>
+</ul></li>
+<li><a href="#安装-jdk">安装 JDK</a></li>
+<li><a href="#下载安装-hadoop">下载安装 Hadoop</a>
+<ul>
+<li><a href="#下载binary">下载binary</a></li>
+<li><a href="#解压缩">解压缩</a></li>
+<li><a href="#移动">移动</a></li>
+<li><a href="#设定-hadoop-参数">设定 Hadoop 参数</a>
+<ul>
+<li><a href="#编辑-bashrc">编辑 <code>.bashrc</code></a></li>
+<li><a href="#hadoop组件设定">Hadoop组件设定</a></li>
+<li><a href="#建立与格式化hdfs目录">建立与格式化HDFS目录</a></li>
+</ul></li>
+<li><a href="#启动hadoop">启动Hadoop</a>
+<ul>
+<li><a href="#启动-hdfs">启动 HDFS</a></li>
+<li><a href="#启动-yarn">启动 YARN</a></li>
+<li><a href="#查看已经启动的进程">查看已经启动的进程</a></li>
+<li><a href="#关闭">关闭</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#参考">参考</a></li>
+</ul>
+</nav>
+
+
+<main>
+
+
+<h1 id="准备工作">准备工作</h1>
+
+<ul>
+<li><p>查看ubuntu版本</p>
+
+<pre><code>lsb_release -a
+</code></pre></li>
+
+<li><p>配置国内下载镜像源 <a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">link</a></p>
+
+<pre><code>sudo nano /etc/apt/sources.list
+</code></pre></li>
+
+<li><p>更新<code>apt</code></p>
+
+<pre><code>sudo apt update
+</code></pre>
+
+<h1 id="ssh-无密码登录">SSH 无密码登录</h1></li>
+</ul>
+
+<h2 id="安装">安装</h2>
+
+<ul>
+<li>ssh = secure shell
+<code>
+sudo apt install openssh-server
+sudo service ssh restart
+</code></li>
+</ul>
+
+<p>测试</p>
+
+<pre><code>which ssh
+which sshd
+</code></pre>
+
+<h2 id="产生-ssh-key">产生 SSH key</h2>
+
+<p>生成 public/private key pair</p>
+
+<pre><code>ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+</code></pre>
+
+<ul>
+<li>t = type 密钥类型</li>
+<li>rsa, Rivest–Shamir–Adleman =&gt; factorization of large integers</li>
+<li>dsa, Digital Signature Algorithm =&gt; discrete logarithm problem</li>
+<li>P = passphrase</li>
+<li>f = filename</li>
+</ul>
+
+<h2 id="将产生的-key-放置授权文件">将产生的 key 放置授权文件</h2>
+
+<pre><code>cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+</code></pre>
+
+<p><code>指令 &gt;&gt; 文件</code>
+- 会将指令产生的标准输出(stdout)，附加在文件之后
+    - 文件不存在时，会新建
+    - 当文件已经存在，会将stdout附加在文件内容后面，而不会覆盖</p>
+
+<p>测试【不成功则尝试重启 <code>sudo service ssh restart</code>】</p>
+
+<pre><code>ssh localhost
+</code></pre>
+
+<h1 id="安装-jdk">安装 JDK</h1>
+
+<ul>
+<li><p>查看Java版本</p>
+
+<pre><code>java -version
+</code></pre></li>
+
+<li><p>Linux使用apt进行套件管理</p></li>
+
+<li><p>apt = advance package tool</p></li>
+
+<li><p>sudo命令以系统管理者的身份执行指令，也就是说，经由 sudo 所执行的指令就好像是 root 亲自执行</p></li>
+</ul>
+
+<pre><code>sudo apt install default-jdk
+</code></pre>
+
+<h1 id="下载安装-hadoop">下载安装 Hadoop</h1>
+
+<h2 id="下载binary">下载binary</h2>
+
+<p><a href="https://hadoop.apache.org/releases.html">link</a></p>
+
+<pre><code>wget http://mirror.bit.edu.cn/apache/hadoop/common/hadoop-3.1.2/hadoop-3.1.2.tar.gz
+</code></pre>
+
+<h2 id="解压缩">解压缩</h2>
+
+<pre><code>sudo tar -zxvf hadoop-3.1.2.tar.gz
+</code></pre>
+
+<ul>
+<li>z = filter file thru <strong>gzip</strong></li>
+<li>x = <strong>extract</strong> files from an archive</li>
+<li>v = <strong>verbosely</strong> list files processed</li>
+<li>f = <strong>filename</strong></li>
+</ul>
+
+<h2 id="移动">移动</h2>
+
+<pre><code>sudo mv hadoop-3.1.2 /usr/local/hadoop
+</code></pre>
+
+<p>查看</p>
+
+<pre><code>ll /usr/local/hadoop
+</code></pre>
+
+<ul>
+<li><code>bin/</code> 执行文件</li>
+<li><code>sbin/</code> shell执行文件</li>
+<li><code>etc/hadoop</code> 设定文件</li>
+<li><code>lib/</code> 函数库</li>
+<li><code>logs/</code> 系统日志</li>
+</ul>
+
+<h2 id="设定-hadoop-参数">设定 Hadoop 参数</h2>
+
+<h3 id="编辑-bashrc">编辑 <code>.bashrc</code></h3>
+
+<pre><code>sudo nano .bashrc
+</code></pre>
+
+<pre><code>#Hadoop variables
+export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export HADOOP_HOME=/usr/local/hadoop
+export PATH=$PATH:$HADOOP_HOME/bin
+export PATH=$PATH:$HADOOP_HOME/sbin
+export HADOOP_MAPRED_HOME=$HADOOP_HOME
+export HADOOP_COMMON_HOME=$HADOOP_HOME 
+export HADOOP_HDFS_HOME=$HADOOP_HOME
+export YARN_HOME=$HADOOP_HOME
+export HADOOP_COMMON_LIB_NATIVE_DIR=$HADOOP_HOME/lib/native
+export HADOOP_OPTS=&quot;-Djava.library.path=$HADOOP_COMMON_LIB_NATIVE_DIR&quot;
+export
+JAVA_LIBRARY_PATH=HADOOP_HOME/lib/native:$JAVA_LIBRARY_PATH
+#Hadoop variables
+</code></pre>
+
+<p>生效设定</p>
+
+<pre><code>source .bashrc
+</code></pre>
+
+<p>测试</p>
+
+<pre><code>echo $HADOOP_HOME
+</code></pre>
+
+<p>测试</p>
+
+<pre><code>hadoop version
+</code></pre>
+
+<h3 id="hadoop组件设定">Hadoop组件设定</h3>
+
+<ul>
+<li><code>hadoop-env.sh</code></li>
+<li><code>core-site.xml</code></li>
+<li><code>yarn-site.xml</code></li>
+<li><code>mapred-site.xml</code></li>
+<li><code>hdfs-site.xml</code></li>
+</ul>
+
+<hr />
+
+<pre><code>sudo nano /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+</code></pre>
+
+<p>设定Java安装路径</p>
+
+<pre><code>export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+</code></pre>
+
+<hr />
+
+<pre><code>sudo nano /usr/local/hadoop/etc/hadoop/core-site.xml
+</code></pre>
+
+<p>hdfs预设名称</p>
+
+<pre><code class="language-xml">&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;fs.default.name&lt;/name&gt;
+        &lt;value&gt;hdfs://localhost:9000&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<hr />
+
+<pre><code>sudo nano /usr/local/hadoop/etc/hadoop/yarn-site.xml
+</code></pre>
+
+<pre><code class="language-xml">&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.nodemanager.aux-services&lt;/name&gt;
+        &lt;value&gt;mapreduce_shuffle&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;yarn.nodemanager.aux-services.mapreduce.shuffle.class&lt;/name&gt;
+        &lt;value&gt;org.apache.hadoop.mapred.ShuffleHandler&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<hr />
+
+<p><code>mapred-site.xml</code>用于监控map和reduce程序的JobTracker工作分配状况、以及TaskTracker工作执行状况</p>
+
+<p>设定mapreduce框架为yarn</p>
+
+<pre><code>sudo nano /usr/local/hadoop/etc/hadoop/mapred-site.xml
+</code></pre>
+
+<pre><code class="language-xml">&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;mapreduce.framework.name&lt;/name&gt;
+        &lt;value&gt;yarn&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<hr />
+
+<p><code>hdfs-site.xml</code>用于设定HDFS分散式档案系统</p>
+
+<pre><code>sudo nano /usr/local/hadoop/etc/hadoop/hdfs-site.xml
+</code></pre>
+
+<ul>
+<li>设定blocks副本备份数(每一个文件在其他node的备份数量)</li>
+<li>设定NameNode资料存储目录</li>
+<li>设定DataNode资料存储目录</li>
+</ul>
+
+<pre><code class="language-xml">&lt;configuration&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.replication&lt;/name&gt;
+        &lt;value&gt;3&lt;/value&gt;
+    &lt;/property&gt;
+     &lt;property&gt;
+        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;
+        &lt;value&gt;file:/usr/local/hadoop/hadoop_data/hdfs/namenode&lt;/value&gt;
+    &lt;/property&gt;
+     &lt;property&gt;
+        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;
+        &lt;value&gt;file:/usr/local/hadoop/hadoop_data/hdfs/datanode&lt;/value&gt;
+    &lt;/property&gt;
+    &lt;property&gt;
+        &lt;name&gt;dfs.http.address&lt;/name&gt;
+        &lt;value&gt;127.0.0.1:50070&lt;/value&gt;
+    &lt;/property&gt;
+&lt;/configuration&gt;
+</code></pre>
+
+<h3 id="建立与格式化hdfs目录">建立与格式化HDFS目录</h3>
+
+<ul>
+<li>建立NameNode以及DataNode文件存储目录
+<code>
+sudo mkdir -p /usr/local/hadoop/hadoop_data/hdfs/namenode
+sudo mkdir -p /usr/local/hadoop/hadoop_data/hdfs/datanode
+</code></li>
+<li>更改hadoop文件夹拥有者
+<code>
+sudo chown &lt;username&gt;:root -R /usr/local/hadoop
+</code></li>
+
+<li><p><code>-R</code> = recursively</p></li>
+
+<li><p>格式化NameNode</p></li>
+</ul>
+
+<pre><code>hadoop namenode -format
+</code></pre>
+
+<h2 id="启动hadoop">启动Hadoop</h2>
+
+<h3 id="启动-hdfs">启动 HDFS</h3>
+
+<pre><code>start-dfs.sh
+</code></pre>
+
+<p>查看HDFS web界面：<a href="http://localhost:50070">http://localhost:8088</a></p>
+
+<h3 id="启动-yarn">启动 YARN</h3>
+
+<pre><code>start-yarn.sh
+</code></pre>
+
+<p>查看Resource Manager web界面：<a href="http://localhost:8088">http://localhost:8088</a></p>
+
+<h3 id="查看已经启动的进程">查看已经启动的进程</h3>
+
+<pre><code>jps
+</code></pre>
+
+<ul>
+<li><code>HDFS</code> 功能：<code>NameNode</code>, <code>SecondaryNameNode</code>, <code>DataNode</code> 都已启动</li>
+<li><code>YARN</code> 功能：<code>ResouceManager</code>, <code>NodeManager</code>都已启动</li>
+</ul>
+
+<h3 id="关闭">关闭</h3>
+
+<pre><code>stop-all.sh
+</code></pre>
+
+<h1 id="参考">参考</h1>
+
+<ol>
+<li><a href="https://blog.csdn.net/huang007guo/article/details/81232921">windows子系统(wsl) Ubuntu16.04 下安装hadoop</a></li>
+<li><a href="https://www.bogotobogo.com/Hadoop/BigData_hadoop_Install_on_ubuntu_single_node_cluster.php">Hadoop 2.6 Installing on Ubuntu 14.04 (Single-Node Cluster)</a></li>
+<li><a href="https://book.douban.com/subject/30203128/">Python+Spark2.0+Hadoop机器学习与大数据分析实战</a></li>
+</ol>
+
+</main>
+
+    <footer>
+      <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      <a href="mailto:zhuxm2017@163.com">Email</a> | <a href="https://github.com/augustrobo">Github</a>
+      
+    </footer>
+  </body>
+</html>
+

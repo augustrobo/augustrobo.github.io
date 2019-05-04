@@ -39,20 +39,20 @@
     </item>
     
     <item>
-      <title>Diary</title>
-      <link>/categories/diary/</link>
-      <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/categories/diary/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Graph</title>
       <link>/categories/graph/</link>
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/graph/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hadoop</title>
+      <link>/categories/hadoop/</link>
+      <pubDate>Sat, 04 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/hadoop/</guid>
       <description></description>
     </item>
     
@@ -98,6 +98,15 @@
       <pubDate>Thu, 25 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>/categories/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>RecommenderSystems</title>
+      <link>/categories/recommendersystems/</link>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/categories/recommendersystems/</guid>
       <description></description>
     </item>
     

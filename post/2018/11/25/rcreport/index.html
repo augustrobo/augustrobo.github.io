@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>报告笔记-推荐系统101 | NOWHERESVILLE</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="/">/home/nowheresville</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">报告笔记-推荐系统101</span></h1>
+
+<h2 class="date">2018/11/25</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/recommendersystems">RecommenderSystems</a> 
+  
+  
+  
+  Tags: <a href="/tags/recommendersystems">RecommenderSystems</a> 
+  
+  
+</p>
+</div>
+
+
+
+
+
+<main>
+<p><strong>报告者</strong>: 小红书 - 姚旭</p>
+
+<p>无限下拉feed流的个性化推荐：主要针对兴趣，次针对follow关系</p>
+
+<p>曝光 <code>$\rightarrow$</code> 点击 <code>$\rightarrow$</code> 交互 <code>$\rightarrow$</code> 用户价值【最优化的目标】<code>$\rightarrow$</code> 用户留存</p>
+
+<p>Q: 为什么纯优化点击、提升点击率（CTR, Click-Through-Rate）不是最好的优化目标？</p>
+
+<p>A:</p>
+
+<ul>
+<li>点击高的内容未必优质，点击率高的东西可能很好，也可能很坏、很怪，好的推荐要对抗人性</li>
+<li>不仅需要优化读者端的体验，还要将读者的能量传递给作者，形成loop，纯点击不够</li>
+</ul>
+
+<p>优化停留时长？是kill time而已</p>
+
+<p>好的推荐：<strong>尽量引导客户行为，考虑读者、作者双边价值</strong></p>
+
+<hr />
+
+<p>优化目标：让用户产生价值</p>
+
+<p>转化为公式：对不同行为赋予不同的value权重，加权求和
+$$
+\begin{aligned}
+S=&amp;\Pr(click)\times V(click)\newline
+&amp;+\Pr(like)\times V(like) \newline
+&amp;+\Pr(comment)\times V(comment)\newline
+&amp;+\Pr(share)\times V(share)\newline
+&amp;+\Pr(follow)\times V(follow)\newline
+&amp;+\Pr(hide)\times V(hide)
+\end{aligned}
+$$</p>
+
+<ul>
+<li>区分正常的点击，以及点击欺诈</li>
+<li>对负面的评论，价值为负</li>
+<li>权重可以看作超参的超参，根据业务情况不断调整；根据不同用户调整，比如新用户，可以增加click的价值</li>
+<li>只要各种行为的价值取向排序不变，值变化</li>
+<li>将用户留存作为间接参考</li>
+</ul>
+
+<hr />
+
+<ul>
+<li>80%时间：内容理解和索引，召回策略，特征</li>
+<li>20%时间：排序模型，价值模型</li>
+</ul>
+
+<hr />
+
+<p>排序模型的迭代</p>
+
+<ol>
+<li>人工规则</li>
+<li>LR, FM/FFM, GBDT</li>
+<li>DNN: 不要一开始就选择DNN，响应慢，调参是黑匣子，投入产出不成正比</li>
+</ol>
+
+<ul>
+<li>Logistic regression
+
+<ul>
+<li>优点：简单，速度快，模型解释性强；可dense，可sparse</li>
+<li>缺点：</li>
+<li>线性模型</li>
+<li>对特征scale有要求</li>
+<li>需要在raw features上做大量处理、组合【特征工程黑魔法】，且特征变换在后续复用率低</li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>scaling对逻辑回归的作用：</p>
+
+<ol>
+<li>梯度下降收敛速度更快</li>
+<li>使用正则化项，则必须要做scaling</li>
+</ol>
+</blockquote>
+
+<ul>
+<li>GBDT
+
+<ul>
+<li>优点：</li>
+<li>树模型，非线性</li>
+<li>不要求scaling</li>
+<li>模型本身包含了特征组合</li>
+<li>模型解释性强【?】</li>
+<li>缺点：</li>
+<li>对dense feature友好，无法用特别sparse features</li>
+<li>id类的sparse feature无法直接使用</li>
+</ul></li>
+<li>DNN
+
+<ul>
+<li>优点：</li>
+<li>为sparse场景而生</li>
+<li>自动特征组合</li>
+<li>缺点：</li>
+<li>模型可解释性弱</li>
+<li>要学习的参数量级大，需要特殊量级的训练样本</li>
+<li>特别消耗在线服务的memory和cpu</li>
+<li>排序黑盒，调参黑魔法</li>
+<li>对特征指引性弱，需要前期做足够的raw features累积</li>
+<li>全依赖于模型进行隐形特征提取，不适合做第一个排序模型</li>
+</ul></li>
+</ul>
+
+<p><strong>推荐的迭代路径</strong></p>
+
+<p>人工规则 <code>$\rightarrow$</code> GBDT <code>$\rightarrow$</code> GBDT+LR <code>$\rightarrow$</code> DNN</p>
+
+<ul>
+<li>每一步都是加法</li>
+<li>上一步的特征都可以被下一步继承</li>
+<li>工程师可以有全局意识培养后再进入黑盒</li>
+</ul>
+
+<hr />
+
+<p>个性化：和人相关的特征</p>
+
+<p>top features:</p>
+
+<ul>
+<li>item interaction history: user * item</li>
+<li>item summaries: item</li>
+<li>coefficient: user * author 【用户-读者关系】</li>
+<li>last-n actions: user * item【读者后续的操作】</li>
+</ul>
+
+<p>raw features的持续建设：覆盖率 * 区分度</p>
+
+<hr />
+
+<p>用户画像：</p>
+
+<ul>
+<li>人口属性（demographic info）</li>
+<li>兴趣属性挖掘：tag/keywords, entity, topic, latent topic</li>
+</ul>
+
+<p>内容画像：</p>
+
+<ul>
+<li>人口属性</li>
+<li>内容属性挖掘：tag/keywords, entity, topic, latent topic</li>
+</ul>
+
+<p>将用户和内容映射到同一空间进行匹配：e.g. 都 <code>$\in \mathbb{R}^{1024}$</code>，再计算相似度，用NN</p>
+
+<p>用户内容embedding</p>
+
+<ul>
+<li>传统latent topic embedding: LDA, PLSA</li>
+<li>有监督的user-item embedding: <strong>youtube-Two Towers</strong></li>
+</ul>
+
+<hr />
+
+<p>每天300+ A/B Test: 10%成功率</p>
+
+</main>
+
+    <footer>
+      <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      <a href="mailto:zhuxm2017@163.com">Email</a> | <a href="https://github.com/augustrobo">Github</a>
+      
+    </footer>
+  </body>
+</html>
+
