@@ -3,14 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-<<<<<<< HEAD
     <loc>/post/2019/05/04/hadoop/</loc>
     <lastmod>2019-05-04T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-=======
->>>>>>> cab77a0e7b481758b86a918f27a0d6ffda2da674
     <loc>/post/2018/11/25/rcreport/</loc>
     <lastmod>2018-11-25T00:00:00+00:00</lastmod>
   </url>
@@ -141,15 +138,12 @@
   
   <url>
     <loc>/tags/graph/</loc>
-<<<<<<< HEAD
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/categories/graph/</loc>
-=======
->>>>>>> cab77a0e7b481758b86a918f27a0d6ffda2da674
     <lastmod>2018-01-25T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -174,11 +168,7 @@
   
   <url>
     <loc>/</loc>
-<<<<<<< HEAD
     <lastmod>2019-05-04T00:00:00+00:00</lastmod>
-=======
-    <lastmod>2018-11-25T00:00:00+00:00</lastmod>
->>>>>>> cab77a0e7b481758b86a918f27a0d6ffda2da674
   </url>
   
   <url>
@@ -231,11 +221,7 @@
   
   <url>
     <loc>/post/</loc>
-<<<<<<< HEAD
     <lastmod>2019-05-04T00:00:00+00:00</lastmod>
-=======
-    <lastmod>2018-11-25T00:00:00+00:00</lastmod>
->>>>>>> cab77a0e7b481758b86a918f27a0d6ffda2da674
     <priority>0</priority>
   </url>
   
