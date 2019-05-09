@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Stanford NLP Ch1 Regular Expressions, Edit Distance | NOWHERESVILLE</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="/">/home/nowheresville</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Stanford NLP Ch1 Regular Expressions, Edit Distance</span></h1>
+
+<h2 class="date">2019/05/12</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/nlp">nlp</a> 
+  
+  
+  
+  Tags: <a href="/tags/nlp">nlp</a> <a href="/tags/regularexpressions">regularExpressions</a> <a href="/tags/editdistance">editDistance</a> 
+  
+  
+</p>
+</div>
+
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="#regular-expressions">Regular Expressions</a>
+<ul>
+<li><a href="#re-operator-precedence-hierarchy">RE Operator Precedence Hierarchy</a></li>
+<li><a href="#non-greedy-matching">Non-greedy Matching</a></li>
+</ul></li>
+<li><a href="#text-nomalization">Text Nomalization</a>
+<ul>
+<li><a href="#word-tokenization">Word Tokenization</a>
+<ul>
+<li><a href="#unix-tools-for-crude-tokenization">Unix Tools for Crude Tokenization</a></li>
+<li><a href="#maximum-matching-algorithm">Maximum Matching Algorithm</a></li>
+</ul></li>
+<li><a href="#word-normalization">Word Normalization</a>
+<ul>
+<li><a href="#unix-tools-for-crude-normalization">Unix Tools for Crude Normalization</a></li>
+</ul></li>
+<li><a href="#sentence-segmentation">Sentence Segmentation</a></li>
+</ul></li>
+<li><a href="#minimum-edit-distance">Minimum Edit Distance</a>
+<ul>
+<li><a href="#dynamic-programming-for-minimum-edit-distance">Dynamic Programming for Minimum Edit Distance</a></li>
+</ul></li>
+</ul>
+</nav>
+
+
+<main>
+
+
+<ul>
+<li><p><strong>text normalization</strong> =&gt; convert it to a more convenient, standard form</p>
+
+<ul>
+<li><strong>word tokenization</strong> = separate out words
+
+<ul>
+<li>Chinese doesn&rsquo;t have spaces between words, so word tokenization more difficult</li>
+</ul></li>
+<li><strong>lemmatization</strong> = determine that 2 words have the same root
+
+<ul>
+<li><strong>stemming</strong> =&gt; strip suffixes, simpler version of lemmatization</li>
+</ul></li>
+<li><strong>sentence segmentation</strong>: break up a text into individual sentences, using cues like periods or exclamations</li>
+</ul></li>
+
+<li><p><strong>edit distance</strong>: an algo used to compare similarit between 2 strings</p>
+
+<ul>
+<li>spell correction</li>
+<li>computational biology</li>
+<li>evaluate machine translation and speech recognition</li>
+<li>named entity extraction and entity coreference</li>
+</ul></li>
+</ul>
+
+<h1 id="regular-expressions">Regular Expressions</h1>
+
+<ul>
+<li>disjunction <code>[]</code></li>
+<li>range <code>-</code>
+
+<ul>
+<li><code>[A-Z]</code></li>
+<li><code>[a-z]</code></li>
+<li><code>[0-9]</code></li>
+</ul></li>
+<li>negation <code>^</code> caret
+
+<ul>
+<li><code>[^A-Z]</code></li>
+<li><code>[^e^]</code> : neither <code>e</code> or <code>^</code></li>
+</ul></li>
+<li>disjunction <code>|</code> pipe symbol
+
+<ul>
+<li><code>a|b|c</code> = <code>[abc]</code></li>
+<li><code>[gG]roundhog|[Ww]oodchunk</code></li>
+</ul></li>
+
+<li><p><code>?</code>: optional previous char</p>
+
+<ul>
+<li><code>colou?r</code><br /></li>
+</ul></li>
+
+<li><p>Kleene operator</p>
+
+<ul>
+<li><code>*</code>: 0 or more of previous char</li>
+<li><code>+</code>: 1 or more of previous char</li>
+</ul></li>
+
+<li><p><code>.</code> = any character</p></li>
+
+<li><p>anchors</p>
+
+<ul>
+<li><code>^</code>: beginning
+
+<ul>
+<li><code>^[A-Z]</code></li>
+<li><code>^[^A-Za-z]</code></li>
+</ul></li>
+<li><code>$</code>: end</li>
+<li><code>\b</code>: word boundary</li>
+<li><code>\B</code>: non-boundary</li>
+</ul></li>
+</ul>
+
+<h2 id="re-operator-precedence-hierarchy">RE Operator Precedence Hierarchy</h2>
+
+<p>from highest precedence to lowest precedence</p>
+
+<ul>
+<li>parenthesis <code>()</code></li>
+<li>counters <code>*+?{}</code></li>
+<li>sequences and anchors</li>
+<li>disjunction <code>|</code></li>
+</ul>
+
+<h2 id="non-greedy-matching">Non-greedy Matching</h2>
+
+<p>another meaning of <code>?</code></p>
+
+<ul>
+<li><code>*?</code></li>
+<li><code>+?</code></li>
+</ul>
+
+<p>match as little text as possible</p>
+
+<hr />
+
+<p><strong>reduce error rate</strong></p>
+
+<ol>
+<li>increase precision = minimize false positives</li>
+<li>increase recall = minimize false negatives</li>
+</ol>
+
+<h1 id="text-nomalization">Text Nomalization</h1>
+
+<ul>
+<li>segment/tokenize words in running text</li>
+<li>normalize word formats</li>
+<li>segment sentences in running text</li>
+</ul>
+
+<h2 id="word-tokenization">Word Tokenization</h2>
+
+<ul>
+<li><code>lemma</code>: cat and cats = same lemma</li>
+<li><code>wordform</code>: cat and cats = different wordforms</li>
+</ul>
+
+<h3 id="unix-tools-for-crude-tokenization">Unix Tools for Crude Tokenization</h3>
+
+<p><code>less</code> = display one page at a time
+- space bar =&gt; pagedowm
+- <code>q</code> =&gt; quit</p>
+
+<pre><code>less hamlet.txt | less
+</code></pre>
+
+<p><code>tr</code> = translate, transform</p>
+
+<p>syntax</p>
+
+<pre><code>tr [OPTION] set1 [set2]
+</code></pre>
+
+<p>options:</p>
+
+<ul>
+<li><code>c</code> = complement of set1</li>
+<li><code>s</code> = single, replace repeated characters in set1 with single occurence</li>
+</ul>
+
+<pre><code>tr -sc 'A-Za-z' '\n' &lt; hamlet.txt | less
+</code></pre>
+
+<p><code>sort</code>
+options:</p>
+
+<ul>
+<li><code>n</code> = sort numerically</li>
+<li><code>r</code> = reverse order</li>
+</ul>
+
+<pre><code>tr -sc 'A-Za-z' '\n' &lt; hamlet.txt | sort | less
+</code></pre>
+
+<p><code>uniq</code> = remove <strong>adjacent</strong> duplicate lines</p>
+
+<p><code>uniq -c</code> = display unique lines with count</p>
+
+<pre><code>tr -sc 'A-Za-z' '\n' &lt; hamlet.txt | sort |  uniq -c | less
+</code></pre>
+
+<p>sort by frequency</p>
+
+<pre><code>tr -sc 'A-Za-z' '\n' &lt; hamlet.txt | sort |  uniq -c | sort -n -r | less
+</code></pre>
+
+<pre><code>tr 'A-Z' 'a-z' &lt; hamlet.txt | tr -sc 'a-z' '\n' | sort |  uniq -c | sort -n -r | less
+</code></pre>
+
+<h3 id="maximum-matching-algorithm">Maximum Matching Algorithm</h3>
+
+<ul>
+<li>word tokenization = word segmentation in Chinese (since no spaces between words)</li>
+<li>average word in Chinese is 2.4 characters long</li>
+<li>standard <em>baseline</em> segmentation algorithm: <strong>maximum matching</strong> (also called <strong>greedy</strong>)</li>
+</ul>
+
+<p><strong><code>MaxMatch</code></strong></p>
+
+<p>Given a wordlist of Chinese, and a string</p>
+
+<ol>
+<li>start a pointer at the beginning of the string</li>
+<li>find the longest word in dict that matches the string starting at pointer</li>
+<li>move the pointer over the word in string</li>
+<li>go to step 2</li>
+</ol>
+
+<hr />
+
+<p><em>Example</em></p>
+
+<p>the table down there</p>
+
+<p>thetabledownthere</p>
+
+<p>theta bled own there</p>
+
+<p>=&gt; <strong>maximum matching doesn&rsquo;t generally work in English</strong> (Chinese has much shorter words than English)</p>
+
+<hr />
+
+<p><strong>quantify how well a segmenter works</strong></p>
+
+<ul>
+<li>compare output segmentation with a perfect hand-segmented (gold) sentence</li>
+<li>metric: <strong>word error rate</strong> = normalized minimum edit distance = edit distance / len of the gold sentence in words</li>
+<li>problem of <code>MaxMatch</code>: unknown words (words not in dict)</li>
+</ul>
+
+<h2 id="word-normalization">Word Normalization</h2>
+
+<p>BPE = byte-pair encoding</p>
+
+<h3 id="unix-tools-for-crude-normalization">Unix Tools for Crude Normalization</h3>
+
+<ul>
+<li><code>ing</code> words
+<code>
+tr -sc 'A-Za-z' '\n' &lt; hamlet.txt | tr 'A-Z' 'a-z' | grep 'ing$' | sort | uniq -c | sort -n -r | less
+</code></li>
+</ul>
+
+<pre><code>tr -sc 'A-Za-z' '\n' &lt; hamlet.txt | tr 'A-Z' 'a-z' | grep '[aeiou].*ing$' | sort | uniq -c | sort -n -r | less
+</code></pre>
+
+<h2 id="sentence-segmentation">Sentence Segmentation</h2>
+
+<ul>
+<li>binary classifier: determine if a word is <code>EndOfSentence/NotEndOfSentence</code>
+
+<ul>
+<li>handwritten rules</li>
+<li>regular expressions</li>
+<li>machine learning</li>
+</ul></li>
+</ul>
+
+<h1 id="minimum-edit-distance">Minimum Edit Distance</h1>
+
+<ul>
+<li>similarity between 2 strings</li>
+<li>minimum edit distance = minimum # of editing operations needed to transform one into the other
+
+<ul>
+<li>insertion</li>
+<li>deletion</li>
+<li>substitution</li>
+</ul></li>
+<li>e.g. <code>intention</code> vs <code>execution</code>
+
+<ul>
+<li>if each operation has cost of 1, dist = 5</li>
+<li>if substitions cost 2, dist = 8 (<code>Levenshtein distance</code>)</li>
+</ul></li>
+</ul>
+
+<p>For 2 strings, <code>$X$</code> of len <code>$n$</code>, <code>$Y$</code> of len
+<code>$m$</code>, define <code>$D(i,j)$</code> as</p>
+
+<ul>
+<li>the edit distance between <code>$X[1...i]$</code> and <code>$Y[1...j]$</code></li>
+<li>edit distance between <code>$X$</code> and <code>$Y$</code> thus <code>$D(n,m)$</code><br /></li>
+</ul>
+
+<h2 id="dynamic-programming-for-minimum-edit-distance">Dynamic Programming for Minimum Edit Distance</h2>
+
+<ul>
+<li>tabular computation of <code>$D(n,m)$</code><br />
+
+<ul>
+<li>compute<code>$D(i,j)$</code> for small <code>$i,j$</code></li>
+<li>compute larger <code>$D(i,j)$</code> based on previously computed smaller values</li>
+</ul></li>
+</ul>
+
+<p><strong><code>MinEdit</code></strong> (Levenshtein)</p>
+
+<ul>
+<li><em>initialization</em></li>
+</ul>
+
+<p>$$
+\begin{aligned}
+D(i,0)&amp;=i\newline
+D(0,j)&amp;=j
+\end{aligned}
+$$</p>
+
+<ul>
+<li><em>recurrence relation</em></li>
+</ul>
+
+<p>For each <code>$i=1,\ldots,n$</code>
+For each <code>$j=1,\ldots,m$</code>
+$$
+D(i,j)=\min
+\begin{cases}
+(deletion) D(i-1,j)+1 \newline
+(insertion) D(i,j-1)+1 \newline
+(substitution) D(i-1,j-1)+
+\begin{cases}
+0, X(i)=Y(j)\newline
+2, otherwise
+\end{cases}
+\end{cases}
+$$</p>
+
+<ul>
+<li><em>termination</em>: <code>$D(n,m)$</code> is distance</li>
+</ul>
+
+<p><strong>Backtrace</strong>
+$$
+ptr(i,j)=
+\begin{cases}
+down (deletion)\newline
+left (insertion)\newline
+diag (substition)
+\end{cases}
+$$</p>
+
+<ul>
+<li>every non-decreasing path from <code>$(0,0)$</code> to <code>$(m,n)$</code> corresponds to an alignment of the 2 seqs</li>
+<li>an optimal alignment is composed of optimal subalignments</li>
+</ul>
+
+<p><strong>Performance</strong></p>
+
+<ul>
+<li>time: <code>$O(nm)$</code></li>
+<li>space: <code>$O(nm)$</code></li>
+<li>backtrace: <code>$O(n+m)$</code></li>
+</ul>
+
+</main>
+
+    <footer>
+      <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      <a href="mailto:zhuxm2017@163.com">Email</a> | <a href="https://github.com/augustrobo">Github</a>
+      
+    </footer>
+  </body>
+</html>
+

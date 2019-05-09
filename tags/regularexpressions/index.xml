@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nlp on NOWHERESVILLE</title>
-    <link>/categories/nlp/</link>
-    <description>Recent content in Nlp on NOWHERESVILLE</description>
+    <title>RegularExpressions on NOWHERESVILLE</title>
+    <link>/tags/regularexpressions/</link>
+    <description>Recent content in RegularExpressions on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 12 May 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/nlp/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/regularexpressions/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <guid>/post/2019/05/12/nlp-re-edit-dist/</guid>
       <description>text normalization =&amp;gt; convert it to a more convenient, standard form
  word tokenization = separate out words  Chinese doesn&amp;rsquo;t have spaces between words, so word tokenization more difficult  lemmatization = determine that 2 words have the same root  stemming =&amp;gt; strip suffixes, simpler version of lemmatization  sentence segmentation: break up a text into individual sentences, using cues like periods or exclamations  edit distance: an algo used to compare similarit between 2 strings</description>
-    </item>
-    
-    <item>
-      <title>Sequence Models</title>
-      <link>/post/2018/03/20/rnns/</link>
-      <pubDate>Tue, 20 Mar 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2018/03/20/rnns/</guid>
-      <description>Examples of Sequence Data  speech recognition music generation sentiment classification DNA sequence analysis machine translation video activity recognition name entity recognition  Recurrent Neural Networks  Why not a standard network?  inputs and outputs can be different lengths in different examples, e.g. sentence as input does not share features learned across different positions of text   Forward Propagation  at time $t$:  $$ a^{t} = g(W_{aa}a^{t-1} + W_{ax}x^{t} + b_a)\\</description>
     </item>
     
   </channel>

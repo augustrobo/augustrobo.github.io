@@ -6,10 +6,20 @@
     <description>Recent content in Home on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 04 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Stanford NLP Ch1 Regular Expressions, Edit Distance</title>
+      <link>/post/2019/05/12/nlp-re-edit-dist/</link>
+      <pubDate>Sun, 12 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019/05/12/nlp-re-edit-dist/</guid>
+      <description>text normalization =&amp;gt; convert it to a more convenient, standard form
+ word tokenization = separate out words  Chinese doesn&amp;rsquo;t have spaces between words, so word tokenization more difficult  lemmatization = determine that 2 words have the same root  stemming =&amp;gt; strip suffixes, simpler version of lemmatization  sentence segmentation: break up a text into individual sentences, using cues like periods or exclamations  edit distance: an algo used to compare similarit between 2 strings</description>
+    </item>
     
     <item>
       <title>win10 WSL Ubuntu 安装Hadoop Single Node Cluster</title>
