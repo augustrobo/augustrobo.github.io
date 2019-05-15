@@ -331,11 +331,11 @@ options:</p>
 <h3 id="unix-tools-for-crude-normalization">Unix Tools for Crude Normalization</h3>
 
 <ul>
-<li><code>ing</code> words
-<code>
-tr -sc 'A-Za-z' '\n' &lt; hamlet.txt | tr 'A-Z' 'a-z' | grep 'ing$' | sort | uniq -c | sort -n -r | less
-</code></li>
+<li><code>ing</code> words</li>
 </ul>
+
+<pre><code>tr -sc 'A-Za-z' '\n' &lt; hamlet.txt | tr 'A-Z' 'a-z' | grep 'ing$' | sort | uniq -c | sort -n -r | less
+</code></pre>
 
 <pre><code>tr -sc 'A-Za-z' '\n' &lt; hamlet.txt | tr 'A-Z' 'a-z' | grep '[aeiou].*ing$' | sort | uniq -c | sort -n -r | less
 </code></pre>
