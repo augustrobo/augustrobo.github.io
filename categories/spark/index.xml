@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Hadoop on NOWHERESVILLE</title>
-    <link>/tags/hadoop/</link>
-    <description>Recent content in Hadoop on NOWHERESVILLE</description>
+    <title>Spark on NOWHERESVILLE</title>
+    <link>/categories/spark/</link>
+    <description>Recent content in Spark on NOWHERESVILLE</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 19 May 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/hadoop/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/categories/spark/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,17 +20,6 @@
       <description>Spark is written in Scala with programming interfaces in Python (PySpark) and Scala
  make sure Java with JDK is installed install Scala with IDE (IntelliJ) setup sbt (build tools for Scala) setup winutils.exe (required for HDFS APIs to work on Windows laptop) download spark binaries and untar them  cf:
  Setup Spark Development Environment – IntelliJ and Scala Apache Spark in 24 Hours: Hour 2, Installing Spark  安装JDK  选择奇数版本（修复bug后的版本） 不要安装在program file里面，路径不要含有空格 环境变量增加 JAVA_HOME 为jdk的路径，cmd（以管理员身份运行）中输入  setx /M JAVA_HOME C:\java\jdk1.</description>
-    </item>
-    
-    <item>
-      <title>win10 WSL Ubuntu 安装Hadoop Single Node Cluster</title>
-      <link>/post/2019/05/04/hadoop/</link>
-      <pubDate>Sat, 04 May 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/post/2019/05/04/hadoop/</guid>
-      <description>准备工作  查看ubuntu版本  lsb_release -a   配置国内下载镜像源 link  sudo nano /etc/apt/sources.list   更新apt  sudo apt update  SSH 无密码登录 安装  ssh = secure shell  sudo apt install openssh-server sudo service ssh restart  测试
-which ssh which sshd  产生 SSH key 生成 public/private key pair
-ssh-keygen -t rsa -P &#39;&#39; -f ~/.ssh/id_rsa   t = type 密钥类型 rsa, Rivest–Shamir–Adleman =&amp;gt; factorization of large integers dsa, Digital Signature Algorithm =&amp;gt; discrete logarithm problem P = passphrase f = filename  将产生的 key 放置授权文件 cat ~/.</description>
     </item>
     
   </channel>

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Win10安装Spark | NOWHERESVILLE</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <header>
+
+  
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/vs.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <nav>
+    <ul>
+      
+      
+      <li class="pull-left ">
+        <a href="/">/home/nowheresville</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/">~/home</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/categories/">~/categories</a>
+      </li>
+      
+      
+      <li class="pull-left ">
+        <a href="/tags/">~/tags</a>
+      </li>
+      
+
+      
+      
+      <li class="pull-right">
+        <a href="/index.xml">~/subscribe</a>
+      </li>
+      
+
+    </ul>
+  </nav>
+</header>
+
+  </head>
+
+  <body>
+    <br/>
+
+<div class="article-meta">
+<h1><span class="title">Win10安装Spark</span></h1>
+
+<h2 class="date">2019/05/19</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/spark">spark</a> 
+  
+  
+  
+  Tags: <a href="/tags/spark">spark</a> <a href="/tags/hadoop">hadoop</a> 
+  
+  
+</p>
+</div>
+
+
+<nav id="TableOfContents">
+<ul>
+<li><a href="#安装jdk">安装JDK</a></li>
+<li><a href="#安装scala-sbt和intellij">安装Scala, SBT和IntelliJ</a></li>
+<li><a href="#安装hadoop">安装Hadoop</a></li>
+<li><a href="#安装spark">安装Spark</a></li>
+</ul>
+</nav>
+
+
+<main>
+
+
+<p>Spark is written in Scala with programming interfaces in Python (PySpark) and Scala</p>
+
+<ul>
+<li>make sure Java with JDK is installed</li>
+<li>install Scala with IDE (IntelliJ)</li>
+<li>setup sbt (build tools for Scala)</li>
+<li>setup <code>winutils.exe</code> (required for HDFS APIs to work on Windows laptop)</li>
+<li>download spark binaries and untar them</li>
+</ul>
+
+<p>cf:</p>
+
+<ul>
+<li><a href="https://kaizen.itversity.com/setup-development-environment-intellij-and-scala-big-data-hadoop-and-spark/">Setup Spark Development Environment – IntelliJ and Scala</a></li>
+<li><a href="https://www.amazon.com/Apache-Spark-Hours-Teach-Yourself-ebook/dp/B01LBA79II">Apache Spark in 24 Hours: Hour 2, Installing Spark</a></li>
+</ul>
+
+<h1 id="安装jdk">安装JDK</h1>
+
+<ul>
+<li>选择奇数版本（修复bug后的版本）</li>
+<li>不要安装在program file里面，路径不要含有空格</li>
+<li>环境变量增加 <code>JAVA_HOME</code> 为jdk的路径，cmd（以管理员身份运行）中输入</li>
+</ul>
+
+<pre><code>setx /M JAVA_HOME C:\java\jdk1.8.0_211
+</code></pre>
+
+<ul>
+<li>重启cmd测试</li>
+</ul>
+
+<pre><code>echo %JAVA_HOME%
+</code></pre>
+
+<ul>
+<li>cmd（以管理员身份运行）中输入</li>
+</ul>
+
+<pre><code>setx /M path &quot;%path%;%JAVA_HOME%\bin;C:\java\jre1.8.0_211\bin&quot;
+</code></pre>
+
+<ul>
+<li>cmd测试</li>
+</ul>
+
+<pre><code>javac -version
+</code></pre>
+
+<ul>
+<li>disable IPv6 for Java applications</li>
+</ul>
+
+<pre><code>setx /M _JAVA_OPTIONS &quot;-Djava.net.preferIPv4Stack=true&quot;
+</code></pre>
+
+<p>cf: <a href="https://javatutorial.net/set-java-home-windows-10">How to set JAVA_HOME in Windows 10</a></p>
+
+<h1 id="安装scala-sbt和intellij">安装Scala, SBT和IntelliJ</h1>
+
+<ul>
+<li>下载scala安装，<a href="https://downloads.lightbend.com/scala/2.12.8/scala-2.12.8.msi">link</a>
+
+<ul>
+<li>cmd验证(Ctrl+D退出)</li>
+</ul></li>
+</ul>
+
+<pre><code>scala
+</code></pre>
+
+<ul>
+<li>下载sbt安装，<a href="https://piccolo.link/sbt-1.2.8.msi">link</a>
+
+<ul>
+<li>cmd验证(Ctrl+D退出)；cmd中输入<code>console</code>也可进入scala interpreter</li>
+</ul></li>
+</ul>
+
+<pre><code>sbt
+</code></pre>
+
+<ul>
+<li>下载IntelliJ IDEA Community版本安装</li>
+<li>创建一个Scala项目，参考 <a href="https://docs.scala-lang.org/getting-started-intellij-track/building-a-scala-project-with-intellij-and-sbt.html">BUILDING A SCALA PROJECT WITH INTELLIJ AND SBT</a></li>
+
+<li><p>项目的结构</p>
+
+<ul>
+<li><code>.idea</code> = IntelliJ configuration files</li>
+<li><code>project</code> = files used during compilation. For example, <code>build.properties</code> allows you to change the SBT version used when compiling your project.</li>
+<li><code>src</code>  = scala source code
+
+<ul>
+<li>structure: <code>src/main/scala</code></li>
+</ul></li>
+<li><code>target</code> = when you compile your project it will go here</li>
+<li><code>build.sbt</code>
+
+<ul>
+<li><code>name</code> - name of the project</li>
+<li><code>version</code> - project version</li>
+<li><code>scalaVersion</code></li>
+</ul></li>
+</ul></li>
+
+<li><p><strong>idea右键没有Scala class的解决方法</strong>：</p></li>
+</ul>
+
+<p><img src="/spark/idea.png" alt="idea" /></p>
+
+<p>cf: <a href="https://www.cnblogs.com/lingluo2017/p/8673243.html">idea 无法创建Scala class 选项解决办法汇总</a></p>
+
+<h1 id="安装hadoop">安装Hadoop</h1>
+
+<ul>
+<li>下载，解压</li>
+<li>环境变量增加 <code>HADOOP_HOME</code>  为hadoop路径：以管理员身份运行cmd输入</li>
+</ul>
+
+<pre><code>setx /M HADOOP_HOME C:\hadoop-3.1.2
+</code></pre>
+
+<ul>
+<li>bin文件夹加入环境变量path：以管理员身份运行cmd输入</li>
+</ul>
+
+<pre><code>setx /M path &quot;%path%;%HADOOP_HOME%\bin&quot;
+</code></pre>
+
+<ul>
+<li>cmd中测试</li>
+</ul>
+
+<pre><code>hadoop version
+</code></pre>
+
+<ul>
+<li>下载winutils，<a href="https://github.com/steveloughran/winutils">link</a>，替代对应版本的hadoop的bin文件夹</li>
+</ul>
+
+<h1 id="安装spark">安装Spark</h1>
+
+<ul>
+<li>下载Pre-built for Apache Hadoop版本 <a href="http://spark.apache.org/downloads.html">link</a>，解压，路径加入path：以管理员身份运行cmd输入</li>
+</ul>
+
+<pre><code>setx /M SPARK_HOME C:\spark
+setx /M path &quot;%path%;%SPARK_HOME%\bin&quot;
+</code></pre>
+
+<ul>
+<li>cmd验证</li>
+</ul>
+
+<pre><code>pyspark
+</code></pre>
+
+<ul>
+<li>打开 <a href="http://localhost:4040，查看SparkUI">http://localhost:4040，查看SparkUI</a></li>
+<li>cmd验证</li>
+</ul>
+
+<pre><code>spark-shell
+</code></pre>
+
+<ul>
+<li><p>打开 <a href="http://localhost:4040，查看SparkUI">http://localhost:4040，查看SparkUI</a></p></li>
+
+<li><p>Pi Estimator example</p></li>
+</ul>
+
+<pre><code>spark-submit --class org.apache.spark.examples.SparkPi --master local %SPARK_HOME%\examples\jars\spark-examples*.jar 10
+</code></pre>
+
+<p><img src="/spark/pi.png" alt="pi estimator" /></p>
+
+<ul>
+<li>make a temporary directory, <code>C:\tmp\hive</code>, to enable the <code>HiveContext</code> in Spark. Set permission to this file using the <code>winutils.exe</code> program included with the Hadoop common binaries</li>
+</ul>
+
+<pre><code>mkdir C:\tmp\hive
+%HADOOP_HOME%\bin\winutils.exe chmod 777 /tmp/hive
+</code></pre>
+
+</main>
+
+    <footer>
+      <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: "AMS" },
+         extensions: ["AMSmath.js", "AMSsymbols.js"] }
+  }
+  });
+  MathJax.Hub.Queue(function() {
+    
+    
+    
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+
+  MathJax.Hub.Config({
+  
+  TeX: { equationNumbers: { autoNumber: "AMS" } }
+  });
+</script>
+
+<script src="//yihui.name/js/math-code.js"></script>
+<script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.name/js/center-img.js"></script>
+
+      
+      <hr/>
+      <a href="mailto:zhuxm2017@163.com">Email</a> | <a href="https://github.com/augustrobo">Github</a>
+      
+    </footer>
+  </body>
+</html>
+
